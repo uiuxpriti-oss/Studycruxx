@@ -476,7 +476,7 @@ class Component extends DCLogic {
     this._t = setTimeout(()=>this.setState({toast:false}), 3200);
   };
   act = (msg, sub, ok) => () => this.fire(msg, sub, ok);
-  jump = (route, label) => () => this.fire('Opening '+label, 'That module lives in its own workspace — this build is the platform overview', true);
+  jump = (route, label) => () => { const PAGES={students:'students.html',teachers:'teachers.html',coordinators:'coordinators.html',speakers:'speakers.html',roles:'roles-access.html',allocation:'coordinators.html',schedule:'teachers.html',attendance:'students.html',performance:'teachers.html',finance:'teachers.html'}; const p=PAGES[route]; if(p){ window.location.href=p; } else { this.fire('Opening '+label, 'That module lives in its own workspace — this build is the platform overview', true); } };
 
   renderVals() {
     const s = this.state;
@@ -618,7 +618,7 @@ class Component extends DCLogic {
         ['Generate Report','Any module · any date range','violet','M9 4h6v3H9zM7 5H5v15h14V5h-2M9 12h6M9 16h4','reports']
       ].map(([label,desc,c,path,route])=>({label, desc, path,
         ibg: BDG[c][0], ifg: BDG[c][1],
-        go: ()=>{ this.setState({modal:null}); this.fire(label, desc+' — opens in the '+route+' module', true); }})),
+        go: ()=>{ this.setState({modal:null}); this.jump(route, label)(); }})),
 
       exModuleChips: ALL_MODULES.map(m=>{
         const on = exSel.includes(m);

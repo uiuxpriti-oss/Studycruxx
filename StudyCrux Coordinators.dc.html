@@ -130,7 +130,7 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 1 0 6 8c0 7-3 8-3 8h18s-3-1-3-8" /><path d="M13.7 21a2 2 0 0 1-3.4 0" /></svg>
           <span style="position:absolute;top:7px;right:8px;width:7px;height:7px;border-radius:50%;background:#E5484D;border:1.5px solid #fff"></span>
         </button>
-          <sc-if value="{{ isAll }}" hint-placeholder-val="{{ false }}">
+          <sc-if value="{{ showAddCta }}" hint-placeholder-val="{{ false }}">
           <div style="position:relative;flex:none">
             <button onClick="{{ openAdd }}" style="display:flex;align-items:center;gap:7px;flex:none;height:38px;padding:0 16px;border-radius:9px;border:0;background:#0E9384;font-size:13px;font-weight:700;color:#fff;cursor:pointer;white-space:nowrap" style-hover="background:#0B7A6E">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14" /></svg>Add Coordinator
@@ -744,9 +744,7 @@
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#98A2B3" stroke-width="2.1" stroke-linecap="round" style="position:absolute;left:13px;top:12px"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.6-3.6" /></svg>
               <input value="{{ atQ }}" onChange="{{ setAtQ }}" placeholder="Search coordinator, ID, course, batch…" style="width:100%;height:38px;padding:0 13px 0 35px;border:1px solid #E5E3DC;border-radius:10px;font-size:13px;color:#0F2A47;background:#fff;outline:0;box-sizing:border-box" />
             </div>
-            <button onClick="{{ atSaveFilter }}" style="flex:none;height:38px;padding:0 13px;border-radius:10px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer" style-hover="background:#F6F5F0">Save filter</button>
-            <button onClick="{{ atManageFilters }}" style="flex:none;height:38px;padding:0 13px;border-radius:10px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer" style-hover="background:#F6F5F0">Saved</button>
-            <button onClick="{{ atReset }}" style="display:{{ atResetShow }};align-items:center;flex:none;height:38px;padding:0 13px;border-radius:10px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer" style-hover="background:#F6F5F0">Reset</button>
+            <button onClick="{{ atReset }}" style="display:flex;align-items:center;flex:none;height:38px;padding:0 13px;border-radius:10px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer" style-hover="background:#F6F5F0">Reset</button>
             <button onClick="{{ fp.p1.toggle }}" style="flex:none;display:flex;align-items:center;gap:7px;height:38px;padding:0 14px;border-radius:10px;border:1px solid {{ fp.p1.bd }};background:{{ fp.p1.bg }};font-size:13px;font-weight:600;color:{{ fp.p1.fg }};cursor:pointer;font-family:inherit">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M4 6h16M7 12h10M10 18h4" /></svg>Filters
             </button>
@@ -3731,15 +3729,15 @@
 
             <sc-if value="{{ isAlerts }}" hint-placeholder-val="{{ false }}">
         <div>
-          <div style="display:flex;align-items:center;gap:11px;margin-bottom:16px;flex-wrap:wrap">
-            <div style="display:flex;gap:2px;background:#fff;border:1px solid #ECEAE2;border-radius:11px;padding:4px;flex-wrap:wrap">
+          <div style="display:flex;align-items:center;gap:11px;margin-bottom:16px">
+            <div style="display:flex;gap:2px;background:#fff;border:1px solid #ECEAE2;border-radius:11px;padding:4px;flex:0 1 auto;min-width:0;overflow-x:auto;scrollbar-width:none">
               <sc-for list="{{ alSegs }}" as="t" hint-placeholder-count="9">
-                <button onClick="{{ t.pick }}" style="height:32px;padding:0 15px;border:0;border-radius:8px;font-size:13px;cursor:pointer;background:{{ t.bg }};color:{{ t.fg }};font-weight:{{ t.weight }};white-space:nowrap">{{ t.label }}</button>
+                <button onClick="{{ t.pick }}" style="height:32px;padding:0 15px;flex:none;border:0;border-radius:8px;font-size:13px;cursor:pointer;background:{{ t.bg }};color:{{ t.fg }};font-weight:{{ t.weight }};white-space:nowrap">{{ t.label }}</button>
               </sc-for>
             </div>
             <span style="flex:1"></span>
-            <button onClick="{{ alSendReminder }}" style="height:38px;padding:0 15px;border-radius:10px;border:1px solid #BFE3DC;background:#EEF6F5;font-size:13px;font-weight:700;color:#0B7A6E;cursor:pointer;white-space:nowrap" style-hover="background:#E2F1EE">Send Reminder</button>
-            <button onClick="{{ alNewRule }}" style="height:38px;padding:0 16px;border-radius:10px;border:0;background:#0E9384;font-size:13px;font-weight:700;color:#fff;cursor:pointer;white-space:nowrap" style-hover="background:#0B7A6E">+ Create Alert Rule</button>
+            <button onClick="{{ alSendReminder }}" style="flex:none;height:38px;padding:0 15px;border-radius:10px;border:1px solid #BFE3DC;background:#EEF6F5;font-size:13px;font-weight:700;color:#0B7A6E;cursor:pointer;white-space:nowrap" style-hover="background:#E2F1EE">Send Reminder</button>
+            <button onClick="{{ alNewRule }}" style="flex:none;height:38px;padding:0 16px;border-radius:10px;border:0;background:#0E9384;font-size:13px;font-weight:700;color:#fff;cursor:pointer;white-space:nowrap" style-hover="background:#0B7A6E">+ Create Alert Rule</button>
           </div>
 
           <sc-if value="{{ alIsOver }}" hint-placeholder-val="{{ true }}">
@@ -3769,23 +3767,18 @@
                 </div>
 
                 <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
-                  <div style="display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid #F2F0EA;flex-wrap:wrap">
-                    <div style="min-width:0;flex:1 1 240px">
-                      <div style="font-size:14.5px;font-weight:700;color:#0F2A47">My attention required</div>
-                      <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">Unresolved operational exceptions across every managed batch — not a notification feed</div>
-                    </div>
-                    <span style="flex:none;font-size:12px;font-weight:700;color:#B42318">7 items</span>
+                  <div style="padding:16px 20px;border-bottom:1px solid #F2F0EA">
+                    <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Recent activity</div>
+                    <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">Latest notifications across every channel · click a row for the full trail</div>
                   </div>
-                  <sc-for list="{{ alAttn }}" as="a" hint-placeholder-count="7">
-                    <div style="display:flex;align-items:center;gap:13px;padding:13px 20px;border-bottom:1px solid #F5F3EE;flex-wrap:wrap">
-                      <span style="width:9px;height:9px;flex:none;border-radius:50%;background:{{ a.dot }}"></span>
-                      <div style="min-width:0;flex:1 1 220px">
-                        <div style="font-size:13px;font-weight:700;color:#0F2A47;text-wrap:pretty">{{ a.title }}</div>
-                        <div style="font-size:11.5px;color:#98A2B3;margin-top:3px;text-wrap:pretty">{{ a.meta }} · {{ a.coord }}</div>
+                  <sc-for list="{{ alRecent }}" as="r" hint-placeholder-count="7">
+                    <div onClick="{{ r.view }}" style="display:flex;align-items:center;gap:11px;padding:11px 20px;border-bottom:1px solid #F5F3EE;cursor:pointer" style-hover="background:#FCFBF7">
+                      <span style="width:62px;flex:none;font-size:11.5px;color:#98A2B3">{{ r.time }}</span>
+                      <div style="min-width:0;flex:1">
+                        <div style="font-size:12.5px;font-weight:600;color:#0F2A47;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.rule }}</div>
+                        <div style="font-size:11px;color:#98A2B3;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.to }} · {{ r.ch }}</div>
                       </div>
-                      <span style="flex:none;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ a.sBg }};color:{{ a.sFg }};white-space:nowrap">{{ a.sev }}</span>
-                      <button onClick="{{ a.view }}" style="flex:none;height:30px;padding:0 12px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:12px;font-weight:600;color:#344054;cursor:pointer" style-hover="background:#F6F5F0">View</button>
-                      <button onClick="{{ a.resolve }}" style="flex:none;height:30px;padding:0 13px;border-radius:8px;border:0;background:#0E9384;font-size:12px;font-weight:700;color:#fff;cursor:pointer" style-hover="background:#0B7A6E">Resolve</button>
+                      <span style="flex:none;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.sBg }};color:{{ r.sFg }};white-space:nowrap">{{ r.state }}</span>
                     </div>
                   </sc-for>
                 </div>
@@ -3793,25 +3786,48 @@
               </div>
 
               <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
-                <div style="padding:16px 20px;border-bottom:1px solid #F2F0EA">
-                  <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Rule categories</div>
-                  <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">29 rules organised by what they monitor — click to filter</div>
+                <div style="display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid #F2F0EA;flex-wrap:wrap">
+                  <div style="min-width:0;flex:1 1 240px">
+                    <div style="font-size:14.5px;font-weight:700;color:#0F2A47">My attention required</div>
+                    <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">Unresolved operational exceptions across every managed batch — not a notification feed</div>
+                  </div>
+                  <span style="flex:none;font-size:12px;font-weight:700;color:#B42318">7 items</span>
                 </div>
-                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;padding:16px 20px">
-                  <sc-for list="{{ alCatCounts }}" as="c" hint-placeholder-count="12">
-                    <div onClick="{{ c.pick }}" style="min-width:0;border:1px solid #F0EEE7;border-radius:12px;padding:13px 15px;background:#FCFBF7;cursor:pointer" style-hover="border-color:#BFE3DC">
-                      <div style="height:4px;border-radius:3px;background:{{ c.color }}"></div>
-                      <div style="font-size:20px;font-weight:800;color:#0F2A47;letter-spacing:-.03em;margin-top:10px">{{ c.n }}</div>
-                      <div style="font-size:11.5px;font-weight:600;color:#7A8699;margin-top:4px;text-wrap:pretty">{{ c.label }}</div>
+                <sc-for list="{{ alAttn }}" as="a" hint-placeholder-count="7">
+                  <div style="display:flex;align-items:center;gap:13px;padding:13px 20px;border-bottom:1px solid #F5F3EE;flex-wrap:wrap">
+                    <span style="width:9px;height:9px;flex:none;border-radius:50%;background:{{ a.dot }}"></span>
+                    <div style="min-width:0;flex:1 1 220px">
+                      <div style="font-size:13px;font-weight:700;color:#0F2A47;text-wrap:pretty">{{ a.title }}</div>
+                      <div style="font-size:11.5px;color:#98A2B3;margin-top:3px;text-wrap:pretty">{{ a.meta }} · {{ a.coord }}</div>
                     </div>
-                  </sc-for>
+                    <span style="flex:none;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ a.sBg }};color:{{ a.sFg }};white-space:nowrap">{{ a.sev }}</span>
+                    <button onClick="{{ a.view }}" style="flex:none;height:30px;padding:0 12px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:12px;font-weight:600;color:#344054;cursor:pointer" style-hover="background:#F6F5F0">View</button>
+                    <button onClick="{{ a.resolve }}" style="flex:none;height:30px;padding:0 13px;border-radius:8px;border:0;background:#0E9384;font-size:12px;font-weight:700;color:#fff;cursor:pointer" style-hover="background:#0B7A6E">Resolve</button>
+                  </div>
+                </sc-for>
                 </div>
-              </div>
             </div>
           </sc-if>
 
           <sc-if value="{{ alIsRules }}" hint-placeholder-val="{{ false }}">
             <div>
+              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:16px 20px;margin-bottom:16px">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:13px;flex-wrap:wrap">
+                  <span style="font-size:13.5px;font-weight:800;color:#0F2A47;letter-spacing:-.01em">Categories</span>
+                  <span style="font-size:12px;color:#98A2B3">{{ alRuleCatLabel }} · {{ alRuleCatTotal }} rules in the library</span>
+                  <span style="flex:1"></span>
+                  <button onClick="{{ alRuleCatClear }}" style="height:32px;padding:0 13px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:12px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Show all</button>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px">
+                  <sc-for list="{{ alRuleCats }}" as="c" hint-placeholder-count="8">
+                    <div onClick="{{ c.pick }}" style="min-width:0;border:1.5px solid {{ c.bd }};background:{{ c.bg }};border-radius:11px;padding:12px 13px;cursor:pointer" style-hover="border-color:#BFE3DC">
+                      <div style="height:3px;border-radius:2px;background:{{ c.color }}"></div>
+                      <div style="font-size:19px;font-weight:800;color:#0F2A47;letter-spacing:-.02em;margin-top:9px">{{ c.n }}</div>
+                      <div style="font-size:11px;font-weight:600;color:#7A8699;margin-top:3px;text-wrap:pretty">{{ c.label }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
           <div style="display:flex;justify-content:flex-end;margin-bottom:12px">
             <button onClick="{{ fp.p6.toggle }}" style="display:flex;align-items:center;gap:7px;height:38px;padding:0 14px;border-radius:10px;border:1px solid {{ fp.p6.bd }};background:{{ fp.p6.bg }};font-size:13px;font-weight:600;color:{{ fp.p6.fg }};cursor:pointer;font-family:inherit">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M4 6h16M7 12h10M10 18h4" /></svg>Filters
@@ -3825,7 +3841,14 @@
               <button onClick="{{ alRuleBar.reset }}" style="display:{{ alRuleBar.resetShow }};height:32px;padding:0 13px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:12px;font-weight:600;color:#344054;cursor:pointer" style-hover="background:#F6F5F0">Reset</button>
             </div>
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px">
-              <sc-for list="{{ alRuleBar.selects }}" as="p" hint-placeholder-count="6">
+              <div style="min-width:0">
+                      <label style="display:block;font-size:11px;font-weight:600;color:#475467;margin-bottom:6px">Search</label>
+                      <div style="position:relative">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#98A2B3" stroke-width="2.1" stroke-linecap="round" style="position:absolute;left:11px;top:11px"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.6-3.6" /></svg>
+                        <input value="{{ alRuleQ }}" onChange="{{ setAlRuleQ }}" placeholder="Search rules" style="width:100%;height:36px;padding:0 10px 0 32px;border:1px solid #E5E3DC;border-radius:8px;font-size:12.5px;color:#0F2A47;background:#fff;outline:0;box-sizing:border-box;font-family:inherit" />
+                      </div>
+                    </div>
+                  <sc-for list="{{ alRuleBar.selects }}" as="p" hint-placeholder-count="6">
                 <div style="min-width:0">
                   <label style="display:block;font-size:11px;font-weight:600;color:#475467;margin-bottom:6px">{{ p.label }}</label>
                   <select value="{{ p.value }}" onChange="{{ p.set }}" style="width:100%;height:36px;padding:0 10px;border:1px solid #E5E3DC;border-radius:8px;font-size:12.5px;background:#fff;color:#0F2A47;outline:0">
@@ -3838,18 +3861,7 @@
             </div>
           </div>
 
-              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
-                <div style="display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid #F2F0EA;flex-wrap:wrap">
-                  <div style="min-width:0;flex:1 1 220px">
-                    <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Alert rules</div>
-                    <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">Trigger → condition → scope → audience → channels → escalation</div>
-                  </div>
-                  <div style="position:relative;flex:none">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#98A2B3" stroke-width="2.1" stroke-linecap="round" style="position:absolute;left:12px;top:11px"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.6-3.6" /></svg>
-                    <input value="{{ alRuleQ }}" onChange="{{ setAlRuleQ }}" placeholder="Search rules" style="width:240px;max-width:100%;height:36px;padding:0 13px 0 34px;border:1px solid #E5E3DC;border-radius:10px;font-size:12.5px;color:#0F2A47;background:#fff;outline:0;box-sizing:border-box" />
-                  </div>
-                </div>
-                <div style="padding:16px 20px;display:flex;flex-direction:column;gap:11px">
+              <div style="display:flex;flex-direction:column;gap:11px">
                   <sc-for list="{{ alRules }}" as="r" hint-placeholder-count="10">
                   <div style="background:#fff;border:1px solid #ECEAE2;border-radius:13px;padding:15px 18px">
                     <div style="display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap">
@@ -3897,45 +3909,78 @@
                     </div>
                   </div>
                 </sc-for>
-                </div>
               </div>
             </div>
           </sc-if>
 
           <sc-if value="{{ alIsTpl }}" hint-placeholder-val="{{ false }}">
-            <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
-              <div style="display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid #F2F0EA;flex-wrap:wrap">
-                <div style="min-width:0;flex:1 1 240px">
-                  <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Notification templates</div>
-                  <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">A rule decides when and to whom · a template decides what is sent</div>
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:16px;align-items:start">
+              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden;min-width:0">
+                <div style="display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid #F2F0EA">
+                  <div style="min-width:0">
+                    <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Notification templates</div>
+                    <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">A rule decides when and to whom · a template decides what is sent</div>
+                  </div>
+                  <span style="flex:1"></span>
+                  <button onClick="{{ alNewTpl }}" style="flex:none;height:36px;padding:0 15px;border-radius:9px;border:0;background:#0E9384;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer;white-space:nowrap;font-family:inherit" style-hover="background:#0B7A6E">New template</button>
                 </div>
-                <button onClick="{{ alNewTpl }}" style="flex:none;height:36px;padding:0 15px;border-radius:9px;border:0;background:#0E9384;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer;white-space:nowrap" style-hover="background:#0B7A6E">Create Template</button>
-              </div>
-              <div style="overflow-x:auto">
-                <table style="width:100%;min-width:1080px;border-collapse:collapse">
-                  <thead>
-                    <tr style="background:#FCFBF7">
-                      <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">TEMPLATE</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">CATEGORY</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">CHANNELS</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">USED BY</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">LAST UPDATED</th><th style="padding:11px 20px 11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">STATUS</th>
-                      <th style="padding:11px 20px 11px 12px;border-bottom:1px solid #F0EEE7"></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <sc-for list="{{ alTplRows }}" as="r" hint-placeholder-count="8">
-                      <tr style-hover="background:#FCFBF7">
-                        <td style="padding:11px 20px;border-bottom:1px solid #F5F3EE;font-size:12.5px;font-weight:600;color:#0F2A47">{{ r.name }}</td>
-                        <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.cat }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.ch }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.used }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;color:#98A2B3">{{ r.updated }}</td>
-                        <td style="padding:11px 20px 11px 12px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.sBg }};color:{{ r.sFg }};white-space:nowrap">{{ r.state }}</span></td>
-                        <td style="padding:11px 20px 11px 12px;border-bottom:1px solid #F5F3EE;text-align:right;white-space:nowrap">
-                          <button onClick="{{ r.preview }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid #E5E3DC;background:#fff;font-size:11px;font-weight:600;color:#344054;cursor:pointer;margin-right:5px" style-hover="background:#F6F5F0">Preview</button>
-                          <button onClick="{{ r.test }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid #E5E3DC;background:#fff;font-size:11px;font-weight:600;color:#344054;cursor:pointer;margin-right:5px" style-hover="background:#F6F5F0">Test</button>
-                          <button onClick="{{ r.dup }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid #E5E3DC;background:#fff;font-size:11px;font-weight:600;color:#344054;cursor:pointer;margin-right:5px" style-hover="background:#F6F5F0">Duplicate</button>
-                          <button onClick="{{ r.archive }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid #F0D2CF;background:#fff;font-size:11px;font-weight:600;color:#B42318;cursor:pointer;margin-right:5px">Archive</button>
-                          <button onClick="{{ r.edit }}" style="height:28px;padding:0 10px;border-radius:7px;border:0;background:#0E9384;font-size:11px;font-weight:700;color:#fff;cursor:pointer">Edit</button>
-                        </td>
+                <div style="overflow-x:auto">
+                  <table style="width:100%;border-collapse:collapse">
+                    <thead>
+                      <tr style="background:#FCFBF7">
+                        <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">TEMPLATE</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">CATEGORY</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">CHANNELS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">USED BY</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">STATUS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">LAST UPDATED</th>
+                        <th style="padding:11px 20px 11px 13px;border-bottom:1px solid #F0EEE7"></th>
                       </tr>
-                    </sc-for>
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      <sc-for list="{{ alTplRows }}" as="t" hint-placeholder-count="9">
+                        <tr style-hover="background:#FCFBF7">
+                          <td style="padding:11px 20px;border-bottom:1px solid #F5F3EE">
+                            <div style="font-size:13px;font-weight:600;color:#0F2A47;white-space:nowrap">{{ t.name }}</div>
+                            <div style="font-size:10.5px;color:#98A2B3;margin-top:2px;font-family:ui-monospace,monospace">{{ t.id }}</div>
+                          </td>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ t.cat }}</td>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE">
+                            <div style="display:flex;gap:5px;flex-wrap:wrap">
+                              <sc-for list="{{ t.chips }}" as="c" hint-placeholder-count="2">
+                                <span style="font-size:10.5px;font-weight:600;padding:2px 8px;border-radius:6px;background:#EEF6F5;color:#0B7A6E;white-space:nowrap">{{ c.x }}</span>
+                              </sc-for>
+                            </div>
+                          </td>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ t.used }}</td>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ t.sBg }};color:{{ t.sFg }};white-space:nowrap">{{ t.state }}</span></td>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#98A2B3;white-space:nowrap">{{ t.updated }}</td>
+                          <td style="padding:11px 20px 11px 13px;border-bottom:1px solid #F5F3EE;text-align:right;white-space:nowrap">
+                            <div style="display:inline-flex;gap:6px"><button onClick="{{ t.preview }}" style="height:29px;padding:0 11px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:11.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Preview</button><button onClick="{{ t.test }}" style="height:29px;padding:0 11px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:11.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Test</button><button onClick="{{ t.edit }}" style="height:29px;padding:0 11px;border-radius:8px;border:1px solid #BFE3DC;background:#EEF6F5;font-size:11.5px;font-weight:600;color:#0B7A6E;cursor:pointer;font-family:inherit" style-hover="background:#E2F1EE">Edit</button></div>
+                          </td>
+                        </tr>
+                      </sc-for>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div style="display:flex;flex-direction:column;gap:14px">
+                <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
+                  <div style="padding:14px 16px;border-bottom:1px solid #F2F0EA;background:#FCFBF7">
+                    <div style="font-size:12.5px;font-weight:800;color:#0F2A47">Dynamic variables</div>
+                    <div style="font-size:11px;color:#98A2B3;margin-top:3px">Available in every channel body</div>
+                  </div>
+                  <sc-for list="{{ alTplVars }}" as="v" hint-placeholder-count="6">
+                    <div style="padding:10px 16px;background:{{ v.bg }};border-bottom:1px solid #F7F5F0">
+                      <div style="font-size:11px;font-weight:700;color:#7A8699">{{ v.k }}</div>
+                      <div style="font-size:11.5px;color:#0F2A47;margin-top:4px;font-family:ui-monospace,monospace;text-wrap:pretty">{{ v.v }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+                <div style="background:#FCFBF7;border:1px solid #ECEAE2;border-radius:14px;padding:16px">
+                  <div style="font-size:12.5px;font-weight:800;color:#0F2A47;margin-bottom:11px">WhatsApp preview</div>
+                  <div style="background:#fff;border:1px solid #E4E9E8;border-radius:12px;padding:13px 15px">
+                    <div style="font-size:12px;color:#0F2A47;line-height:1.6">Hi <strong style="font-weight:700">R. Kumar</strong>,<br /><strong style="font-weight:700">Dr. Vikram Verma</strong> has not joined <strong style="font-weight:700">IC-01 Morning</strong> — the class started at <strong style="font-weight:700">12:00 PM</strong>.<br /><br />Batch: Batch A — Morning<br />Students waiting: 48<br />Escalates to Operations in 10 min</div>
+                    <div style="margin-top:11px;padding:9px 12px;border-radius:9px;background:#EEF6F5;text-align:center;font-size:12px;font-weight:700;color:#0B7A6E">Assign Substitute</div>
+                  </div>
+                  <div style="font-size:11px;color:#98A2B3;margin-top:9px">Preview as R. Kumar · variables resolved with live data</div>
+                </div>
               </div>
             </div>
           </sc-if>
@@ -3955,6 +4000,13 @@
               <button onClick="{{ alHistBar.reset }}" style="display:{{ alHistBar.resetShow }};height:32px;padding:0 13px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:12px;font-weight:600;color:#344054;cursor:pointer" style-hover="background:#F6F5F0">Reset</button>
             </div>
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px">
+              <div style="min-width:0">
+                  <label style="display:block;font-size:11px;font-weight:600;color:#475467;margin-bottom:6px">Search</label>
+                  <div style="position:relative">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#98A2B3" stroke-width="2.1" stroke-linecap="round" style="position:absolute;left:11px;top:11px"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.6-3.6" /></svg>
+                    <input value="{{ alHistQ }}" onChange="{{ setAlHistQ }}" placeholder="Search alert, coordinator, batch" style="width:100%;height:36px;padding:0 10px 0 32px;border:1px solid #E5E3DC;border-radius:8px;font-size:12.5px;color:#0F2A47;background:#fff;outline:0;box-sizing:border-box;font-family:inherit" />
+                  </div>
+                </div>
               <sc-for list="{{ alHistBar.selects }}" as="p" hint-placeholder-count="6">
                 <div style="min-width:0">
                   <label style="display:block;font-size:11px;font-weight:600;color:#475467;margin-bottom:6px">{{ p.label }}</label>
@@ -3969,35 +4021,30 @@
           </div>
 
               <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
-                <div style="display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid #F2F0EA;flex-wrap:wrap">
-                  <div style="min-width:0;flex:1 1 220px">
-                    <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Notification delivery history</div>
-                    <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">Complete history of automated and manual reminders across every channel · click a row for the full audit</div>
-                  </div>
-                  <div style="position:relative;flex:none">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#98A2B3" stroke-width="2.1" stroke-linecap="round" style="position:absolute;left:12px;top:11px"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.6-3.6" /></svg>
-                    <input value="{{ alHistQ }}" onChange="{{ setAlHistQ }}" placeholder="Search alert, coordinator, batch" style="width:260px;max-width:100%;height:36px;padding:0 13px 0 34px;border:1px solid #E5E3DC;border-radius:10px;font-size:12.5px;color:#0F2A47;background:#fff;outline:0;box-sizing:border-box" />
-                  </div>
+                <div style="padding:16px 20px;border-bottom:1px solid #F2F0EA">
+                  <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Notification delivery history</div>
+                  <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">Complete history of automated and manual reminders across every channel</div>
                 </div>
                 <div style="overflow-x:auto">
-                  <table style="width:100%;min-width:1340px;border-collapse:collapse">
+                  <table style="width:100%;min-width:1240px;border-collapse:collapse">
                     <thead>
-                      <tr style="background:#FCFBF7">
-                        <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">TIME</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">ALERT</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">COORDINATOR</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">BATCH / COURSE</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">CHANNEL</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">DELIVERY</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">ACTION STATE</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PRIORITY</th><th style="padding:11px 20px 11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">SOURCE</th>
-                        <th style="padding:11px 20px 11px 12px;border-bottom:1px solid #F0EEE7"></th>
+                      <tr style="background:#FCFBF7"><th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">TIME</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">ALERT</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">RECIPIENT</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">BATCH / COURSE</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">ACTION STATE</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">CHANNEL</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PRIORITY</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">SOURCE</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">STATUS</th>
+                        <th style="padding:11px 20px 11px 13px;border-bottom:1px solid #F0EEE7"></th>
                       </tr>
                     </thead>
                     <tbody>
-                      <sc-for list="{{ alHistRows }}" as="r" hint-placeholder-count="10">
-                        <tr onClick="{{ r.open }}" style="cursor:pointer" style-hover="background:#FCFBF7">
+                      <sc-for list="{{ alHistRows }}" as="r" hint-placeholder-count="12">
+                        <tr style-hover="background:#FCFBF7">
                           <td style="padding:11px 20px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.time }}</td>
-                          <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:600;color:#0F2A47">{{ r.alert }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.coord }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:600;color:#0B7A6E">{{ r.batch }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.channel }}</td>
-                          <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.dBg }};color:{{ r.dFg }};white-space:nowrap">{{ r.delivery }}</span></td>
-                          <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.aBg }};color:{{ r.aFg }};white-space:nowrap">{{ r.action }}</span></td>
-                          <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.pBg }};color:{{ r.pFg }};white-space:nowrap">{{ r.priority }}</span></td>
-                          <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;color:#98A2B3">{{ r.source }}</td>
-                          <td style="padding:11px 20px 11px 12px;border-bottom:1px solid #F5F3EE;text-align:right">
-                            <button onClick="{{ r.retry }}" style="display:{{ r.retryDisplay }};align-items:center;height:28px;padding:0 10px;border-radius:7px;border:1px solid #F0D2CF;background:#fff;font-size:11px;font-weight:600;color:#B42318;cursor:pointer;white-space:nowrap">Retry</button>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;font-weight:600;color:#344054">{{ r.alert }}</td>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.coord }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.batch }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-size:12px;color:#98A2B3">{{ r.action }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.channel }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-size:12px">{{ r.priority }}</td>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE"><span style="font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.srcBg }};color:{{ r.srcFg }};white-space:nowrap">{{ r.source }}</span></td>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.dBg }};color:{{ r.dFg }};white-space:nowrap">{{ r.delivery }}</span></td>
+                          <td style="padding:11px 20px 11px 13px;border-bottom:1px solid #F5F3EE;text-align:right;white-space:nowrap">
+                            <div style="display:inline-flex;gap:6px">
+                              <button onClick="{{ r.open }}" style="height:29px;padding:0 11px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:11.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">View</button>
+                              <button onClick="{{ r.retry }}" style="display:{{ r.retryDisplay }};align-items:center;height:29px;padding:0 11px;border-radius:8px;border:1px solid #BFE3DC;background:#EEF6F5;font-size:11.5px;font-weight:600;color:#0B7A6E;cursor:pointer;font-family:inherit" style-hover="background:#E2F1EE">Retry</button>
+                            </div>
                           </td>
                         </tr>
                       </sc-for>
@@ -4176,98 +4223,65 @@
           </sc-if>
 
           <sc-if value="{{ alIsAna }}" hint-placeholder-val="{{ false }}">
-            <div style="display:flex;flex-direction:column;gap:16px">
-              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px">
-                <sc-for list="{{ alAnaKpis }}" as="k" hint-placeholder-count="8">
-                  <div style="min-width:0;background:#fff;border:1px solid #ECEAE2;border-radius:13px;padding:14px 16px">
-                    <div style="font-size:11.5px;font-weight:500;color:#6B7C93;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ k.label }}</div>
-                    <div style="font-size:22px;font-weight:800;letter-spacing:-.03em;color:#0F2A47;margin-top:5px">{{ k.v }}</div>
-                    <div style="font-size:11px;color:#98A2B3;margin-top:4px;text-wrap:pretty">{{ k.note }}</div>
+            <div>
+              <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-bottom:16px">
+                <sc-for list="{{ alAnKpis }}" as="k" hint-placeholder-count="8">
+                  <div style="min-width:0;background:#fff;border:1px solid #ECEAE2;border-radius:13px;padding:15px 17px">
+                    <div style="font-size:11.5px;font-weight:500;color:#6B7C93;line-height:1.3">{{ k.label }}</div>
+                    <div style="font-size:24px;font-weight:800;letter-spacing:-.03em;color:#0F2A47;margin-top:5px">{{ k.v }}</div>
+                    <div style="font-size:11px;font-weight:600;color:{{ k.fg }};margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ k.note }}</div>
                   </div>
                 </sc-for>
-              </div>
-
-              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px">
-                <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
-                  <div style="padding:16px 20px;border-bottom:1px solid #F2F0EA">
-                    <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Channel performance</div>
-                    <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">Which channels are actually reliable</div>
-                  </div>
-                  <div style="overflow-x:auto">
-                    <table style="width:100%;border-collapse:collapse">
-                      <thead>
-                        <tr style="background:#FCFBF7">
-                          <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">CHANNEL</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">SENT</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">DELIVERED</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">FAILED</th><th style="padding:11px 20px 11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">DELIVERY RATE</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <sc-for list="{{ alChannelPerf }}" as="r" hint-placeholder-count="4">
-                          <tr style-hover="background:#FCFBF7">
-                            <td style="padding:11px 20px;border-bottom:1px solid #F5F3EE;font-size:12.5px;font-weight:700;color:#0F2A47">{{ r.ch }}</td>
-                            <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.sent }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;color:#15803D">{{ r.delivered }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;color:#B42318">{{ r.failed }}</td>
-                            <td style="padding:11px 20px 11px 12px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.rBg }};color:{{ r.rFg }};white-space:nowrap">{{ r.rate }}</span></td>
-                          </tr>
-                        </sc-for>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-
-                <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
-                  <div style="padding:16px 20px;border-bottom:1px solid #F2F0EA">
-                    <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Resolution performance</div>
-                    <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">How quickly each exception type actually gets closed</div>
-                  </div>
-                  <div style="overflow-x:auto">
-                    <table style="width:100%;border-collapse:collapse">
-                      <thead>
-                        <tr style="background:#FCFBF7">
-                          <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">EXCEPTION TYPE</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">AVG RESOLUTION</th><th style="padding:11px 20px 11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">RESOLVED WITHIN SLA</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <sc-for list="{{ alResolution }}" as="r" hint-placeholder-count="6">
-                          <tr style-hover="background:#FCFBF7">
-                            <td style="padding:11px 20px;border-bottom:1px solid #F5F3EE;font-size:12.5px;font-weight:600;color:#0F2A47">{{ r.kind }}</td>
-                            <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:700;color:#0F2A47">{{ r.avg }}</td>
-                            <td style="padding:11px 20px 11px 12px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.rBg }};color:{{ r.rFg }};white-space:nowrap">{{ r.rate }}</span></td>
-                          </tr>
-                        </sc-for>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
               </div>
 
               <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
                 <div style="padding:16px 20px;border-bottom:1px solid #F2F0EA">
-                  <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Most frequently fired rules</div>
-                  <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">High volume with low resolution usually means the threshold needs tuning</div>
+                  <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Channel performance</div>
+                  <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">Which channels are actually reliable · last 30 days</div>
                 </div>
-                <sc-for list="{{ alTopRules }}" as="r" hint-placeholder-count="6">
-                  <div style="display:flex;align-items:center;gap:12px;padding:12px 20px;border-bottom:1px solid #F5F3EE;flex-wrap:wrap">
-                    <span style="font-size:12.5px;font-weight:600;color:#0F2A47;flex:1 1 200px;min-width:0;text-wrap:pretty">{{ r.rule }}</span>
-                    <span style="flex:none;font-size:12.5px;font-weight:800;color:#0F2A47">{{ r.fired }} fired</span>
-                    <span style="flex:none;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;background:#E7F7EE;color:#15803D">{{ r.delivery }} delivered</span>
-                  </div>
-                </sc-for>
+                <div style="overflow-x:auto">
+                  <table style="width:100%;border-collapse:collapse">
+                    <thead>
+                      <tr style="background:#FCFBF7">
+                        <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">CHANNEL</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">SENT</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">DELIVERED</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">FAILED</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">DELIVERY RATE</th><th style="padding:11px 20px 11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">TREND</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <sc-for list="{{ alAnChannels }}" as="c" hint-placeholder-count="5">
+                        <tr style-hover="background:#FCFBF7">
+                          <td style="padding:11px 20px;border-bottom:1px solid #F5F3EE;font-size:13px;font-weight:600;color:#0F2A47">{{ c.ch }}</td>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467">{{ c.sent }}</td>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467">{{ c.del }}</td>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#B42318">{{ c.fail }}</td>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:13px;font-weight:800;color:{{ c.rateFg }}">{{ c.rate }}</td>
+                          <td style="padding:11px 20px 11px 13px;border-bottom:1px solid #F5F3EE;min-width:160px">
+                            <div style="height:7px;border-radius:5px;background:#F2F0EA;overflow:hidden"><div style="height:100%;width:{{ c.rate }};border-radius:5px;background:{{ c.color }}"></div></div>
+                          </td>
+                        </tr>
+                      </sc-for>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </sc-if>
 
           <sc-if value="{{ alIsSet }}" hint-placeholder-val="{{ false }}">
-            <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
-              <div style="display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid #F2F0EA;flex-wrap:wrap">
-                <div style="min-width:0;flex:1 1 240px">
-                  <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Alert settings</div>
-                  <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">Global controls — quiet hours, escalation, retries, fallback and throttling</div>
-                </div>
-                <button onClick="{{ alSetEdit }}" style="flex:none;height:36px;padding:0 15px;border-radius:9px;border:0;background:#0E9384;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer;white-space:nowrap" style-hover="background:#0B7A6E">Edit settings</button>
-              </div>
-              <sc-for list="{{ alSetRows }}" as="r" hint-placeholder-count="14">
-                <div style="display:grid;grid-template-columns:280px 1fr;gap:14px;padding:11px 20px;background:{{ r.bg }};border-bottom:1px solid #F5F3EE">
-                  <span style="font-size:12px;color:#7A8699">{{ r.k }}</span>
-                  <span style="font-size:12.5px;font-weight:600;color:#0F2A47;text-wrap:pretty">{{ r.v }}</span>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:16px">
+              <sc-for list="{{ alSetGroups }}" as="g" hint-placeholder-count="6">
+                <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden;min-width:0">
+                  <div style="display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid #F2F0EA;background:#FCFBF7">
+                    <span style="width:3px;height:12px;border-radius:2px;background:#0E9384"></span>
+                    <span style="font-size:12.5px;font-weight:800;color:#0F2A47">{{ g.t }}</span>
+                    <span style="flex:1"></span>
+                    <button onClick="{{ g.edit }}" style="height:30px;padding:0 12px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:11.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Edit</button>
+                  </div>
+                  <sc-for list="{{ g.rows }}" as="kv" hint-placeholder-count="5">
+                    <div style="display:grid;grid-template-columns:190px 1fr;gap:12px;padding:10px 18px;background:{{ kv.bg }};border-bottom:1px solid #F7F5F0">
+                      <span style="font-size:12px;color:#7A8699">{{ kv.k }}</span>
+                      <span style="font-size:12.5px;font-weight:600;color:#0F2A47;text-wrap:pretty">{{ kv.v }}</span>
+                    </div>
+                  </sc-for>
                 </div>
               </sc-for>
             </div>
@@ -4412,16 +4426,23 @@
                 <button onClick="{{ t.pick }}" style="height:32px;padding:0 13px;border:0;border-radius:8px;font-size:12.5px;cursor:pointer;background:{{ t.bg }};color:{{ t.fg }};font-weight:{{ t.weight }};white-space:nowrap">{{ t.label }}</button>
               </sc-for>
             </div>
-            <span style="flex:1"></span>
+            <div style="display:flex;gap:10px;margin-left:auto;flex:none">
+            <sc-if value="{{ payNotOver }}" hint-placeholder-val="{{ false }}">
+              <button onClick="{{ fp.p8.toggle }}" style="flex:none;flex:none;display:flex;align-items:center;gap:7px;height:38px;padding:0 14px;border-radius:10px;border:1px solid {{ fp.p8.bd }};background:{{ fp.p8.bg }};font-size:13px;font-weight:600;color:{{ fp.p8.fg }};cursor:pointer;font-family:inherit">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M4 6h16M7 12h10M10 18h4" /></svg>Filters
+            </button>
+            <button onClick="{{ paySettingsEdit }}" style="flex:none;height:38px;padding:0 14px;border-radius:10px;border:1px solid #E5E3DC;background:#fff;font-size:13px;font-weight:600;color:#344054;cursor:pointer;white-space:nowrap" style-hover="background:#F6F5F0">Payroll settings</button>
+            </sc-if>
             <button onClick="{{ openExport }}" style="height:38px;padding:0 15px;border-radius:10px;border:1px solid #E5E3DC;background:#fff;font-size:13px;font-weight:600;color:#344054;cursor:pointer;white-space:nowrap" style-hover="background:#F6F5F0">Export register</button>
             <button onClick="{{ payGenerate }}" style="height:38px;padding:0 16px;border-radius:10px;border:0;background:#0E9384;font-size:13px;font-weight:700;color:#fff;cursor:pointer;white-space:nowrap" style-hover="background:#0B7A6E">Generate payroll</button>
+            </div>
           </div>
 
           <sc-if value="{{ payIsOver }}" hint-placeholder-val="{{ true }}">
             <div>
               <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-bottom:16px">
                 <sc-for list="{{ payKpis }}" as="k" hint-placeholder-count="12">
-                  <div onClick="{{ k.pick }}" style="min-width:0;background:#fff;border:1px solid #ECEAE2;border-radius:13px;padding:15px 17px;cursor:pointer" style-hover="border-color:#BFE3DC;box-shadow:0 8px 22px rgba(11,31,62,.06)">
+                  <div onClick="{{ k.pick }}" style="min-width:0;background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:15px 17px;cursor:pointer" style-hover="border-color:#BFE3DC;box-shadow:0 8px 22px rgba(11,31,62,.06)">
                     <div style="font-size:11.5px;font-weight:500;color:#6B7C93;line-height:1.3">{{ k.label }}</div>
                     <div style="font-size:23px;font-weight:800;letter-spacing:-.03em;color:#0F2A47;margin-top:5px">{{ k.n }}</div>
                     <div style="font-size:11px;font-weight:600;color:{{ k.fg }};margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ k.note }}</div>
@@ -4455,16 +4476,7 @@
           </sc-if>
 
           <sc-if value="{{ payNotOver }}" hint-placeholder-val="{{ false }}">
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap">
-              <div style="position:relative">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#98A2B3" stroke-width="2.1" stroke-linecap="round" style="position:absolute;left:12px;top:12px"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.6-3.6" /></svg>
-              <input value="{{ payQ }}" onChange="{{ setPayQ }}" placeholder="Search transaction, coordinator, UTR…" style="width:280px;max-width:100%;height:38px;padding:0 13px 0 34px;border:1px solid #E5E3DC;border-radius:10px;font-size:13px;color:#0F2A47;background:#fff;outline:0;box-sizing:border-box" />
-            </div>
-              <button onClick="{{ paySettingsEdit }}" style="height:38px;padding:0 14px;border-radius:10px;border:1px solid #E5E3DC;background:#fff;font-size:13px;font-weight:600;color:#344054;cursor:pointer;white-space:nowrap" style-hover="background:#F6F5F0">Payroll settings</button>
-              <button onClick="{{ fp.p8.toggle }}" style="flex:none;display:flex;align-items:center;gap:7px;height:38px;padding:0 14px;border-radius:10px;border:1px solid {{ fp.p8.bd }};background:{{ fp.p8.bg }};font-size:13px;font-weight:600;color:{{ fp.p8.fg }};cursor:pointer;font-family:inherit">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M4 6h16M7 12h10M10 18h4" /></svg>Filters
-            </button>
-          </div>
+            
   <div style="display:{{ fp.p8.d }};background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:16px 20px;margin-bottom:16px">
             <div style="display:flex;align-items:center;gap:12px;margin-bottom:13px;flex-wrap:wrap">
               <span style="font-size:13.5px;font-weight:800;color:#0F2A47;letter-spacing:-.01em">Filters</span>
@@ -4473,6 +4485,13 @@
               <button onClick="{{ payBar.reset }}" style="display:{{ payBar.resetShow }};height:32px;padding:0 13px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:12px;font-weight:600;color:#344054;cursor:pointer" style-hover="background:#F6F5F0">Reset</button>
             </div>
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px">
+              <div style="min-width:0">
+                  <label style="display:block;font-size:11px;font-weight:600;color:#475467;margin-bottom:6px">Search</label>
+                  <div style="position:relative">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#98A2B3" stroke-width="2.1" stroke-linecap="round" style="position:absolute;left:11px;top:11px"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.6-3.6" /></svg>
+                    <input value="{{ payQ }}" onChange="{{ setPayQ }}" placeholder="Search transaction, coordinator, UTR…" style="width:100%;height:36px;padding:0 10px 0 32px;border:1px solid #E5E3DC;border-radius:8px;font-size:12.5px;color:#0F2A47;background:#fff;outline:0;box-sizing:border-box;font-family:inherit" />
+                  </div>
+                </div>
               <sc-for list="{{ payBar.selects }}" as="p" hint-placeholder-count="6">
                 <div style="min-width:0">
                   <label style="display:block;font-size:11px;font-weight:600;color:#475467;margin-bottom:6px">{{ p.label }}</label>
@@ -4497,12 +4516,12 @@
                 <sc-for list="{{ payBatchRows }}" as="b" hint-placeholder-count="4">
                   <div style="display:flex;align-items:center;gap:12px;padding:13px 20px;border-bottom:1px solid #F5F3EE;flex-wrap:wrap">
                     <div style="min-width:0;flex:1 1 160px">
-                      <div style="font-size:13px;font-weight:700;color:#0F2A47">{{ b.period }} <span style="font-weight:500;color:#98A2B3;font-family:ui-monospace,monospace">· {{ b.id }}</span></div>
+                      <div style="font-size:14.5px;font-weight:700;color:#0F2A47">{{ b.period }} <span style="font-weight:500;color:#98A2B3;font-family:ui-monospace,monospace">· {{ b.id }}</span></div>
                       <div style="font-size:11.5px;color:#7A8699;margin-top:4px">{{ b.n }} coordinators · gross {{ b.gross }} · deductions {{ b.ded }} · net {{ b.net }}</div>
                     </div>
                     <span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ b.sBg }};color:{{ b.sFg }};white-space:nowrap">{{ b.state }}</span>
                     <button onClick="{{ b.view }}" style="height:30px;padding:0 12px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:12px;font-weight:600;color:#344054;cursor:pointer;white-space:nowrap" style-hover="background:#F6F5F0">View</button>
-                    <button onClick="{{ b.approve }}" style="display:{{ b.approveDisplay }};align-items:center;height:30px;padding:0 12px;border-radius:8px;border:0;background:#0E9384;font-size:12px;font-weight:700;color:#fff;cursor:pointer;white-space:nowrap">Approve</button>
+                    <button onClick="{{ b.approve }}" style="display:{{ b.approveDisplay }};align-items:center;flex:none;height:36px;padding:0 15px;border-radius:9px;border:0;background:#0E9384;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit;white-space:nowrap">Approve</button>
                   </div>
                 </sc-for>
               </div>
@@ -4535,17 +4554,17 @@
                 <table style="width:100%;min-width:2000px;border-collapse:collapse">
                   <thead>
                     <tr>
-                      <th colspan="2" style="padding:8px 20px;text-align:left;font-size:10px;font-weight:800;letter-spacing:.09em;color:#0B7A6E;background:#EEF6F5;border-bottom:1px solid #E0EDEA">COORDINATOR</th>
-                      <th colspan="6" style="padding:8px 12px;text-align:left;font-size:10px;font-weight:800;letter-spacing:.09em;color:#1D4ED8;background:#EDF3FD;border-bottom:1px solid #DFE9FA">SALARY BASIS</th>
-                      <th colspan="8" style="padding:8px 12px;text-align:left;font-size:10px;font-weight:800;letter-spacing:.09em;color:#B45309;background:#FEF6EA;border-bottom:1px solid #F7E7D0">EARNINGS &amp; DEDUCTIONS</th>
-                      <th colspan="5" style="padding:8px 12px;text-align:left;font-size:10px;font-weight:800;letter-spacing:.09em;color:#6D28D9;background:#F5F0FD;border-bottom:1px solid #E9E0FA">SETTLEMENT</th>
+                      <th colspan="2" style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">COORDINATOR</th>
+                      <th colspan="6" style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">SALARY BASIS</th>
+                      <th colspan="8" style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">EARNINGS &amp; DEDUCTIONS</th>
+                      <th colspan="5" style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">SETTLEMENT</th>
                     </tr>
                     <tr style="background:#FCFBF7">
-                      <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">TRANSACTION</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">COORDINATOR</th>
-                      <th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PERIOD</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">MONTHLY SALARY</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">WORKING DAYS</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PAID DAYS</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">UNPAID LEAVE</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PRORATED</th>
-                      <th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">GROSS</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">BONUS</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">REIMBURSE</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">TDS</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">LEAVE DED.</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">ADVANCE</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">OTHER DED.</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">NET PAYABLE</th>
-                      <th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">METHOD</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">DUE DATE</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PAY DATE</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">UTR</th><th style="padding:11px 20px 11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">STATUS</th>
-                      <th style="padding:11px 20px 11px 12px;border-bottom:1px solid #F0EEE7"></th>
+                      <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">TRANSACTION</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">COORDINATOR</th>
+                      <th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PERIOD</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">MONTHLY SALARY</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">WORKING DAYS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PAID DAYS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">UNPAID LEAVE</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PRORATED</th>
+                      <th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">GROSS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">BONUS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">REIMBURSE</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">TDS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">LEAVE DED.</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">ADVANCE</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">OTHER DED.</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">NET PAYABLE</th>
+                      <th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">METHOD</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">DUE DATE</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PAY DATE</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">UTR</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">STATUS</th>
+                      <th style="padding:11px 20px 11px 13px;border-bottom:1px solid #F0EEE7"></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -4555,7 +4574,7 @@
                           <div style="font-size:12.5px;font-weight:600;font-family:ui-monospace,monospace;color:#0F2A47">{{ r.txnId }}</div>
                           <div style="font-size:10px;color:#98A2B3;margin-top:2px;font-family:ui-monospace,monospace">{{ r.payrollId }}</div>
                         </td>
-                        <td onClick="{{ r.openCoord }}" style="padding:11px 12px;border-bottom:1px solid #F5F3EE;cursor:pointer">
+                        <td onClick="{{ r.openCoord }}" style="padding:11px 13px;border-bottom:1px solid #F5F3EE;cursor:pointer">
                           <div style="display:flex;align-items:center;gap:10px">
                             <div style="width:28px;height:28px;flex:none;border-radius:50%;background:{{ r.avBg }};display:grid;place-items:center;color:#fff;font-size:10px;font-weight:700">{{ r.init }}</div>
                             <div>
@@ -4564,16 +4583,16 @@
                             </div>
                           </div>
                         </td>
-                        <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.period }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:700;color:#0F2A47">{{ r.salary }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.workingDays }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.paidDays }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.unpaid }}</td>
-                        <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;font-weight:600;color:{{ r.proFg }};white-space:nowrap">{{ r.prorated }}</td>
-                        <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:700;color:#0F2A47">{{ r.gross }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;color:#15803D">{{ r.bonus }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;color:#15803D">{{ r.reimb }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;color:#B42318">{{ r.tds }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;color:#B42318">{{ r.leaveDed }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;color:#B42318">{{ r.advance }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;color:#B42318">{{ r.otherDed }}</td>
-                        <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:13.5px;font-weight:800;color:#0F2A47;white-space:nowrap">{{ r.net }}</td>
-                        <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.method }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.dueDate }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.payDate }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-family:ui-monospace,monospace;color:#98A2B3">{{ r.utr }}</td>
-                        <td style="padding:11px 20px 11px 12px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.sBg }};color:{{ r.sFg }};white-space:nowrap">{{ r.state }}</span></td>
-                        <td style="padding:11px 20px 11px 12px;border-bottom:1px solid #F5F3EE;text-align:right;white-space:nowrap">
-                          <button onClick="{{ r.payslip }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid #E5E3DC;background:#fff;font-size:11px;font-weight:600;color:#344054;cursor:pointer;margin-right:5px" style-hover="background:#F6F5F0">Payslip</button>
-                          <button onClick="{{ r.hold }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid #F0D2CF;background:#fff;font-size:11px;font-weight:600;color:#B42318;cursor:pointer;margin-right:5px" style-hover="background:#FEF7F6">Hold</button>
-                          <button onClick="{{ r.approve }}" style="display:{{ r.approveDisplay }};align-items:center;height:28px;padding:0 10px;border-radius:7px;border:0;background:#0E9384;font-size:11px;font-weight:700;color:#fff;cursor:pointer">Approve</button>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.period }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:700;color:#0F2A47">{{ r.salary }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.workingDays }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.paidDays }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.unpaid }}</td>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;font-weight:600;color:{{ r.proFg }};white-space:nowrap">{{ r.prorated }}</td>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:700;color:#0F2A47">{{ r.gross }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;color:#15803D">{{ r.bonus }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;color:#15803D">{{ r.reimb }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;color:#B42318">{{ r.tds }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;color:#B42318">{{ r.leaveDed }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;color:#B42318">{{ r.advance }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;color:#B42318">{{ r.otherDed }}</td>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:13.5px;font-weight:800;color:#0F2A47;white-space:nowrap">{{ r.net }}</td>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.method }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.dueDate }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.payDate }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-family:ui-monospace,monospace;color:#98A2B3;font-weight:700">{{ r.utr }}</td>
+                        <td style="padding:11px 20px 11px 13px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.sBg }};color:{{ r.sFg }};white-space:nowrap">{{ r.state }}</span></td>
+                        <td style="padding:11px 20px 11px 13px;border-bottom:1px solid #F5F3EE;text-align:right;white-space:nowrap">
+                          <button onClick="{{ r.payslip }}" style="height:29px;padding:0 11px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;border:1px solid #E5E3DC;background:#fff;color:#344054;margin-right:5px" style-hover="background:#F6F5F0">Payslip</button>
+                          <button onClick="{{ r.hold }}" style="height:29px;padding:0 11px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;border:1px solid #F0D2CF;background:#fff;color:#B42318;margin-right:5px" style-hover="background:#FEF7F6">Hold</button>
+                          <button onClick="{{ r.approve }}" style="display:{{ r.approveDisplay }};align-items:center;height:29px;padding:0 11px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;border:1px solid #BFE3DC;background:#EEF6F5;color:#0B7A6E" style-hover="background:#E2F1EE">Approve</button>
                         </td>
                       </tr>
                     </sc-for>
@@ -4593,8 +4612,8 @@
                 <table style="width:100%;min-width:1500px;border-collapse:collapse">
                   <thead>
                     <tr style="background:#FCFBF7">
-                      <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">COORDINATOR</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">DESIGNATION</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">MONTHLY SALARY</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">FREQUENCY</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PAYMENT CYCLE</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">BANK ACCOUNT</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">LIFETIME EARNINGS</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PAID</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PENDING</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">LAST PAYOUT</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">EFFECTIVE FROM</th><th style="padding:11px 20px 11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">STATUS</th>
-                      <th style="padding:11px 20px 11px 12px;border-bottom:1px solid #F0EEE7"></th>
+                      <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">COORDINATOR</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">DESIGNATION</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">MONTHLY SALARY</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">FREQUENCY</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PAYMENT CYCLE</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">BANK ACCOUNT</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">LIFETIME EARNINGS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PAID</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PENDING</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">LAST PAYOUT</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">EFFECTIVE FROM</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">STATUS</th>
+                      <th style="padding:11px 20px 11px 13px;border-bottom:1px solid #F0EEE7"></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -4609,13 +4628,13 @@
                             </div>
                           </div>
                         </td>
-                        <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.role }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:800;color:#0F2A47">{{ r.salary }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.freq }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.cycle }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;color:#98A2B3">{{ r.bank }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:700;color:#0F2A47">{{ r.lifetime }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;color:#15803D">{{ r.paid }}</td>
-                        <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;font-weight:700;color:{{ r.pendFg }};white-space:nowrap">{{ r.pending }}</td>
-                        <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.last }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.effective }}</td>
-                        <td style="padding:11px 20px 11px 12px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.sBg }};color:{{ r.sFg }};white-space:nowrap">{{ r.state }}</span></td>
-                        <td style="padding:11px 20px 11px 12px;border-bottom:1px solid #F5F3EE;text-align:right;white-space:nowrap">
-                          <button onClick="{{ r.history }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid #E5E3DC;background:#fff;font-size:11px;font-weight:600;color:#344054;cursor:pointer;margin-right:5px" style-hover="background:#F6F5F0">History</button>
-                          <button onClick="{{ r.editSalary }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid #BFE3DC;background:#EEF6F5;font-size:11px;font-weight:600;color:#0B7A6E;cursor:pointer">Revise salary</button>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.role }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:800;color:#0F2A47">{{ r.salary }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.freq }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.cycle }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;color:#98A2B3">{{ r.bank }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:700;color:#0F2A47">{{ r.lifetime }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;color:#15803D">{{ r.paid }}</td>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;font-weight:700;color:{{ r.pendFg }};white-space:nowrap">{{ r.pending }}</td>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.last }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.effective }}</td>
+                        <td style="padding:11px 20px 11px 13px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.sBg }};color:{{ r.sFg }};white-space:nowrap">{{ r.state }}</span></td>
+                        <td style="padding:11px 20px 11px 13px;border-bottom:1px solid #F5F3EE;text-align:right;white-space:nowrap">
+                          <button onClick="{{ r.history }}" style="height:29px;padding:0 11px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;border:1px solid #E5E3DC;background:#fff;color:#344054;margin-right:5px" style-hover="background:#F6F5F0">History</button>
+                          <button onClick="{{ r.editSalary }}" style="height:29px;padding:0 11px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;border:1px solid #BFE3DC;background:#EEF6F5;color:#0B7A6E" style-hover="background:#E2F1EE">Revise salary</button>
                         </td>
                       </tr>
                     </sc-for>
@@ -4632,26 +4651,26 @@
                   <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Payroll batches</div>
                   <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">Group processing — approve and disburse a whole cycle at once</div>
                 </div>
-                <button onClick="{{ payGenerate }}" style="flex:none;height:36px;padding:0 15px;border-radius:9px;border:0;background:#0E9384;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer;white-space:nowrap" style-hover="background:#0B7A6E">Generate Payroll</button>
+                <button onClick="{{ payGenerate }}" style="flex:none;height:36px;padding:0 15px;border-radius:9px;border:0;background:#0E9384;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit;white-space:nowrap" style-hover="background:#0B7A6E">Generate Payroll</button>
               </div>
               <div style="overflow-x:auto">
                 <table style="width:100%;min-width:1440px;border-collapse:collapse">
                   <thead>
                     <tr style="background:#FCFBF7">
-                      <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">BATCH ID</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PERIOD</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">COORDINATORS</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">TOTAL GROSS</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">ADJUSTMENTS</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">DEDUCTIONS</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">TOTAL NET</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">CREATED BY</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">APPROVED BY</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">FINAL APPROVAL</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">SCHEDULED</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PROCESSED</th><th style="padding:11px 20px 11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">STATUS</th>
-                      <th style="padding:11px 20px 11px 12px;border-bottom:1px solid #F0EEE7"></th>
+                      <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">BATCH ID</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PERIOD</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">COORDINATORS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">TOTAL GROSS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">ADJUSTMENTS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">DEDUCTIONS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">TOTAL NET</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">CREATED BY</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">APPROVED BY</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">FINAL APPROVAL</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">SCHEDULED</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PROCESSED</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">STATUS</th>
+                      <th style="padding:11px 20px 11px 13px;border-bottom:1px solid #F0EEE7"></th>
                     </tr>
                   </thead>
                   <tbody>
                     <sc-for list="{{ payBatchRows }}" as="r" hint-placeholder-count="4">
                       <tr style-hover="background:#FCFBF7">
-                        <td style="padding:11px 20px;border-bottom:1px solid #F5F3EE;font-size:12.5px;font-weight:600;font-family:ui-monospace,monospace;color:#0F2A47">{{ r.id }}</td>
-                        <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:600;color:#0F2A47">{{ r.period }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.n }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:700;color:#0F2A47">{{ r.gross }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;color:#15803D">{{ r.adj }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;color:#B42318">{{ r.ded }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:800;color:#0F2A47">{{ r.net }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.by }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.approved }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.final }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.due }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.paid }}</td>
-                        <td style="padding:11px 20px 11px 12px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.sBg }};color:{{ r.sFg }};white-space:nowrap">{{ r.state }}</span></td>
-                        <td style="padding:11px 20px 11px 12px;border-bottom:1px solid #F5F3EE;text-align:right;white-space:nowrap">
-                          <button onClick="{{ r.view }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid #E5E3DC;background:#fff;font-size:11px;font-weight:600;color:#344054;cursor:pointer;margin-right:5px" style-hover="background:#F6F5F0">View</button>
-                          <button onClick="{{ r.disburse }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid #E5E3DC;background:#fff;font-size:11px;font-weight:600;color:#344054;cursor:pointer;margin-right:5px" style-hover="background:#F6F5F0">Disburse</button>
-                          <button onClick="{{ r.approve }}" style="display:{{ r.approveDisplay }};align-items:center;height:28px;padding:0 10px;border-radius:7px;border:0;background:#0E9384;font-size:11px;font-weight:700;color:#fff;cursor:pointer">Approve</button>
+                        <td style="padding:11px 20px;border-bottom:1px solid #F5F3EE;font-size:12.5px;font-weight:700;font-family:ui-monospace,monospace;color:#0F2A47">{{ r.id }}</td>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:600;color:#0F2A47">{{ r.period }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.n }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:700;color:#0F2A47">{{ r.gross }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;color:#15803D">{{ r.adj }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;color:#B42318">{{ r.ded }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:800;color:#0F2A47">{{ r.net }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.by }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.approved }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.final }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.due }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.paid }}</td>
+                        <td style="padding:11px 20px 11px 13px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.sBg }};color:{{ r.sFg }};white-space:nowrap">{{ r.state }}</span></td>
+                        <td style="padding:11px 20px 11px 13px;border-bottom:1px solid #F5F3EE;text-align:right;white-space:nowrap">
+                          <button onClick="{{ r.view }}" style="height:29px;padding:0 11px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;border:1px solid #E5E3DC;background:#fff;color:#344054;margin-right:5px" style-hover="background:#F6F5F0">View</button>
+                          <button onClick="{{ r.disburse }}" style="height:29px;padding:0 11px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;border:1px solid #E5E3DC;background:#fff;color:#344054;margin-right:5px" style-hover="background:#F6F5F0">Disburse</button>
+                          <button onClick="{{ r.approve }}" style="display:{{ r.approveDisplay }};align-items:center;height:29px;padding:0 11px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;border:1px solid #BFE3DC;background:#EEF6F5;color:#0B7A6E" style-hover="background:#E2F1EE">Approve</button>
                         </td>
                       </tr>
                     </sc-for>
@@ -4668,34 +4687,34 @@
                   <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Deductions &amp; adjustments</div>
                   <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">Applied to gross earnings before TDS · every entry carries a reason and an approver</div>
                 </div>
-                <button onClick="{{ payAddAdj }}" style="flex:none;height:36px;padding:0 15px;border-radius:9px;border:0;background:#0E9384;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer;white-space:nowrap" style-hover="background:#0B7A6E">Add Adjustment</button>
+                <button onClick="{{ payAddAdj }}" style="flex:none;height:36px;padding:0 15px;border-radius:9px;border:0;background:#0E9384;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit;white-space:nowrap" style-hover="background:#0B7A6E">Add Adjustment</button>
               </div>
               <div style="overflow-x:auto">
                 <table style="width:100%;min-width:1200px;border-collapse:collapse">
                   <thead>
                     <tr style="background:#FCFBF7">
-                      <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">ADJUSTMENT ID</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">COORDINATOR</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PERIOD</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">TYPE</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">DIRECTION</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">AMOUNT</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">REASON</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">APPROVED BY</th><th style="padding:11px 20px 11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">STATUS</th>
-                      <th style="padding:11px 20px 11px 12px;border-bottom:1px solid #F0EEE7"></th>
+                      <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">ADJUSTMENT ID</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">COORDINATOR</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PERIOD</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">TYPE</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">DIRECTION</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">AMOUNT</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">REASON</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">APPROVED BY</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">STATUS</th>
+                      <th style="padding:11px 20px 11px 13px;border-bottom:1px solid #F0EEE7"></th>
                     </tr>
                   </thead>
                   <tbody>
                     <sc-for list="{{ payAdjRows }}" as="r" hint-placeholder-count="6">
                       <tr style-hover="background:#FCFBF7">
-                        <td style="padding:11px 20px;border-bottom:1px solid #F5F3EE;font-size:12.5px;font-weight:600;font-family:ui-monospace,monospace;color:#0F2A47">{{ r.id }}</td>
-                        <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE">
+                        <td style="padding:11px 20px;border-bottom:1px solid #F5F3EE;font-size:12.5px;font-weight:700;font-family:ui-monospace,monospace;color:#0F2A47">{{ r.id }}</td>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE">
                           <div style="display:flex;align-items:center;gap:10px">
                             <div style="width:28px;height:28px;flex:none;border-radius:50%;background:{{ r.avBg }};display:grid;place-items:center;color:#fff;font-size:10px;font-weight:700">{{ r.init }}</div>
                             <span style="font-size:12.5px;color:#475467;white-space:nowrap">{{ r.name }}</span>
                           </div>
                         </td>
-                        <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.period }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:600;color:#0F2A47">{{ r.kind }}</td>
-                        <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.dBg }};color:{{ r.dFg }};white-space:nowrap">{{ r.dir }}</span></td>
-                        <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:800;color:#0F2A47">{{ r.amount }}</td>
-                        <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12px;color:#475467">{{ r.reason }}</td>
-                        <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.by }}</td>
-                        <td style="padding:11px 20px 11px 12px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.sBg }};color:{{ r.sFg }};white-space:nowrap">{{ r.state }}</span></td>
-                        <td style="padding:11px 20px 11px 12px;border-bottom:1px solid #F5F3EE;text-align:right">
-                          <button onClick="{{ r.approve }}" style="display:{{ r.approveDisplay }};align-items:center;height:28px;padding:0 10px;border-radius:7px;border:0;background:#0E9384;font-size:11px;font-weight:700;color:#fff;cursor:pointer;white-space:nowrap">Approve</button>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.period }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:600;color:#0F2A47">{{ r.kind }}</td>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.dBg }};color:{{ r.dFg }};white-space:nowrap">{{ r.dir }}</span></td>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:800;color:#0F2A47">{{ r.amount }}</td>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467">{{ r.reason }}</td>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.by }}</td>
+                        <td style="padding:11px 20px 11px 13px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.sBg }};color:{{ r.sFg }};white-space:nowrap">{{ r.state }}</span></td>
+                        <td style="padding:11px 20px 11px 13px;border-bottom:1px solid #F5F3EE;text-align:right">
+                          <button onClick="{{ r.approve }}" style="display:{{ r.approveDisplay }};align-items:center;height:29px;padding:0 11px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;border:1px solid #BFE3DC;background:#EEF6F5;color:#0B7A6E" style-hover="background:#E2F1EE">Approve</button>
                         </td>
                       </tr>
                     </sc-for>
@@ -4712,32 +4731,32 @@
                   <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Payslips &amp; statements</div>
                   <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">Gross earnings, deductions and net pay shown separately on every payslip</div>
                 </div>
-                <button onClick="{{ payslipBulk }}" style="flex:none;height:36px;padding:0 15px;border-radius:9px;border:0;background:#0E9384;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer;white-space:nowrap" style-hover="background:#0B7A6E">Generate All</button>
+                <button onClick="{{ payslipBulk }}" style="flex:none;height:36px;padding:0 15px;border-radius:9px;border:0;background:#0E9384;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit;white-space:nowrap" style-hover="background:#0B7A6E">Generate All</button>
               </div>
               <div style="overflow-x:auto">
                 <table style="width:100%;min-width:880px;border-collapse:collapse">
                   <thead>
                     <tr style="background:#FCFBF7">
-                      <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PAYSLIP ID</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">COORDINATOR</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PERIOD</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">NET PAY</th><th style="padding:11px 20px 11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">STATUS</th>
-                      <th style="padding:11px 20px 11px 12px;border-bottom:1px solid #F0EEE7"></th>
+                      <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PAYSLIP ID</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">COORDINATOR</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PERIOD</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">NET PAY</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">STATUS</th>
+                      <th style="padding:11px 20px 11px 13px;border-bottom:1px solid #F0EEE7"></th>
                     </tr>
                   </thead>
                   <tbody>
                     <sc-for list="{{ payslipRows }}" as="r" hint-placeholder-count="6">
                       <tr style-hover="background:#FCFBF7">
-                        <td style="padding:11px 20px;border-bottom:1px solid #F5F3EE;font-size:12.5px;font-weight:600;font-family:ui-monospace,monospace;color:#0F2A47">{{ r.id }}</td>
-                        <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE">
+                        <td style="padding:11px 20px;border-bottom:1px solid #F5F3EE;font-size:12.5px;font-weight:700;font-family:ui-monospace,monospace;color:#0F2A47">{{ r.id }}</td>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE">
                           <div style="display:flex;align-items:center;gap:10px">
                             <div style="width:28px;height:28px;flex:none;border-radius:50%;background:{{ r.avBg }};display:grid;place-items:center;color:#fff;font-size:10px;font-weight:700">{{ r.init }}</div>
                             <span style="font-size:12.5px;color:#475467;white-space:nowrap">{{ r.name }}</span>
                           </div>
                         </td>
-                        <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.period }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:800;color:#0F2A47">{{ r.net }}</td>
-                        <td style="padding:11px 20px 11px 12px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.sBg }};color:{{ r.sFg }};white-space:nowrap">{{ r.state }}</span></td>
-                        <td style="padding:11px 20px 11px 12px;border-bottom:1px solid #F5F3EE;text-align:right;white-space:nowrap">
-                          <button onClick="{{ r.gen }}" style="display:{{ r.genDisplay }};align-items:center;height:28px;padding:0 10px;border-radius:7px;border:0;background:#0E9384;font-size:11px;font-weight:700;color:#fff;cursor:pointer">Generate</button>
-                          <button onClick="{{ r.dl }}" style="display:{{ r.dlDisplay }};align-items:center;height:28px;padding:0 10px;border-radius:7px;border:1px solid #E5E3DC;background:#fff;font-size:11px;font-weight:600;color:#344054;cursor:pointer;margin-right:5px">Download</button>
-                          <button onClick="{{ r.email }}" style="display:{{ r.dlDisplay }};align-items:center;height:28px;padding:0 10px;border-radius:7px;border:1px solid #BFE3DC;background:#EEF6F5;font-size:11px;font-weight:600;color:#0B7A6E;cursor:pointer">Email</button>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.period }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:800;color:#0F2A47">{{ r.net }}</td>
+                        <td style="padding:11px 20px 11px 13px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.sBg }};color:{{ r.sFg }};white-space:nowrap">{{ r.state }}</span></td>
+                        <td style="padding:11px 20px 11px 13px;border-bottom:1px solid #F5F3EE;text-align:right;white-space:nowrap">
+                          <button onClick="{{ r.gen }}" style="display:{{ r.genDisplay }};align-items:center;height:29px;padding:0 11px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;border:1px solid #BFE3DC;background:#EEF6F5;color:#0B7A6E" style-hover="background:#E2F1EE">Generate</button>
+                          <button onClick="{{ r.dl }}" style="display:{{ r.dlDisplay }};align-items:center;height:29px;padding:0 11px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;border:1px solid #E5E3DC;background:#fff;color:#344054;margin-right:5px" style-hover="background:#F6F5F0">Download</button>
+                          <button onClick="{{ r.email }}" style="display:{{ r.dlDisplay }};align-items:center;height:29px;padding:0 11px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;border:1px solid #BFE3DC;background:#EEF6F5;color:#0B7A6E" style-hover="background:#E2F1EE">Email</button>
                         </td>
                       </tr>
                     </sc-for>
@@ -4757,27 +4776,27 @@
                 <table style="width:100%;min-width:1360px;border-collapse:collapse">
                   <thead>
                     <tr style="background:#FCFBF7">
-                      <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">TRANSACTION</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">COORDINATOR</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">AMOUNT</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">METHOD</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">ATTEMPT DATE</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">FAILURE CODE</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">REASON</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">RETRIES</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">LAST RETRY</th><th style="padding:11px 20px 11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">NEXT RETRY</th>
-                      <th style="padding:11px 20px 11px 12px;border-bottom:1px solid #F0EEE7"></th>
+                      <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">TRANSACTION</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">COORDINATOR</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">AMOUNT</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">METHOD</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">ATTEMPT DATE</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">FAILURE CODE</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">REASON</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">RETRIES</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">LAST RETRY</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">NEXT RETRY</th>
+                      <th style="padding:11px 20px 11px 13px;border-bottom:1px solid #F0EEE7"></th>
                     </tr>
                   </thead>
                   <tbody>
                     <sc-for list="{{ payFailedRows }}" as="r" hint-placeholder-count="2">
                       <tr style-hover="background:#FCFBF7">
-                        <td style="padding:11px 20px;border-bottom:1px solid #F5F3EE;font-size:12.5px;font-weight:600;font-family:ui-monospace,monospace;color:#0F2A47">{{ r.txn }}</td>
-                        <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE">
+                        <td style="padding:11px 20px;border-bottom:1px solid #F5F3EE;font-size:12.5px;font-weight:700;font-family:ui-monospace,monospace;color:#0F2A47">{{ r.txn }}</td>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE">
                           <div style="display:flex;align-items:center;gap:10px">
                             <div style="width:28px;height:28px;flex:none;border-radius:50%;background:{{ r.avBg }};display:grid;place-items:center;color:#fff;font-size:10px;font-weight:700">{{ r.init }}</div>
                             <span style="font-size:12.5px;color:#475467;white-space:nowrap">{{ r.name }}</span>
                           </div>
                         </td>
-                        <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:800;color:#0F2A47">{{ r.amount }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.method }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.attempt }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-family:ui-monospace,monospace;color:#B42318">{{ r.code }}</td>
-                        <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12px;font-weight:600;color:#B42318">{{ r.reason }}</td>
-                        <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.retries }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.lastRetry }}</td><td style="padding:11px 20px 11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.nextRetry }}</td>
-                        <td style="padding:11px 20px 11px 12px;border-bottom:1px solid #F5F3EE;text-align:right;white-space:nowrap">
-                          <button onClick="{{ r.change }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid #E5E3DC;background:#fff;font-size:11px;font-weight:600;color:#344054;cursor:pointer;margin-right:5px" style-hover="background:#F6F5F0">Change method</button>
-                          <button onClick="{{ r.hold }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid #F0D2CF;background:#fff;font-size:11px;font-weight:600;color:#B42318;cursor:pointer;margin-right:5px">Hold</button>
-                          <button onClick="{{ r.retry }}" style="height:28px;padding:0 10px;border-radius:7px;border:0;background:#0E9384;font-size:11px;font-weight:700;color:#fff;cursor:pointer">Retry now</button>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:800;color:#0F2A47">{{ r.amount }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.method }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.attempt }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-family:ui-monospace,monospace;color:#B42318;font-weight:700">{{ r.code }}</td>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;font-weight:600;color:#B42318">{{ r.reason }}</td>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.retries }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.lastRetry }}</td><td style="padding:11px 20px 11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.nextRetry }}</td>
+                        <td style="padding:11px 20px 11px 13px;border-bottom:1px solid #F5F3EE;text-align:right;white-space:nowrap">
+                          <button onClick="{{ r.change }}" style="height:29px;padding:0 11px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;border:1px solid #E5E3DC;background:#fff;color:#344054;margin-right:5px" style-hover="background:#F6F5F0">Change method</button>
+                          <button onClick="{{ r.hold }}" style="height:29px;padding:0 11px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;border:1px solid #F0D2CF;background:#fff;color:#B42318;margin-right:5px" style-hover="background:#FEF7F6">Hold</button>
+                          <button onClick="{{ r.retry }}" style="height:29px;padding:0 11px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;border:1px solid #BFE3DC;background:#EEF6F5;color:#0B7A6E" style-hover="background:#E2F1EE">Retry now</button>
                         </td>
                       </tr>
                     </sc-for>
@@ -4799,7 +4818,7 @@
                     <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
                       <div style="width:32px;height:32px;flex:none;border-radius:50%;background:{{ r.avBg }};display:grid;place-items:center;color:#fff;font-size:11px;font-weight:700">{{ r.init }}</div>
                       <div style="min-width:0">
-                        <div style="font-size:13.5px;font-weight:700;color:#0F2A47">{{ r.name }} <span style="font-weight:500;color:#98A2B3;font-family:ui-monospace,monospace">· {{ r.id }}</span></div>
+                        <div style="font-size:14.5px;font-weight:700;color:#0F2A47">{{ r.name }} <span style="font-weight:500;color:#98A2B3;font-family:ui-monospace,monospace">· {{ r.id }}</span></div>
                         <div style="font-size:11.5px;color:#7A8699;margin-top:3px">{{ r.txn }} · {{ r.period }} · {{ r.kind }} · assigned to {{ r.assigned }}</div>
                       </div>
                       <span style="flex:1"></span>
@@ -4823,7 +4842,7 @@
                     <div style="font-size:12.5px;color:#475467;margin-top:6px;text-wrap:pretty"><strong style="font-weight:700">Admin:</strong> {{ r.response }}</div>
                     <div style="display:flex;gap:8px;margin-top:13px;flex-wrap:wrap">
                       <button onClick="{{ r.rejectD }}" style="display:{{ r.actionsDisplay }};align-items:center;height:32px;padding:0 13px;border-radius:8px;border:1px solid #F0D2CF;background:#fff;font-size:12px;font-weight:600;color:#B42318;cursor:pointer">Reject dispute</button>
-                      <button onClick="{{ r.resolve }}" style="display:{{ r.actionsDisplay }};align-items:center;height:32px;padding:0 14px;border-radius:8px;border:0;background:#0E9384;font-size:12px;font-weight:700;color:#fff;cursor:pointer">Resolve</button>
+                      <button onClick="{{ r.resolve }}" style="display:{{ r.actionsDisplay }};align-items:center;flex:none;height:36px;padding:0 15px;border-radius:9px;border:0;background:#0E9384;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit;white-space:nowrap">Resolve</button>
                     </div>
                   </div>
                 </sc-for>
@@ -4838,26 +4857,26 @@
                   <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Payout reconciliation</div>
                   <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">Did the money actually leave the bank? Payroll ledger ↔ bank statement ↔ UTR</div>
                 </div>
-                <button onClick="{{ payReconRun }}" style="flex:none;height:36px;padding:0 15px;border-radius:9px;border:0;background:#0E9384;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer;white-space:nowrap" style-hover="background:#0B7A6E">Run reconciliation</button>
+                <button onClick="{{ payReconRun }}" style="flex:none;height:36px;padding:0 15px;border-radius:9px;border:0;background:#0E9384;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit;white-space:nowrap" style-hover="background:#0B7A6E">Run reconciliation</button>
               </div>
               <div style="overflow-x:auto">
                 <table style="width:100%;min-width:1180px;border-collapse:collapse">
                   <thead>
                     <tr style="background:#FCFBF7">
-                      <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">SETTLEMENT ID</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">BANK</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">SETTLED ON</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">EXPECTED AMOUNT</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">BANK AMOUNT</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">DIFFERENCE</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">EXPECTED TXNS</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">BANK TXNS</th><th style="padding:11px 20px 11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">MATCH STATE</th>
-                      <th style="padding:11px 20px 11px 12px;border-bottom:1px solid #F0EEE7"></th>
+                      <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">SETTLEMENT ID</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">BANK</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">SETTLED ON</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">EXPECTED AMOUNT</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">BANK AMOUNT</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">DIFFERENCE</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">EXPECTED TXNS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">BANK TXNS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">MATCH STATE</th>
+                      <th style="padding:11px 20px 11px 13px;border-bottom:1px solid #F0EEE7"></th>
                     </tr>
                   </thead>
                   <tbody>
                     <sc-for list="{{ payReconRows }}" as="r" hint-placeholder-count="4">
                       <tr style-hover="background:#FCFBF7">
-                        <td style="padding:11px 20px;border-bottom:1px solid #F5F3EE;font-size:12.5px;font-weight:600;font-family:ui-monospace,monospace;color:#0F2A47">{{ r.id }}</td>
-                        <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.bank }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.date }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:700;color:#0F2A47">{{ r.expected }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:700;color:#0F2A47">{{ r.actual }}</td>
-                        <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;font-weight:700;color:{{ r.diffFg }};white-space:nowrap">{{ r.diff }}</td>
-                        <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.expectedN }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.actualN }}</td>
-                        <td style="padding:11px 20px 11px 12px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.sBg }};color:{{ r.sFg }};white-space:nowrap">{{ r.state }}</span></td>
-                        <td style="padding:11px 20px 11px 12px;border-bottom:1px solid #F5F3EE;text-align:right">
-                          <button onClick="{{ r.resolve }}" style="display:{{ r.resolveDisplay }};align-items:center;height:28px;padding:0 10px;border-radius:7px;border:1px solid #BFE3DC;background:#EEF6F5;font-size:11px;font-weight:600;color:#0B7A6E;cursor:pointer;white-space:nowrap">Resolve exception</button>
+                        <td style="padding:11px 20px;border-bottom:1px solid #F5F3EE;font-size:12.5px;font-weight:700;font-family:ui-monospace,monospace;color:#0F2A47">{{ r.id }}</td>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.bank }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.date }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:700;color:#0F2A47">{{ r.expected }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:700;color:#0F2A47">{{ r.actual }}</td>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;font-weight:700;color:{{ r.diffFg }};white-space:nowrap">{{ r.diff }}</td>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.expectedN }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.actualN }}</td>
+                        <td style="padding:11px 20px 11px 13px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.sBg }};color:{{ r.sFg }};white-space:nowrap">{{ r.state }}</span></td>
+                        <td style="padding:11px 20px 11px 13px;border-bottom:1px solid #F5F3EE;text-align:right">
+                          <button onClick="{{ r.resolve }}" style="display:{{ r.resolveDisplay }};align-items:center;height:29px;padding:0 11px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;border:1px solid #BFE3DC;background:#EEF6F5;color:#0B7A6E" style-hover="background:#E2F1EE">Resolve exception</button>
                         </td>
                       </tr>
                     </sc-for>
@@ -4895,16 +4914,16 @@
                 <table style="width:100%;min-width:1180px;border-collapse:collapse">
                   <thead>
                     <tr style="background:#FCFBF7">
-                      <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">WHEN</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">USER</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">ACTION</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">REFERENCE</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PREVIOUS VALUE</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">NEW VALUE</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">REASON</th><th style="padding:11px 20px 11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">IP ADDRESS</th>
+                      <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">WHEN</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">USER</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">ACTION</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">REFERENCE</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PREVIOUS VALUE</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">NEW VALUE</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">REASON</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">IP ADDRESS</th>
                     </tr>
                   </thead>
                   <tbody>
                     <sc-for list="{{ payAuditRows }}" as="r" hint-placeholder-count="6">
                       <tr style-hover="background:#FCFBF7">
                         <td style="padding:11px 20px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.when }}</td>
-                        <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.who }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:600;color:#0F2A47">{{ r.action }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-family:ui-monospace,monospace">{{ r.ref }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;color:#98A2B3">{{ r.from }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:700;color:#0F2A47">{{ r.to }}</td>
-                        <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12px;color:#475467">{{ r.reason }}</td>
-                        <td style="padding:11px 20px 11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-family:ui-monospace,monospace;color:#98A2B3">{{ r.ip }}</td>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.who }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:600;color:#0F2A47">{{ r.action }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-family:ui-monospace,monospace;font-weight:700">{{ r.ref }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;color:#98A2B3">{{ r.from }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:700;color:#0F2A47">{{ r.to }}</td>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467">{{ r.reason }}</td>
+                        <td style="padding:11px 20px 11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-family:ui-monospace,monospace;color:#98A2B3;font-weight:700">{{ r.ip }}</td>
                       </tr>
                     </sc-for>
                   </tbody>
@@ -4914,18 +4933,21 @@
           </sc-if>
 
           <sc-if value="{{ payIsSettings }}" hint-placeholder-val="{{ false }}">
-            <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
-              <div style="display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid #F2F0EA;flex-wrap:wrap">
-                <div style="min-width:0;flex:1 1 240px">
-                  <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Payroll settings</div>
-                  <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">Business rules are configurable rather than hard-coded</div>
-                </div>
-                <button onClick="{{ paySettingsEdit }}" style="flex:none;height:36px;padding:0 15px;border-radius:9px;border:0;background:#0E9384;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer;white-space:nowrap" style-hover="background:#0B7A6E">Edit settings</button>
-              </div>
-              <sc-for list="{{ paySettingsRows }}" as="r" hint-placeholder-count="12">
-                <div style="display:grid;grid-template-columns:260px 1fr;gap:14px;padding:11px 20px;background:{{ r.bg }};border-bottom:1px solid #F5F3EE">
-                  <span style="font-size:12px;color:#7A8699">{{ r.k }}</span>
-                  <span style="font-size:12.5px;font-weight:600;color:#0F2A47;text-wrap:pretty">{{ r.v }}</span>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:16px">
+              <sc-for list="{{ paySetGroups }}" as="g" hint-placeholder-count="6">
+                <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden;min-width:0">
+                  <div style="display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid #F2F0EA;background:#FCFBF7">
+                    <span style="width:3px;height:12px;border-radius:2px;background:#0E9384"></span>
+                    <span style="font-size:12.5px;font-weight:800;color:#0F2A47">{{ g.t }}</span>
+                    <span style="flex:1"></span>
+                    <button onClick="{{ g.edit }}" style="height:30px;padding:0 12px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:11.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Edit</button>
+                  </div>
+                  <sc-for list="{{ g.rows }}" as="kv" hint-placeholder-count="5">
+                    <div style="display:grid;grid-template-columns:190px 1fr;gap:12px;padding:10px 18px;background:{{ kv.bg }};border-bottom:1px solid #F7F5F0">
+                      <span style="font-size:12px;color:#7A8699">{{ kv.k }}</span>
+                      <span style="font-size:12.5px;font-weight:600;color:#0F2A47;text-wrap:pretty">{{ kv.v }}</span>
+                    </div>
+                  </sc-for>
                 </div>
               </sc-for>
             </div>
@@ -5032,10 +5054,26 @@
                 </div>
               </div>
 
-              <div style="display:flex;gap:2px;background:#fff;border:1px solid #ECEAE2;border-radius:12px;padding:4px;margin-bottom:16px;width:fit-content">
+              <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px">
+              <div style="display:flex;gap:2px;background:#fff;border:1px solid #ECEAE2;border-radius:12px;padding:4px;width:fit-content">
                 <sc-for list="{{ obSectionTabs }}" as="t" hint-placeholder-count="2">
                   <button onClick="{{ t.pick }}" style="height:34px;padding:0 16px;border:0;border-radius:8px;font-size:13px;cursor:pointer;background:{{ t.bg }};color:{{ t.fg }};font-weight:{{ t.weight }};white-space:nowrap">{{ t.label }}</button>
                 </sc-for>
+              </div>
+              <div style="position:relative;flex:none;margin-left:auto">
+                <button onClick="{{ openAdd }}" style="display:flex;align-items:center;gap:7px;height:38px;padding:0 16px;border-radius:9px;border:0;background:#0E9384;font-size:13px;font-weight:700;color:#fff;cursor:pointer;white-space:nowrap" style-hover="background:#0B7A6E">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14" /></svg>Add Coordinator
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 9l6 6 6-6" /></svg>
+                </button>
+                <div style="display:{{ addDdDisplay }};position:absolute;top:44px;right:0;width:230px;background:#fff;border:1px solid #ECEAE2;border-radius:12px;box-shadow:0 18px 44px rgba(11,31,62,.16);padding:6px;z-index:40">
+                  <sc-for list="{{ addDdOptions }}" as="o" hint-placeholder-count="2">
+                    <div onClick="{{ o.pick }}" style="padding:9px 12px;border-radius:8px;cursor:pointer" style-hover="background:#F6F5F0">
+                      <div style="font-size:12.5px;font-weight:700;color:#0F2A47">{{ o.label }}</div>
+                      <div style="font-size:11px;color:#98A2B3;margin-top:2px">{{ o.sub }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
               </div>
 
               <div style="display:{{ obLinksDisplay }};background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden;margin-bottom:16px">
@@ -10558,6 +10596,16 @@ class Component extends DCLogic {
       alNewRule: ()=>this.setState({fm:'alrule', fmCtx:{}, fmStep:0, fmErr:null}),
       alSendReminder: ()=>this.setState({fm:'alsend', fmCtx:{}, fmStep:0, fmErr:null}),
 
+      alRuleCatLabel: (s.alfCat && s.alfCat!=='All') ? s.alfCat : 'All categories',
+      alRuleCatClear: ()=>this.setState({alfCat:'All'}),
+      alRuleCatTotal: '29',
+      alRuleCats: [
+        ['Batch Operations','3','#0E9384'],['Teachers','6','#1D4ED8'],['Students','4','#6D28D9'],
+        ['Live Classes','2','#B45309'],['Academic Performance','2','#B42318'],['Scheduling','2','#0B7A6E'],
+        ['Coordinator Tasks','3','#8A5A0B'],['Compliance','2','#667085'],['Payout','2','#15803D'],
+        ['Support','2','#B42318'],['Performance','1','#6D28D9'],['Onboarding','1','#1D4ED8']
+      ].map(([label,n,color])=>{ const on = s.alfCat===label;
+        return {label,n,color, bd: on?'#0E9384':'#F0EEE7', bg: on?'#EEF6F5':'#FCFBF7', pick:()=>this.setState({alfCat: on ? 'All' : label})}; }),
       alCatCounts: [
         ['Batch Operations','3','#0E9384'],['Teachers','6','#1D4ED8'],['Students','4','#6D28D9'],
         ['Live Classes','2','#B45309'],['Academic Performance','2','#B42318'],['Scheduling','2','#0B7A6E'],
@@ -10566,7 +10614,12 @@ class Component extends DCLogic {
       ].map(([label,n,color])=>({label,n,color,
         pick:()=>this.setState({alTab:'rules', alfCat:label})})),
 
-      alTplRows: CTPL.map(([name,cat,ch,used,state,c,updated])=>({name,cat,ch,used,state,updated,
+      alAnKpis: [["Total alerts","1,842","last 30 days","#6B7C93"],["Delivered","1,798","97.6% of sent","#15803D"],["Failed","44","2.4% failure rate","#B42318"],["Read","1,614","89.8% read rate","#15803D"],["Acknowledged","1,208","of 1,402 requiring it","#B45309"],["Avg delivery time","4.2 s","trigger to delivered","#6B7C93"],["Avg acknowledgement","18 min","delivered to acknowledged","#6B7C93"],["Escalation rate","3.1%","alerts that escalated","#B45309"]].map(([label,v,note,fg])=>({label,v,note,fg})),
+      alAnChannels: [["WhatsApp",1250,1218,32],["Email",890,871,19],["SMS",450,421,29],["In-app",1620,1620,0],["Push",380,371,9]].map(([ch,sent,del,fail])=>{ const r=Math.round(del/sent*1000)/10; const pct=(r===100?'100':r.toFixed(1))+'%';
+        return {ch, sent:sent.toLocaleString('en-IN'), del:del.toLocaleString('en-IN'), fail:String(fail), rate:pct, rateFg: r>=95?'#15803D':'#B42318', color: r>=95?'#0E9384':'#F0A72A'}; }),
+      alSetGroups: [["General",[["Automated alerts","Enabled for all coordinators"],["Default data scope","Coordinator's assigned batches only"],["Default priority","Medium"],["Default channel","In-app + Email"],["Default timezone","Asia/Kolkata (IST)"]]],["Quiet hours",[["Quiet hours","22:00 – 07:00"],["During quiet hours","Delay until quiet hours end"],["Exceptions","Critical alerts bypass quiet hours"],["In-app during quiet hours","Allowed"]]],["Delivery & fallback",[["Retry failed notifications","Enabled"],["Maximum retries","3"],["Retry interval","5 minutes"],["Primary channel","WhatsApp"],["Fallback channel","SMS"],["Final escalation","In-app + Operations"]]],["Channel routing",[["Informational","In-app"],["Medium","In-app + Email"],["High","In-app + WhatsApp"],["Critical","In-app + WhatsApp + SMS"]]],["Duplicate protection",[["Duplicate suppression","Enabled"],["Cooldown period","6 hours"],["Frequency cap","Max 3 per coordinator per rule per day"],["Snooze options","1 hour · 4 hours · Tomorrow · Custom"]]],["Escalation",[["Escalation","Enabled"],["Chain","L1 Coordinator → L2 Operations → L3 Academic Head → L4 Admin"],["Acknowledgement","Required on High and Critical alerts"]]],["Security & audit",[["Admin approval for critical rules","Required"],["Audit logging","Enabled"],["Rule change history","Retained indefinitely"]]]].map(([t,rows])=>({t, edit:()=>this.setState({fm:'alsettings', fmStep:0, fmErr:null, fmCtx:{}}), rows: rows.map(([k,v],i)=>({k,v,bg:i%2?'#FAF9F4':'#fff'}))})),
+      alTplVars: [['Coordinator','{{coordinator_name}} · {{coordinator_id}}'],['Batch','{{batch_name}} · {{course_name}} · {{student_count}}'],['Class','{{class_name}} · {{class_time}} · {{teacher_name}}'],['Attendance','{{attendance_percentage}} · {{absent_count}}'],['Escalation','{{escalation_level}} · {{escalate_after}}'],['System','{{alert_name}} · {{trigger_time}} · {{action_link}}']].map(([k,v],i)=>({k,v,bg:i%2?'#FAF9F4':'#fff'})),
+      alTplRows: CTPL.map(([name,cat,ch,used,state,c,updated],i)=>({name,cat,ch,used,state,updated, id:'TPL-'+String(i+1).padStart(2,'0'), chips: ch.split(' · ').map(x=>({x})),
         sBg:BDG[c][0], sFg:BDG[c][1],
         edit: ()=>this.setState({fm:'altpl', fmStep:0, fmErr:null, fmCtx:{name, cat, ch}}),
         preview: ()=>this.setState({fm:'altpl', fmStep:0, fmErr:null, fmCtx:{name, cat, ch, preview:1}}),
@@ -10587,7 +10640,9 @@ class Component extends DCLogic {
       ], ['alfDate','alfCoord','alfBatch','alfChan','alfDeliv','alfState','alfPriH','alfSrc'], 'Showing the full delivery history'),
       alHistQ: s.alHistQ||'', setAlHistQ:(e)=>this.setState({alHistQ:e.target.value}),
 
-      alHistRows: (()=>{
+      alRecent: CHIST.slice(0,8).map(r=>({time:r[0], rule:r[1], to:r[2], ch:r[4], state:r[5], sBg:BDG[r[6]][0], sFg:BDG[r[6]][1],
+        view: ()=>this.setState({alDetail:{title:r[1], meta:r[3]+' · '+r[0], sev:r[8], coord:r[2], teacher:'Dr. Vikram Verma', kind:r[1], channel:r[4], delivery:r[5], action:r[7]}})})),
+      alHistRows: ((rows)=>rows.map(r=>({...r, srcBg: r.source==="Manual"?"#F0EAFD":r.source==="Escalated"?"#FDE8E8":"#F1F3F5", srcFg: r.source==="Manual"?"#6D28D9":r.source==="Escalated"?"#B42318":"#667085"})))((()=>{
         const q = (s.alHistQ||'').trim().toLowerCase();
         const F=(k)=>s[k]||'All';
         return CHIST.filter(r =>
@@ -10610,7 +10665,7 @@ class Component extends DCLogic {
             open: ()=>this.setState({alDetail:{title:r[1], meta:r[3]+' · '+r[0], sev:r[8], coord:r[2], teacher:'Dr. Vikram Verma', kind:r[1], channel:r[4], delivery:r[5], action:r[7]}}),
             retry: ()=>this.setState({fm:'act', fmStep:0, fmErr:null, fmCtx:{label:'Retry Notification', who:r[2], detail:r[1]+' · '+r[4]+' failed · fallback available'}})};
         });
-      })(),
+      })()),
       alHistExport: ()=>this.setState({fm:'alexport', fmCtx:{}, fmStep:0, fmErr:null}),
 
       alEscRows: CESC.map(([time,issue,batch,coord,to,level,state,c,note])=>({time,issue,batch,coord,to,level,state,note,
@@ -10786,14 +10841,15 @@ class Component extends DCLogic {
       payExceptions: [['Failed','#FDE8E8','#B42318'],['On Hold','#FEF3E2','#B45309'],['Disputed','#FEF3E2','#B45309'],['Reversed','#F0EAFD','#6D28D9'],['Cancelled','#F1F3F5','#667085']].map(([st,bg,fg])=>({st,bg,fg})),
       payRule: 'Coordinators are salaried employees — one fixed monthly salary each. No lecture-wise payout, no revenue share, no percentage-based compensation.',
 
-      paySegs: [['Overview','over'],['Transactions','txn'],['Coordinators','coords'],['Batches','batches'],['Adjustments','adjust'],['Payslips','payslips'],['Failed','failed'],['Disputes','disputes'],['Reconciliation','recon'],['Reports','reports'],['Audit','audit'],['Settings','settings']].map(([label,k])=>{
+      paySetGroups: [["Salary cycle",[["Salary cycle","1st to last day of month"],["Payment date","5th of the following month"],["Payment method","Bank transfer (NEFT) · UPI as fallback"],["Payslip generation","Automatic on payroll completion · emailed to coordinator"]]],["Attendance & proration",[["Proration","Enabled for joiners, exits and unpaid leave"],["Working-day basis","Calendar working days excluding weekly offs and holidays"],["Unpaid leave deduction","Pro-rata on working-day basis"]]],["Deductions",[["TDS","10% u/s 194J · configurable per coordinator"],["Advance recovery","Up to 4 instalments · auto-recovered each cycle"],["Minimum net payable","₹5,000 · below this the payout is held for review"]]],["Approval & retry",[["Approval requirement","Two-step: Finance Admin → Super Admin"],["Payment retry","Up to 3 attempts · 3 days apart"],["Failed payment owner","Finance Admin"]]]].map(([t,rows])=>({t, edit:()=>this.setState({fm:'paysettings', fmStep:0, fmErr:null, fmCtx:{}}), rows: rows.map(([k,v],i)=>({k,v,bg:i%2?'#FAF9F4':'#fff'}))})),
+      paySegs: [['Overview','over'],['Payout Transactions','txn'],['Coordinators','coords'],['Payout Batches','batches'],['Adjustments','adjust'],['Payslips','payslips'],['Failed & Disputes','failed'],['Reconciliation','recon'],['Settings','settings']].map(([label,k])=>{
         const on = (s.payTab||'over')===k;
         return {label, bg:on?'#0E9384':'transparent', fg:on?'#fff':'#6B7C93', weight:on?'600':'500',
           pick:()=>this.setState({payTab:k})};
       }),
       payIsOver:(s.payTab||'over')==='over', payIsTxn:s.payTab==='txn', payIsCoords:s.payTab==='coords',
       payIsBatches:s.payTab==='batches', payIsAdjust:s.payTab==='adjust', payIsPayslips:s.payTab==='payslips',
-      payIsFailed:s.payTab==='failed', payIsDisputes:s.payTab==='disputes', payIsRecon:s.payTab==='recon',
+      payIsFailed:s.payTab==='failed', payIsDisputes:s.payTab==='failed'||s.payTab==='disputes', payIsRecon:s.payTab==='recon',
       payIsReports:s.payTab==='reports', payIsAudit:s.payTab==='audit', payIsSettings:s.payTab==='settings',
 
       payQ: s.payQ||'', setPayQ:(e)=>this.setState({payQ:e.target.value}),
@@ -11184,6 +11240,7 @@ class Component extends DCLogic {
         sBg:BDG[c][0], sFg:BDG[c][1]})),
 
       openAdd: ()=>this.setState(x=>({addDdOpen:!x.addDdOpen})),
+      showAddCta: s.route==='all' && !s.prof,
       addDdDisplay: s.addDdOpen ? 'block' : 'none',
       addDdOptions: [
         ['Generate Link','Send a secure onboarding link',()=>this.setState({fm:'add', fmStep:0, fmErr:null, addDdOpen:false,
