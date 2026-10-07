@@ -5808,61 +5808,75 @@
           </sc-if>
 
           <sc-if value="{{ raTabIs.escalations }}" hint-placeholder-val="{{ false }}">
-            <div>
-              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:13px;margin-bottom:16px">
-                <sc-for list="{{ raEscKpis }}" as="k" hint-placeholder-count="4">
-                  <div onClick="{{ k.go }}" style="min-width:0;background:#fff;border:1px solid #ECEAE2;border-radius:13px;padding:15px 17px;cursor:pointer" style-hover="border-color:#BFE3DC;box-shadow:0 8px 22px rgba(11,31,62,.06)">
-                    <div style="font-size:11.5px;font-weight:500;color:#6B7C93;line-height:1.3">{{ k.label }}</div>
-                    <div style="font-size:24px;font-weight:800;letter-spacing:-.03em;color:#0F2A47;margin-top:5px">{{ k.n }}</div>
-                    <div style="font-size:11px;font-weight:600;color:{{ k.fg }};margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ k.note }}</div>
-                  </div>
-                </sc-for>
-              </div>
-              <div style="margin-bottom:14px">
-                <div style="display:flex;gap:2px;background:#fff;border:1px solid #ECEAE2;border-radius:11px;padding:4px;flex:none;overflow-x:auto;width:fit-content">
-                  <sc-for list="{{ raEscTabs }}" as="t" hint-placeholder-count="5">
-                    <button onClick="{{ t.pick }}" style="height:32px;padding:0 15px;border:0;border-radius:8px;font-size:13px;cursor:pointer;background:{{ t.bg }};color:{{ t.fg }};font-weight:{{ t.weight }};white-space:nowrap;flex:none;font-family:inherit">{{ t.label }}</button>
+            <div style="display:flex;flex-direction:column;gap:16px">
+              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:20px 22px">
+                <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Escalation ladder</div>
+                <div style="font-size:12.5px;color:#6B7C93;margin-top:2px;margin-bottom:18px">Configurable per rule — this is the platform default</div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px">
+                  <sc-for list="{{ raEscChain }}" as="e" hint-placeholder-count="4">
+                    <div style="min-width:0;border:1px solid #F0EEE7;border-radius:12px;padding:14px 16px;background:#FCFBF7">
+                      <div style="height:4px;border-radius:3px;background:{{ e.color }}"></div>
+                      <div style="font-size:13px;font-weight:800;color:#0F2A47;margin-top:11px">{{ e.level }} — {{ e.who }}</div>
+                      <div style="font-size:11.5px;color:#7A8699;margin-top:4px">{{ e.when }}</div>
+                    </div>
                   </sc-for>
                 </div>
               </div>
+
               <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
-                <div style="display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid #F2F0EA;flex-wrap:wrap">
-                  <div style="min-width:0;flex:1 1 240px">
-                    <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Speaker escalations</div>
-                    <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">Issues that moved past the speaker to a coordinator or admin</div>
-                  </div>
+                <div style="padding:16px 20px;border-bottom:1px solid #F2F0EA">
+                  <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Escalation history</div>
+                  <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">Every speaker issue that had to be escalated, and how it was closed</div>
                 </div>
                 <div style="overflow-x:auto">
-                  <table style="width:100%;min-width:880px;border-collapse:collapse">
-                    <thead><tr style="background:#FCFBF7">
-                      <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;white-space:nowrap;border-bottom:1px solid #F0EEE7">TIME</th>
-                      <th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;white-space:nowrap;border-bottom:1px solid #F0EEE7">ISSUE</th>
-                      <th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;white-space:nowrap;border-bottom:1px solid #F0EEE7">SPEAKER</th>
-                      <th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;white-space:nowrap;border-bottom:1px solid #F0EEE7">ESCALATED TO</th>
-                      <th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;white-space:nowrap;border-bottom:1px solid #F0EEE7">LEVEL</th>
-                      <th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;white-space:nowrap;border-bottom:1px solid #F0EEE7">STATUS</th>
-                      <th style="padding:11px 20px 11px 13px;border-bottom:1px solid #F0EEE7"></th>
-                    </tr></thead>
+                  <table style="width:100%;min-width:1200px;border-collapse:collapse">
+                    <thead>
+                      <tr style="background:#FCFBF7">
+                        <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">TIME</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">ISSUE</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">EVENT</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">SPEAKER</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">ESCALATED TO</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">LEVEL</th><th style="padding:11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">STATUS</th><th style="padding:11px 20px 11px 12px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">RESOLUTION</th>
+                        <th style="padding:11px 20px 11px 12px;border-bottom:1px solid #F0EEE7"></th>
+                      </tr>
+                    </thead>
                     <tbody>
-                      <sc-for list="{{ raEscRows }}" as="e" hint-placeholder-count="5">
+                      <sc-for list="{{ raEscRowsC }}" as="esr" hint-placeholder-count="6">
                         <tr style-hover="background:#FCFBF7">
-                          <td style="padding:11px 20px;border-bottom:1px solid #F5F3EE;font-size:12px;color:#475467;white-space:nowrap">{{ e.time }}</td>
-                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:13px;font-weight:600;color:#0F2A47;white-space:nowrap">{{ e.issue }}</td>
-                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ e.speaker }}</td>
-                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ e.to }}</td>
-                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ e.level }}</td>
-                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ e.sBg }};color:{{ e.sFg }};white-space:nowrap">{{ e.status }}</span></td>
-                          <td style="padding:11px 20px 11px 13px;border-bottom:1px solid #F5F3EE;text-align:right;white-space:nowrap">
-                            <div style="display:inline-flex;gap:6px"><button onClick="{{ e.view }}" style="height:29px;padding:0 11px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:11.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">View</button><button onClick="{{ e.changeOwner }}" style="height:29px;padding:0 11px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:11.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Change Owner</button><button onClick="{{ e.escalateAgain }}" style="height:29px;padding:0 11px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:11.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Escalate</button><button onClick="{{ e.resolve }}" style="height:29px;padding:0 11px;border-radius:8px;border:1px solid #BFE3DC;background:#EEF6F5;font-size:11.5px;font-weight:600;color:#0B7A6E;cursor:pointer;font-family:inherit" style-hover="background:#E2F1EE">Resolve</button></div>
+                          <td style="padding:11px 20px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ esr.time }}</td>
+                          <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:600;color:#0F2A47">{{ esr.issue }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:600;color:#0B7A6E">{{ esr.event }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ esr.speaker }}</td><td style="padding:11px 12px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ esr.to }}</td>
+                          <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ esr.lBg }};color:{{ esr.lFg }};white-space:nowrap">{{ esr.level }}</span></td>
+                          <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ esr.sBg }};color:{{ esr.sFg }};white-space:nowrap">{{ esr.state }}</span></td>
+                          <td style="padding:11px 20px 11px 12px;border-bottom:1px solid #F5F3EE;font-size:12px;color:#475467">{{ esr.note }}</td>
+                          <td style="padding:11px 20px 11px 12px;border-bottom:1px solid #F5F3EE;text-align:right;white-space:nowrap">
+                            <button onClick="{{ esr.view }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid #E5E3DC;background:#fff;font-size:11px;font-weight:600;color:#344054;cursor:pointer;margin-right:5px" style-hover="background:#F6F5F0">View</button>
+                            <button onClick="{{ esr.changeOwner }}" style="display:{{ esr.actionsDisplay }};align-items:center;height:28px;padding:0 10px;border-radius:7px;border:1px solid #E5E3DC;background:#fff;font-size:11px;font-weight:600;color:#344054;cursor:pointer;margin-right:5px" style-hover="background:#F6F5F0">Change owner</button>
+                            <button onClick="{{ esr.escalateAgain }}" style="display:{{ esr.actionsDisplay }};align-items:center;height:28px;padding:0 10px;border-radius:7px;border:1px solid #E5E3DC;background:#fff;font-size:11px;font-weight:600;color:#344054;cursor:pointer;margin-right:5px" style-hover="background:#F6F5F0">Escalate</button>
+                            <button onClick="{{ esr.resolve }}" style="display:{{ esr.actionsDisplay }};align-items:center;height:28px;padding:0 10px;border-radius:7px;border:0;background:#0E9384;font-size:11px;font-weight:700;color:#fff;cursor:pointer">Resolve</button>
                           </td>
                         </tr>
                       </sc-for>
                     </tbody>
                   </table>
                 </div>
-                <div style="display:{{ raEscEmpty }};padding:36px 20px;text-align:center">
-                  <div style="font-size:13.5px;font-weight:700;color:#475467">No escalations in this view</div>
-                  <div style="font-size:12px;color:#98A2B3;margin-top:5px">Every alert was handled at the speaker level.</div>
+              </div>
+
+              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
+                <div style="padding:16px 20px;border-bottom:1px solid #F2F0EA">
+                  <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Reminder sequences</div>
+                  <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">Multi-step speaker reminders that escalate automatically when there is no response</div>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;padding:16px 20px">
+                  <sc-for list="{{ raEscSequences }}" as="q" hint-placeholder-count="4">
+                    <div style="min-width:0;border:1px solid #F0EEE7;border-radius:12px;padding:14px 16px;background:#FCFBF7">
+                      <div style="font-size:13px;font-weight:700;color:#0F2A47">{{ q.name }}</div>
+                      <div style="display:flex;flex-direction:column;gap:7px;margin-top:11px">
+                        <sc-for list="{{ q.rows }}" as="st" hint-placeholder-count="4">
+                          <div style="display:flex;align-items:center;gap:9px">
+                            <span style="width:20px;height:20px;flex:none;border-radius:6px;background:#EEF6F5;color:#0B7A6E;display:grid;place-items:center;font-size:10px;font-weight:800">{{ st.n }}</span>
+                            <span style="font-size:11.5px;color:#475467;min-width:0;text-wrap:pretty">{{ st.st }}</span>
+                          </div>
+                        </sc-for>
+                      </div>
+                      <button onClick="{{ q.edit }}" style="width:100%;height:32px;margin-top:13px;border-radius:8px;border:1px solid #BFE3DC;background:#EEF6F5;font-size:11.5px;font-weight:700;color:#0B7A6E;cursor:pointer">Edit sequence</button>
+                    </div>
+                  </sc-for>
                 </div>
               </div>
             </div>
@@ -11397,6 +11411,32 @@ class Component extends DCLogic {
         return {raRuleFToggle:()=>this.setState({raRuleFOpen:!open}), raRuleFDisplay: open?'block':'none', raRuleFCount:String(cnt), raRuleFHas: cnt?'grid':'none',
           raRuleFResetShow: cnt?'inline-flex':'none', raRuleFReset:()=>this.setState({raRuleFilter:'All', raRuleCat:'All', raRuleQ:''}),
           raRuleFBd: open||cnt?'#0E9384':'#E5E3DC', raRuleFBg: open||cnt?'#EEF6F5':'#fff', raRuleFFg: open||cnt?'#0B7A6E':'#344054'}; })(),
+      ...(()=>{ const es=s.raEscState||{};
+        const L={L1:['#F1F3F5','#667085'],L2:['#FEF3E2','#B45309'],L3:['#FDE8E8','#B42318'],L4:['#FDE8E8','#B42318']};
+        const S={Resolved:['#E7F7EE','#15803D'],Pending:['#FEF3E2','#B45309'],Investigating:['#FEF3E2','#B45309'],Overdue:['#FDE8E8','#B42318'],Active:['#E9F0FD','#1D4ED8']};
+        return {
+          raEscChain: [['L1','Event Coordinator','Immediately','#0E9384'],['L2','Event Manager','After 30 minutes','#F0A72A'],['L3','Operations','After 2 hours','#C2410C'],['L4','Speaker Programme Admin','After 24 hours','#B42318']].map(([level,who,when,color])=>({level,who,when,color})),
+          raEscRowsC: [
+            ['ES-301','10:46 AM','Speaker hasn\'t joined','EV-305 Life Insurance Sales Webinar','Rajiv Kapoor','Operations','L2','Active','Backup host on standby · calling speaker'],
+            ['ES-302','09:35 AM','Confirmation pending','EV-307 Claims Handling Workshop','Neha Singh','Event Manager','L1','Pending','Reminder sent on WhatsApp and SMS'],
+            ['ES-303','Yesterday','Payment overdue','EV-298 Reinsurance Basics','Rahul Verma','Speaker Programme Admin','L3','Overdue','Finance asked to release payout'],
+            ['ES-304','Yesterday','PPT submission overdue','EV-311 Motor Underwriting Masterclass','Amit Sharma','Event Coordinator','L1','Resolved','Deck uploaded at 06:12 PM'],
+            ['ES-305','2 days ago','Technical rehearsal missed','EV-312 Health Claims Q&A','Sneha Kulkarni','Event Manager','L2','Investigating','Rehearsal rebooked for tomorrow'],
+            ['ES-306','3 days ago','Audience rating below 4.0','EV-290 Policy Servicing 101','Kavita Desai','Operations','L2','Resolved','Coaching session scheduled']
+          ].map(([id,time,issue,event,speaker,to,level,st0,note])=>{ const state=es[id]||st0; const open=state!=='Resolved';
+            return {id,time,issue,event,speaker,to,level,state,note: state==='Resolved'&&st0!=='Resolved' ? 'Resolved by Super Admin just now' : note,
+              lBg:L[level][0], lFg:L[level][1], sBg:S[state][0], sFg:S[state][1], actionsDisplay: open?'inline-flex':'none',
+              view:()=>this.fire('Escalation '+id, issue+' · '+speaker+' · '+to, true),
+              changeOwner:()=>this.fire('Owner changed — '+id, 'Reassigned to Event Manager · audit logged', true),
+              escalateAgain:()=>this.fire('Escalated — '+id, 'Moved to the next level of the ladder', true),
+              resolve:()=>{ this.setState({raEscState:{...es,[id]:'Resolved'}}); this.fire('Escalation resolved — '+id, speaker+' and owner notified', true); }}; }),
+          raEscSequences: [
+            ['Event confirmation',['7 days before — Email','3 days before — WhatsApp','24 h before — SMS + coordinator','No reply — escalate to Event Manager']],
+            ['PPT submission',['5 days before — Email','2 days before — WhatsApp','24 h before — coordinator call','Missed — escalate to Operations']],
+            ['Technical rehearsal',['3 days before — Email invite','24 h before — WhatsApp','2 h before — SMS','Missed — rebook + Event Manager']],
+            ['Payment & invoice',['Due date — Email','+3 days — WhatsApp','+7 days — Finance Admin','+14 days — Speaker Programme Admin']]
+          ].map(([name,rows])=>({name, rows: rows.map((st,i)=>({n:String(i+1), st})), edit:()=>this.fire('Edit sequence — '+name, 'Opens the alert rule editor', true)}))
+        }; })(),
       raRuleCatLabel: (s.raRuleCat && s.raRuleCat!=='All') ? s.raRuleCat : 'All categories',
       raRuleCatClear: ()=>this.setState({raRuleCat:'All'}),
       raRuleCatTotal: String(ALERT_RULES.length),
