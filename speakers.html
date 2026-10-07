@@ -6305,6 +6305,11 @@
                 <button onClick="{{ t.pick }}" title="{{ t.label }}" style="width:34px;height:32px;border:0;border-radius:7px;display:grid;place-items:center;cursor:pointer;background:{{ t.bg }};color:{{ t.fg }}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{{ t.ic }}" /></svg></button>
               </sc-for>
             </div>
+            <div style="display:flex;gap:2px;background:#fff;border:1px solid #ECEAE2;border-radius:10px;padding:3px;flex:0 1 auto;min-width:0;overflow-x:auto;scrollbar-width:none">
+              <sc-for list="{{ spSchSegs }}" as="t" hint-placeholder-count="5">
+                <button onClick="{{ t.pick }}" style="flex:none;height:32px;padding:0 14px;border:0;border-radius:7px;font-size:12.5px;cursor:pointer;background:{{ t.bg }};color:{{ t.fg }};font-weight:{{ t.weight }};white-space:nowrap;font-family:inherit">{{ t.label }}</button>
+              </sc-for>
+            </div>
             <span style="flex:1"></span>
             <div style="position:relative">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#98A2B3" stroke-width="2.1" stroke-linecap="round" style="position:absolute;left:12px;top:12px"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.6-3.6" /></svg>
@@ -6562,6 +6567,225 @@
                 </div>
               </sc-for>
             </div>
+          </sc-if>
+
+          <sc-if value="{{ spIsRepl }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:16px">
+              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
+                <div style="padding:16px 20px;border-bottom:1px solid #F2F0EA">
+                  <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Replacement pipeline</div>
+                  <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">Required → Finding → Invite Sent → Accepted → Assigned → Completed</div>
+                </div>
+                <div style="padding:16px 20px;display:flex;flex-direction:column;gap:12px">
+                  <sc-for list="{{ spReplRows }}" as="r" hint-placeholder-count="4">
+                    <div style="border:1px solid #F0EEE7;border-radius:12px;padding:15px 17px;background:#FCFBF7">
+                      <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
+                        <div style="width:32px;height:32px;flex:none;border-radius:50%;background:{{ r.avBg }};display:grid;place-items:center;color:#fff;font-size:11px;font-weight:700">{{ r.init }}</div>
+                        <div style="min-width:0">
+                          <div style="font-size:13.5px;font-weight:700;color:#0F2A47">{{ r.cls }} <span style="font-weight:500;color:#98A2B3">· {{ r.id }}</span></div>
+                          <div style="font-size:11.5px;color:#7A8699;margin-top:3px">{{ r.type }} · {{ r.date }} · {{ r.slot }} · original {{ r.orig }} · {{ r.reason }}</div>
+                        </div>
+                        <span style="flex:1"></span>
+                        <span style="font-size:11.5px;color:#98A2B3">{{ r.note }}</span>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:0;margin-top:15px">
+                        <sc-for list="{{ r.steps }}" as="st" hint-placeholder-count="6">
+                          <div style="flex:1;display:flex;flex-direction:column;gap:7px">
+                            <div style="height:5px;border-radius:3px;background:{{ st.bg }}"></div>
+                            <span style="font-size:10px;font-weight:{{ st.weight }};color:{{ st.fg }}">{{ st.st }}</span>
+                          </div>
+                        </sc-for>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:9px;margin-top:14px;flex-wrap:wrap">
+                        <span style="font-size:11.5px;color:#98A2B3;flex:1 1 160px">Best match: <strong style="font-weight:700;color:#475467">{{ r.best }}</strong></span>
+                        <button onClick="{{ r.decline }}" style="flex:none;height:32px;padding:0 12px;border-radius:8px;border:1px solid #F0D2CF;background:#fff;font-size:12px;font-weight:600;color:#B42318;cursor:pointer">Declined</button>
+                        <button onClick="{{ r.nudge }}" style="flex:none;height:32px;padding:0 13px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:12px;font-weight:600;color:#344054;cursor:pointer">Nudge</button>
+                        <button onClick="{{ r.find }}" style="flex:none;height:32px;padding:0 14px;border-radius:8px;border:0;background:#0E9384;font-size:12px;font-weight:700;color:#fff;cursor:pointer;white-space:nowrap">Find replacement</button>
+                      </div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+
+              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
+                <div style="padding:16px 20px;border-bottom:1px solid #F2F0EA">
+                  <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Recommended speakers — {{ spReplFor }}</div>
+                  <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">Availability → topic expertise → audience rating → event load</div>
+                </div>
+                <div style="overflow-x:auto">
+                  <table style="width:100%;border-collapse:collapse">
+                    <thead>
+                      <tr style="background:#FCFBF7">
+                        <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">SPEAKER</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">TOPIC MATCH</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">AVAILABLE</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">CURRENT LOAD</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">THIS WEEK</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">RECOMMENDATION</th>
+                        <th style="padding:11px 20px 11px 13px;border-bottom:1px solid #F0EEE7"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <sc-for list="{{ spReplCands }}" as="c" hint-placeholder-count="4">
+                        <tr style-hover="background:#FCFBF7">
+                          <td style="padding:11px 20px;border-bottom:1px solid #F5F3EE">
+                            <div style="display:flex;align-items:center;gap:10px">
+                              <div style="width:30px;height:30px;flex:none;border-radius:50%;background:{{ c.avBg }};display:grid;place-items:center;color:#fff;font-size:10.5px;font-weight:700">{{ c.init }}</div>
+                              <span style="font-size:12.5px;font-weight:600;color:#0F2A47;white-space:nowrap">{{ c.name }}</span>
+                            </div>
+                          </td>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467">{{ c.match }}</td>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ c.avail }}</td>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467">{{ c.load }}</td>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12px;color:#98A2B3;white-space:nowrap">{{ c.detail }}</td>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ c.rBg }};color:{{ c.rFg }};white-space:nowrap">{{ c.rec }}</span></td>
+                          <td style="padding:11px 20px 11px 13px;border-bottom:1px solid #F5F3EE;text-align:right">
+                            <button onClick="{{ c.invite }}" style="height:29px;padding:0 12px;border-radius:8px;border:1px solid #BFE3DC;background:#EEF6F5;font-size:11.5px;font-weight:600;color:#0B7A6E;cursor:pointer;white-space:nowrap">Invite</button>
+                          </td>
+                        </tr>
+                      </sc-for>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ spIsConf }}" hint-placeholder-val="{{ false }}">
+            <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
+              <div style="padding:16px 20px;border-bottom:1px solid #F2F0EA">
+                <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Conflict centre</div>
+                <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">Speaker double booking · unavailability · venue clash · coordinator clash · outside availability</div>
+              </div>
+              <div style="padding:16px 20px;display:flex;flex-direction:column;gap:12px">
+                <sc-for list="{{ spConfRows }}" as="c" hint-placeholder-count="5">
+                  <div style="border:1px solid #F0EEE7;border-radius:12px;padding:15px 17px;background:#FCFBF7">
+                    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+                      <span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ c.sBg }};color:{{ c.sFg }}">{{ c.sev }}</span>
+                      <span style="font-size:13.5px;font-weight:700;color:#0F2A47">{{ c.kind }}</span>
+                      <span style="flex:1"></span>
+                      <span style="font-size:11.5px;color:#98A2B3;font-family:ui-monospace,monospace">{{ c.id }}</span>
+                    </div>
+                    <div style="font-size:12.5px;color:#475467;margin-top:8px;text-wrap:pretty">{{ c.detail }}</div>
+                    <div style="font-size:11.5px;color:#98A2B3;margin-top:4px">Affected: {{ c.affected }}</div>
+                    <div style="display:flex;gap:8px;margin-top:13px;flex-wrap:wrap">
+                      <button onClick="{{ c.resolve }}" style="height:32px;padding:0 14px;border-radius:8px;border:0;background:#0E9384;font-size:12px;font-weight:700;color:#fff;cursor:pointer">Resolve conflict</button>
+                      <button onClick="{{ c.override }}" style="height:32px;padding:0 13px;border-radius:8px;border:1px solid #F0D2CF;background:#fff;font-size:12px;font-weight:600;color:#B42318;cursor:pointer">Request override</button>
+                      <button onClick="{{ c.ignore }}" style="height:32px;padding:0 13px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:12px;font-weight:600;color:#344054;cursor:pointer">Ignore</button>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ spIsReqs }}" hint-placeholder-val="{{ false }}">
+            <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
+              <div style="padding:16px 20px;border-bottom:1px solid #F2F0EA">
+                <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Speaker requests</div>
+                <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">Replacement, reschedule, cancellation and availability requests from speakers</div>
+              </div>
+              <div style="overflow-x:auto">
+                <table style="width:100%;min-width:1120px;border-collapse:collapse">
+                  <thead>
+                    <tr style="background:#FCFBF7">
+                      <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">REQUEST</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">SPEAKER</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">TYPE</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">EVENT / SCOPE</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">EFFECTIVE</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">REASON</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">STATUS</th>
+                      <th style="padding:11px 20px 11px 13px;border-bottom:1px solid #F0EEE7"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <sc-for list="{{ spReqRows }}" as="r" hint-placeholder-count="5">
+                      <tr style-hover="background:#FCFBF7">
+                        <td style="padding:11px 20px;border-bottom:1px solid #F5F3EE;font-size:12.5px;font-weight:600;font-family:ui-monospace,monospace;color:#0F2A47">{{ r.id }}</td>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE">
+                          <div style="display:flex;align-items:center;gap:10px">
+                            <div style="width:28px;height:28px;flex:none;border-radius:50%;background:{{ r.avBg }};display:grid;place-items:center;color:#fff;font-size:10px;font-weight:700">{{ r.init }}</div>
+                            <span style="font-size:12.5px;color:#475467;white-space:nowrap">{{ r.speaker }}</span>
+                          </div>
+                        </td>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;font-weight:600;color:#0F2A47;white-space:nowrap">{{ r.kind }}</td>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467">{{ r.cls }}</td>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.when }}</td>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12px;color:#475467">{{ r.reason }}</td>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.sBg }};color:{{ r.sFg }}">{{ r.state }}</span></td>
+                        <td style="padding:11px 20px 11px 13px;border-bottom:1px solid #F5F3EE;text-align:right;white-space:nowrap">
+                          <button onClick="{{ r.review }}" style="display:{{ r.actionsDisplay }};align-items:center;height:29px;padding:0 11px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:11.5px;font-weight:600;color:#344054;cursor:pointer;margin-right:6px">Review</button>
+                          <button onClick="{{ r.reject }}" style="display:{{ r.actionsDisplay }};align-items:center;height:29px;padding:0 11px;border-radius:8px;border:1px solid #F0D2CF;background:#fff;font-size:11.5px;font-weight:600;color:#B42318;cursor:pointer;margin-right:6px">Reject</button>
+                          <button onClick="{{ r.approve }}" style="display:{{ r.actionsDisplay }};align-items:center;height:29px;padding:0 11px;border-radius:8px;border:0;background:#0E9384;font-size:11.5px;font-weight:700;color:#fff;cursor:pointer">Approve</button>
+                        </td>
+                      </tr>
+                    </sc-for>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ spIsAvail }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:16px">
+              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
+                <div style="padding:16px 20px;border-bottom:1px solid #F2F0EA">
+                  <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Speaker availability &amp; event load</div>
+                  <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">Declared availability against scheduled events · check load before assigning a replacement</div>
+                </div>
+                <div style="overflow-x:auto">
+                  <table style="width:100%;min-width:1080px;border-collapse:collapse">
+                    <thead>
+                      <tr style="background:#FCFBF7">
+                        <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">SPEAKER</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">AVAILABLE FROM</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">UNTIL</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">WORKING DAYS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">EVENTS THIS MONTH</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">HOURS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">REPLACEMENTS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">LOAD</th>
+                        <th style="padding:11px 20px 11px 13px;border-bottom:1px solid #F0EEE7"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <sc-for list="{{ spAvailRows }}" as="r" hint-placeholder-count="4">
+                        <tr style-hover="background:#FCFBF7">
+                          <td style="padding:11px 20px;border-bottom:1px solid #F5F3EE">
+                            <div style="display:flex;align-items:center;gap:10px">
+                              <div style="width:30px;height:30px;flex:none;border-radius:50%;background:{{ r.avBg }};display:grid;place-items:center;color:#fff;font-size:10.5px;font-weight:700">{{ r.init }}</div>
+                              <span style="font-size:12.5px;font-weight:600;color:#0F2A47;white-space:nowrap">{{ r.name }}</span>
+                            </div>
+                          </td>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.from }}</td>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.to }}</td>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.days }}</td>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:13px;font-weight:700;color:#0F2A47">{{ r.classes }}</td>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.hours }}</td>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467">{{ r.subs }}</td>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE">
+                            <div style="display:flex;align-items:center;gap:9px">
+                              <div style="width:80px;height:6px;border-radius:4px;background:#F2F0EA;overflow:hidden"><div style="height:100%;width:{{ r.w }};border-radius:4px;background:{{ r.barBg }}"></div></div>
+                              <span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.lBg }};color:{{ r.lFg }};white-space:nowrap">{{ r.load }}</span>
+                            </div>
+                          </td>
+                          <td style="padding:11px 20px 11px 13px;border-bottom:1px solid #F5F3EE;text-align:right;white-space:nowrap">
+                            <button onClick="{{ r.view }}" style="height:29px;padding:0 11px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:11.5px;font-weight:600;color:#344054;cursor:pointer;margin-right:6px">Schedule</button>
+                            <button onClick="{{ r.block }}" style="height:29px;padding:0 11px;border-radius:8px;border:1px solid #BFE3DC;background:#EEF6F5;font-size:11.5px;font-weight:600;color:#0B7A6E;cursor:pointer">Availability</button>
+                          </td>
+                        </tr>
+                      </sc-for>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ spIsHist }}" hint-placeholder-val="{{ false }}">
+            <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
+                <div style="padding:16px 20px;border-bottom:1px solid #F2F0EA">
+                  <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Schedule history</div>
+                  <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">Every change with reason, author and notification status</div>
+                </div>
+                <sc-for list="{{ spHistory }}" as="h" hint-placeholder-count="5">
+                  <div style="padding:13px 20px;border-bottom:1px solid #F5F3EE">
+                    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+                      <span style="font-size:12.5px;font-weight:700;color:#0F2A47">{{ h.action }}</span>
+                      <span style="font-size:12px;color:#475467">{{ h.change }}</span>
+                      <span style="flex:1"></span>
+                      <span style="font-size:11px;color:#98A2B3;white-space:nowrap">{{ h.when }} · {{ h.by }}</span>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:12px;margin-top:6px;flex-wrap:wrap">
+                      <span style="font-size:11.5px;color:#7A8699;flex:1 1 200px;text-wrap:pretty">{{ h.reason }}</span>
+                      <span style="font-size:11px;font-weight:600;color:#15803D;white-space:nowrap">{{ h.notified }}</span>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
           </sc-if>
 
           <sc-if value="{{ schIsAgenda }}" hint-placeholder-val="{{ false }}">
@@ -10036,6 +10260,72 @@ class Component extends DCLogic {
       schMode: s.schMode||'All', setSchMode: set('schMode'),
       schSpeakerOpts: ['All', ...new Set(EV.map(e=>e.speaker))],
       schReset: ()=>{ this.setState({schType:'All',schSpeaker:'All',schStatus:'All',schMode:'All',schQ:'',schKpiFilter:null}); this.fire('Filters reset','Showing all scheduled events'); },
+
+      ...(()=>{ const v=s.schView||'calendar'; const AVs=['#6D28D9','#0E9384','#C2410C','#1D4ED8','#B42318','#0B7A6E']; const av=(n)=>AVs[String(n).length%AVs.length]; const ini=(n)=>String(n).replace(/^(Dr|Prof)\.\s*/,'').split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+        const P={High:['#FDE8E8','#B42318'],Medium:['#FEF3E2','#B45309'],Low:['#F1F3F5','#667085']};
+        const ST={Pending:['#FEF3E2','#B45309'],Approved:['#E7F7EE','#15803D'],Rejected:['#FDE8E8','#B42318']};
+        const STEPS=['Required','Finding','Invite Sent','Accepted','Assigned','Completed'];
+        const seg=(k)=>{ const on=v===k; return {bg:on?'#0E9384':'transparent', fg:on?'#fff':'#6B7C93', weight:on?'600':'500', pick:()=>this.setState({schView:k})}; };
+        const rs=s.spReqState||{};
+        return {
+          spSchSegs: [['Replacements','repl'],['Conflicts','conf'],['Requests','reqs'],['Availability','avail'],['History','hist']].map(([label,k])=>({label,...seg(k)})),
+          spIsRepl: v==='repl', spIsConf: v==='conf', spIsReqs: v==='reqs', spIsAvail: v==='avail', spIsHist: v==='hist',
+          spReplFor: 'EV-307 Claims Handling Workshop',
+          spReplRows: [
+            ['Claims Handling Workshop','EV-307','Workshop','14 Aug','04:00 – 06:00 PM','Dr. Neha Kulkarni','medical leave',2,'Invite sent 2 h ago','Rohan Iyer'],
+            ['Life Insurance Sales Webinar','EV-311','Webinar','16 Aug','05:00 – 06:30 PM','Arjun Rao','travel conflict',1,'Searching speakers','Meera Pillai'],
+            ['Motor Underwriting Masterclass','EV-315','Masterclass','19 Aug','11:00 AM – 01:00 PM','Kavita Desai','declined invite',3,'Accepted · awaiting assignment','Dr. Ankit Sharma']
+          ].map(([cls,id,type,date,slot,orig,reason,step,note,best])=>({cls,id,type,date,slot,orig,reason,note,best,init:ini(orig),avBg:av(orig),
+            steps: STEPS.map((st,i)=>({st, bg:i<=step?'#0E9384':'#ECEAE2', fg:i<=step?'#0B7A6E':'#98A2B3', weight:i===step?'700':'500'})),
+            decline:()=>this.fire('Marked declined — '+id,'Next best match will be invited',true),
+            nudge:()=>this.fire('Reminder sent to '+best, cls+' · '+date,true),
+            find:()=>this.fire('Finding replacement — '+id,'Ranking available speakers by topic match',true)})),
+          spReplCands: [
+            ['Rohan Iyer','Claims · Health','Free 14 Aug','3 events','2 this week','Best match','#E7F7EE','#15803D'],
+            ['Meera Pillai','Claims · Motor','Free after 5 PM','4 events','3 this week','Good match','#E6F4F1','#0B7A6E'],
+            ['Dr. Ankit Sharma','Life · Underwriting','Free 14 Aug','6 events','4 this week','High load','#FEF3E2','#B45309'],
+            ['Sanjay Gupta','General insurance','Tentative','2 events','1 this week','Partial match','#F1F3F5','#667085']
+          ].map(([name,match,avail,load,detail,rec,rBg,rFg])=>({name,match,avail,load,detail,rec,rBg,rFg,init:ini(name),avBg:av(name),
+            invite:()=>this.fire('Invite sent to '+name,'EV-307 · reply requested within 4 h',true)})),
+          spConfRows: [
+            ['High','Speaker double booking','CF-201','Dr. Ankit Sharma is assigned to EV-305 and EV-309 at 05:00 PM on 13 Aug.','EV-305 · EV-309 · 412 registrants'],
+            ['High','Speaker unavailable','CF-202','Dr. Neha Kulkarni marked unavailable 14 Aug (medical leave).','EV-307 Claims Handling Workshop'],
+            ['Medium','Venue clash','CF-203','Hall B is booked for EV-312 and a coordinator training session on 18 Aug.','EV-312 · offline · 60 seats'],
+            ['Medium','Outside availability','CF-204','Arjun Rao is scheduled at 08:00 PM — declared availability ends 07:00 PM.','EV-311 Life Insurance Sales Webinar'],
+            ['Low','Coordinator clash','CF-205','Rahul Verma coordinates two overlapping events on 20 Aug.','EV-316 · EV-318']
+          ].map(([sev,kind,id,detail,affected])=>({sev,kind,id,detail,affected,sBg:P[sev][0],sFg:P[sev][1],
+            resolve:()=>this.fire('Conflict resolved — '+id,'Schedule updated and stakeholders notified',true),
+            override:()=>this.fire('Override requested — '+id,'Sent to Speaker Programme Admin',true),
+            ignore:()=>this.fire('Conflict ignored — '+id,'Logged in schedule history',true)})),
+          spReqRows: [
+            ['RQ-501','Dr. Neha Kulkarni','Replacement','EV-307 Claims Handling Workshop','14 Aug','Medical leave'],
+            ['RQ-502','Arjun Rao','Reschedule','EV-311 Life Insurance Sales Webinar','16 Aug → 18 Aug','Travel conflict'],
+            ['RQ-503','Kavita Desai','Cancellation','EV-315 Motor Underwriting Masterclass','19 Aug','Personal emergency'],
+            ['RQ-504','Meera Pillai','Availability','Weekday evenings','From 20 Aug','Updated availability'],
+            ['RQ-505','Rohan Iyer','Reschedule','EV-319 Health Claims Q&A','22 Aug → 23 Aug','Clashing commitment']
+          ].map(([id,speaker,kind,cls,when,reason])=>{ const state=rs[id]||'Pending'; return {id,speaker,kind,cls,when,reason,state,init:ini(speaker),avBg:av(speaker),
+            sBg:ST[state][0], sFg:ST[state][1], actionsDisplay: state==='Pending'?'inline-flex':'none',
+            review:()=>this.fire('Reviewing '+id, speaker+' · '+kind,true),
+            approve:()=>{ this.setState({spReqState:{...rs,[id]:'Approved'}}); this.fire('Request approved — '+id, speaker+' notified',true); },
+            reject:()=>{ this.setState({spReqState:{...rs,[id]:'Rejected'}}); this.fire('Request rejected — '+id, speaker+' notified',true); }}; }),
+          spAvailRows: [
+            ['Dr. Ankit Sharma','05:00 PM','09:00 PM','Mon – Fri','6','11 h','1',92],
+            ['Dr. Neha Kulkarni','—','—','On leave','2','4 h','0',30],
+            ['Arjun Rao','10:00 AM','07:00 PM','Tue – Sat','4','7 h','2',68],
+            ['Meera Pillai','04:00 PM','09:00 PM','Mon – Thu','3','5 h','1',48],
+            ['Rohan Iyer','09:00 AM','06:00 PM','Mon – Sat','3','6 h','0',52]
+          ].map(([name,from,to,days,classes,hours,subs,pct])=>{ const load=pct>85?'High':pct<35?'Low':'Normal'; const L={High:['#FDE8E8','#B42318','#E88B78'],Normal:['#E7F7EE','#15803D','#0E9384'],Low:['#F1F3F5','#667085','#98A2B3']}[load];
+            return {name,from,to,days,classes,hours,subs,load:load+' · '+pct+'%',w:pct+'%',lBg:L[0],lFg:L[1],barBg:L[2],init:ini(name),avBg:av(name),
+              view:()=>this.setState({schView:'calendar', schSpeaker:name}),
+              block:()=>this.fire('Availability — '+name, days+' · '+from+' – '+to,true)}; }),
+          spHistory: [
+            ['Rescheduled','EV-311 · 16 Aug → 18 Aug','2 h ago','Admin User','Speaker travel conflict','Speaker, coordinator and 286 registrants notified'],
+            ['Replacement requested','EV-307 · Dr. Neha Kulkarni','5 h ago','Rahul Verma','Medical leave','Speaker programme admin notified'],
+            ['Venue changed','EV-312 · Hall A → Hall B','Yesterday','Priya Nair','Hall A under maintenance','Registrants notified by email'],
+            ['Event created','EV-319 Health Claims Q&A','Yesterday','Admin User','New webinar series','Speaker invited'],
+            ['Cancelled','EV-298 Reinsurance Basics','2 days ago','Admin User','Low registrations','Refunds initiated · 42 registrants notified']
+          ].map(([action,change,when,by,reason,notified])=>({action,change,when,by,reason,notified}))
+        }; })(),
       schViewTabs: [['calendar','Calendar'],['table','Table'],['cards','Cards']].map(([k,label])=>({
         label, on:(s.schView||'calendar')===k, bg:(s.schView||'calendar')===k?'#0E9384':'transparent',
         fg:(s.schView||'calendar')===k?'#fff':'#6B7C93', pick:()=>this.setState({schView:k}),

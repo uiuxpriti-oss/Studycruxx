@@ -5,6 +5,7 @@ branch: claude/zealous-lovelace-o9hpsg
 date: 2026-10-07T12:00:00Z
 
 ### Updated in this project
+- Speaker performance detail rebuilt on Coordinator layout (header, tabs, Outcomes conversion funnel, Activity tiles, goal bars, audit log).
 - Performance row menu (Coordinator, Teacher): Compare + Set Goals popups, View Batches/Classes and View Activity open profile tabs, Export prefilled.
 - Speaker Performance KPI cards matched to Coordinator.
 - Teacher Course & Batch Allocation: Teachers tab rebuilt as Coordinator-style workload table; KPI cards on one row.
