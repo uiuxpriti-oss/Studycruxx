@@ -741,7 +741,7 @@
 
       <sc-if value="{{ isAllocation }}" hint-placeholder-val="{{ false }}">
         <div>
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:13px;margin-bottom:16px">
+          <div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:13px;margin-bottom:16px">
             <sc-for list="{{ allocKpis }}" as="k" hint-placeholder-count="6">
               <div onClick="{{ k.go }}" style="min-width:0;background:#fff;border:1px solid #ECEAE2;border-radius:13px;padding:15px 17px;cursor:pointer" style-hover="border-color:#BFE3DC;box-shadow:0 8px 22px rgba(11,31,62,.06)">
                 <div style="font-size:11.5px;font-weight:500;color:#6B7C93;text-wrap:pretty">{{ k.label }}</div>
@@ -916,20 +916,49 @@
           </sc-if>
 
           <sc-if value="{{ allocIsTeachers }}" hint-placeholder-val="{{ false }}">
-            <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:20px 22px;margin-bottom:16px">
-              <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Faculty load &amp; conflicts</div>
-              <div style="font-size:12.5px;color:#6B7C93;margin-top:2px;margin-bottom:18px">Weekly teaching hours against contracted capacity · above 100% needs rebalancing</div>
-              <div style="display:flex;flex-direction:column;gap:14px">
-                <sc-for list="{{ allocLoad }}" as="b" hint-placeholder-count="6">
-                  <div>
-                    <div style="display:flex;align-items:center;gap:10px;margin-bottom:7px">
-                      <span style="font-size:13px;font-weight:600;color:#0F2A47">{{ b.label }}</span>
-                      <span style="font-size:11.5px;color:#98A2B3;flex:1">{{ b.sub }}</span>
-                      <span style="font-size:13px;font-weight:800;color:#0F2A47">{{ b.pct }}</span>
-                    </div>
-                    <div style="height:8px;border-radius:5px;background:#F2F0EA;overflow:hidden"><div style="height:100%;width:{{ b.pct }};max-width:100%;border-radius:5px;background:{{ b.color }}"></div></div>
-                  </div>
-                </sc-for>
+            <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden;margin-bottom:16px">
+              <div style="padding:16px 20px;border-bottom:1px solid #F2F0EA">
+                <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Teacher workload</div>
+                <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">Weekly teaching hours against contracted capacity · above 100% needs rebalancing</div>
+              </div>
+              <div style="overflow-x:auto">
+                <table style="width:100%;min-width:980px;border-collapse:collapse">
+                  <thead>
+                    <tr style="background:#FCFBF7">
+                      <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">TEACHER</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">COURSES</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">ACTIVE BATCHES</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">WEEKLY HOURS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">WORKLOAD</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">STATUS</th>
+                      <th style="padding:11px 20px 11px 13px;border-bottom:1px solid #F0EEE7"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <sc-for list="{{ allocTeacherRows }}" as="r" hint-placeholder-count="9">
+                      <tr style-hover="background:#FCFBF7">
+                        <td onClick="{{ r.open }}" style="padding:11px 20px;border-bottom:1px solid #F5F3EE;cursor:pointer">
+                          <div style="display:flex;align-items:center;gap:10px">
+                            <div style="width:30px;height:30px;flex:none;border-radius:50%;background:{{ r.avBg }};display:grid;place-items:center;color:#fff;font-size:10.5px;font-weight:700">{{ r.init }}</div>
+                            <div>
+                              <div style="font-size:12.5px;font-weight:600;color:#0F2A47;white-space:nowrap">{{ r.name }}</div>
+                              <div style="font-size:10px;color:#98A2B3;margin-top:2px;font-family:ui-monospace,monospace">{{ r.id }}</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467">{{ r.courses }}</td>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:13px;font-weight:700;color:#0F2A47">{{ r.active }}</td>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467">{{ r.hours }}</td>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE">
+                          <div style="display:flex;align-items:center;gap:10px">
+                            <div style="width:110px;height:7px;border-radius:5px;background:#F2F0EA;overflow:hidden"><div style="height:100%;width:{{ r.w }};border-radius:5px;background:{{ r.barBg }}"></div></div>
+                            <span style="font-size:12.5px;font-weight:800;color:#0F2A47">{{ r.pct }}</span>
+                          </div>
+                        </td>
+                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.sBg }};color:{{ r.sFg }};white-space:nowrap">{{ r.band }}</span></td>
+                        <td style="padding:11px 20px 11px 13px;border-bottom:1px solid #F5F3EE;text-align:right;white-space:nowrap">
+                          <button onClick="{{ r.assign }}" style="height:29px;padding:0 11px;border-radius:8px;border:1px solid #BFE3DC;background:#EEF6F5;font-size:11.5px;font-weight:600;color:#0B7A6E;cursor:pointer;margin-right:6px">Assign batch</button>
+                          <button onClick="{{ r.open }}" style="height:29px;padding:0 11px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:11.5px;font-weight:600;color:#344054;cursor:pointer">View Profile</button>
+                        </td>
+                      </tr>
+                    </sc-for>
+                  </tbody>
+                </table>
               </div>
             </div>
           </sc-if>
@@ -9375,6 +9404,17 @@ class Component extends DCLogic {
         reassign: ()=>this.setState({mAlloc:{batch, bid, course, shift, coord, reassign:1, current:teacher},
           alTeacher: teacher==='—' ? 'Dr. Vikram Verma' : teacher,
           alCoord: coord==='Unassigned' ? 'R. Kumar' : coord, alNotify:['Email','WhatsApp']})})),
+      allocTeacherRows: [
+        ['Prof. Arun Mehta','TCH-1021',2,5,'18 h',112],['Dr. Vikram Verma','TCH-1004',2,4,'12 h',75],['Ritu Bansal','TCH-1033',2,3,'14 h',88],
+        ['Neha Kulkarni','TCH-1047',1,3,'10 h',63],['Ayesha Khan','TCH-1052',2,3,'9 h',56],['Shalini Nair','TCH-1060',1,2,'6 h',38]
+      ].map(([name,id,courses,active,hours,pct])=>{ const band = pct>100?'Overloaded':pct>=76?'High':pct<40?'Low':'Normal';
+        const sc = band==='Overloaded'?['#FDE8E8','#B42318']:band==='High'?['#FEF3E2','#B45309']:band==='Low'?['#F1F3F5','#667085']:['#E7F7EE','#15803D'];
+        const AV=['#6D28D9','#0E9384','#C2410C','#1D4ED8','#B42318','#0B7A6E'];
+        return {name,id,courses:String(courses),active:String(active),hours,pct:pct+'%',band,w:Math.min(100,pct)+'%',sBg:sc[0],sFg:sc[1],
+          barBg: band==='Overloaded'?'#E88B78':band==='High'?'#F0A72A':band==='Low'?'#98A2B3':'#0E9384',
+          init: name.replace(/^(Prof|Dr)\.\s*/,'').split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase(), avBg: AV[name.length%AV.length],
+          open: ()=>this.fire('Opening '+name, 'Teacher profile', true),
+          assign: ()=>this.setState({mAlloc:{batch:'New batch', bid:'—', course:'Select course', shift:'—', coord:'R. Kumar'}, alTeacher:name, alCoord:'R. Kumar', alNotify:['Email','WhatsApp']})}; }),
       allocLoad: [
         {label:'Prof. Arun Mehta',sub:'5 batches · 18 h weekly',pct:'112%',color:'#E88B78'},
         {label:'Dr. Vikram Verma',sub:'4 batches · 12 h weekly',pct:'75%',color:'#0E9384'},

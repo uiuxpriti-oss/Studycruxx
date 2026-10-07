@@ -2,9 +2,10 @@ repo: uiuxpriti-oss/StudyCrux
 branch: claude/zealous-lovelace-o9hpsg
 
 ## Last sync
-date: 2026-10-06T12:00:00Z
+date: 2026-10-07T12:00:00Z
 
 ### Updated in this project
+- Teacher Course & Batch Allocation: Teachers tab rebuilt as Coordinator-style workload table; KPI cards on one row.
 - Speaker Reports rebuilt on the Coordinator report layout (filter bar, category tabs, library cards, saved/scheduled/export).
 - New Attendance & Activity module in Teacher and Speaker (8 tabs, module-specific data, settings/export/correction popups).
 - Attendance & Activity: Save filter / Saved removed in all 3 modules; Reset always beside Filters.
