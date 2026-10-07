@@ -5,6 +5,8 @@ branch: claude/zealous-lovelace-o9hpsg
 date: 2026-10-07T12:00:00Z
 
 ### Updated in this project
+- Performance row menu (Coordinator, Teacher): Compare + Set Goals popups, View Batches/Classes and View Activity open profile tabs, Export prefilled.
+- Speaker Performance KPI cards matched to Coordinator.
 - Teacher Course & Batch Allocation: Teachers tab rebuilt as Coordinator-style workload table; KPI cards on one row.
 - Speaker Reports rebuilt on the Coordinator report layout (filter bar, category tabs, library cards, saved/scheduled/export).
 - New Attendance & Activity module in Teacher and Speaker (8 tabs, module-specific data, settings/export/correction popups).

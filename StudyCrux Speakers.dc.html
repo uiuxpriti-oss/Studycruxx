@@ -4299,12 +4299,12 @@
 
       <sc-if value="{{ isPerformance }}" hint-placeholder-val="{{ false }}">
         <div>
-          <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-bottom:16px">
-            <sc-for list="{{ pfCards }}" as="k" hint-placeholder-count="6">
-              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:13px;padding:15px 17px">
-                <div style="font-size:22px;font-weight:800;letter-spacing:-.02em;color:{{ k.fg }}">{{ k.n }}</div>
-                <div style="font-size:12px;font-weight:600;color:#344054;margin-top:4px">{{ k.label }}</div>
-                <div style="font-size:11px;color:#98A2B3;margin-top:3px">{{ k.note }}</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:13px;margin-bottom:16px">
+            <sc-for list="{{ pfCards }}" as="k" hint-placeholder-count="5">
+              <div style="min-width:0;background:#fff;border:1px solid #ECEAE2;border-radius:13px;padding:16px 18px">
+                <div style="font-size:25px;font-weight:800;letter-spacing:-.03em;color:{{ k.fg }}">{{ k.n }}</div>
+                <div style="font-size:13px;font-weight:700;color:#0F2A47;margin-top:6px;text-wrap:pretty">{{ k.label }}</div>
+                <div style="font-size:11.5px;color:#98A2B3;margin-top:3px;text-wrap:pretty">{{ k.note }}</div>
               </div>
             </sc-for>
           </div>
@@ -12070,12 +12070,11 @@ class Component extends DCLogic {
       ...this.poVM(s),
 
       pfCards: [
-        ['Total Speakers', String(perfInPeriod.length), 'in selected period', '#0F2A47'],
-        ['Active Speakers', String(perfInPeriod.filter(sp=>sp.events>0).length), 'delivered at least 1 event', '#15803D'],
-        ['Events Conducted', String(perfInPeriod.reduce((a,sp)=>a+sp.events,0)), 'webinars + workshops', '#1D4ED8'],
-        ['Average Performance', perfInPeriod.filter(sp=>sp.events>=3).length ? Math.round(perfInPeriod.filter(sp=>sp.events>=3).reduce((a,sp)=>a+perfScoreOf(sp),0)/perfInPeriod.filter(sp=>sp.events>=3).length)+'%' : '—', 'across scored speakers', '#0E9384'],
-        ['Average Rating', perfAvgOf('rating') ? perfAvgOf('rating').toFixed(1)+'/5' : '—', 'audience feedback', '#B45309'],
-        ['Need Attention', String(perfNeedsAttn), 'below performance threshold', perfNeedsAttn?'#B42318':'#15803D']
+        ['Total Speakers', String(perfInPeriod.length), perfInPeriod.filter(sp=>sp.events>0).length+' delivered this period', '#667085'],
+        ['Average Performance', perfInPeriod.filter(sp=>sp.events>=3).length ? Math.round(perfInPeriod.filter(sp=>sp.events>=3).reduce((a,sp)=>a+perfScoreOf(sp),0)/perfInPeriod.filter(sp=>sp.events>=3).length)+'%' : '—', 'across scored speakers', '#15803D'],
+        ['Events Conducted', String(perfInPeriod.reduce((a,sp)=>a+sp.events,0)), 'webinars + workshops', '#667085'],
+        ['Avg. Audience Rating', perfAvgOf('rating') ? perfAvgOf('rating').toFixed(1) : '—', 'from audience feedback', '#B45309'],
+        ['Needs Attention', String(perfNeedsAttn), 'below the 80% target', '#B42318']
       ].map(([label,n,note,fg])=>({label,n,note,fg})),
 
       pfQ: s.pfQ||'', setPfQ:(e)=>this.setState({pfQ:e.target.value}),
