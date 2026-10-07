@@ -4427,27 +4427,22 @@
 
       <sc-if value="{{ isPerf360 }}" hint-placeholder-val="{{ false }}">
         <div>
-          <div style="background:#0B1F3E;border-radius:16px;padding:22px 24px;margin-bottom:16px">
-            <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
-              <span style="width:52px;height:52px;flex:none;border-radius:50%;background:{{ perfWhoAv }};color:#fff;font-size:18px;font-weight:700;display:grid;place-items:center">{{ perfWhoInitials }}</span>
-              <div style="min-width:0;flex:1">
-                <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-                  <span style="font-size:18px;font-weight:700;color:#fff">{{ perfWhoName }}</span>
-                  <span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ perfWhoStatusBg }};color:{{ perfWhoStatusFg }}">{{ perfWhoStatus }}</span>
-                </div>
-                <div style="font-size:12.5px;color:#9FB2CC;margin-top:5px">{{ perfWhoId }} · {{ perfWhoSpec }}</div>
+          <div style="display:flex;align-items:flex-start;gap:14px;background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:18px 20px;margin-bottom:16px;flex-wrap:wrap">
+            <button onClick="{{ perfBackToList }}" style="width:32px;height:32px;flex:none;border-radius:9px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:#475467;margin-top:4px;font-family:inherit" style-hover="background:#F6F5F0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6" /></svg></button>
+            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:{{ perfWhoAv }};display:grid;place-items:center;color:#fff;font-size:14px;font-weight:700">{{ perfWhoInitials }}</div>
+            <div style="min-width:0;flex:1 1 260px">
+              <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+                <span style="font-size:18px;font-weight:800;color:#0F2A47;letter-spacing:-.02em">{{ perfWhoName }}</span>
+                <span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ perfWhoStatusBg }};color:{{ perfWhoStatusFg }};white-space:nowrap">{{ perfWhoStatus }}</span>
               </div>
-              <div style="display:flex;gap:20px;flex:none">
-                <div style="text-align:center"><div style="font-size:18px;font-weight:800;color:#fff">{{ perfWhoEvents }}</div><div style="font-size:10.5px;color:#9FB2CC;margin-top:3px">Events</div></div>
-                <div style="text-align:center"><div style="font-size:18px;font-weight:800;color:#fff">{{ perfWhoAudience }}</div><div style="font-size:10.5px;color:#9FB2CC;margin-top:3px">Audience</div></div>
-                <div style="text-align:center"><div style="font-size:18px;font-weight:800;color:#fff">{{ perfWhoHours }}h</div><div style="font-size:10.5px;color:#9FB2CC;margin-top:3px">Hours</div></div>
-              </div>
+              <div style="font-size:12px;color:#98A2B3;margin-top:5px;text-wrap:pretty">{{ perfWhoId }} · {{ perfWhoSpec }} · {{ perfWhoEvents }} events · {{ perfWhoAudience }} audience · {{ perfWhoHours }}h delivered</div>
             </div>
-            <div style="display:flex;gap:9px;margin-top:16px;flex-wrap:wrap">
-              <button onClick="{{ perfExportWho }}" style="height:34px;padding:0 14px;border-radius:9px;border:1px solid #28456C;background:transparent;font-size:12.5px;font-weight:600;color:#fff;cursor:pointer" style-hover="background:#16345C">Export Report</button>
-              <button onClick="{{ perfDownloadPdf }}" style="height:34px;padding:0 14px;border-radius:9px;border:1px solid #28456C;background:transparent;font-size:12.5px;font-weight:600;color:#fff;cursor:pointer" style-hover="background:#16345C">Download PDF</button>
-              <button onClick="{{ perfCompareWho }}" style="height:34px;padding:0 14px;border-radius:9px;border:1px solid #28456C;background:transparent;font-size:12.5px;font-weight:600;color:#fff;cursor:pointer" style-hover="background:#16345C">Compare</button>
-              <button onClick="{{ perfGoalsWho }}" style="height:34px;padding:0 14px;border-radius:9px;border:0;background:#0E9384;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer" style-hover="background:#0B7A6E">Set Goals</button>
+            <div style="display:flex;gap:8px;flex:none;flex-wrap:wrap;align-items:center">
+              <span style="flex:none;font-size:12px;font-weight:600;padding:8px 14px;border-radius:9px;background:#FCFBF7;border:1px solid #EDEBE4;color:#475467;white-space:nowrap">Aug 1 – Aug 31, 2026</span>
+              <button onClick="{{ perfCompareWho }}" style="height:36px;padding:0 14px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer;white-space:nowrap;font-family:inherit" style-hover="background:#F6F5F0">Compare</button>
+              <button onClick="{{ perfGoalsWho }}" style="height:36px;padding:0 14px;border-radius:9px;border:1px solid #BFE3DC;background:#EEF6F5;font-size:12.5px;font-weight:600;color:#0B7A6E;cursor:pointer;white-space:nowrap;font-family:inherit" style-hover="background:#E2F1EE">Set Goals</button>
+              <button onClick="{{ perfDownloadPdf }}" style="height:36px;padding:0 14px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer;white-space:nowrap;font-family:inherit" style-hover="background:#F6F5F0">Download PDF</button>
+              <button onClick="{{ perfExportWho }}" style="height:36px;padding:0 15px;border-radius:9px;border:0;background:#0E9384;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer;white-space:nowrap;font-family:inherit" style-hover="background:#0B7A6E">Export Report</button>
             </div>
           </div>
 
@@ -4458,7 +4453,7 @@
           </sc-if>
           <sc-if value="{{ perfInsufficient }}" hint-placeholder-val="{{ false }}">
             <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:48px 20px;text-align:center">
-              <div style="font-size:14.5px;font-weight:700;color:#475467">Insufficient Data</div>
+              <div style="font-size:14.5px;font-weight:700;color:#475467">Insufficient data</div>
               <div style="font-size:12.5px;color:#98A2B3;margin-top:6px">Not enough completed events to calculate a reliable performance score.</div>
             </div>
           </sc-if>
@@ -4466,111 +4461,116 @@
           <sc-if value="{{ perfHasData }}" hint-placeholder-val="{{ true }}">
           <div style="display:flex;gap:2px;background:#fff;border:1px solid #ECEAE2;border-radius:12px;padding:4px;margin-bottom:16px;overflow-x:auto">
             <sc-for list="{{ perfTabsList }}" as="t" hint-placeholder-count="9">
-              <button onClick="{{ t.go }}" style="height:34px;padding:0 15px;border:0;border-radius:8px;font-size:12.5px;cursor:pointer;background:{{ t.bg }};color:{{ t.fg }};font-weight:{{ t.weight }};white-space:nowrap">{{ t.label }}</button>
+              <button onClick="{{ t.go }}" style="height:34px;padding:0 15px;border:0;border-radius:8px;font-size:12.5px;cursor:pointer;background:{{ t.bg }};color:{{ t.fg }};font-weight:{{ t.weight }};white-space:nowrap;flex:none;font-family:inherit">{{ t.label }}</button>
             </sc-for>
           </div>
 
+          <div style="display:flex;flex-direction:column;gap:16px">
           <sc-if value="{{ perfTabIs.overview }}" hint-placeholder-val="{{ true }}">
-            <div>
-              <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:16px;margin-bottom:16px">
+            <div style="display:flex;flex-direction:column;gap:16px">
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:16px">
                 <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:20px 22px">
-                  <div style="display:flex;align-items:baseline;gap:10px">
-                    <span onClick="{{ perfOpenBreakdown }}" style="font-size:38px;font-weight:800;color:#0E9384;letter-spacing:-.02em;cursor:pointer" style-hover="text-decoration:underline">{{ perfScoreN }}</span>
-                    <span style="font-size:13px;color:#98A2B3">/ 100 — {{ perfScoreStatus }}</span>
+                  <div style="font-size:11.5px;font-weight:700;letter-spacing:.08em;color:#475467">OVERALL PERFORMANCE</div>
+                  <div style="display:flex;align-items:center;gap:12px;margin-top:12px;flex-wrap:wrap">
+                    <span onClick="{{ perfOpenBreakdown }}" style="font-size:44px;font-weight:800;color:#0E9384;letter-spacing:-.03em;line-height:1;cursor:pointer">{{ perfScoreN }}</span>
+                    <span style="font-size:15px;color:#98A2B3;align-self:flex-end;padding-bottom:6px">/ 100</span>
+                    <span style="font-size:12px;font-weight:700;padding:5px 13px;border-radius:999px;background:{{ perfWhoStatusBg }};color:{{ perfWhoStatusFg }}">{{ perfScoreStatus }}</span>
                   </div>
-                  <div style="font-size:12.5px;font-weight:600;color:#15803D;margin-top:6px">{{ perfScoreDelta }}</div>
-                  <div style="font-size:11.5px;color:#98A2B3;margin-top:3px">Target score: {{ perfScoreTarget }}</div>
-                  <div style="font-size:11px;color:#0E9384;margin-top:10px;cursor:pointer;font-weight:600" onClick="{{ perfOpenBreakdown }}">View score breakdown →</div>
-                </div>
-                <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:18px 20px">
-                  <div style="font-size:12px;font-weight:700;color:#7A8699;margin-bottom:12px">PERFORMANCE DIMENSIONS</div>
-                  <div style="display:flex;flex-direction:column;gap:10px">
+                  <div style="display:flex;align-items:center;gap:12px;margin-top:9px;flex-wrap:wrap">
+                    <span style="font-size:12px;font-weight:600;color:#15803D">{{ perfScoreDelta }}</span>
+                    <span style="font-size:11.5px;color:#98A2B3">Target {{ perfScoreTarget }}</span>
+                    <span style="flex:1"></span>
+                    <button onClick="{{ perfOpenBreakdown }}" style="height:29px;padding:0 11px;border-radius:8px;border:1px solid #BFE3DC;background:#EEF6F5;font-size:11.5px;font-weight:600;color:#0B7A6E;cursor:pointer;font-family:inherit" style-hover="background:#E2F1EE">Score breakdown</button>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:13px;margin-top:20px">
                     <sc-for list="{{ perfDims }}" as="d" hint-placeholder-count="6">
                       <div>
-                        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:#344054">{{ d.label }} · {{ d.weight }}</span><span style="font-weight:700;color:#0F2A47">{{ d.pct }}</span></div>
-                        <div style="height:6px;border-radius:4px;background:#F2F0EA;overflow:hidden"><div style="height:100%;width:{{ d.pct }};border-radius:4px;background:#0E9384"></div></div>
+                        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap">
+                          <span style="font-size:12.5px;color:#475467;flex:1;min-width:0;text-wrap:pretty">{{ d.label }}</span>
+                          <span style="font-size:10.5px;color:#98A2B3">{{ d.weight }}</span>
+                          <span style="font-size:12.5px;font-weight:800;color:#0F2A47">{{ d.pct }}</span>
+                        </div>
+                        <div style="height:7px;border-radius:5px;background:#F2F0EA;overflow:hidden"><div style="height:100%;width:{{ d.pct }};border-radius:5px;background:#0E9384"></div></div>
                       </div>
                     </sc-for>
                   </div>
                 </div>
-              </div>
 
-              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px">
-                <sc-for list="{{ perfKpis }}" as="k" hint-placeholder-count="8">
-                  <div style="background:#fff;border:1px solid #ECEAE2;border-radius:12px;padding:14px 15px">
-                    <div style="font-size:11px;color:#98A2B3">{{ k.label }}</div>
-                    <div style="font-size:19px;font-weight:800;color:#0F2A47;margin-top:5px">{{ k.cur }}</div>
-                    <div style="display:flex;align-items:center;gap:6px;margin-top:5px">
-                      <span style="font-size:10.5px;color:#98A2B3">Target: {{ k.tgt }}</span>
-                      <span style="font-size:10.5px;font-weight:700;color:{{ k.deltaFg }}">{{ k.deltaTxt }}</span>
+                <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
+                  <div style="display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid #F2F0EA">
+                    <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Attention required</div>
+                  </div>
+                  <sc-for list="{{ perfAttention }}" as="a" hint-placeholder-count="4">
+                    <div onClick="{{ a.go }}" style="display:flex;align-items:flex-start;gap:11px;padding:13px 20px;border-bottom:1px solid #F5F3EE;cursor:pointer" style-hover="background:#FCFBF7">
+                      <span style="width:8px;height:8px;flex:none;border-radius:50%;background:{{ a.sFg }};margin-top:5px"></span>
+                      <div style="min-width:0;flex:1">
+                        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                          <span style="font-size:12.5px;font-weight:700;color:#0F2A47;text-wrap:pretty">{{ a.t }}</span>
+                          <span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:999px;background:{{ a.sBg }};color:{{ a.sFg }}">{{ a.sev }}</span>
+                        </div>
+                        <div style="font-size:11.5px;color:#7A8699;margin-top:4px;text-wrap:pretty">{{ a.s }}</div>
+                      </div>
+                      <button onClick="{{ a.go }}" style="flex:none;height:29px;padding:0 11px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:11.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Open</button>
                     </div>
-                  </div>
-                </sc-for>
+                  </sc-for>
+                  <div style="display:{{ perfAttentionEmpty }};font-size:12.5px;color:#98A2B3;padding:18px 20px">No exceptions flagged — performance is on track.</div>
+                </div>
               </div>
 
-              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:18px 20px;margin-bottom:16px">
-                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px">
-                  <div style="font-size:14px;font-weight:700;color:#0F2A47">Performance trend · last 6 months</div>
-                  <div style="display:flex;gap:6px;flex-wrap:wrap">
-                    <sc-for list="{{ perfTrendMetrics }}" as="m" hint-placeholder-count="7">
-                      <button onClick="{{ m.pick }}" style="height:28px;padding:0 11px;border-radius:999px;border:1px solid #E5E3DC;background:{{ m.bg }};color:{{ m.fg }};font-size:11px;font-weight:600;cursor:pointer">{{ m.label }}</button>
-                    </sc-for>
-                  </div>
-                </div>
-                <div style="display:flex;align-items:flex-end;gap:14px;height:150px">
-                  <sc-for list="{{ perfTrendPts }}" as="p" hint-placeholder-count="6">
-                    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px">
-                      <span style="font-size:10.5px;font-weight:600;color:#475467">{{ p.v }}</span>
-                      <div style="width:100%;max-width:34px;height:{{ p.h }};border-radius:6px 6px 3px 3px;background:#0E9384"></div>
-                      <span style="font-size:10.5px;color:#98A2B3">{{ p.m }}</span>
+              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:20px 22px">
+                <div style="font-size:11.5px;font-weight:700;letter-spacing:.08em;color:#475467;margin-bottom:14px">KPI SUMMARY — CURRENT · TARGET · TREND</div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px">
+                  <sc-for list="{{ perfKpis }}" as="k" hint-placeholder-count="8">
+                    <div style="min-width:0;border:1px solid #F0EEE7;border-radius:11px;padding:13px 15px;background:#FCFBF7">
+                      <div style="font-size:11px;font-weight:600;color:#7A8699;text-wrap:pretty">{{ k.label }}</div>
+                      <div style="font-size:21px;font-weight:800;color:#0F2A47;letter-spacing:-.02em;margin-top:5px">{{ k.cur }}</div>
+                      <div style="display:flex;align-items:center;gap:8px;margin-top:5px;flex-wrap:wrap">
+                        <span style="font-size:10.5px;color:#98A2B3">target {{ k.tgt }}</span>
+                        <span style="font-size:11px;font-weight:700;color:{{ k.deltaFg }}">{{ k.deltaTxt }}</span>
+                      </div>
                     </div>
                   </sc-for>
                 </div>
               </div>
 
-              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:18px 20px">
-                <div style="font-size:14px;font-weight:700;color:#0F2A47;margin-bottom:12px">Attention required</div>
-                <sc-for list="{{ perfAttention }}" as="a" hint-placeholder-count="4">
-                  <div onClick="{{ a.go }}" style="display:flex;align-items:flex-start;gap:11px;padding:11px 0;border-top:1px solid #F5F3EE;cursor:pointer">
-                    <span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ a.sBg }};color:{{ a.sFg }};flex:none">{{ a.sev }}</span>
-                    <div style="min-width:0">
-                      <div style="font-size:13px;font-weight:600;color:#0F2A47">{{ a.t }}</div>
-                      <div style="font-size:11.5px;color:#98A2B3;margin-top:2px">{{ a.s }}</div>
+              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:20px 22px">
+                <div>
+                  <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Performance trend</div>
+                  <div style="font-size:12px;color:#98A2B3;margin-top:3px">Last 6 months</div>
+                </div>
+                <div style="display:flex;flex-wrap:wrap;gap:7px;margin-top:14px">
+                  <sc-for list="{{ perfTrendMetrics }}" as="m" hint-placeholder-count="7">
+                    <button onClick="{{ m.pick }}" style="height:30px;padding:0 12px;border-radius:999px;border:1px solid #E5E3DC;background:{{ m.bg }};font-size:12px;font-weight:600;color:{{ m.fg }};cursor:pointer;white-space:nowrap;font-family:inherit">{{ m.label }}</button>
+                  </sc-for>
+                </div>
+                <div style="display:flex;align-items:flex-end;gap:16px;height:198px;margin-top:18px">
+                  <sc-for list="{{ perfTrendPts }}" as="p" hint-placeholder-count="6">
+                    <div style="flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:8px">
+                      <span style="font-size:11px;font-weight:700;color:#0F2A47">{{ p.v }}</span>
+                      <div style="width:100%;height:{{ p.h }};border-radius:7px 7px 0 0;background:#0E9384"></div>
+                      <span style="font-size:11px;color:#98A2B3">{{ p.m }}</span>
                     </div>
-                  </div>
-                </sc-for>
-                <div style="display:{{ perfAttentionEmpty }};font-size:12.5px;color:#98A2B3;padding:8px 0">No exceptions flagged — performance is on track.</div>
+                  </sc-for>
+                </div>
               </div>
             </div>
           </sc-if>
 
           <sc-if value="{{ perfTabIs.events }}" hint-placeholder-val="{{ false }}">
             <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
+              <div style="padding:16px 20px;border-bottom:1px solid #F2F0EA">
+                  <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Events delivered</div>
+                  <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">Every completed and scheduled event in this period</div>
+                </div>
               <div style="overflow-x:auto">
                 <table style="width:100%;min-width:980px;border-collapse:collapse">
-                  <thead><tr style="background:#FCFBF7">
-                    <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7">EVENT</th>
-                    <th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">TYPE</th>
-                    <th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">DATE</th>
-                    <th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">REGISTRATIONS</th>
-                    <th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">ATTENDANCE</th>
-                    <th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">RATING</th>
-                    <th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">ENGAGEMENT</th>
-                    <th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">STATUS</th>
-                    <th style="padding:11px 20px 11px 13px;border-bottom:1px solid #F0EEE7"></th>
-                  </tr></thead>
+                  <thead><tr style="background:#FCFBF7"><th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">EVENT</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">TYPE</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">DATE</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">REGISTRATIONS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">ATTENDANCE</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">RATING</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">ENGAGEMENT</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">STATUS</th><th style="padding:11px 20px 11px 13px;border-bottom:1px solid #F0EEE7"></th></tr></thead>
                   <tbody>
                     <sc-for list="{{ perfEventRows }}" as="e" hint-placeholder-count="6">
                       <tr style-hover="background:#FCFBF7">
-                        <td style="padding:11px 20px;border-bottom:1px solid #F5F3EE;font-size:13px;font-weight:600;color:#0F2A47;white-space:nowrap">{{ e.name }}</td>
-                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ e.type }}</td>
-                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ e.date }}</td>
-                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467">{{ e.reg }}</td>
-                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467">{{ e.att }} ({{ e.attPct }})</td>
-                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467">{{ e.rating }}/5</td>
-                        <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467">{{ e.eng }}%</td>
+                        <td style="padding:11px 20px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#0F2A47;font-weight:600;white-space:nowrap">{{ e.name }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ e.type }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ e.date }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ e.reg }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ e.att }} ({{ e.attPct }})</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ e.rating }}/5</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ e.eng }}%</td>
                         <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ e.sBg }};color:{{ e.sFg }};white-space:nowrap">{{ e.status }}</span></td>
-                        <td style="padding:11px 20px 11px 13px;border-bottom:1px solid #F5F3EE;text-align:right"><span onClick="{{ e.view }}" style="font-size:12px;font-weight:600;color:#0B7A6E;cursor:pointer;white-space:nowrap">View →</span></td>
+                        <td style="padding:11px 20px 11px 13px;border-bottom:1px solid #F5F3EE;text-align:right"><button onClick="{{ e.view }}" style="height:29px;padding:0 11px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:11.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">View</button></td>
                       </tr>
                     </sc-for>
                   </tbody>
@@ -4580,79 +4580,120 @@
           </sc-if>
 
           <sc-if value="{{ perfTabIs.audience }}" hint-placeholder-val="{{ false }}">
-            <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:20px 22px">
-              <div style="font-size:14px;font-weight:700;color:#0F2A47;margin-bottom:16px">Audience funnel</div>
-              <div style="display:flex;flex-direction:column;gap:12px">
-                <sc-for list="{{ perfFunnel }}" as="f" hint-placeholder-count="6">
-                  <div>
-                    <div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:6px"><span style="font-weight:500;color:#344054">{{ f.label }}</span><span style="font-weight:700;color:#0F2A47">{{ f.n }} ({{ f.pct }})</span></div>
-                    <div style="height:9px;border-radius:5px;background:#F2F0EA;overflow:hidden"><div style="height:100%;width:{{ f.pct }};border-radius:5px;background:#0E9384"></div></div>
-                  </div>
-                </sc-for>
-              </div>
+            <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
+              <div style="padding:15px 20px;border-bottom:1px solid #F2F0EA;background:#FCFBF7">
+                  <div style="font-size:11.5px;font-weight:700;letter-spacing:.08em;color:#475467">AUDIENCE FUNNEL</div>
+                  <div style="font-size:11.5px;color:#98A2B3;margin-top:4px;text-wrap:pretty">Registration to completion across every event in this period</div>
+                </div>
+              <div style="padding:18px 20px"><div style="display:flex;flex-direction:column;gap:13px">
+                    <sc-for list="{{ perfFunnel }}" as="f" hint-placeholder-count="6">
+                      <div>
+                        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap">
+                          <span style="font-size:12.5px;color:#475467;flex:1;min-width:0;text-wrap:pretty">{{ f.label }}</span>
+                          <span style="font-size:12.5px;font-weight:800;color:#0F2A47">{{ f.n }} · {{ f.pct }}</span>
+                        </div>
+                        <div style="height:7px;border-radius:5px;background:#F2F0EA;overflow:hidden"><div style="height:100%;width:{{ f.pct }};border-radius:5px;background:#0E9384"></div></div>
+                      </div>
+                    </sc-for>
+                  </div></div>
             </div>
           </sc-if>
 
           <sc-if value="{{ perfTabIs.engagement }}" hint-placeholder-val="{{ false }}">
-            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
-              <sc-for list="{{ perfEngagement }}" as="m" hint-placeholder-count="9">
-                <div style="background:#fff;border:1px solid #ECEAE2;border-radius:12px;padding:14px 16px">
-                  <div style="font-size:11px;color:#98A2B3">{{ m.label }}</div>
-                  <div style="font-size:20px;font-weight:800;color:#0F2A47;margin-top:5px">{{ m.n }}</div>
+            <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
+              <div style="padding:15px 20px;border-bottom:1px solid #F2F0EA;background:#FCFBF7">
+                  <div style="font-size:11.5px;font-weight:700;letter-spacing:.08em;color:#475467">AUDIENCE ENGAGEMENT</div>
+                  <div style="font-size:11.5px;color:#98A2B3;margin-top:4px;text-wrap:pretty">Participation signals captured during live sessions</div>
                 </div>
-              </sc-for>
+              <div style="padding:18px 20px"><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px">
+                    <sc-for list="{{ perfEngagement }}" as="m" hint-placeholder-count="9">
+                    <div style="min-width:0;border:1px solid #F0EEE7;border-radius:11px;padding:12px 14px;background:#FCFBF7">
+                      <div style="font-size:11px;font-weight:600;color:#7A8699;text-wrap:pretty">{{ m.label }}</div>
+                      <div style="font-size:19px;font-weight:800;color:#0F2A47;letter-spacing:-.02em;margin-top:5px">{{ m.n }}</div>
+                    </div>
+                    </sc-for></div></div>
             </div>
           </sc-if>
 
           <sc-if value="{{ perfTabIs.content }}" hint-placeholder-val="{{ false }}">
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:18px 20px">
-                <div style="font-size:13.5px;font-weight:700;color:#0F2A47;margin-bottom:13px">Content quality</div>
-                <sc-for list="{{ perfContent }}" as="c" hint-placeholder-count="9">
-                  <div style="margin-bottom:10px">
-                    <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:#344054">{{ c.label }}</span><span style="font-weight:700;color:#0F2A47">{{ c.pct }}</span></div>
-                    <div style="height:6px;border-radius:4px;background:#F2F0EA;overflow:hidden"><div style="height:100%;width:{{ c.pct }};border-radius:4px;background:#1D4ED8"></div></div>
-                  </div>
-                </sc-for>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:16px">
+              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
+                <div style="padding:15px 20px;border-bottom:1px solid #F2F0EA;background:#FCFBF7">
+                  <div style="font-size:11.5px;font-weight:700;letter-spacing:.08em;color:#475467">CONTENT QUALITY</div>
+                  <div style="font-size:11.5px;color:#98A2B3;margin-top:4px;text-wrap:pretty">Reviewer and audience scores for decks and resources</div>
+                </div>
+                <div style="padding:18px 20px"><div style="display:flex;flex-direction:column;gap:13px">
+                    <sc-for list="{{ perfContent }}" as="c" hint-placeholder-count="6">
+                      <div>
+                        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap">
+                          <span style="font-size:12.5px;color:#475467;flex:1;min-width:0;text-wrap:pretty">{{ c.label }}</span>
+                          <span style="font-size:12.5px;font-weight:800;color:#0F2A47">{{ c.pct }}</span>
+                        </div>
+                        <div style="height:7px;border-radius:5px;background:#F2F0EA;overflow:hidden"><div style="height:100%;width:{{ c.pct }};border-radius:5px;background:#1D4ED8"></div></div>
+                      </div>
+                    </sc-for>
+                  </div></div>
               </div>
-              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:18px 20px">
-                <div style="font-size:13.5px;font-weight:700;color:#0F2A47;margin-bottom:13px">Delivery quality</div>
-                <sc-for list="{{ perfDelivery }}" as="d" hint-placeholder-count="9">
-                  <div style="margin-bottom:10px">
-                    <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:#344054">{{ d.label }}</span><span style="font-weight:700;color:#0F2A47">{{ d.pct }}</span></div>
-                    <div style="height:6px;border-radius:4px;background:#F2F0EA;overflow:hidden"><div style="height:100%;width:{{ d.pct }};border-radius:4px;background:#0E9384"></div></div>
-                  </div>
-                </sc-for>
+              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
+                <div style="padding:15px 20px;border-bottom:1px solid #F2F0EA;background:#FCFBF7">
+                  <div style="font-size:11.5px;font-weight:700;letter-spacing:.08em;color:#475467">DELIVERY QUALITY</div>
+                  <div style="font-size:11.5px;color:#98A2B3;margin-top:4px;text-wrap:pretty">Live delivery scored by coordinators and attendees</div>
+                </div>
+                <div style="padding:18px 20px"><div style="display:flex;flex-direction:column;gap:13px">
+                    <sc-for list="{{ perfDelivery }}" as="d" hint-placeholder-count="6">
+                      <div>
+                        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap">
+                          <span style="font-size:12.5px;color:#475467;flex:1;min-width:0;text-wrap:pretty">{{ d.label }}</span>
+                          <span style="font-size:12.5px;font-weight:800;color:#0F2A47">{{ d.pct }}</span>
+                        </div>
+                        <div style="height:7px;border-radius:5px;background:#F2F0EA;overflow:hidden"><div style="height:100%;width:{{ d.pct }};border-radius:5px;background:#0E9384"></div></div>
+                      </div>
+                    </sc-for>
+                  </div></div>
               </div>
             </div>
           </sc-if>
 
           <sc-if value="{{ perfTabIs.feedback }}" hint-placeholder-val="{{ false }}">
-            <div>
-              <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:16px">
-                <sc-for list="{{ perfFeedbackKpis }}" as="k" hint-placeholder-count="5">
-                  <div style="background:#fff;border:1px solid #ECEAE2;border-radius:12px;padding:14px 15px">
-                    <div style="font-size:11px;color:#98A2B3">{{ k.label }}</div>
-                    <div style="font-size:19px;font-weight:800;color:#0F2A47;margin-top:5px">{{ k.n }}</div>
-                  </div>
-                </sc-for>
-              </div>
-              <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:16px">
-                <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:18px 20px">
-                  <div style="font-size:13.5px;font-weight:700;color:#0F2A47;margin-bottom:13px">Rating distribution</div>
-                  <sc-for list="{{ perfFeedback.dist }}" as="d" hint-placeholder-count="5">
-                    <div style="margin-bottom:9px">
-                      <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:#B45309">{{ d.label }}</span><span style="font-weight:700;color:#0F2A47">{{ d.pct }}</span></div>
-                      <div style="height:6px;border-radius:4px;background:#F2F0EA;overflow:hidden"><div style="height:100%;width:{{ d.pct }};border-radius:4px;background:#F0A72A"></div></div>
-                    </div>
-                  </sc-for>
+            <div style="display:flex;flex-direction:column;gap:16px">
+              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
+                <div style="padding:15px 20px;border-bottom:1px solid #F2F0EA;background:#FCFBF7">
+                  <div style="font-size:11.5px;font-weight:700;letter-spacing:.08em;color:#475467">FEEDBACK SUMMARY</div>
                 </div>
-                <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:18px 20px">
-                  <div style="font-size:13.5px;font-weight:700;color:#0F2A47;margin-bottom:13px">Student comments</div>
+                <div style="padding:18px 20px"><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px">
+                    <sc-for list="{{ perfFeedbackKpis }}" as="k" hint-placeholder-count="5">
+                    <div style="min-width:0;border:1px solid #F0EEE7;border-radius:11px;padding:12px 14px;background:#FCFBF7">
+                      <div style="font-size:11px;font-weight:600;color:#7A8699;text-wrap:pretty">{{ k.label }}</div>
+                      <div style="font-size:19px;font-weight:800;color:#0F2A47;letter-spacing:-.02em;margin-top:5px">{{ k.n }}</div>
+                    </div>
+                    </sc-for></div></div>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:16px">
+                <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
+                  <div style="padding:15px 20px;border-bottom:1px solid #F2F0EA;background:#FCFBF7">
+                  <div style="font-size:11.5px;font-weight:700;letter-spacing:.08em;color:#475467">RATING DISTRIBUTION</div>
+                </div>
+                  <div style="padding:18px 20px"><div style="display:flex;flex-direction:column;gap:13px">
+                    <sc-for list="{{ perfFeedback.dist }}" as="d" hint-placeholder-count="6">
+                      <div>
+                        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap">
+                          <span style="font-size:12.5px;color:#475467;flex:1;min-width:0;text-wrap:pretty">{{ d.label }}</span>
+                          <span style="font-size:12.5px;font-weight:800;color:#0F2A47">{{ d.pct }}</span>
+                        </div>
+                        <div style="height:7px;border-radius:5px;background:#F2F0EA;overflow:hidden"><div style="height:100%;width:{{ d.pct }};border-radius:5px;background:#F0A72A"></div></div>
+                      </div>
+                    </sc-for>
+                  </div></div>
+                </div>
+                <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
+                  <div style="padding:16px 20px;border-bottom:1px solid #F2F0EA">
+                  <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Attendee comments</div>
+                  <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">Latest verbatim feedback</div>
+                </div>
                   <sc-for list="{{ perfFeedback.comments }}" as="c" hint-placeholder-count="3">
-                    <div style="border-left:3px solid #0E9384;padding:4px 0 4px 12px;margin-bottom:12px">
-                      <div style="font-size:12.5px;color:#344054;line-height:1.5">“{{ c.text }}”</div>
-                      <div style="font-size:11px;color:#98A2B3;margin-top:4px">{{ c.event }}</div>
+                    <div style="padding:13px 20px;border-bottom:1px solid #F5F3EE">
+                      <div style="font-size:12.5px;color:#344054;line-height:1.55;text-wrap:pretty">“{{ c.text }}”</div>
+                      <div style="font-size:11px;color:#98A2B3;margin-top:5px">{{ c.event }}</div>
                     </div>
                   </sc-for>
                 </div>
@@ -4661,107 +4702,130 @@
           </sc-if>
 
           <sc-if value="{{ perfTabIs.outcomes }}" hint-placeholder-val="{{ false }}">
-            <div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
-                <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:18px 20px">
-                  <div style="font-size:13.5px;font-weight:700;color:#0F2A47;margin-bottom:13px">Learning outcomes</div>
-                  <div style="display:flex;align-items:center;gap:14px">
-                    <div><div style="font-size:11px;color:#98A2B3">Pre-Event</div><div style="font-size:20px;font-weight:800;color:#0F2A47">{{ perfOutcomes.pre }}</div></div>
-                    <span style="color:#98A2B3">→</span>
-                    <div><div style="font-size:11px;color:#98A2B3">Post-Event</div><div style="font-size:20px;font-weight:800;color:#0F2A47">{{ perfOutcomes.post }}</div></div>
-                    <span style="color:#98A2B3">→</span>
-                    <div><div style="font-size:11px;color:#98A2B3">Improvement</div><div style="font-size:20px;font-weight:800;color:#15803D">{{ perfOutcomes.improvement }}</div></div>
+            <div style="display:flex;flex-direction:column;gap:16px">
+              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:20px 22px">
+                <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+                  <div>
+                    <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Event conversion</div>
+                    <div style="font-size:12px;color:#98A2B3;margin-top:3px;text-wrap:pretty">{{ perfConvNote }}</div>
                   </div>
-                  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:16px">
-                    <div><div style="font-size:11px;color:#98A2B3">Resource Downloads</div><div style="font-size:15px;font-weight:700;color:#0F2A47;margin-top:3px">{{ perfOutcomes.resourceDownloads }}</div></div>
-                    <div><div style="font-size:11px;color:#98A2B3">Follow-up Engagement</div><div style="font-size:15px;font-weight:700;color:#0F2A47;margin-top:3px">{{ perfOutcomes.followUp }}</div></div>
-                    <div><div style="font-size:11px;color:#98A2B3">Mock-Test Attempts</div><div style="font-size:15px;font-weight:700;color:#0F2A47;margin-top:3px">{{ perfOutcomes.mockAttempts }}</div></div>
-                    <div><div style="font-size:11px;color:#98A2B3">Course Exploration</div><div style="font-size:15px;font-weight:700;color:#0F2A47;margin-top:3px">{{ perfOutcomes.courseExplore }}</div></div>
-                  </div>
+                  <span style="flex:1"></span>
+                  <span style="font-size:28px;font-weight:800;color:#0E9384;letter-spacing:-.03em">{{ perfConvRate }}</span>
                 </div>
-                <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:18px 20px">
-                  <div style="font-size:13.5px;font-weight:700;color:#0F2A47;margin-bottom:13px">Q&amp;A performance</div>
-                  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
-                    <div><div style="font-size:11px;color:#98A2B3">Questions Received</div><div style="font-size:17px;font-weight:800;color:#0F2A47;margin-top:3px">{{ perfOutcomes.qa.received }}</div></div>
-                    <div><div style="font-size:11px;color:#98A2B3">Answered</div><div style="font-size:17px;font-weight:800;color:#0F2A47;margin-top:3px">{{ perfOutcomes.qa.answered }}</div></div>
-                    <div><div style="font-size:11px;color:#98A2B3">Answer Rate</div><div style="font-size:17px;font-weight:800;color:#15803D;margin-top:3px">{{ perfOutcomes.qa.rate }}</div></div>
-                    <div><div style="font-size:11px;color:#98A2B3">Unanswered</div><div style="font-size:17px;font-weight:800;color:#B45309;margin-top:3px">{{ perfOutcomes.qa.unanswered }}</div></div>
-                    <div><div style="font-size:11px;color:#98A2B3">Follow-up Required</div><div style="font-size:17px;font-weight:800;color:#0F2A47;margin-top:3px">{{ perfOutcomes.qa.followupReq }}</div></div>
-                    <div><div style="font-size:11px;color:#98A2B3">Follow-up Completed</div><div style="font-size:17px;font-weight:800;color:#0F2A47;margin-top:3px">{{ perfOutcomes.qa.followupDone }}</div></div>
-                  </div>
-                </div>
-              </div>
-              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:18px 20px">
-                <div style="font-size:13.5px;font-weight:700;color:#0F2A47;margin-bottom:4px">Event conversion</div>
-                <div style="font-size:11.5px;color:#98A2B3;margin-bottom:13px">Tracked as an event outcome — not a dominant speaker-quality metric</div>
-                <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-                  <sc-for list="{{ perfOutcomes.conversion }}" as="c" hint-placeholder-count="7">
-                    <div style="text-align:center;padding:10px 14px;border:1px solid #F0EEE7;border-radius:10px;background:#FCFBF7">
-                      <div style="font-size:14px;font-weight:800;color:#0F2A47">{{ c.n }}</div>
-                      <div style="font-size:10px;color:#98A2B3;margin-top:3px">{{ c.label }}</div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:18px">
+                  <sc-for list="{{ perfConvSteps }}" as="f" hint-placeholder-count="7">
+                    <div style="min-width:0;border-radius:11px;padding:13px 15px;background:{{ f.color }}">
+                      <div style="font-size:10.5px;font-weight:700;letter-spacing:.05em;color:rgba(255,255,255,.75);text-wrap:pretty">{{ f.label }}</div>
+                      <div style="font-size:21px;font-weight:800;color:#fff;letter-spacing:-.02em;margin-top:5px">{{ f.n }}</div>
                     </div>
                   </sc-for>
                 </div>
+              </div>
+              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
+                <div style="padding:15px 20px;border-bottom:1px solid #F2F0EA;background:#FCFBF7"><div style="font-size:11.5px;font-weight:700;letter-spacing:.08em;color:#475467">LEARNING OUTCOMES</div><div style="font-size:11.5px;color:#98A2B3;margin-top:4px;text-wrap:pretty">Pre- and post-event assessment and follow-through</div></div>
+                <div style="padding:18px 20px"><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px"><div style="min-width:0;border:1px solid #F0EEE7;border-radius:11px;padding:12px 14px;background:#FCFBF7"><div style="font-size:11px;font-weight:600;color:#7A8699;text-wrap:pretty">Pre-event score</div><div style="font-size:19px;font-weight:800;color:#0F2A47;letter-spacing:-.02em;margin-top:5px">{{ perfOutcomes.pre }}</div></div><div style="min-width:0;border:1px solid #F0EEE7;border-radius:11px;padding:12px 14px;background:#FCFBF7"><div style="font-size:11px;font-weight:600;color:#7A8699;text-wrap:pretty">Post-event score</div><div style="font-size:19px;font-weight:800;color:#0F2A47;letter-spacing:-.02em;margin-top:5px">{{ perfOutcomes.post }}</div></div><div style="min-width:0;border:1px solid #F0EEE7;border-radius:11px;padding:12px 14px;background:#FCFBF7"><div style="font-size:11px;font-weight:600;color:#7A8699;text-wrap:pretty">Improvement</div><div style="font-size:19px;font-weight:800;color:#0F2A47;letter-spacing:-.02em;margin-top:5px">{{ perfOutcomes.improvement }}</div></div><div style="min-width:0;border:1px solid #F0EEE7;border-radius:11px;padding:12px 14px;background:#FCFBF7"><div style="font-size:11px;font-weight:600;color:#7A8699;text-wrap:pretty">Resource downloads</div><div style="font-size:19px;font-weight:800;color:#0F2A47;letter-spacing:-.02em;margin-top:5px">{{ perfOutcomes.resourceDownloads }}</div></div><div style="min-width:0;border:1px solid #F0EEE7;border-radius:11px;padding:12px 14px;background:#FCFBF7"><div style="font-size:11px;font-weight:600;color:#7A8699;text-wrap:pretty">Follow-up engagement</div><div style="font-size:19px;font-weight:800;color:#0F2A47;letter-spacing:-.02em;margin-top:5px">{{ perfOutcomes.followUp }}</div></div><div style="min-width:0;border:1px solid #F0EEE7;border-radius:11px;padding:12px 14px;background:#FCFBF7"><div style="font-size:11px;font-weight:600;color:#7A8699;text-wrap:pretty">Mock-test attempts</div><div style="font-size:19px;font-weight:800;color:#0F2A47;letter-spacing:-.02em;margin-top:5px">{{ perfOutcomes.mockAttempts }}</div></div><div style="min-width:0;border:1px solid #F0EEE7;border-radius:11px;padding:12px 14px;background:#FCFBF7"><div style="font-size:11px;font-weight:600;color:#7A8699;text-wrap:pretty">Course exploration</div><div style="font-size:19px;font-weight:800;color:#0F2A47;letter-spacing:-.02em;margin-top:5px">{{ perfOutcomes.courseExplore }}</div></div></div></div>
+              </div>
+              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
+                <div style="padding:15px 20px;border-bottom:1px solid #F2F0EA;background:#FCFBF7"><div style="font-size:11.5px;font-weight:700;letter-spacing:.08em;color:#475467">Q&amp;A PERFORMANCE</div><div style="font-size:11.5px;color:#98A2B3;margin-top:4px;text-wrap:pretty">Questions handled live and followed up after the event</div></div>
+                <div style="padding:18px 20px"><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px"><div style="min-width:0;border:1px solid #F0EEE7;border-radius:11px;padding:12px 14px;background:#FCFBF7"><div style="font-size:11px;font-weight:600;color:#7A8699;text-wrap:pretty">Questions received</div><div style="font-size:19px;font-weight:800;color:#0F2A47;letter-spacing:-.02em;margin-top:5px">{{ perfOutcomes.qa.received }}</div></div><div style="min-width:0;border:1px solid #F0EEE7;border-radius:11px;padding:12px 14px;background:#FCFBF7"><div style="font-size:11px;font-weight:600;color:#7A8699;text-wrap:pretty">Answered</div><div style="font-size:19px;font-weight:800;color:#0F2A47;letter-spacing:-.02em;margin-top:5px">{{ perfOutcomes.qa.answered }}</div></div><div style="min-width:0;border:1px solid #F0EEE7;border-radius:11px;padding:12px 14px;background:#FCFBF7"><div style="font-size:11px;font-weight:600;color:#7A8699;text-wrap:pretty">Answer rate</div><div style="font-size:19px;font-weight:800;color:#0F2A47;letter-spacing:-.02em;margin-top:5px">{{ perfOutcomes.qa.rate }}</div></div><div style="min-width:0;border:1px solid #F0EEE7;border-radius:11px;padding:12px 14px;background:#FCFBF7"><div style="font-size:11px;font-weight:600;color:#7A8699;text-wrap:pretty">Unanswered</div><div style="font-size:19px;font-weight:800;color:#0F2A47;letter-spacing:-.02em;margin-top:5px">{{ perfOutcomes.qa.unanswered }}</div></div><div style="min-width:0;border:1px solid #F0EEE7;border-radius:11px;padding:12px 14px;background:#FCFBF7"><div style="font-size:11px;font-weight:600;color:#7A8699;text-wrap:pretty">Follow-up required</div><div style="font-size:19px;font-weight:800;color:#0F2A47;letter-spacing:-.02em;margin-top:5px">{{ perfOutcomes.qa.followupReq }}</div></div><div style="min-width:0;border:1px solid #F0EEE7;border-radius:11px;padding:12px 14px;background:#FCFBF7"><div style="font-size:11px;font-weight:600;color:#7A8699;text-wrap:pretty">Follow-up completed</div><div style="font-size:19px;font-weight:800;color:#0F2A47;letter-spacing:-.02em;margin-top:5px">{{ perfOutcomes.qa.followupDone }}</div></div></div></div>
               </div>
             </div>
           </sc-if>
 
           <sc-if value="{{ perfTabIs.payouts }}" hint-placeholder-val="{{ false }}">
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:18px 20px">
-                <div style="font-size:13.5px;font-weight:700;color:#0F2A47;margin-bottom:14px">Payout summary</div>
-                <div style="display:flex;flex-direction:column;gap:11px">
-                  <div style="display:flex;justify-content:space-between;font-size:12.5px"><span style="color:#7A8699">Events Completed</span><span style="font-weight:700;color:#0F2A47">{{ perfPayout.events }}</span></div>
-                  <div style="display:flex;justify-content:space-between;font-size:12.5px"><span style="color:#7A8699">Payout per Event</span><span style="font-weight:700;color:#0F2A47">{{ perfPayout.perEvent }}</span></div>
-                  <div style="display:flex;justify-content:space-between;font-size:12.5px;padding-top:9px;border-top:1px solid #F5F3EE"><span style="color:#7A8699">Total Earnings</span><span style="font-weight:800;color:#0F2A47">{{ perfPayout.total }}</span></div>
-                  <div style="display:flex;justify-content:space-between;font-size:12.5px"><span style="color:#7A8699">Paid</span><span style="font-weight:700;color:#15803D">{{ perfPayout.paid }}</span></div>
-                  <div style="display:flex;justify-content:space-between;font-size:12.5px"><span style="color:#7A8699">Pending</span><span style="font-weight:700;color:#B45309">{{ perfPayout.pending }}</span></div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:16px">
+              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
+                <div style="padding:15px 20px;border-bottom:1px solid #F2F0EA;background:#FCFBF7">
+                  <div style="font-size:11.5px;font-weight:700;letter-spacing:.08em;color:#475467">PAYOUT SUMMARY</div>
+                  <div style="font-size:11.5px;color:#98A2B3;margin-top:4px;text-wrap:pretty">Detailed transactions live in Payouts</div>
                 </div>
-                <div style="font-size:11px;color:#98A2B3;margin-top:14px">Detailed transactions live in Contracts &amp; Payouts.</div>
+                <div style="padding:18px 20px"><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px"><div style="min-width:0;border:1px solid #F0EEE7;border-radius:11px;padding:12px 14px;background:#FCFBF7">
+                      <div style="font-size:11px;font-weight:600;color:#7A8699;text-wrap:pretty">Events completed</div>
+                      <div style="font-size:19px;font-weight:800;color:#0F2A47;letter-spacing:-.02em;margin-top:5px">{{ perfPayout.events }}</div>
+                    </div><div style="min-width:0;border:1px solid #F0EEE7;border-radius:11px;padding:12px 14px;background:#FCFBF7">
+                      <div style="font-size:11px;font-weight:600;color:#7A8699;text-wrap:pretty">Payout per event</div>
+                      <div style="font-size:19px;font-weight:800;color:#0F2A47;letter-spacing:-.02em;margin-top:5px">{{ perfPayout.perEvent }}</div>
+                    </div><div style="min-width:0;border:1px solid #F0EEE7;border-radius:11px;padding:12px 14px;background:#FCFBF7">
+                      <div style="font-size:11px;font-weight:600;color:#7A8699;text-wrap:pretty">Total earnings</div>
+                      <div style="font-size:19px;font-weight:800;color:#0F2A47;letter-spacing:-.02em;margin-top:5px">{{ perfPayout.total }}</div>
+                    </div><div style="min-width:0;border:1px solid #F0EEE7;border-radius:11px;padding:12px 14px;background:#FCFBF7">
+                      <div style="font-size:11px;font-weight:600;color:#7A8699;text-wrap:pretty">Paid</div>
+                      <div style="font-size:19px;font-weight:800;color:#15803D;letter-spacing:-.02em;margin-top:5px">{{ perfPayout.paid }}</div>
+                    </div><div style="min-width:0;border:1px solid #F0EEE7;border-radius:11px;padding:12px 14px;background:#FCFBF7">
+                      <div style="font-size:11px;font-weight:600;color:#7A8699;text-wrap:pretty">Pending</div>
+                      <div style="font-size:19px;font-weight:800;color:#B45309;letter-spacing:-.02em;margin-top:5px">{{ perfPayout.pending }}</div>
+                    </div></div></div>
               </div>
-              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:18px 20px">
-                <div style="font-size:13.5px;font-weight:700;color:#0F2A47;margin-bottom:14px">Reliability &amp; workload</div>
-                <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
-                  <div><div style="font-size:11px;color:#98A2B3">Events Accepted</div><div style="font-size:16px;font-weight:800;color:#0F2A47;margin-top:3px">{{ perfReliability.accepted }}</div></div>
-                  <div><div style="font-size:11px;color:#98A2B3">Cancellations</div><div style="font-size:16px;font-weight:800;color:#0F2A47;margin-top:3px">{{ perfReliability.cancelled }}</div></div>
-                  <div><div style="font-size:11px;color:#98A2B3">Late Arrivals</div><div style="font-size:16px;font-weight:800;color:#0F2A47;margin-top:3px">{{ perfReliability.lateArrivals }}</div></div>
-                  <div><div style="font-size:11px;color:#98A2B3">No-Shows</div><div style="font-size:16px;font-weight:800;color:#0F2A47;margin-top:3px">{{ perfReliability.noShows }}</div></div>
-                  <div><div style="font-size:11px;color:#98A2B3">Hours Delivered</div><div style="font-size:16px;font-weight:800;color:#0F2A47;margin-top:3px">{{ perfWorkload.hours }}</div></div>
-                  <div><div style="font-size:11px;color:#98A2B3">Upcoming Events</div><div style="font-size:16px;font-weight:800;color:#0F2A47;margin-top:3px">{{ perfWorkload.upcoming }}</div></div>
+              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
+                <div style="padding:15px 20px;border-bottom:1px solid #F2F0EA;background:#FCFBF7">
+                  <div style="font-size:11.5px;font-weight:700;letter-spacing:.08em;color:#475467">RELIABILITY &amp; WORKLOAD</div>
                 </div>
+                <div style="padding:18px 20px"><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px"><div style="min-width:0;border:1px solid #F0EEE7;border-radius:11px;padding:12px 14px;background:#FCFBF7">
+                      <div style="font-size:11px;font-weight:600;color:#7A8699;text-wrap:pretty">Events accepted</div>
+                      <div style="font-size:19px;font-weight:800;color:#0F2A47;letter-spacing:-.02em;margin-top:5px">{{ perfReliability.accepted }}</div>
+                    </div><div style="min-width:0;border:1px solid #F0EEE7;border-radius:11px;padding:12px 14px;background:#FCFBF7">
+                      <div style="font-size:11px;font-weight:600;color:#7A8699;text-wrap:pretty">Cancellations</div>
+                      <div style="font-size:19px;font-weight:800;color:#0F2A47;letter-spacing:-.02em;margin-top:5px">{{ perfReliability.cancelled }}</div>
+                    </div><div style="min-width:0;border:1px solid #F0EEE7;border-radius:11px;padding:12px 14px;background:#FCFBF7">
+                      <div style="font-size:11px;font-weight:600;color:#7A8699;text-wrap:pretty">Late arrivals</div>
+                      <div style="font-size:19px;font-weight:800;color:#0F2A47;letter-spacing:-.02em;margin-top:5px">{{ perfReliability.lateArrivals }}</div>
+                    </div><div style="min-width:0;border:1px solid #F0EEE7;border-radius:11px;padding:12px 14px;background:#FCFBF7">
+                      <div style="font-size:11px;font-weight:600;color:#7A8699;text-wrap:pretty">No-shows</div>
+                      <div style="font-size:19px;font-weight:800;color:#0F2A47;letter-spacing:-.02em;margin-top:5px">{{ perfReliability.noShows }}</div>
+                    </div><div style="min-width:0;border:1px solid #F0EEE7;border-radius:11px;padding:12px 14px;background:#FCFBF7">
+                      <div style="font-size:11px;font-weight:600;color:#7A8699;text-wrap:pretty">Hours delivered</div>
+                      <div style="font-size:19px;font-weight:800;color:#0F2A47;letter-spacing:-.02em;margin-top:5px">{{ perfWorkload.hours }}</div>
+                    </div><div style="min-width:0;border:1px solid #F0EEE7;border-radius:11px;padding:12px 14px;background:#FCFBF7">
+                      <div style="font-size:11px;font-weight:600;color:#7A8699;text-wrap:pretty">Upcoming events</div>
+                      <div style="font-size:19px;font-weight:800;color:#0F2A47;letter-spacing:-.02em;margin-top:5px">{{ perfWorkload.upcoming }}</div>
+                    </div></div></div>
               </div>
             </div>
           </sc-if>
 
           <sc-if value="{{ perfTabIs.activity }}" hint-placeholder-val="{{ false }}">
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <div style="display:flex;flex-direction:column;gap:16px">
               <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
-                <div style="padding:16px 18px;border-bottom:1px solid #F2F0EA;font-size:13.5px;font-weight:700;color:#0F2A47">Goals &amp; targets</div>
-                <sc-for list="{{ perfGoals }}" as="g" hint-placeholder-count="5">
-                  <div style="display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid #F7F5F0">
-                    <div style="min-width:0;flex:1">
-                      <div style="font-size:12.5px;font-weight:600;color:#0F2A47">{{ g.kpi }}</div>
-                      <div style="font-size:11px;color:#98A2B3;margin-top:2px">Current {{ g.cur }} · Target {{ g.tgt }}</div>
+                <div style="padding:15px 20px;border-bottom:1px solid #F2F0EA;background:#FCFBF7"><div style="font-size:11.5px;font-weight:700;letter-spacing:.08em;color:#475467">SPEAKER ACTIVITY</div><div style="font-size:11.5px;color:#98A2B3;margin-top:4px;text-wrap:pretty">Volume alone is not performance — it is the input to delivery and outcome</div></div>
+                <div style="padding:18px 20px"><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px"><sc-for list="{{ perfActTiles }}" as="k" hint-placeholder-count="8"><div style="min-width:0;border:1px solid #F0EEE7;border-radius:11px;padding:12px 14px;background:#FCFBF7"><div style="font-size:11px;font-weight:600;color:#7A8699;text-wrap:pretty">{{ k.label }}</div><div style="font-size:19px;font-weight:800;color:#0F2A47;letter-spacing:-.02em;margin-top:5px">{{ k.v }}</div></div></sc-for></div></div>
+              </div>
+              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
+                <div style="padding:16px 20px;border-bottom:1px solid #F2F0EA">
+                  <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Goals</div>
+                  <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">Current against target for this period</div>
+                </div>
+                <sc-for list="{{ perfGoalsUi }}" as="g" hint-placeholder-count="5">
+                  <div style="padding:13px 20px;border-bottom:1px solid #F5F3EE">
+                    <div style="display:flex;align-items:center;gap:10px;margin-bottom:7px;flex-wrap:wrap">
+                      <span style="font-size:12.5px;font-weight:600;color:#0F2A47;flex:1 1 140px;min-width:0">{{ g.kpi }}</span>
+                      <span style="font-size:12.5px;font-weight:800;color:#0F2A47">{{ g.cur }}</span>
+                      <span style="font-size:11px;color:#98A2B3">target {{ g.tgt }}</span>
+                      <span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ g.sBg }};color:{{ g.sFg }};white-space:nowrap">{{ g.status }}</span>
                     </div>
-                    <span style="font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ g.sBg }};color:{{ g.sFg }};white-space:nowrap">{{ g.status }}</span>
+                    <div style="height:7px;border-radius:5px;background:#F2F0EA;overflow:hidden"><div style="height:100%;width:{{ g.w }};border-radius:5px;background:{{ g.color }}"></div></div>
                   </div>
                 </sc-for>
               </div>
               <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
-                <div style="padding:16px 18px;border-bottom:1px solid #F2F0EA;font-size:13.5px;font-weight:700;color:#0F2A47">Activity log</div>
+                <div style="padding:16px 20px;border-bottom:1px solid #F2F0EA">
+                  <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Audit log</div>
+                  <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">Documented speaker actions</div>
+                </div>
                 <sc-for list="{{ perfActivity }}" as="a" hint-placeholder-count="6">
-                  <div style="padding:12px 18px;border-bottom:1px solid #F7F5F0">
-                    <div style="display:flex;justify-content:space-between;gap:10px">
-                      <span style="font-size:12.5px;font-weight:600;color:#0F2A47">{{ a.a }}</span>
+                  <div style="padding:13px 20px;border-bottom:1px solid #F5F3EE">
+                    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+                      <span style="font-size:12.5px;font-weight:700;color:#0F2A47">{{ a.a }}</span>
+                      <span style="font-size:12px;color:#475467">{{ a.ev }}</span>
+                      <span style="flex:1"></span>
                       <span style="font-size:11px;color:#98A2B3;white-space:nowrap">{{ a.d }}</span>
                     </div>
-                    <div style="font-size:11.5px;color:#7A8699;margin-top:3px">{{ a.ev }}</div>
-                    <div style="font-size:11px;color:#98A2B3;margin-top:2px">{{ a.note }}</div>
+                    <div style="font-size:11.5px;color:#7A8699;margin-top:5px;text-wrap:pretty">{{ a.note }}</div>
                   </div>
                 </sc-for>
               </div>
             </div>
           </sc-if>
+          </div>
           </sc-if>
         </div>
       </sc-if>
@@ -11607,7 +11671,17 @@ class Component extends DCLogic {
     };
   }
 
-  renderVals() { const v = this.renderVals1(); Object.assign(v, this.attVals()); Object.assign(v, this.rptVals()); { const IC=(l)=>/cal/i.test(l)?'M8 3v4M16 3v4M3 10h18M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z':/agenda/i.test(l)?'M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01':/table|list/i.test(l)?'M4 6h16M4 12h16M4 18h16':'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z'; if (Array.isArray(v.spk_schViewTabs)) v.spk_schViewTabs = v.spk_schViewTabs.map(x=>({...x, ic: IC(x.label||x.key||'')})); if (Array.isArray(v.wwViewTabs)) v.wwViewTabs = v.wwViewTabs.map(x=>({...x, ic: IC(x.label||x.key||'')})); if (Array.isArray(v.schViewTabs)) v.schViewTabs = v.schViewTabs.map(x=>({...x, ic: IC(x.label||x.key||'')})); } { const s = this.state, on = !!s.pffOpen, D = {pfRange:'All', pfEventType:'All', pfStatus:'All', pfSort:'Performance'};
+  renderVals() { const v = this.renderVals1(); Object.assign(v, this.attVals()); Object.assign(v, this.rptVals()); { const o=v.perfOutcomes||{}; const conv=Array.isArray(o.conversion)?o.conversion:[]; const num=(x)=>parseFloat(String(x).replace(/[^0-9.]/g,''))||0;
+      const COL=['#0B1F3E','#14335C','#0E9384','#0E9384','#5AC0B0','#15803D','#15803D'];
+      v.perfConvSteps = conv.map((c,i)=>({label:c.label, n:c.n, color:COL[Math.min(i,COL.length-1)]}));
+      const reg=conv[0]?num(conv[0].n):0, enr=(conv.find(c=>/Enrol/i.test(c.label))||{}).n, att=(conv.find(c=>/^Attendees/i.test(c.label))||{}).n;
+      v.perfConvRate = reg && enr ? Math.round(num(enr)/reg*100)+'%' : '—';
+      v.perfConvNote = enr ? enr+' of '+(conv[0]||{}).n+' registrations enrolled after the event · '+(att||'—')+' attended' : 'Registrations through to enrolment';
+      v.perfGoalsUi = (v.perfGoals||[]).map(g=>{ const c=num(g.cur), t=num(g.tgt); const pct = /\//.test(String(g.cur))||c<=5 ? c/5*100 : c; const ok=c>=t;
+        return {...g, w:Math.min(100,Math.round(pct))+'%', color: ok?'#0E9384':'#F0A72A', status: g.status || (ok?'On target':'Below target')}; });
+      const qa=o.qa||{}, rl=v.perfReliability||{}, wl=v.perfWorkload||{};
+      v.perfActTiles=[['Events accepted',rl.accepted],['Events delivered',v.perfWhoEvents],['Hours delivered',wl.hours],['Upcoming events',wl.upcoming],['Questions answered',qa.answered],['Follow-ups completed',qa.followupDone],['Resources shared',o.resourceDownloads],['Cancellations',rl.cancelled]].map(([label,x])=>({label, v: x==null||x===''?'—':String(x)}));
+      v.perfBackToList = ()=>this.setState({route:'performance'}); } { const IC=(l)=>/cal/i.test(l)?'M8 3v4M16 3v4M3 10h18M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z':/agenda/i.test(l)?'M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01':/table|list/i.test(l)?'M4 6h16M4 12h16M4 18h16':'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z'; if (Array.isArray(v.spk_schViewTabs)) v.spk_schViewTabs = v.spk_schViewTabs.map(x=>({...x, ic: IC(x.label||x.key||'')})); if (Array.isArray(v.wwViewTabs)) v.wwViewTabs = v.wwViewTabs.map(x=>({...x, ic: IC(x.label||x.key||'')})); if (Array.isArray(v.schViewTabs)) v.schViewTabs = v.schViewTabs.map(x=>({...x, ic: IC(x.label||x.key||'')})); } { const s = this.state, on = !!s.pffOpen, D = {pfRange:'All', pfEventType:'All', pfStatus:'All', pfSort:'Performance'};
       const n = Object.keys(D).filter(k=>(v[k]||D[k])!==D[k]).length;
       Object.assign(v, {pffToggle:()=>this.setState({pffOpen:!on}), pffDisplay: on?'block':'none', pffCount:String(n), pffHas: n?'grid':'none', pffResetShow: n?'inline-flex':'none',
         pffBd: on||n?'#0E9384':'#E5E3DC', pffBg: on||n?'#EEF6F5':'#fff', pffFg: on||n?'#0B7A6E':'#344054',
