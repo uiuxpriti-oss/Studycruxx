@@ -5816,6 +5816,113 @@
       </div>
     </div>
   </sc-if>
+
+
+  <sc-if value="{{ rxOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ rxClose }}" style="position:fixed;inset:0;background:rgba(11,31,62,.42);z-index:80"></div>
+    <div style="position:fixed;z-index:81;top:50%;left:50%;transform:translate(-50%,-50%);width:{{ rxW }};max-width:94vw;max-height:88vh;display:flex;flex-direction:column;background:#fff;border-radius:16px;box-shadow:0 24px 64px rgba(11,31,62,.22);overflow:hidden">
+      <div style="padding:22px 24px 16px;border-bottom:1px solid #F0EEE7;flex:none">
+        <h3 style="margin:0;font-size:16.5px;font-weight:700;color:#0F2A47">{{ rxTitle }}</h3>
+        <p style="margin:5px 0 0;font-size:13px;color:#6B7C93">{{ rxSub }}</p>
+      </div>
+      <div style="flex:1;overflow-y:auto;padding:18px 24px 18px">
+        <sc-if value="{{ rxIsGen }}" hint-placeholder-val="{{ true }}">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+            <sc-for list="{{ rxFields }}" as="f" hint-placeholder-count="3">
+              <div style="min-width:0">
+                <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">{{ f.label }}</label>
+                <select value="{{ f.value }}" onChange="{{ f.set }}" style="width:100%;height:40px;padding:0 12px;border:1px solid #E5E3DC;border-radius:9px;font-size:13px;color:#0F2A47;background:#fff;outline:0;font-family:inherit">
+                  <sc-for list="{{ f.opts }}" as="o" hint-placeholder-count="4"><option>{{ o.o }}</option></sc-for>
+                </select>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ rxIsSched }}" hint-placeholder-val="{{ false }}">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px">
+            <div style="min-width:0"><label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Frequency</label>
+              <select value="{{ rxFreq }}" onChange="{{ setRxFreq }}" style="width:100%;height:40px;padding:0 12px;border:1px solid #E5E3DC;border-radius:9px;font-size:13px;color:#0F2A47;background:#fff;outline:0;font-family:inherit"><option>Weekly</option><option>Daily</option><option>Monthly</option></select>
+            </div>
+            <div style="min-width:0"><label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Day</label>
+              <select value="{{ rxDay }}" onChange="{{ setRxDay }}" style="width:100%;height:40px;padding:0 12px;border:1px solid #E5E3DC;border-radius:9px;font-size:13px;color:#0F2A47;background:#fff;outline:0;font-family:inherit"><sc-for list="{{ rxDayOpts }}" as="o" hint-placeholder-count="3"><option>{{ o.o }}</option></sc-for></select>
+            </div>
+            <div style="min-width:0"><label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Time</label>
+              <input type="time" value="{{ rxTime }}" onChange="{{ setRxTime }}" style="width:100%;height:40px;padding:0 12px;border:1px solid #E5E3DC;border-radius:9px;font-size:13px;color:#0F2A47;background:#fff;outline:0;font-family:inherit;box-sizing:border-box" />
+            </div>
+          </div>
+          <div style="margin-top:14px">
+            <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Recipients</label>
+            <div style="display:flex;flex-wrap:wrap;gap:7px;padding:8px;border:1px solid {{ rxRcBd }};border-radius:9px;min-height:40px;box-sizing:border-box">
+              <sc-for list="{{ rxRecips }}" as="r" hint-placeholder-count="1">
+                <span style="display:inline-flex;align-items:center;gap:6px;background:#EEF6F5;color:#0B7A6E;font-size:12.5px;font-weight:600;padding:5px 9px;border-radius:7px">{{ r.e }} <span onClick="{{ r.remove }}" style="cursor:pointer;opacity:.6">×</span></span>
+              </sc-for>
+              <input value="{{ rxDraft }}" onChange="{{ setRxDraft }}" onKeyDown="{{ rxAddKey }}" placeholder="Add email…" style="border:0;outline:0;flex:1;min-width:110px;font-size:13px;font-family:inherit" />
+            </div>
+            <div style="display:{{ rxRcErr }};font-size:12px;font-weight:600;color:#B42318;margin-top:6px">Add at least one recipient — type an email and press Enter.</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ rxIsForm }}" hint-placeholder-val="{{ true }}">
+          <div style="font-size:12px;font-weight:600;color:#344054;margin:16px 0 8px">{{ rxColsLabel }}</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <sc-for list="{{ rxCols }}" as="c" hint-placeholder-count="7">
+              <label onClick="{{ c.toggle }}" style="display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border:1px solid #E5E3DC;border-radius:8px;font-size:12.5px;color:#344054;cursor:pointer;user-select:none" style-hover="border-color:#0E9384;background:#F7FBFA">
+                <span style="width:15px;height:15px;flex:none;border-radius:4px;border:1.5px solid {{ c.bd }};background:{{ c.bg }};display:grid;place-items:center;color:#fff;font-size:10px;font-weight:800;line-height:1">{{ c.mark }}</span>{{ c.c }}
+              </label>
+            </sc-for>
+          </div>
+          <div style="font-size:12px;font-weight:600;color:#344054;margin:16px 0 8px">Format</div>
+          <div style="display:flex;gap:9px">
+            <sc-for list="{{ rxFormats }}" as="f" hint-placeholder-count="3">
+              <button onClick="{{ f.pick }}" style="flex:1;height:40px;border-radius:10px;border:1.5px solid {{ f.border }};background:{{ f.bg }};font-size:13px;font-weight:600;color:{{ f.fg }};cursor:pointer;font-family:inherit">{{ f.label }}</button>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ rxIsSched }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;align-items:center;gap:10px;margin:20px 0 12px">
+            <span style="width:3px;height:14px;background:#0E9384;border-radius:2px"></span>
+            <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">EXISTING SCHEDULES</span>
+            <span style="flex:1;height:1px;background:#F0EEE7"></span>
+          </div>
+          <div style="border:1px solid #F0EEE7;border-radius:11px;overflow:hidden">
+            <sc-for list="{{ rxSchedList }}" as="r" hint-placeholder-count="2">
+              <div style="display:flex;align-items:center;gap:13px;padding:11px 14px;border-bottom:1px solid #F7F5F0">
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:13px;font-weight:600;color:#0F2A47">{{ r.name }}</div>
+                  <div style="font-size:11.5px;color:#98A2B3;margin-top:2px">{{ r.meta }}</div>
+                </div>
+                <div onClick="{{ r.flip }}" style="width:34px;height:20px;flex:none;border-radius:999px;background:{{ r.knobBg }};position:relative;cursor:pointer">
+                  <span style="position:absolute;top:2px;left:{{ r.knobX }};width:16px;height:16px;border-radius:50%;background:#fff"></span>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ rxIsPrev }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap">
+            <span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:#EEF6F5;color:#0B7A6E">Preview</span>
+            <span style="font-size:12px;color:#98A2B3">{{ rxPrevMeta }}</span>
+          </div>
+          <div style="border:1px solid #ECEAE2;border-radius:12px;overflow:auto">
+            <table style="width:100%;border-collapse:collapse">
+              <thead><tr style="background:#FCFBF7">
+                <sc-for list="{{ rxPrevHead }}" as="h" hint-placeholder-count="5"><th style="padding:10px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">{{ h.h }}</th></sc-for>
+              </tr></thead>
+              <tbody>
+                <sc-for list="{{ rxPrevRows }}" as="row" hint-placeholder-count="6">
+                  <tr><sc-for list="{{ row.cells }}" as="cl" hint-placeholder-count="5"><td style="padding:10px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ cl.v }}</td></sc-for></tr>
+                </sc-for>
+              </tbody>
+            </table>
+          </div>
+          <div style="font-size:11.5px;color:#98A2B3;margin-top:10px">Showing the first 6 rows · full export contains every row in the selected period.</div>
+        </sc-if>
+      </div>
+      <div style="display:flex;justify-content:flex-end;gap:10px;padding:16px 24px;border-top:1px solid #F0EEE7;background:#FCFBF7;flex:none">
+        <button onClick="{{ rxClose }}" style="height:38px;padding:0 16px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:13px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">{{ rxCancelLabel }}</button>
+        <button onClick="{{ rxPrimary }}" style="height:38px;padding:0 18px;border-radius:9px;border:0;background:#0E9384;font-size:13px;font-weight:600;color:#fff;cursor:pointer;font-family:inherit" style-hover="background:#0B7A6E">{{ rxPrimaryLabel }}</button>
+      </div>
+    </div>
+  </sc-if>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#0E9384&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#0E9384&quot;,&quot;#1D4ED8&quot;,&quot;#6D28D9&quot;,&quot;#B45309&quot;]},&quot;defaultDateRange&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;This Month&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;Today&quot;,&quot;This Week&quot;,&quot;This Month&quot;,&quot;This Quarter&quot;]},&quot;showHealthScore&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
 // name, id, role, status, courses, batches[], students, teachers, workloadPct, workloadBand,
@@ -7267,10 +7374,10 @@ class Component extends DCLogic {
           starIcon: on ? '★' : '☆', starFg: on ? '#D97706' : '#98A2B3',
           star:()=>{ this.setState(x=>({rptStar:{...(x.rptStar||{}), [title]:!on}})); done(on ? 'Removed from saved' : 'Saved to your reports', title); },
           download:()=>{ this.setState(x=>({rptDl:{...(x.rptDl||{}), [title]:true}})); done('Report downloaded — '+title, formats.split(' · ')[0]+' · '+range); },
-          gen:()=>done('Report generated — '+title, range+' · ready to download'),
-          sched:()=>{ this.setState(x=>({rptSched:{...(x.rptSched||{}), [title]:true}})); done('Report scheduled — '+title, 'Every Monday 09:00 · Email'); },
+          gen:()=>this.setState({rx:{mode:'generate', title}}),
+          sched:()=>this.setState({rx:{mode:'schedule', title}}),
           schedLabel: sch[title] ? 'Scheduled' : 'Schedule',
-          preview:()=>done('Preview — '+title, range+' · first 50 rows')}; }) };
+          preview:()=>this.setState({rx:{mode:'preview', title, range}})}; }) };
   }
 
   pvActVals() {
@@ -7309,7 +7416,52 @@ class Component extends DCLogic {
     };
   }
 
-  renderVals() { const v = this.renderVals0(); { const IC=(l)=>/cal/i.test(l)?'M8 3v4M16 3v4M3 10h18M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z':/agenda/i.test(l)?'M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01':/table|list/i.test(l)?'M4 6h16M4 12h16M4 18h16':'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z'; if (Array.isArray(v.scSegs)) { v.scSegsView = v.scSegs.filter(x=>/^(Calendar|Table|Cards)$/.test(x.label)).map(x=>({...x, ic: IC(x.label)})); v.scSegsTabs = v.scSegs.filter(x=>!/^(Calendar|Table|Cards)$/.test(x.label)); } } { const on = !!this.state.pvfOpen; const base = this._pvfBase = this._pvfBase || JSON.stringify((v.pvFilters||[]).map(f=>f.value)); const cur = (v.pvFilters||[]).map(f=>f.value); const b = JSON.parse(base); const n = cur.filter((x,i)=>x!==b[i]).length;
+  rxVals() {
+    const s=this.state, g=s.rx; if(!g) return {rxOpen:false};
+    const CFG={"who":["Coordinator",["All coordinators","Ankit Verma (CRD-1001)","Priya Menon (CRD-1004)","R. Kumar (CRD-1007)","Shalini Nair (CRD-1012)","Deepak Rao (CRD-1015)"]],"sections":["Batch Operations","Teacher Coordination","Student Support","Attendance","Escalations","Payroll","Activity Timeline"],"scheds":[["Coordinator Workload — Weekly","Mondays 8:00 AM · to ops@studycrux.io"],["Escalation Summary — Monthly","1st of month · to academics@studycrux.io"]],"prevHead":["Coordinator","Batches","Students","Attendance","Escalations","Score"],"prevRows":[["Ankit Verma","4","132","91%","1","88"],["Priya Menon","3","104","87%","2","82"],["R. Kumar","5","168","84%","3","76"],["Shalini Nair","2","64","93%","0","91"],["Deepak Rao","4","121","79%","4","71"],["Neha Joshi","3","98","89%","1","85"]]};
+    const set=(k)=>(e)=>{ const v=e.target.value; this.setState(x=>({rx:{...x.rx,[k]:v}})); };
+    const close=()=>this.setState({rx:null});
+    const mode=g.mode, cols=g.cols||CFG.sections, fmt=g.fmt||'Excel';
+    const recips=g.recips||['ops@studycrux.io'];
+    const scheds=s.rxScheds||CFG.scheds.map(([name,meta])=>({name,meta,on:true}));
+    const FM={CSV:'CSV (.csv)',Excel:'Excel (.xlsx)',PDF:'PDF (.pdf)'};
+    const fields=[[CFG.who[0],'who',CFG.who[1]],['Date range','range',['Full history','This month','Last 3 months','This year','Custom']],['Share with','share',['Download only','Email me when ready','Email to ops team']]];
+    const addRecip=()=>{ const v=(g.draft||'').trim(); if(!v) return; this.setState(x=>({rx:{...x.rx, recips:[...(x.rx.recips||['ops@studycrux.io']), v], draft:'', tried:false}})); };
+    return {
+      rxOpen:true, rxTitle:g.title, rxW: mode==='preview'?'760px':'600px',
+      rxSub: mode==='schedule'?'Runs automatically and emails the recipients below.':mode==='preview'?'Sample of the data this report will contain.':'Configure the parameters, then generate. Large exports are emailed when ready.',
+      rxIsGen:mode==='generate', rxIsSched:mode==='schedule', rxIsPrev:mode==='preview', rxIsForm:mode!=='preview',
+      rxClose:close,
+      rxFields: fields.map(([label,key,opts])=>({label, value:g[key]||opts[0], set:set(key), opts:opts.map(o=>({o}))})),
+      rxColsLabel:'Sections to include',
+      rxCols: CFG.sections.map(c=>{ const on=cols.includes(c); return {c, bd:on?'#0E9384':'#D0D5DD', bg:on?'#0E9384':'#fff', mark:on?'✓':'',
+        toggle:(e)=>{ if(e&&e.preventDefault) e.preventDefault(); this.setState(x=>{ const cur=x.rx.cols||CFG.sections; return {rx:{...x.rx, cols: cur.includes(c)?cur.filter(y=>y!==c):[...cur,c]}}; }); }}; }),
+      rxFormats: ['CSV','Excel','PDF'].map(f=>({label:FM[f], border:fmt===f?'#0E9384':'#E5E3DC', bg:fmt===f?'#EEF6F5':'#fff', fg:fmt===f?'#0B7A6E':'#344054', pick:()=>this.setState(x=>({rx:{...x.rx, fmt:f}}))})),
+      rxFreq:g.freq||'Weekly', setRxFreq:set('freq'),
+      rxDay:g.day||((g.freq||'Weekly')==='Monthly'?'1st of month':(g.freq==='Daily'?'Every day':'Monday')), setRxDay:set('day'),
+      rxDayOpts: ((g.freq||'Weekly')==='Monthly'?['1st of month','15th of month','Last day of month']:(g.freq==='Daily'?['Every day','Weekdays only']:['Monday','Tuesday','Wednesday','Thursday','Friday'])).map(o=>({o})),
+      rxTime:g.time||'08:00', setRxTime:set('time'),
+      rxRecips: recips.map(e=>({e, remove:()=>this.setState(x=>({rx:{...x.rx, recips:(x.rx.recips||['ops@studycrux.io']).filter(y=>y!==e)}}))})),
+      rxDraft:g.draft||'', setRxDraft:set('draft'), rxAddKey:(e)=>{ if(e.key==='Enter'||e.key===','){ e.preventDefault(); addRecip(); } },
+      rxRcBd: g.tried&&!recips.length?'#F04438':'#E5E3DC', rxRcErr: g.tried&&!recips.length?'block':'none',
+      rxSchedList: scheds.map((r,i)=>({name:r.name, meta:r.meta, knobBg:r.on?'#0E9384':'#D0D5DD', knobX:r.on?'16px':'2px',
+        flip:()=>this.setState({rxScheds: scheds.map((y,j)=>j===i?{...y,on:!y.on}:y)})})),
+      rxPrevMeta: (g.range||'This month')+' · '+CFG.prevHead.length+' columns · first 6 rows',
+      rxPrevHead: CFG.prevHead.map(h=>({h})), rxPrevRows: CFG.prevRows.map(r=>({cells:r.map(v=>({v}))})),
+      rxCancelLabel: mode==='preview'?'Close':'Cancel',
+      rxPrimaryLabel: mode==='schedule'?'Save Schedule':mode==='preview'?'Download Report':'Generate Report',
+      rxPrimary: ()=>{
+        if(mode==='schedule'){ if(!recips.length) return this.setState(x=>({rx:{...x.rx, tried:true}}));
+          const f=g.freq||'Weekly', d=g.day||(f==='Monthly'?'1st of month':f==='Daily'?'Every day':'Monday');
+          this.setState(x=>({rx:null, rptSched:{...(x.rptSched||{}), [g.title]:true}, rxScheds:[{name:g.title+' — '+f, meta:d+' '+(g.time||'08:00')+' · to '+recips.join(', '), on:true}, ...scheds]}));
+          return this.fire('Schedule saved — '+g.title, f+' · '+d+' '+(g.time||'08:00')+' · '+recips.length+' recipient'+(recips.length>1?'s':''), true); }
+        close(); this.setState(x=>({rptDl:{...(x.rptDl||{}), [g.title]:true}}));
+        if(mode==='preview') return this.fire('Report downloaded — '+g.title, FM[fmt]+' · '+(g.range||'This month'), true);
+        this.fire('Report generated — '+g.title, FM[fmt]+' · '+(g.share||'Download only')+' · '+cols.length+' sections', true); }
+    };
+  }
+
+  renderVals() { const v = this.renderVals0(); Object.assign(v, this.rxVals()); { const IC=(l)=>/cal/i.test(l)?'M8 3v4M16 3v4M3 10h18M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z':/agenda/i.test(l)?'M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01':/table|list/i.test(l)?'M4 6h16M4 12h16M4 18h16':'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z'; if (Array.isArray(v.scSegs)) { v.scSegsView = v.scSegs.filter(x=>/^(Calendar|Table|Cards)$/.test(x.label)).map(x=>({...x, ic: IC(x.label)})); v.scSegsTabs = v.scSegs.filter(x=>!/^(Calendar|Table|Cards)$/.test(x.label)); } } { const on = !!this.state.pvfOpen; const base = this._pvfBase = this._pvfBase || JSON.stringify((v.pvFilters||[]).map(f=>f.value)); const cur = (v.pvFilters||[]).map(f=>f.value); const b = JSON.parse(base); const n = cur.filter((x,i)=>x!==b[i]).length;
       Object.assign(v, {pvfToggle:()=>this.setState({pvfOpen:!on}), pvfClose:()=>this.setState({pvfOpen:false}), pvfMatch: String((v.pvRows||[]).length), pvfDisplay: on?'block':'none', pvfCount:String(n), pvfHas: n?'grid':'none', pvfBd: on||n?'#0E9384':'#E5E3DC', pvfBg: on||n?'#EEF6F5':'#fff', pvfFg: on||n?'#0B7A6E':'#344054'}); } if (Array.isArray(v.pvRows)) v.pvRows = v.pvRows.map((r,i)=>{ const on = this.state.pvMenu===i, close=(fn)=>()=>{ this.setState({pvMenu:null}); fn(); }, nm = r.name||'coordinator';
       const up = i >= v.pvRows.length-3 && v.pvRows.length>4; return {...r, menuTop: up ? 'auto' : '36px', menuBottom: up ? '36px' : 'auto', menuDisplay: on ? 'block' : 'none', menu: ()=>this.setState({pvMenu: on ? null : i}),
         menuItems: [['View Performance', r.open||(()=>{})], ['View Batches', ()=>this.setState({perfWho:nm, perfTab:'Batches & Teachers'})], ['Compare Performance', ()=>this.setState({pvAct:{kind:'compare', who:nm}, pvCmpWith:null})],
