@@ -1434,23 +1434,36 @@
 
       <sc-if value="{{ isSpeakerDetail }}" hint-placeholder-val="{{ false }}">
         <div>
-          <div style="background:#0B1F3E;border-radius:16px;padding:24px 26px;margin-bottom:16px">
-            <div style="display:flex;align-items:flex-start;gap:18px;flex-wrap:wrap">
-              <div style="width:80px;height:80px;flex:none;border-radius:14px;background:#14335C;border:3px solid rgba(255,255,255,.16);display:grid;place-items:center;color:#fff;font-size:26px;font-weight:800">AD</div>
+          <div style="background:#fff;border:1px solid #ECEAE2;border-radius:16px;overflow:hidden;margin-bottom:16px">
+            <div style="display:flex;align-items:flex-start;gap:18px;background:#0B1F3E;padding:24px 26px;flex-wrap:wrap">
+              <div style="width:88px;height:88px;flex:none;border-radius:14px;background:#14335C;border:3px solid rgba(255,255,255,.16);display:grid;place-items:center;color:#fff;font-size:28px;font-weight:800">AD</div>
               <div style="min-width:0;flex:1 1 300px">
-                <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-                  <span style="font-size:24px;font-weight:800;color:#fff;letter-spacing:-.02em">Ananya Deshmukh</span>
-                  <span style="font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:999px;background:#E7F7EE;color:#15803D">Active</span>
+                <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
+                  <span style="font-size:26px;font-weight:800;color:#fff;letter-spacing:-.02em">Ananya Deshmukh</span>
+                  <sc-for list="{{ spkChips }}" as="c" hint-placeholder-count="4">
+                    <span style="font-size:11.5px;font-weight:700;padding:5px 12px;border-radius:999px;background:{{ c.bg }};color:{{ c.fg }}">{{ c.label }}</span>
+                  </sc-for>
                 </div>
-                <div style="font-size:13px;color:#9FB6D4;margin-top:6px">Industry Expert · Insurance &amp; Risk Specialist · External Speaker</div>
-                <div style="font-size:12.5px;color:#DCE7F3;margin-top:10px">Coordinator: <strong>Priya Singh</strong> &nbsp;·&nbsp; Next Event: <strong>IC-11 Industry Masterclass</strong> · 30 Aug, 6:00 PM</div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px 20px;margin-top:16px">
+                  <sc-for list="{{ spkHeaderRows }}" as="r" hint-placeholder-count="8">
+                    <div style="min-width:0">
+                      <div style="font-size:10px;font-weight:600;letter-spacing:.06em;color:#7E96B8">{{ r.k }}</div>
+                      <div style="font-size:12.5px;font-weight:600;color:#DCE7F3;margin-top:4px;text-wrap:pretty">{{ r.v }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px;flex:none">
+                <sc-for list="{{ spkActions }}" as="a" hint-placeholder-count="5">
+                  <button onClick="{{ a.go }}" style="height:34px;padding:0 15px;border-radius:9px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);font-size:12.5px;font-weight:600;color:#DCE7F3;cursor:pointer;white-space:nowrap" style-hover="background:rgba(255,255,255,.14)">{{ a.label }}</button>
+                </sc-for>
               </div>
             </div>
-            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px 0;margin-top:20px">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px 0;padding:20px 26px 22px">
               <sc-for list="{{ spkKpis }}" as="k" hint-placeholder-count="8">
-                <div style="padding:9px 16px;border-left:2px solid rgba(255,255,255,.12)">
-                  <div style="font-size:10.5px;font-weight:600;letter-spacing:.04em;color:#9FB6D4">{{ k.label }}</div>
-                  <div style="font-size:20px;font-weight:800;color:#fff;letter-spacing:-.02em;margin-top:5px">{{ k.n }}</div>
+                <div onClick="{{ k.go }}" style="min-width:0;padding:9px 16px;border-left:2px solid #E6EAEF;cursor:pointer" style-hover="border-left-color:#0E9384">
+                  <div style="font-size:10.5px;font-weight:600;letter-spacing:.04em;color:#98A2B3;text-wrap:pretty">{{ k.label }}</div>
+                  <div style="font-size:22px;font-weight:800;color:{{ k.fg }};letter-spacing:-.02em;margin-top:5px">{{ k.n }}</div>
                 </div>
               </sc-for>
             </div>
@@ -1525,67 +1538,6 @@
             </div>
                     </div>
 </sc-if>
-
-                  <sc-if value="{{ spkTabIs.profile }}" hint-placeholder-val="{{ false }}">
-                    <div style="display:flex;flex-direction:column;gap:16px">
-                      <sc-for list="{{ spkProfileGroups }}" as="g" hint-placeholder-count="3">
-                        <div style="border:1px solid #ECEAE2;border-radius:14px;padding:20px 22px">
-                          <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">
-                            <span style="font-size:15.5px;font-weight:800;color:#0F2A47">{{ g.title }}</span>
-                            <span style="flex:1"></span>
-                            <button onClick="{{ g.toggle }}" style="width:34px;height:34px;flex:none;border-radius:9px;border:1px solid {{ g.btnBorder }};background:{{ g.btnBg }};display:grid;place-items:center;cursor:pointer;color:{{ g.btnFg }}" style-hover="background:#E2F1EE">
-                              <sc-if value="{{ g.editing }}" hint-placeholder-val="{{ false }}">
-                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
-                              </sc-if>
-                              <sc-if value="{{ g.notEditing }}" hint-placeholder-val="{{ true }}">
-                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9" /><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z" /></svg>
-                              </sc-if>
-                            </button>
-                          </div>
-                          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px 18px">
-                            <sc-for list="{{ g.fields }}" as="fd" hint-placeholder-count="9">
-                              <div style="min-width:0;grid-column:{{ fd.span }}">
-                                <div style="font-size:12.5px;color:#7A8699;margin-bottom:7px">{{ fd.label }}</div>
-                                <sc-if value="{{ fd.editing }}" hint-placeholder-val="{{ false }}">
-                                  <input value="{{ fd.value }}" onChange="{{ fd.set }}" style="width:100%;height:44px;padding:0 14px;border:1.5px solid #0E9384;border-radius:10px;background:#fff;font-size:13.5px;color:#0F2A47;outline:0;box-sizing:border-box" />
-                                </sc-if>
-                                <sc-if value="{{ fd.notEditing }}" hint-placeholder-val="{{ true }}">
-                                  <div style="min-height:44px;display:flex;align-items:center;padding:0 14px;border:1px solid #F0EEE7;border-radius:10px;background:#FCFBF7;font-size:13.5px;color:#0F2A47;text-wrap:pretty">{{ fd.value }}</div>
-                                </sc-if>
-                              </div>
-                            </sc-for>
-                          </div>
-                          <sc-if value="{{ g.editing }}" hint-placeholder-val="{{ false }}">
-                            <div style="display:flex;gap:9px;margin-top:18px;padding-top:16px;border-top:1px solid #F0EEE7">
-                              <span style="flex:1"></span>
-                              <button onClick="{{ g.cancel }}" style="height:38px;padding:0 16px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:13px;font-weight:600;color:#344054;cursor:pointer" style-hover="background:#F6F5F0">Cancel</button>
-                              <button onClick="{{ g.save }}" style="height:38px;padding:0 18px;border-radius:9px;border:0;background:#0E9384;font-size:13px;font-weight:700;color:#fff;cursor:pointer" style-hover="background:#0B7A6E">Save Changes</button>
-                            </div>
-                          </sc-if>
-                        </div>
-                      </sc-for>
-
-                      <div style="border:1px solid #ECEAE2;border-radius:14px;padding:20px 22px">
-                        <div style="font-size:15.5px;font-weight:800;color:#0F2A47;margin-bottom:6px">Short Bio</div>
-                        <div style="font-size:13px;color:#344054;line-height:1.65;text-wrap:pretty">14-year insurance risk specialist helping professionals master underwriting fundamentals through practical, story-driven sessions.</div>
-                      </div>
-
-                      <div style="border:1px solid #ECEAE2;border-radius:14px;padding:20px 22px">
-                        <div style="font-size:15.5px;font-weight:800;color:#0F2A47;margin-bottom:16px">Credentials &amp; Verification</div>
-                        <div style="border:1px solid #F0EEE7;border-radius:11px;overflow:hidden">
-                          <sc-for list="{{ spkCredentials }}" as="c" hint-placeholder-count="4">
-                            <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid #F7F5F0">
-                              <div style="min-width:0;flex:1">
-                                <div style="font-size:13px;font-weight:600;color:#0F2A47">{{ c.name }}</div>
-                                <div style="font-size:11.5px;color:#98A2B3;margin-top:3px">{{ c.type }}</div>
-                              </div>
-                              <span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ c.bg }};color:{{ c.fg }};white-space:nowrap">{{ c.status }}</span>
-                            </div>
-                          </sc-for>
-                        </div>
-                      </div>
-                    </div>
-                  </sc-if>
 
                   <sc-if value="{{ spkTabIs.events }}" hint-placeholder-val="{{ false }}">
                     <div>
@@ -1676,60 +1628,124 @@
                   </sc-if>
 
                   <sc-if value="{{ spkTabIs.audience }}" hint-placeholder-val="{{ false }}">
-                    <div>
-                      <div style="display:flex;align-items:center;gap:9px;margin-bottom:16px;flex-wrap:wrap">
-                        <div style="display:flex;gap:2px;background:#FCFBF7;border:1px solid #ECEAE2;border-radius:10px;padding:3px">
-                          <sc-for list="{{ audPeriods }}" as="p" hint-placeholder-count="4">
-                            <button onClick="{{ p.pick }}" style="height:30px;padding:0 13px;border:0;border-radius:7px;font-size:12.5px;cursor:pointer;background:{{ p.bg }};color:{{ p.fg }};font-weight:{{ p.weight }};white-space:nowrap">{{ p.label }}</button>
+                    <div style="display:flex;flex-direction:column;gap:26px">
+                      <div>
+                        <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px">
+                          <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
+                          <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">ATTENDING STUDENTS</span>
+                          <span style="flex:1;height:1px;background:#F0EEE7"></span>
+                          <span style="font-size:11.5px;color:#98A2B3">Filters update the analytics below live</span>
+                        </div>
+                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:13px;margin-bottom:16px">
+                          <sc-for list="{{ spkStu.kpis }}" as="k" hint-placeholder-count="4">
+                            <div style="min-width:0;background:#fff;border:1px solid #ECEAE2;border-top:3px solid {{ k.c }};border-radius:10px;padding:13px 16px">
+                              <div style="font-size:10.5px;font-weight:700;letter-spacing:.06em;color:#7A8699">{{ k.label }}</div>
+                              <div style="font-size:21px;font-weight:800;letter-spacing:-.02em;margin-top:6px;color:{{ k.c }}">{{ k.n }}</div>
+                              <div style="font-size:11px;color:#98A2B3;margin-top:3px">{{ k.sub }}</div>
+                            </div>
                           </sc-for>
                         </div>
-                        <span style="flex:1"></span>
-                        <select value="{{ audEventType }}" onChange="{{ setAudEventType }}" style="height:34px;padding:0 11px;border:1px solid #E5E3DC;border-radius:9px;font-size:12.5px;background:#fff;color:#0F2A47;outline:0">
-                          <sc-for list="{{ spkEvTypeOpts }}" as="o" hint-placeholder-count="5"><option>{{ o.o }}</option></sc-for>
-                        </select>
-                        <button onClick="{{ audExport }}" style="height:34px;padding:0 14px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer" style-hover="background:#F6F5F0">Export</button>
-                      </div>
-
-                      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:22px">
-                        <sc-for list="{{ audKpis }}" as="k" hint-placeholder-count="8">
-                          <div onClick="{{ k.drill }}" style="border:1px solid #F0EEE7;border-radius:11px;padding:14px 16px;cursor:pointer;background:{{ k.cardBg }}" style-hover="border-color:#BFE3DC">
-                            <div style="font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#98A2B3">{{ k.label }}</div>
-                            <div style="font-size:20px;font-weight:800;color:{{ k.fg }};margin-top:6px">{{ k.v }}</div>
-                            <div style="font-size:11px;color:{{ k.deltaFg }};margin-top:4px;font-weight:600">{{ k.delta }}</div>
-                          </div>
-                        </sc-for>
-                      </div>
-
-                      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-                        <div style="border:1px solid #F0EEE7;border-radius:12px;padding:16px 18px">
-                          <div style="font-size:13.5px;font-weight:700;color:#0F2A47;margin-bottom:14px">Attendance by event</div>
-                          <div style="display:flex;flex-direction:column;gap:11px">
-                            <sc-for list="{{ audByEvent }}" as="b" hint-placeholder-count="5">
-                              <div onClick="{{ b.open }}" style="cursor:pointer">
-                                <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:5px">
-                                  <span style="font-size:12.5px;color:#344054;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ b.label }}</span>
-                                  <span style="font-size:12px;color:#98A2B3">{{ b.sub }}</span>
-                                  <span style="font-size:12.5px;font-weight:700;color:#0F2A47">{{ b.pct }}</span>
-                                </div>
-                                <div style="height:7px;border-radius:5px;background:#F2F0EA;overflow:hidden"><div style="height:100%;width:{{ b.pct }};border-radius:5px;background:{{ b.color }}"></div></div>
-                              </div>
-                            </sc-for>
-                          </div>
+                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:16px">
+                          <sc-for list="{{ spkStu.filters }}" as="p" hint-placeholder-count="5">
+                            <div style="min-width:0">
+                              <label style="display:block;font-size:11px;font-weight:600;color:#475467;margin-bottom:6px">{{ p.label }}</label>
+                              <select value="{{ p.value }}" onChange="{{ p.set }}" style="width:100%;height:36px;padding:0 10px;border:1px solid #E5E3DC;border-radius:8px;font-size:12.5px;background:#fff;color:#0F2A47;outline:0">
+                                <sc-for list="{{ p.opts }}" as="o" hint-placeholder-count="4"><option>{{ o.o }}</option></sc-for>
+                              </select>
+                            </div>
+                          </sc-for>
                         </div>
-                        <div style="border:1px solid #F0EEE7;border-radius:12px;padding:16px 18px">
-                          <div style="font-size:13.5px;font-weight:700;color:#0F2A47;margin-bottom:14px">Audience composition</div>
-                          <div style="display:flex;flex-direction:column;gap:11px">
-                            <sc-for list="{{ audComposition }}" as="b" hint-placeholder-count="5">
-                              <div>
-                                <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:5px">
-                                  <span style="font-size:12.5px;color:#344054;flex:1">{{ b.label }}</span>
-                                  <span style="font-size:12px;color:#98A2B3">{{ b.n }}</span>
-                                  <span style="font-size:12.5px;font-weight:700;color:#0F2A47">{{ b.pct }}</span>
-                                </div>
-                                <div style="height:7px;border-radius:5px;background:#F2F0EA;overflow:hidden"><div style="height:100%;width:{{ b.pct }};border-radius:5px;background:{{ b.color }}"></div></div>
-                              </div>
-                            </sc-for>
+                        <div style="border:1px solid #F0EEE7;border-radius:12px;overflow:hidden">
+                          <div style="overflow-x:auto">
+                            <table style="width:100%;min-width:900px;border-collapse:collapse">
+                              <thead><tr style="background:#FCFBF7"><th style="padding:11px 16px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">STUDENT</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">EVENT</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">FORMAT</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">REGISTRATION</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">ATTENDANCE</th><th style="padding:11px 16px 11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">ACTIVITY</th></tr></thead>
+                              <tbody>
+                                <sc-for list="{{ spkStu.rows }}" as="x" hint-placeholder-count="8">
+                                  <tr style-hover="background:#FCFBF7">
+                                    <td style="padding:11px 16px;border-bottom:1px solid #F5F3EE">
+                                      <div style="font-size:13px;font-weight:600;color:#0F2A47;white-space:nowrap">{{ x.name }}</div>
+                                      <div style="font-size:10.5px;color:#98A2B3;margin-top:2px;font-family:ui-monospace,monospace">{{ x.sid }}</div>
+                                    </td>
+                                    <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ x.event }}</td>
+                                    <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ x.format }}</td>
+                                    <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ x.rBg }};color:{{ x.rFg }};white-space:nowrap">{{ x.reg }}</span></td>
+                                    <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ x.aBg }};color:{{ x.aFg }};white-space:nowrap">{{ x.att }}</span></td>
+                                    <td style="padding:11px 16px 11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ x.activity }}</td>
+                                  </tr>
+                                </sc-for>
+                              </tbody>
+                            </table>
                           </div>
+                          <sc-if value="{{ spkStu.empty }}" hint-placeholder-val="{{ false }}">
+                            <div style="padding:26px;text-align:center;font-size:12.5px;color:#7A8699">No students match these filters — change the event or status to widen the list.</div>
+                          </sc-if>
+                        </div>
+                      </div>
+                      <div>
+                        <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px">
+                          <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
+                          <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">FEEDBACK TRENDS</span>
+                          <span style="flex:1;height:1px;background:#F0EEE7"></span>
+                          <span style="font-size:11.5px;color:#98A2B3">Rolling 90 days</span>
+                        </div>
+                        <div style="display:flex;flex-direction:column;gap:14px">
+                          <sc-for list="{{ spkStu.trends }}" as="b" hint-placeholder-count="5">
+                            <div>
+                              <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap">
+                                <span style="font-size:12.5px;font-weight:600;color:#0F2A47">{{ b.label }}</span>
+                                <span style="font-size:11.5px;color:#98A2B3;flex:1;min-width:0">{{ b.sub }}</span>
+                                <span style="font-size:12.5px;font-weight:800;color:#0F2A47">{{ b.pct }}</span>
+                              </div>
+                              <div style="height:8px;border-radius:5px;background:#F2F0EA;overflow:hidden"><div style="height:100%;width:{{ b.pct }};border-radius:5px;background:{{ b.color }}"></div></div>
+                            </div>
+                          </sc-for>
+                        </div>
+                      </div>
+                      <div>
+                        <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px">
+                          <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
+                          <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">RECENT REVIEWS</span>
+                          <span style="flex:1;height:1px;background:#F0EEE7"></span>
+                          <span style="font-size:11.5px;color:#98A2B3">Moderated before publishing</span>
+                        </div>
+                        <div style="display:flex;flex-direction:column;gap:12px">
+                          <sc-for list="{{ spkStu.reviews }}" as="rv" hint-placeholder-count="3">
+                            <div style="border:1px solid #F0EEE7;border-radius:12px;padding:15px 17px;background:#FCFBF7">
+                              <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+                                <div style="display:flex;gap:2px">
+                                  <sc-for list="{{ rv.stars }}" as="st" hint-placeholder-count="5">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="{{ st.fg }}"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.5 6.1 20.6l1.2-6.5L2.5 9.5l6.6-.9z"></path></svg>
+                                  </sc-for>
+                                </div>
+                                <span style="font-size:13px;font-weight:800;color:#0F2A47">{{ rv.ratingLabel }}</span>
+                                <span style="font-size:12.5px;font-weight:600;color:#344054">{{ rv.event }}</span>
+                                <span style="font-size:11.5px;font-weight:600;padding:3px 9px;border-radius:999px;background:{{ rv.sBg }};color:{{ rv.sFg }}">{{ rv.state }}</span>
+                                <span style="flex:1"></span>
+                                <span style="font-size:11.5px;color:#98A2B3;font-family:ui-monospace,monospace">{{ rv.meta }}</span>
+                              </div>
+                              <div style="font-size:13px;color:#475467;line-height:1.55;margin-top:9px;text-wrap:pretty">{{ rv.text }}</div>
+                              <div style="display:flex;gap:8px;margin-top:12px">
+                                <button onClick="{{ rv.publish }}" style="display:{{ rv.canPublish }};align-items:center;height:32px;padding:0 13px;border-radius:8px;border:0;background:#0E9384;font-size:12px;font-weight:600;color:#fff;cursor:pointer;font-family:inherit" style-hover="background:#0B7A6E">Publish</button>
+                                <button onClick="{{ rv.hide }}" style="display:{{ rv.canHide }};align-items:center;height:32px;padding:0 13px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:12px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Hide</button>
+                                <button onClick="{{ rv.reply }}" style="height:32px;padding:0 13px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:12px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Reply</button>
+                                <span style="flex:1"></span>
+                                <button onClick="{{ rv.del }}" style="height:32px;padding:0 13px;border-radius:8px;border:1px solid #F0D2CF;background:#fff;font-size:12px;font-weight:600;color:#B42318;cursor:pointer;font-family:inherit" style-hover="background:#FEF7F6">Delete</button>
+                              </div>
+                            </div>
+                          </sc-for>
+                        </div>
+                      </div>
+                      <div>
+                        <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px">
+                          <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
+                          <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">STUDENT ACTIONS</span>
+                          <span style="flex:1;height:1px;background:#F0EEE7"></span>
+                          <span style="font-size:11.5px;color:#98A2B3"></span>
+                        </div>
+                        <div style="display:flex;flex-wrap:wrap;gap:9px">
+                          <sc-for list="{{ spkStu.actions }}" as="b" hint-placeholder-count="4">
+                            <button onClick="{{ b.go }}" style="height:36px;padding:0 15px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">{{ b.label }}</button>
+                          </sc-for>
                         </div>
                       </div>
                     </div>
@@ -2060,7 +2076,7 @@
                 </sc-if>
 
                   <sc-if value="{{ spkTabIs.content }}" hint-placeholder-val="{{ false }}">
-                    <div style="border:1px solid #F0EEE7;border-radius:11px;overflow:hidden">
+                    <div style="border:1px solid #F0EEE7;border-radius:11px">
                       <sc-for list="{{ spkContent }}" as="c" hint-placeholder-count="5">
                         <div style="display:flex;align-items:center;gap:13px;padding:12px 16px;border-bottom:1px solid #F7F5F0">
                           <span style="width:28px;height:28px;flex:none;border-radius:8px;background:{{ c.bg }};color:{{ c.fg }};font-size:12px;font-weight:700;display:grid;place-items:center">📄</span>
@@ -2069,95 +2085,78 @@
                             <div style="font-size:11.5px;color:#98A2B3;margin-top:3px">{{ c.event }} · v{{ c.version }}</div>
                           </div>
                           <span style="font-size:11.5px;font-weight:600;padding:4px 11px;border-radius:999px;background:{{ c.bg }};color:{{ c.fg }};flex:none;white-space:nowrap">{{ c.status }}</span>
+                          <div style="position:relative;flex:none">
+                            <button onClick="{{ c.toggle }}" aria-label="More options" style="width:32px;height:32px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:#475467" style-hover="background:#F6F5F0">
+                              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="12" cy="19" r="1.8"></circle></svg>
+                            </button>
+                            <div style="display:{{ c.menuShow }};position:absolute;right:0;top:38px;z-index:30;width:200px;background:#fff;border:1px solid #ECEAE2;border-radius:11px;box-shadow:0 18px 44px rgba(11,31,62,.16);padding:5px;flex-direction:column">
+                              <button onClick="{{ c.view }}" style="display:flex;align-items:center;gap:9px;height:36px;padding:0 11px;border:0;border-radius:8px;background:#fff;font-size:12.5px;font-weight:500;color:#344054;cursor:pointer;text-align:left;font-family:inherit" style-hover="background:#F7FBFA">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>View
+                              </button>
+                              <button onClick="{{ c.change }}" style="display:flex;align-items:center;gap:9px;height:36px;padding:0 11px;border:0;border-radius:8px;background:#fff;font-size:12.5px;font-weight:500;color:#344054;cursor:pointer;text-align:left;font-family:inherit" style-hover="background:#F7FBFA">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16M3 12a9 9 0 0 1 15.5-6.2L21 8M21 3v5h-5M3 21v-5h5"></path></svg>Change
+                              </button>
+                            </div>
+                          </div>
                         </div>
                       </sc-for>
                     </div>
-                  </sc-if>
-
-                  <sc-if value="{{ spkTabIs.payments }}" hint-placeholder-val="{{ false }}">
-                    <div>
-                      <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px">
-                        <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
-                        <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">PAYOUT SNAPSHOT</span>
-                        <span style="flex:1;height:1px;background:#F0EEE7"></span>
-                        <span style="font-size:11.5px;color:#98A2B3"></span>
-                      </div>
-                      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:26px">
-                        <sc-for list="{{ spkPayKpis }}" as="k" hint-placeholder-count="8">
-                          <div style="min-width:0;background:#FCFBF7;border:1px solid #F0EEE7;border-radius:12px;padding:15px 17px">
-                            <div style="font-size:10.5px;font-weight:700;letter-spacing:.06em;color:#7A8699">{{ k.label }}</div>
-                            <div style="font-size:21px;font-weight:800;letter-spacing:-.02em;color:{{ k.fg }};margin-top:7px">{{ k.v }}</div>
-                            <div style="font-size:11.5px;color:#98A2B3;margin-top:4px">{{ k.note }}</div>
+                    <sc-if value="{{ spkCM.open }}" hint-placeholder-val="{{ false }}">
+                      <div onClick="{{ spkCM.close }}" style="position:fixed;inset:0;z-index:80;background:rgba(11,31,62,.45)"></div>
+                      <div style="position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:81;width:min(620px,calc(100vw - 48px));max-height:calc(100vh - 64px);overflow:auto;background:#fff;border-radius:16px;box-shadow:0 24px 64px rgba(11,31,62,.22)">
+                        <div style="display:flex;align-items:flex-start;gap:12px;padding:20px 22px 16px;border-bottom:1px solid #F0EEE7">
+                          <div style="min-width:0;flex:1">
+                            <div style="font-size:18px;font-weight:500;color:#0F2A47;letter-spacing:-.02em">{{ spkCM.title }}</div>
+                            <div style="font-size:12.5px;color:#7A8699;margin-top:4px">{{ spkCM.sub }}</div>
                           </div>
-                        </sc-for>
-                      </div>
-
-                      <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px">
-                        <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
-                        <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">COMMERCIAL TERMS</span>
-                        <span style="flex:1;height:1px;background:#F0EEE7"></span>
-                        <span style="font-size:11.5px;color:#98A2B3"></span>
-                      </div>
-                      <div style="border:1px solid #F0EEE7;border-radius:11px;overflow:hidden;margin-bottom:26px">
-                        <sc-for list="{{ spkPayTerms }}" as="t" hint-placeholder-count="8">
-                          <div style="display:grid;grid-template-columns:240px 1fr;gap:14px;padding:11px 16px;background:{{ t.bg }};border-bottom:1px solid #F7F5F0">
-                            <span style="font-size:12.5px;color:#7A8699">{{ t.k }}</span>
-                            <span style="font-size:12.5px;font-weight:600;color:#0F2A47">{{ t.v }}</span>
-                          </div>
-                        </sc-for>
-                      </div>
-
-                      <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px">
-                        <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
-                        <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">PAYMENT HISTORY</span>
-                        <span style="flex:1;height:1px;background:#F0EEE7"></span>
-                        <span style="font-size:11.5px;color:#98A2B3">Last 6 events</span>
-                      </div>
-                      <div style="border:1px solid #F0EEE7;border-radius:11px;overflow:hidden;margin-bottom:26px">
-                        <div style="overflow-x:auto">
-                          <table style="width:100%;min-width:780px;border-collapse:collapse">
-                            <thead>
-                              <tr style="background:#FCFBF7">
-                                <th style="padding:10px 16px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7">EVENT</th>
-                                <th style="padding:10px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">TYPE</th>
-                                <th style="padding:10px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">FEE</th>
-                                <th style="padding:10px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">TDS</th>
-                                <th style="padding:10px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">NET</th>
-                                <th style="padding:10px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">UTR</th>
-                                <th style="padding:10px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PAID ON</th>
-                                <th style="padding:10px 16px 10px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">STATUS</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <sc-for list="{{ spkPayments }}" as="p" hint-placeholder-count="6">
-                                <tr style-hover="background:#FCFBF7">
-                                  <td style="padding:11px 16px;border-bottom:1px solid #F5F3EE;font-size:12.5px;font-weight:600;color:#0F2A47">{{ p.event }}</td>
-                                  <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12px;color:#475467;white-space:nowrap">{{ p.kind }}</td>
-                                  <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;font-weight:600;color:#0F2A47;white-space:nowrap">{{ p.fee }}</td>
-                                  <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12px;color:#475467;white-space:nowrap">{{ p.tds }}</td>
-                                  <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;font-weight:700;color:#0F2A47;white-space:nowrap">{{ p.net }}</td>
-                                  <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:11.5px;color:#98A2B3;font-family:ui-monospace,monospace;white-space:nowrap">{{ p.utr }}</td>
-                                  <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12px;color:#475467;white-space:nowrap">{{ p.date }}</td>
-                                  <td style="padding:11px 16px 11px 13px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ p.bg }};color:{{ p.fg }};white-space:nowrap">{{ p.status }}</span></td>
-                                </tr>
-                              </sc-for>
-                            </tbody>
-                          </table>
+                          <button onClick="{{ spkCM.close }}" aria-label="Close" style="width:32px;height:32px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:#475467;flex:none" style-hover="background:#F6F5F0">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+                          </button>
                         </div>
-                      </div>
 
-                      <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px">
-                        <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
-                        <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">PAYOUT ACTIONS</span>
-                        <span style="flex:1;height:1px;background:#F0EEE7"></span>
-                        <span style="font-size:11.5px;color:#98A2B3"></span>
+                        <sc-if value="{{ spkCM.isView }}" hint-placeholder-val="{{ false }}">
+                          <div style="padding:18px 22px 22px;display:flex;flex-direction:column;gap:16px">
+                            <div style="height:220px;border-radius:12px;background:#FCFBF7;border:1px solid #F0EEE7;display:grid;place-items:center;font-size:12.5px;color:#98A2B3">File preview — {{ spkCM.name }}</div>
+                            <div style="border:1px solid #F0EEE7;border-radius:12px;overflow:hidden">
+                              <sc-for list="{{ spkCM.meta }}" as="m" hint-placeholder-count="6">
+                                <div style="display:grid;grid-template-columns:160px 1fr;gap:14px;padding:10px 16px;background:{{ m.bg }};border-bottom:1px solid #F7F5F0">
+                                  <span style="font-size:12px;color:#7A8699">{{ m.k }}</span>
+                                  <span style="font-size:12.5px;font-weight:600;color:#0F2A47">{{ m.v }}</span>
+                                </div>
+                              </sc-for>
+                            </div>
+                            <div style="display:flex;gap:10px;justify-content:flex-end">
+                              <button onClick="{{ spkCM.download }}" style="height:38px;padding:0 16px;border-radius:10px;border:1px solid #E5E3DC;background:#fff;font-size:14px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Download</button>
+                              <button onClick="{{ spkCM.toChange }}" style="height:38px;padding:0 16px;border-radius:10px;border:1px solid #BFE3DC;background:#EEF6F5;font-size:14px;font-weight:700;color:#0B7A6E;cursor:pointer;font-family:inherit" style-hover="background:#E2F1EE">Change file</button>
+                            </div>
+                          </div>
+                        </sc-if>
+
+                        <sc-if value="{{ spkCM.isChange }}" hint-placeholder-val="{{ false }}">
+                          <div style="padding:18px 22px 22px;display:flex;flex-direction:column;gap:14px">
+                            <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:11px;background:#FCFBF7;border:1px solid #F0EEE7">
+                              <span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:#FDE8E8;color:#B42318;text-decoration:line-through">v{{ spkCM.version }}</span>
+                              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#98A2B3" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+                              <span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:#E7F7EE;color:#15803D">v{{ spkCM.nextVersion }}</span>
+                              <span style="font-size:12px;color:#7A8699">The current version stays in history — the new file goes to review.</span>
+                            </div>
+                            <div onClick="{{ spkCM.pick }}" style="border:1.5px dashed {{ spkCM.dropBorder }};border-radius:12px;padding:22px;text-align:center;background:#FCFBF7;cursor:pointer" style-hover="border-color:#0E9384;background:#F7FBFA">
+                              <div style="font-size:13px;font-weight:600;color:#0F2A47">{{ spkCM.fileLabel }}</div>
+                              <div style="font-size:11.5px;color:#98A2B3;margin-top:4px">PDF, PPTX, DOCX or MP4 · up to 200 MB</div>
+                            </div>
+                            <div>
+                              <label style="display:block;font-size:12px;font-weight:600;color:#475467;margin-bottom:6px">What changed *</label>
+                              <textarea value="{{ spkCM.note }}" onChange="{{ spkCM.setNote }}" placeholder="Required — shown to the reviewer and kept in version history." style="width:100%;min-height:96px;padding:11px 13px;border:1px solid {{ spkCM.noteBorder }};border-radius:9px;font-size:13.5px;color:#0F2A47;outline:0;box-sizing:border-box;font-family:inherit;resize:vertical" style-focus="border-color:#0E9384"></textarea>
+                              <div style="display:{{ spkCM.errShow }};font-size:12px;color:#B42318;margin-top:6px">{{ spkCM.err }}</div>
+                            </div>
+                            <div style="display:flex;gap:10px;justify-content:flex-end">
+                              <button onClick="{{ spkCM.close }}" style="height:38px;padding:0 16px;border-radius:10px;border:1px solid #E5E3DC;background:#fff;font-size:14px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Cancel</button>
+                              <button onClick="{{ spkCM.submit }}" style="height:38px;padding:0 18px;border-radius:10px;border:0;background:#0E9384;font-size:14px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit" style-hover="background:#0B7A6E">Submit for review</button>
+                            </div>
+                          </div>
+                        </sc-if>
                       </div>
-                      <div style="display:flex;gap:9px;flex-wrap:wrap">
-                        <sc-for list="{{ spkPayActions }}" as="a" hint-placeholder-count="5">
-                          <button onClick="{{ a.go }}" style="height:38px;padding:0 16px;border-radius:9px;border:1px solid {{ a.border }};background:#fff;font-size:13px;font-weight:600;color:{{ a.fg }};cursor:pointer" style-hover="background:{{ a.hbg }}">{{ a.label }}</button>
-                        </sc-for>
-                      </div>
-                    </div>
+                    </sc-if>
                   </sc-if>
 
                   <sc-if value="{{ spkTabIs.products }}" hint-placeholder-val="{{ false }}">
@@ -2419,167 +2418,406 @@
                   </sc-if>
 
                   <sc-if value="{{ spkTabIs.schedule }}" hint-placeholder-val="{{ false }}">
-                    <div>
-                      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:12px;margin-bottom:18px">
-                        <sc-for list="{{ spkSchKpis }}" as="k" hint-placeholder-count="6">
-                          <div style="min-width:0;border:1px solid #F0EEE7;border-radius:12px;padding:13px 15px;background:#FCFBF7">
-                            <div style="font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699">{{ k.label }}</div>
-                            <div style="font-size:21px;font-weight:800;letter-spacing:-.03em;color:{{ k.fg }};margin-top:5px">{{ k.v }}</div>
-                            <div style="font-size:10.5px;color:#98A2B3;margin-top:3px;text-wrap:pretty">{{ k.note }}</div>
-                          </div>
-                        </sc-for>
-                      </div>
-
-                      <div style="display:flex;align-items:center;gap:11px;margin-bottom:14px;flex-wrap:wrap">
-                        <div style="display:flex;gap:2px;background:#fff;border:1px solid #ECEAE2;border-radius:10px;padding:3px;flex:none">
-                          <sc-for list="{{ spk_schViewTabs }}" as="t" hint-placeholder-count="2">
-                            <button onClick="{{ t.pick }}" title="{{ t.label }}" style="width:34px;height:32px;border:0;border-radius:7px;display:grid;place-items:center;cursor:pointer;background:{{ t.bg }};color:{{ t.fg }}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{{ t.ic }}" /></svg></button>
-                          </sc-for>
+                    <div style="display:flex;flex-direction:column;gap:26px">
+                      <div>
+                        <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px">
+                          <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
+                          <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">SCHEDULE SNAPSHOT</span>
+                          <span style="flex:1;height:1px;background:#F0EEE7"></span>
+                          <span style="font-size:11.5px;color:#98A2B3"></span>
                         </div>
-                        <select value="{{ spk_schFilter }}" onChange="{{ spk_setSchFilter }}" style="height:34px;padding:0 11px;border:1px solid #E5E3DC;border-radius:9px;font-size:12.5px;font-weight:600;background:#fff;color:#0F2A47;outline:0;font-family:inherit">
-                          <sc-for list="{{ spk_schFilterOpts }}" as="o" hint-placeholder-count="4"><option>{{ o.o }}</option></sc-for>
-                        </select>
-                        <span style="flex:1"></span>
-                        <span style="font-size:12px;color:#98A2B3;white-space:nowrap">{{ spk_schCount }} sessions</span>
-                        <button onClick="{{ goSchedule }}" style="height:34px;padding:0 13px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit;white-space:nowrap" style-hover="background:#F6F5F0">Full calendar →</button>
-                      </div>
-
-                      <sc-if value="{{ spk_schIsList }}" hint-placeholder-val="{{ true }}">
-                        <div style="border:1px solid #F0EEE7;border-radius:12px;overflow:hidden">
-                          <sc-for list="{{ spk_schRows }}" as="e" hint-placeholder-count="6">
-                            <div onClick="{{ e.open }}" style="display:flex;align-items:center;gap:14px;padding:14px 16px;border-bottom:1px solid #F7F5F0;border-left:3px solid {{ e.accent }};cursor:pointer" style-hover="background:#FCFBF7">
-                              <div style="width:104px;flex:none">
-                                <div style="font-size:12.5px;font-weight:700;color:#0F2A47">{{ e.date }}</div>
-                                <div style="font-size:10.5px;color:#98A2B3;margin-top:2px">{{ e.time }}</div>
-                              </div>
-                              <div style="min-width:0;flex:1">
-                                <div style="font-size:13.5px;font-weight:600;color:#0F2A47;text-wrap:pretty">{{ e.title }}</div>
-                                <div style="display:flex;align-items:center;gap:8px;margin-top:5px;flex-wrap:wrap">
-                                  <span style="font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px;background:#EEF6F5;color:#0B7A6E;white-space:nowrap">{{ e.type }}</span>
-                                  <span style="font-size:11.5px;color:#98A2B3">{{ e.regs }} registered</span>
-                                  <span style="font-size:11.5px;color:#98A2B3">· {{ e.mins }}</span>
-                                </div>
-                              </div>
-                              <div style="width:92px;flex:none;text-align:right">
-                                <div style="font-size:10px;font-weight:700;letter-spacing:.05em;color:#98A2B3">ATTENDANCE</div>
-                                <div style="font-size:13.5px;font-weight:800;color:{{ e.attFg }};margin-top:3px">{{ e.attendance }}</div>
-                              </div>
-                              <div style="width:72px;flex:none;text-align:right">
-                                <div style="font-size:10px;font-weight:700;letter-spacing:.05em;color:#98A2B3">RATING</div>
-                                <div style="font-size:13.5px;font-weight:800;color:#B45309;margin-top:3px">{{ e.rating }}</div>
-                              </div>
-                              <span style="font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:{{ e.sBg }};color:{{ e.sFg }};white-space:nowrap;flex:none">{{ e.status }}</span>
+                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:12px">
+                          <sc-for list="{{ sc.cards }}" as="c" hint-placeholder-count="4">
+                            <div onClick="{{ c.open }}" style="min-width:0;border:1px solid #F0EEE7;border-radius:11px;padding:12px 14px;background:#FCFBF7;cursor:pointer" style-hover="border-color:#BFE3DC">
+                              <div style="font-size:11px;font-weight:600;color:#7A8699">{{ c.label }}</div>
+                              <div style="font-size:20px;font-weight:800;color:{{ c.fg }};letter-spacing:-.02em;margin-top:5px">{{ c.n }}</div>
+                              <div style="font-size:10.5px;color:#98A2B3;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ c.note }}</div>
                             </div>
                           </sc-for>
-                          <div style="display:{{ spk_schEmpty }};padding:32px 20px;text-align:center">
-                            <div style="font-size:13px;font-weight:700;color:#475467">No sessions in this filter</div>
-                          </div>
                         </div>
-                      </sc-if>
+                      </div>
 
-                      <sc-if value="{{ spk_schIsCal }}" hint-placeholder-val="{{ false }}">
+                      <div>
+                        <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px">
+                          <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
+                          <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">CALENDAR VIEW</span>
+                          <span style="flex:1;height:1px;background:#F0EEE7"></span>
+                          <span style="font-size:11.5px;color:#98A2B3">Same calendar used on the Speaker Schedule page</span>
+                        </div>
                         <div style="border:1px solid #F0EEE7;border-radius:12px;overflow:hidden">
-                          <div style="display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #F2F0EA;background:#FCFBF7">
-                            <button onClick="{{ spk_schPrev }}" style="width:30px;height:30px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:#475467;font-family:inherit" style-hover="background:#F6F5F0">
-                              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M15 18l-6-6 6-6" /></svg>
-                            </button>
-                            <span style="font-size:14px;font-weight:800;color:#0F2A47;min-width:132px;text-align:center">{{ spk_schMonthLabel }}</span>
-                            <button onClick="{{ spk_schNext }}" style="width:30px;height:30px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:#475467;font-family:inherit" style-hover="background:#F6F5F0">
-                              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 6l6 6-6 6" /></svg>
-                            </button>
-                            <span style="flex:1"></span>
-                            <sc-for list="{{ spk_schLegend }}" as="l" hint-placeholder-count="3">
-                              <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:{{ l.bg }}">
-                                <span style="width:6px;height:6px;border-radius:50%;background:{{ l.dot }}"></span>
-                                <span style="font-size:11px;font-weight:600;color:{{ l.fg }};white-space:nowrap">{{ l.label }}</span>
-                              </span>
-                            </sc-for>
-                          </div>
-                          <div style="padding:16px">
-                            <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px;margin-bottom:7px">
-                              <sc-for list="{{ spk_schDows }}" as="d" hint-placeholder-count="7">
-                                <div style="text-align:center;font-size:10px;font-weight:700;letter-spacing:.05em;color:#98A2B3">{{ d.d }}</div>
+                          <div style="display:flex;align-items:center;gap:12px;padding:13px 16px;border-bottom:1px solid #F2F0EA;flex-wrap:wrap;background:#FCFBF7">
+                            <div style="display:flex;gap:2px;background:#fff;border:1px solid #ECEAE2;border-radius:9px;padding:3px">
+                              <sc-for list="{{ sc.modes }}" as="m" hint-placeholder-count="4">
+                                <button onClick="{{ m.pick }}" style="height:28px;padding:0 13px;border:0;border-radius:6px;font-size:12px;cursor:pointer;background:{{ m.bg }};color:{{ m.fg }};font-weight:{{ m.fw }};font-family:inherit">{{ m.label }}</button>
                               </sc-for>
                             </div>
-                            <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px">
-                              <sc-for list="{{ spk_schCells }}" as="c" hint-placeholder-count="35">
-                                <div style="min-width:0;min-height:82px;border:1px solid {{ c.bd }};border-radius:9px;background:{{ c.bg }};padding:7px 8px">
-                                  <div style="font-size:11.5px;font-weight:{{ c.dayWeight }};color:{{ c.dayFg }}">{{ c.d }}</div>
-                                  <div style="display:flex;flex-direction:column;gap:4px;margin-top:5px">
-                                    <sc-for list="{{ c.events }}" as="ev" hint-placeholder-count="1">
-                                      <div onClick="{{ ev.open }}" style="border-radius:6px;background:{{ ev.bg }};padding:4px 6px;cursor:pointer" style-hover="filter:brightness(.96)">
-                                        <div style="font-size:9.5px;font-weight:700;color:{{ ev.fg }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ ev.title }}</div>
-                                        <div style="font-size:9px;color:{{ ev.fg }};opacity:.75;white-space:nowrap">{{ ev.time }}</div>
-                                      </div>
+                            <div style="display:flex;align-items:center;gap:6px">
+                              <button onClick="{{ sc.prev }}" aria-label="Previous" style="width:28px;height:28px;border-radius:7px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:#475467" style-hover="background:#F6F5F0"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"></path></svg></button>
+                              <button onClick="{{ sc.today }}" style="height:28px;padding:0 11px;border-radius:7px;border:1px solid #E5E3DC;background:#fff;font-size:12px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Today</button>
+                              <button onClick="{{ sc.next }}" aria-label="Next" style="width:28px;height:28px;border-radius:7px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:#475467" style-hover="background:#F6F5F0"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 6l6 6-6 6"></path></svg></button>
+                            </div>
+                            <span style="font-size:14px;font-weight:700;color:#0F2A47">{{ sc.range }}</span>
+                            <span style="flex:1"></span>
+                            <div style="display:flex;gap:12px;flex-wrap:wrap">
+                              <sc-for list="{{ sc.legend }}" as="l" hint-placeholder-count="6">
+                                <span style="display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;color:#475467"><span style="width:8px;height:8px;border-radius:50%;background:{{ l.c }}"></span>{{ l.label }}</span>
+                              </sc-for>
+                            </div>
+                          </div>
+
+                          <sc-if value="{{ sc.isWeek }}" hint-placeholder-val="{{ true }}">
+                            <div style="padding:16px 18px;overflow-x:auto">
+                              <div style="min-width:860px;display:flex;flex-direction:column;gap:7px">
+                                <div style="display:grid;grid-template-columns:100px repeat(7,minmax(0,1fr));gap:7px">
+                                  <span></span>
+                                  <sc-for list="{{ sc.weekDays }}" as="d" hint-placeholder-count="7">
+                                    <div onClick="{{ d.open }}" style="text-align:center;font-size:11.5px;font-weight:{{ d.fw }};color:{{ d.fg }};cursor:pointer">{{ d.d }}</div>
+                                  </sc-for>
+                                </div>
+                                <sc-for list="{{ sc.weekRows }}" as="row" hint-placeholder-count="5">
+                                  <div style="display:grid;grid-template-columns:100px repeat(7,minmax(0,1fr));gap:7px">
+                                    <div style="display:flex;align-items:center;font-size:11.5px;font-weight:600;color:#475467">{{ row.slot }}</div>
+                                    <sc-for list="{{ row.cells }}" as="c" hint-placeholder-count="7">
+                                      <div onClick="{{ c.open }}" style="min-width:0;min-height:52px;border:1px solid {{ c.bd }};border-radius:9px;background:{{ c.bg }};color:{{ c.fg }};display:grid;place-items:center;padding:6px;font-size:11.5px;font-weight:600;text-align:center;text-wrap:pretty;cursor:{{ c.cursor }}">{{ c.label }}</div>
                                     </sc-for>
+                                  </div>
+                                </sc-for>
+                              </div>
+                            </div>
+                          </sc-if>
+
+                          <sc-if value="{{ sc.isDay }}" hint-placeholder-val="{{ false }}">
+                            <div style="padding:16px 18px;display:flex;flex-direction:column;gap:7px">
+                              <sc-for list="{{ sc.dayRows }}" as="r" hint-placeholder-count="9">
+                                <div style="display:grid;grid-template-columns:76px minmax(0,1fr);gap:12px;align-items:stretch">
+                                  <div style="font-size:11.5px;font-weight:600;color:#7A8699;padding-top:11px">{{ r.time }}</div>
+                                  <div style="display:{{ r.empty }};align-items:center;min-height:32px;border-top:1px dashed #EFEDE6"></div>
+                                  <div onClick="{{ r.open }}" style="display:{{ r.filled }};border:1px solid {{ r.bd }};border-left:4px solid {{ r.fg }};border-radius:10px;padding:11px 14px;background:#FCFBF7;cursor:pointer" style-hover="background:#F7FBFA">
+                                    <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap">
+                                      <span style="font-size:13px;font-weight:700;color:#0F2A47">{{ r.title }}</span>
+                                      <span style="font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px;background:{{ r.bg }};color:{{ r.fg }}">{{ r.state }}</span>
+                                      <span style="flex:1"></span>
+                                      <span style="font-size:12px;color:#7A8699">{{ r.slot }}</span>
+                                    </div>
+                                    <div style="font-size:12px;color:#7A8699;margin-top:5px">{{ r.meta }}</div>
                                   </div>
                                 </div>
                               </sc-for>
+                              <sc-if value="{{ sc.dayEmpty }}" hint-placeholder-val="{{ false }}">
+                                <div style="padding:10px 0 4px 88px;font-size:12.5px;color:#7A8699">No events on this day — use Block Availability to mark it off, or move to the next day.</div>
+                              </sc-if>
                             </div>
-                          </div>
-                        </div>
-                      </sc-if>
+                          </sc-if>
 
-                      <sc-if value="{{ spk_schIsCal }}" hint-placeholder-val="{{ false }}">
-                        <div style="border:1px solid #F0EEE7;border-radius:12px;overflow:hidden">
-                          <div style="display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #F2F0EA;background:#FCFBF7;flex-wrap:wrap">
-                            <button onClick="{{ spk_schPrev }}" style="width:30px;height:30px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:#475467;font-family:inherit" style-hover="background:#F6F5F0">
-                              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M15 18l-6-6 6-6" /></svg>
-                            </button>
-                            <span style="font-size:14px;font-weight:800;color:#0F2A47;min-width:132px;text-align:center">{{ spk_schMonthLabel }}</span>
-                            <button onClick="{{ spk_schNext }}" style="width:30px;height:30px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:#475467;font-family:inherit" style-hover="background:#F6F5F0">
-                              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 6l6 6-6 6" /></svg>
-                            </button>
-                            <span style="flex:1"></span>
-                            <sc-for list="{{ spk_schLegend }}" as="l" hint-placeholder-count="3">
-                              <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:{{ l.bg }}">
-                                <span style="width:6px;height:6px;border-radius:50%;background:{{ l.dot }}"></span>
-                                <span style="font-size:11px;font-weight:600;color:{{ l.fg }};white-space:nowrap">{{ l.label }}</span>
-                              </span>
-                            </sc-for>
-                          </div>
-                          <div style="padding:16px">
-                            <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px;margin-bottom:7px">
-                              <sc-for list="{{ spk_schDows }}" as="d" hint-placeholder-count="7">
-                                <div style="text-align:center;font-size:10px;font-weight:700;letter-spacing:.05em;color:#98A2B3">{{ d.d }}</div>
-                              </sc-for>
-                            </div>
-                            <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px">
-                              <sc-for list="{{ spk_schCells }}" as="c" hint-placeholder-count="35">
-                                <div style="min-width:0;min-height:82px;border:1px solid {{ c.bd }};border-radius:9px;background:{{ c.bg }};padding:7px 8px">
-                                  <div style="font-size:11.5px;font-weight:{{ c.dayWeight }};color:{{ c.dayFg }}">{{ c.d }}</div>
-                                  <div style="display:flex;flex-direction:column;gap:4px;margin-top:5px">
-                                    <sc-for list="{{ c.events }}" as="ev" hint-placeholder-count="1">
-                                      <div onClick="{{ ev.open }}" style="border-radius:6px;background:{{ ev.bg }};padding:4px 6px;cursor:pointer">
-                                        <div style="font-size:9.5px;font-weight:700;color:{{ ev.fg }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ ev.title }}</div>
-                                        <div style="font-size:9px;color:{{ ev.fg }};opacity:.75;white-space:nowrap">{{ ev.time }}</div>
-                                      </div>
+                          <sc-if value="{{ sc.isMonth }}" hint-placeholder-val="{{ false }}">
+                            <div style="padding:16px 18px">
+                              <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px;margin-bottom:7px">
+                                <sc-for list="{{ sc.dows }}" as="d" hint-placeholder-count="7">
+                                  <div style="text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#98A2B3">{{ d.d }}</div>
+                                </sc-for>
+                              </div>
+                              <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px">
+                                <sc-for list="{{ sc.monthCells }}" as="c" hint-placeholder-count="35">
+                                  <div onClick="{{ c.open }}" style="min-width:0;min-height:72px;border:1px solid {{ c.bd }};border-radius:9px;background:{{ c.bg }};padding:8px 9px;cursor:pointer;display:flex;flex-direction:column;gap:4px" style-hover="border-color:#BFE3DC">
+                                    <div style="font-size:12px;font-weight:700;color:{{ c.fg }}">{{ c.d }}</div>
+                                    <sc-for list="{{ c.chips }}" as="x" hint-placeholder-count="0">
+                                      <div style="font-size:10px;font-weight:600;padding:2px 6px;border-radius:6px;background:{{ x.bg }};color:{{ x.fg }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ x.t }}</div>
                                     </sc-for>
                                   </div>
+                                </sc-for>
+                              </div>
+                            </div>
+                          </sc-if>
+
+                          <sc-if value="{{ sc.isAgenda }}" hint-placeholder-val="{{ false }}">
+                            <div>
+                              <sc-for list="{{ sc.agenda }}" as="r" hint-placeholder-count="8">
+                                <div onClick="{{ r.open }}" style="display:flex;align-items:center;gap:13px;padding:12px 18px;border-bottom:1px solid #F5F3EE;cursor:pointer" style-hover="background:#FCFBF7">
+                                  <div style="width:96px;flex:none">
+                                    <div style="font-size:12.5px;font-weight:700;color:#0F2A47">{{ r.date }}</div>
+                                    <div style="font-size:11px;color:#98A2B3;margin-top:2px">{{ r.slot }}</div>
+                                  </div>
+                                  <div style="min-width:0;flex:1">
+                                    <div style="font-size:13px;font-weight:600;color:#0F2A47">{{ r.title }}</div>
+                                    <div style="font-size:11.5px;color:#98A2B3;margin-top:3px">{{ r.meta }}</div>
+                                  </div>
+                                  <span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.bg }};color:{{ r.fg }};white-space:nowrap">{{ r.state }}</span>
                                 </div>
                               </sc-for>
                             </div>
+                          </sc-if>
+                        </div>
+                      </div>
+
+                      <div>
+                        <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px">
+                          <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
+                          <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">UPCOMING &amp; ACTIVE EVENTS</span>
+                          <span style="flex:1;height:1px;background:#F0EEE7"></span>
+                          <span style="font-size:11.5px;color:#98A2B3">Next 14 days · rescheduled sessions included</span>
+                        </div>
+                        <div style="border:1px solid #F0EEE7;border-radius:12px;overflow:hidden">
+                          <div style="overflow-x:auto">
+                            <table style="width:100%;min-width:860px;border-collapse:collapse">
+                              <thead><tr style="background:#FCFBF7">
+                                <sc-for list="{{ sc.cols }}" as="c" hint-placeholder-count="7">
+                                  <th style="padding:10px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">{{ c.c }}</th>
+                                </sc-for>
+                              </tr></thead>
+                              <tbody>
+                                <sc-for list="{{ sc.upcoming }}" as="r" hint-placeholder-count="6">
+                                  <tr onClick="{{ r.open }}" style="cursor:pointer" style-hover="background:#FCFBF7">
+                                    <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#0F2A47;font-weight:600;white-space:nowrap">{{ r.date }}</td>
+                                    <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.slot }}</td>
+                                    <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.title }}</td>
+                                    <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.fmt }}</td>
+                                    <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.coord }}</td>
+                                    <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ r.regs }}</td>
+                                    <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.bg }};color:{{ r.fg }};white-space:nowrap">{{ r.state }}</span></td>
+                                  </tr>
+                                </sc-for>
+                              </tbody>
+                            </table>
                           </div>
                         </div>
-                      </sc-if>
+                      </div>
+
+                      <div>
+                        <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px">
+                          <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
+                          <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">SCHEDULE ACTIONS</span>
+                          <span style="flex:1;height:1px;background:#F0EEE7"></span>
+                          <span style="font-size:11.5px;color:#98A2B3"></span>
+                        </div>
+                        <div style="display:flex;flex-wrap:wrap;gap:9px">
+                          <sc-for list="{{ sc.actions }}" as="b" hint-placeholder-count="3">
+                            <button onClick="{{ b.go }}" style="height:36px;padding:0 15px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">{{ b.label }}</button>
+                          </sc-for>
+                        </div>
+                      </div>
                     </div>
+
+                    <sc-if value="{{ scm.open }}" hint-placeholder-val="{{ false }}">
+                      <div onClick="{{ scm.close }}" style="position:fixed;inset:0;z-index:80;background:rgba(11,31,62,.45)"></div>
+                      <div style="position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:81;width:min(640px,calc(100vw - 48px));max-height:calc(100vh - 64px);overflow:auto;background:#fff;border-radius:16px;box-shadow:0 24px 64px rgba(11,31,62,.22)">
+                        <div style="display:flex;align-items:flex-start;gap:12px;padding:20px 22px 16px;border-bottom:1px solid #F0EEE7">
+                          <div style="min-width:0;flex:1">
+                            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+                              <span style="font-size:18px;font-weight:500;color:#0F2A47;letter-spacing:-.02em">{{ scm.title }}</span>
+                              <span style="display:{{ scm.pillShow }};font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ scm.bg }};color:{{ scm.fg }}">{{ scm.state }}</span>
+                            </div>
+                            <div style="font-size:12.5px;color:#7A8699;margin-top:4px">{{ scm.sub }}</div>
+                          </div>
+                          <button onClick="{{ scm.close }}" aria-label="Close" style="width:32px;height:32px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:#475467;flex:none" style-hover="background:#F6F5F0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+                        </div>
+
+                        <sc-if value="{{ scm.isView }}" hint-placeholder-val="{{ false }}">
+                          <div style="padding:18px 22px 22px;display:flex;flex-direction:column;gap:16px">
+                            <div style="border:1px solid #F0EEE7;border-radius:12px;overflow:hidden">
+                              <sc-for list="{{ scm.meta }}" as="m" hint-placeholder-count="7">
+                                <div style="display:grid;grid-template-columns:150px minmax(0,1fr);gap:14px;padding:10px 16px;background:{{ m.bg }};border-bottom:1px solid #F7F5F0">
+                                  <span style="font-size:12px;color:#7A8699">{{ m.k }}</span>
+                                  <span style="font-size:12.5px;font-weight:600;color:#0F2A47;text-wrap:pretty">{{ m.v }}</span>
+                                </div>
+                              </sc-for>
+                            </div>
+                            <div style="display:flex;gap:9px;flex-wrap:wrap">
+                              <sc-for list="{{ scm.btns }}" as="b" hint-placeholder-count="3">
+                                <button onClick="{{ b.go }}" style="height:38px;padding:0 16px;border-radius:10px;border:1px solid {{ b.bd }};background:{{ b.bg }};font-size:13.5px;font-weight:{{ b.fw }};color:{{ b.fg }};cursor:pointer;font-family:inherit">{{ b.label }}</button>
+                              </sc-for>
+                            </div>
+                          </div>
+                        </sc-if>
+
+                        <sc-if value="{{ scm.isForm }}" hint-placeholder-val="{{ false }}">
+                          <div style="padding:18px 22px 22px;display:flex;flex-direction:column;gap:14px">
+                            <div style="display:{{ scm.diffShow }};align-items:center;gap:10px;flex-wrap:wrap;padding:11px 14px;border-radius:11px;background:#FCFBF7;border:1px solid #F0EEE7">
+                              <span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:#FDE8E8;color:#B42318;text-decoration:line-through">{{ scm.from }}</span>
+                              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#98A2B3" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+                              <span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:#E7F7EE;color:#15803D">{{ scm.to }}</span>
+                            </div>
+                            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px">
+                              <sc-for list="{{ scm.fields }}" as="f" hint-placeholder-count="2">
+                                <div style="min-width:0">
+                                  <label style="display:block;font-size:12px;font-weight:600;color:#475467;margin-bottom:6px">{{ f.label }}</label>
+                                  <input type="date" value="{{ f.value }}" onChange="{{ f.set }}" style="display:{{ f.dateShow }};width:100%;height:40px;padding:0 12px;border:1px solid #E5E3DC;border-radius:9px;font-size:13.5px;color:#0F2A47;background:#fff;outline:0;box-sizing:border-box;font-family:inherit" style-focus="border-color:#0E9384" />
+                                  <select value="{{ f.value }}" onChange="{{ f.set }}" style="display:{{ f.selShow }};width:100%;height:40px;padding:0 12px;border:1px solid #E5E3DC;border-radius:9px;font-size:13.5px;color:#0F2A47;background:#fff;outline:0;box-sizing:border-box;font-family:inherit">
+                                    <sc-for list="{{ f.opts }}" as="o" hint-placeholder-count="3"><option>{{ o.o }}</option></sc-for>
+                                  </select>
+                                </div>
+                              </sc-for>
+                            </div>
+                            <div>
+                              <label style="display:block;font-size:12px;font-weight:600;color:#475467;margin-bottom:6px">{{ scm.noteLabel }}</label>
+                              <textarea value="{{ scm.note }}" onChange="{{ scm.setNote }}" placeholder="{{ scm.notePh }}" style="width:100%;min-height:96px;padding:11px 13px;border:1px solid {{ scm.noteBd }};border-radius:9px;font-size:13.5px;color:#0F2A47;outline:0;box-sizing:border-box;font-family:inherit;resize:vertical" style-focus="border-color:#0E9384"></textarea>
+                              <div style="display:{{ scm.errShow }};font-size:12px;color:#B42318;margin-top:6px">{{ scm.err }}</div>
+                            </div>
+                            <div style="display:{{ scm.warnShow }};font-size:12.5px;color:#B45309;background:#FEF3E2;border-radius:9px;padding:10px 12px;text-wrap:pretty">{{ scm.warn }}</div>
+                            <div style="display:flex;gap:10px;justify-content:flex-end">
+                              <button onClick="{{ scm.back }}" style="height:38px;padding:0 16px;border-radius:10px;border:1px solid #E5E3DC;background:#fff;font-size:14px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">{{ scm.backLabel }}</button>
+                              <button onClick="{{ scm.submit }}" style="height:38px;padding:0 18px;border-radius:10px;border:{{ scm.subBd }};background:{{ scm.subBg }};font-size:14px;font-weight:700;color:{{ scm.subFg }};cursor:pointer;font-family:inherit">{{ scm.submitLabel }}</button>
+                            </div>
+                          </div>
+                        </sc-if>
+                      </div>
+                    </sc-if>
                   </sc-if>
 
-                  <sc-if value="{{ spkTabIs.recruitment }}" hint-placeholder-val="{{ false }}">
-                    <div>
-                      <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px">
-                        <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
-                        <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">RECRUITMENT &amp; ENGAGEMENT</span>
-                        <span style="flex:1;height:1px;background:#F0EEE7"></span>
-                      </div>
-                      <div style="border:1px solid #F0EEE7;border-radius:11px;overflow:hidden">
-                        <sc-for list="{{ spkRecruit }}" as="r" hint-placeholder-count="12">
-                          <div style="display:grid;grid-template-columns:240px 1fr;gap:14px;padding:11px 16px;background:{{ r.bg }};border-bottom:1px solid #F7F5F0">
-                            <span style="font-size:12.5px;color:#7A8699">{{ r.k }}</span>
-                            <span style="font-size:12.5px;font-weight:600;color:#0F2A47">{{ r.v }}</span>
+                  <sc-if value="{{ spkTabIs.secTab }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:flex;flex-direction:column;gap:26px">
+                      <sc-for list="{{ spkSecs }}" as="sec" hint-placeholder-count="6">
+                        <div>
+                          <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px">
+                            <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
+                            <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">{{ sec.t }}</span>
+                            <span style="font-size:11.5px;color:#98A2B3">{{ sec.right }}</span>
+                            <span style="flex:1;height:1px;background:#F0EEE7"></span>
+                            <button onClick="{{ sec.edit }}" style="display:{{ sec.editShow }};align-items:center;height:30px;padding:0 14px;border-radius:9px;border:1px solid #BFE3DC;background:#EEF6F5;font-size:12.5px;font-weight:700;color:#0B7A6E;cursor:pointer;font-family:inherit" style-hover="background:#E0F0EE;border-color:#8FD0C5">Edit</button>
+                            <div style="display:{{ sec.saveShow }};align-items:center;gap:8px">
+                              <button onClick="{{ sec.cancel }}" style="height:30px;padding:0 12px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:12px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Cancel</button>
+                              <button onClick="{{ sec.save }}" style="height:30px;padding:0 14px;border-radius:8px;border:0;background:#0E9384;font-size:12px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit" style-hover="background:#0B7A6E">Save changes</button>
+                            </div>
                           </div>
-                        </sc-for>
-                      </div>
+
+                          <sc-if value="{{ sec.isCards }}" hint-placeholder-val="{{ false }}">
+                            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px">
+                              <sc-for list="{{ sec.cards }}" as="c" hint-placeholder-count="4">
+                                <div style="min-width:0;border:1px solid #F0EEE7;border-radius:11px;padding:12px 14px;background:#FCFBF7">
+                                  <div style="font-size:11px;font-weight:600;color:#7A8699;text-wrap:pretty">{{ c.label }}</div>
+                                  <div style="font-size:20px;font-weight:800;color:{{ c.fg }};letter-spacing:-.02em;margin-top:5px">{{ c.n }}</div>
+                                  <div style="font-size:10.5px;color:#98A2B3;margin-top:3px;text-wrap:pretty">{{ c.note }}</div>
+                                </div>
+                              </sc-for>
+                            </div>
+                          </sc-if>
+
+                          <sc-if value="{{ sec.isKv }}" hint-placeholder-val="{{ false }}">
+                            <div style="border:1px solid #F0EEE7;border-radius:12px;overflow:hidden">
+                              <sc-for list="{{ sec.kvRows }}" as="kv" hint-placeholder-count="8">
+                                <div style="display:grid;grid-template-columns:210px 1fr;gap:14px;align-items:center;padding:{{ kv.pad }};background:{{ kv.bg }};border-bottom:1px solid #F7F5F0">
+                                  <span style="font-size:12px;color:#7A8699">{{ kv.k }}</span>
+                                  <span style="display:{{ kv.viewShow }};font-size:12.5px;font-weight:600;color:#0F2A47;text-wrap:pretty">{{ kv.v }}</span>
+                                  <input value="{{ kv.draft }}" onChange="{{ kv.set }}" style="display:{{ kv.editShow }};width:100%;height:36px;padding:0 11px;border:1px solid #E5E3DC;border-radius:8px;font-size:12.5px;font-weight:600;color:#0F2A47;outline:0;box-sizing:border-box;font-family:inherit;background:#fff" style-focus="border-color:#0E9384;box-shadow:0 0 0 3px rgba(14,147,132,.14)" />
+                                </div>
+                              </sc-for>
+                            </div>
+                          </sc-if>
+
+                          <sc-if value="{{ sec.isTable }}" hint-placeholder-val="{{ false }}">
+                            <div style="border:1px solid #F0EEE7;border-radius:12px;overflow:hidden">
+                              <div style="overflow-x:auto">
+                                <table style="width:100%;border-collapse:collapse">
+                                  <thead>
+                                    <tr style="background:#FCFBF7">
+                                      <sc-for list="{{ sec.cols }}" as="c" hint-placeholder-count="5">
+                                        <th style="padding:10px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">{{ c.c }}</th>
+                                      </sc-for>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <sc-for list="{{ sec.trs }}" as="tr" hint-placeholder-count="4">
+                                      <tr style="background:{{ tr.bg }}" style-hover="background:#FCFBF7">
+                                        <sc-for list="{{ tr.cells }}" as="cl" hint-placeholder-count="5">
+                                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">
+                                            <sc-if value="{{ cl.isPill }}" hint-placeholder-val="{{ false }}">
+                                              <span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ cl.pBg }};color:{{ cl.pFg }}">{{ cl.v }}</span>
+                                            </sc-if>
+                                            <sc-if value="{{ cl.isPlain }}" hint-placeholder-val="{{ true }}">{{ cl.v }}</sc-if>
+                                          </td>
+                                        </sc-for>
+                                      </tr>
+                                    </sc-for>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </sc-if>
+
+                          <sc-if value="{{ sec.isGrid }}" hint-placeholder-val="{{ false }}">
+                            <div style="border:{{ sec.frame }};border-radius:12px;overflow:hidden">
+                              <sc-if value="{{ sec.hasNav }}" hint-placeholder-val="{{ false }}">
+                                <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 16px;background:#FCFBF7;border-bottom:1px solid #F0EEE7">
+                                  <div style="display:flex;gap:2px;background:#fff;border:1px solid #ECEAE2;border-radius:10px;padding:3px">
+                                    <sc-for list="{{ sec.views }}" as="v" hint-placeholder-count="2">
+                                      <button onClick="{{ v.pick }}" style="height:30px;padding:0 14px;border:0;border-radius:7px;font-size:12.5px;cursor:pointer;background:{{ v.bg }};color:{{ v.fg }};font-weight:{{ v.fw }};font-family:inherit">{{ v.label }}</button>
+                                    </sc-for>
+                                  </div>
+                                  <button onClick="{{ sec.prev }}" aria-label="Previous week" style="width:30px;height:30px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:#475467" style-hover="background:#F6F5F0"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M15 18l-6-6 6-6"></path></svg></button>
+                                  <button onClick="{{ sec.today }}" style="height:30px;padding:0 12px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Today</button>
+                                  <button onClick="{{ sec.next }}" aria-label="Next week" style="width:30px;height:30px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:#475467" style-hover="background:#F6F5F0"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 18l6-6-6-6"></path></svg></button>
+                                  <span style="font-size:15px;font-weight:700;color:#0F2A47;letter-spacing:-.01em">{{ sec.weekLabel }}</span>
+                                  <span style="flex:1"></span>
+                                  <sc-for list="{{ sec.legend }}" as="l" hint-placeholder-count="4">
+                                    <span style="display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;color:#475467"><span style="width:8px;height:8px;border-radius:50%;background:{{ l.c }}"></span>{{ l.label }}</span>
+                                  </sc-for>
+                                </div>
+                              </sc-if>
+                              <sc-if value="{{ sec.showGrid }}" hint-placeholder-val="{{ true }}">
+                                <div style="overflow-x:auto;padding:{{ sec.gridPad }}">
+                                  <div style="display:grid;grid-template-columns:{{ sec.gridCols }};gap:8px;min-width:820px">
+                                    <span></span>
+                                    <sc-for list="{{ sec.days }}" as="d" hint-placeholder-count="6">
+                                      <span style="font-size:11.5px;font-weight:{{ d.fw }};color:{{ d.fg }};text-align:center">{{ d.d }}</span>
+                                    </sc-for>
+                                    <sc-for list="{{ sec.cells }}" as="c" hint-placeholder-count="35">
+                                  <div style="min-height:{{ c.h }};border-radius:9px;border:1px solid {{ c.border }};background:{{ c.bg }};display:flex;align-items:center;justify-content:{{ c.justify }};padding:0 10px;font-size:{{ c.fs }};font-weight:{{ c.fw }};color:{{ c.fg }};text-align:center">{{ c.v }}</div>
+                                </sc-for>
+                                  </div>
+                                </div>
+                              </sc-if>
+                              <sc-if value="{{ sec.showAgenda }}" hint-placeholder-val="{{ false }}">
+                                <div style="display:flex;flex-direction:column">
+                                  <sc-for list="{{ sec.agenda }}" as="g" hint-placeholder-count="6">
+                                    <div style="display:grid;grid-template-columns:120px 120px minmax(0,1fr) auto;gap:14px;align-items:center;padding:11px 16px;border-bottom:1px solid #F5F3EE">
+                                      <span style="font-size:12.5px;font-weight:600;color:#0F2A47">{{ g.day }}</span>
+                                      <span style="font-size:12.5px;color:#475467">{{ g.time }}</span>
+                                      <span style="font-size:12.5px;color:#475467;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ g.v }}</span>
+                                      <span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ g.bg }};color:{{ g.fg }};white-space:nowrap">{{ g.kind }}</span>
+                                    </div>
+                                  </sc-for>
+                                </div>
+                              </sc-if>
+                            </div>
+                          </sc-if>
+
+                          <sc-if value="{{ sec.isList }}" hint-placeholder-val="{{ false }}">
+                            <div style="border:1px solid #F0EEE7;border-radius:12px;overflow:hidden">
+                              <sc-for list="{{ sec.items }}" as="it" hint-placeholder-count="3">
+                                <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid #F7F5F0;background:#fff">
+                                  <span style="width:28px;height:28px;flex:none;border-radius:8px;background:{{ it.iBg }};color:{{ it.iFg }};display:grid;place-items:center;font-size:12px;font-weight:700">{{ it.ic }}</span>
+                                  <div style="min-width:0;flex:1">
+                                    <div style="font-size:12.5px;font-weight:600;color:#0F2A47;text-wrap:pretty">{{ it.t }}</div>
+                                    <div style="font-size:11.5px;color:#98A2B3;margin-top:2px;text-wrap:pretty">{{ it.s }}</div>
+                                  </div>
+                                </div>
+                              </sc-for>
+                            </div>
+                          </sc-if>
+
+                          <sc-if value="{{ sec.isBars }}" hint-placeholder-val="{{ false }}">
+                            <div style="display:flex;flex-direction:column;gap:14px">
+                              <sc-for list="{{ sec.bars }}" as="b" hint-placeholder-count="4">
+                                <div>
+                                  <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap">
+                                    <span style="font-size:12.5px;font-weight:600;color:#0F2A47">{{ b.label }}</span>
+                                    <span style="font-size:11.5px;color:#98A2B3;flex:1;min-width:0;text-wrap:pretty">{{ b.sub }}</span>
+                                    <span style="font-size:12.5px;font-weight:800;color:#0F2A47">{{ b.pct }}</span>
+                                  </div>
+                                  <div style="height:8px;border-radius:5px;background:#F2F0EA;overflow:hidden"><div style="height:100%;width:{{ b.pct }};border-radius:5px;background:#0E9384"></div></div>
+                                </div>
+                              </sc-for>
+                            </div>
+                          </sc-if>
+
+                          <sc-if value="{{ sec.isActions }}" hint-placeholder-val="{{ false }}">
+                            <div style="display:flex;flex-wrap:wrap;gap:9px">
+                              <sc-for list="{{ sec.btns }}" as="b" hint-placeholder-count="6">
+                                <button onClick="{{ b.pick }}" style="height:36px;padding:0 15px;border-radius:9px;border:1px solid {{ b.border }};background:#fff;font-size:12.5px;font-weight:600;color:{{ b.fg }};cursor:pointer;font-family:inherit" style-hover="background:{{ b.hbg }}">{{ b.label }}</button>
+                              </sc-for>
+                            </div>
+                          </sc-if>
+                        </div>
+                      </sc-for>
                     </div>
                   </sc-if>
 
@@ -2639,54 +2877,6 @@
                             <div style="font-size:12.5px;color:#475467;margin-top:8px;line-height:1.55;text-wrap:pretty">{{ rv.comment }}</div>
                           </div>
                         </sc-for>
-                      </div>
-                    </div>
-                  </sc-if>
-
-                  <sc-if value="{{ spkTabIs.attendance }}" hint-placeholder-val="{{ false }}">
-                    <div>
-                      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:13px;margin-bottom:24px">
-                        <sc-for list="{{ spkAttendance.kpis }}" as="k" hint-placeholder-count="6">
-                          <div style="border:1px solid #F0EEE7;border-radius:12px;padding:14px 16px;background:#FCFBF7">
-                            <div style="font-size:10.5px;font-weight:700;letter-spacing:.06em;color:#7A8699">{{ k.label }}</div>
-                            <div style="font-size:22px;font-weight:800;letter-spacing:-.02em;color:{{ k.fg }};margin-top:6px">{{ k.v }}</div>
-                            <div style="font-size:11px;color:#98A2B3;margin-top:3px">{{ k.note }}</div>
-                          </div>
-                        </sc-for>
-                      </div>
-
-                      <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px">
-                        <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
-                        <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">SESSION ATTENDANCE LOG</span>
-                        <span style="flex:1;height:1px;background:#F0EEE7"></span>
-                      </div>
-                      <div style="border:1px solid #F0EEE7;border-radius:12px;overflow:hidden">
-                        <div style="overflow-x:auto">
-                          <table style="width:100%;min-width:760px;border-collapse:collapse">
-                            <thead>
-                              <tr style="background:#FCFBF7">
-                                <th style="padding:10px 16px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7">DATE</th>
-                                <th style="padding:10px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7">EVENT</th>
-                                <th style="padding:10px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">SCHEDULED</th>
-                                <th style="padding:10px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">ACTUAL START</th>
-                                <th style="padding:10px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">DURATION</th>
-                                <th style="padding:10px 16px 10px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7">STATUS</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <sc-for list="{{ spkAttendance.log }}" as="a" hint-placeholder-count="5">
-                                <tr style-hover="background:#FCFBF7">
-                                  <td style="padding:11px 16px;border-bottom:1px solid #F5F3EE;font-size:12px;color:#475467;white-space:nowrap">{{ a.date }}</td>
-                                  <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;font-weight:600;color:#0F2A47">{{ a.event }}</td>
-                                  <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12px;color:#475467">{{ a.scheduled }}</td>
-                                  <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12px;color:#475467">{{ a.actual }}</td>
-                                  <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12px;color:#475467">{{ a.duration }}</td>
-                                  <td style="padding:11px 16px 11px 13px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ a.sBg }};color:{{ a.sFg }};white-space:nowrap">{{ a.status }}</span></td>
-                                </tr>
-                              </sc-for>
-                            </tbody>
-                          </table>
-                        </div>
                       </div>
                     </div>
                   </sc-if>
@@ -4427,22 +4617,38 @@
 
       <sc-if value="{{ isPerf360 }}" hint-placeholder-val="{{ false }}">
         <div>
-          <div style="display:flex;align-items:flex-start;gap:14px;background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:18px 20px;margin-bottom:16px;flex-wrap:wrap">
-            <button onClick="{{ perfBackToList }}" style="width:32px;height:32px;flex:none;border-radius:9px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:#475467;margin-top:4px;font-family:inherit" style-hover="background:#F6F5F0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6" /></svg></button>
-            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:{{ perfWhoAv }};display:grid;place-items:center;color:#fff;font-size:14px;font-weight:700">{{ perfWhoInitials }}</div>
-            <div style="min-width:0;flex:1 1 260px">
-              <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-                <span style="font-size:18px;font-weight:800;color:#0F2A47;letter-spacing:-.02em">{{ perfWhoName }}</span>
-                <span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ perfWhoStatusBg }};color:{{ perfWhoStatusFg }};white-space:nowrap">{{ perfWhoStatus }}</span>
-              </div>
-              <div style="font-size:12px;color:#98A2B3;margin-top:5px;text-wrap:pretty">{{ perfWhoId }} · {{ perfWhoSpec }} · {{ perfWhoEvents }} events · {{ perfWhoAudience }} audience · {{ perfWhoHours }}h delivered</div>
+          <div style="display:flex;align-items:flex-start;gap:22px;background:#0B1F3E;border-radius:16px;padding:26px 28px;margin-bottom:16px;flex-wrap:wrap">
+            <button onClick="{{ perfBackToList }}" aria-label="Back to performance list" style="width:32px;height:32px;flex:none;border-radius:9px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);display:grid;place-items:center;cursor:pointer;color:#DCE7F3;font-family:inherit" style-hover="background:rgba(255,255,255,.14)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6" /></svg></button>
+            <div style="width:118px;height:118px;flex:none;border-radius:14px;background:#14335C;border:3px solid rgba(255,255,255,.16);display:grid;place-items:center">
+              <span style="font-size:34px;font-weight:800;color:#fff;letter-spacing:-.02em">{{ perfWhoInitials }}</span>
             </div>
-            <div style="display:flex;gap:8px;flex:none;flex-wrap:wrap;align-items:center">
-              <span style="flex:none;font-size:12px;font-weight:600;padding:8px 14px;border-radius:9px;background:#FCFBF7;border:1px solid #EDEBE4;color:#475467;white-space:nowrap">Aug 1 – Aug 31, 2026</span>
-              <button onClick="{{ perfCompareWho }}" style="height:36px;padding:0 14px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer;white-space:nowrap;font-family:inherit" style-hover="background:#F6F5F0">Compare</button>
-              <button onClick="{{ perfGoalsWho }}" style="height:36px;padding:0 14px;border-radius:9px;border:1px solid #BFE3DC;background:#EEF6F5;font-size:12.5px;font-weight:600;color:#0B7A6E;cursor:pointer;white-space:nowrap;font-family:inherit" style-hover="background:#E2F1EE">Set Goals</button>
-              <button onClick="{{ perfDownloadPdf }}" style="height:36px;padding:0 14px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer;white-space:nowrap;font-family:inherit" style-hover="background:#F6F5F0">Download PDF</button>
-              <button onClick="{{ perfExportWho }}" style="height:36px;padding:0 15px;border-radius:9px;border:0;background:#0E9384;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer;white-space:nowrap;font-family:inherit" style-hover="background:#0B7A6E">Export Report</button>
+            <div style="min-width:0;flex:1 1 320px">
+              <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap">
+                <span style="font-size:27px;font-weight:800;color:#fff;letter-spacing:-.02em">{{ perfWhoName }}</span>
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="#3FA9F5" style="flex:none"><path d="M12 2 14.4 4.3l3.2-.4.6 3.2 2.9 1.5-1.5 2.9 1.5 2.9-2.9 1.5-.6 3.2-3.2-.4L12 22l-2.4-2.3-3.2.4-.6-3.2L2.9 15.3 4.4 12.4 2.9 9.5l2.9-1.5.6-3.2 3.2.4z" /><path d="m8.6 12.3 2.2 2.2 4.6-4.6" stroke="#0B1F3E" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                <span style="display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;padding:5px 13px;border-radius:999px;background:{{ perfWhoStatusBg }};color:{{ perfWhoStatusFg }};white-space:nowrap">
+                  <span style="width:7px;height:7px;border-radius:50%;background:{{ perfWhoStatusFg }}"></span>{{ perfWhoStatus }}
+                </span>
+              </div>
+              <div style="font-size:14px;color:#B8C8DD;margin-top:9px">{{ perfWhoSpec }} · External Speaker · Performance 360°</div>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px">
+                <span style="font-size:12px;font-weight:600;padding:5px 13px;border-radius:999px;border:1px solid rgba(255,255,255,.2);color:#DCE7F3">{{ perfWhoId }}</span>
+                <span style="font-size:12px;font-weight:600;padding:5px 13px;border-radius:999px;border:1px solid rgba(255,255,255,.2);color:#DCE7F3">{{ perfWhoEvents }} events</span>
+                <span style="font-size:12px;font-weight:600;padding:5px 13px;border-radius:999px;border:1px solid rgba(255,255,255,.2);color:#DCE7F3">{{ perfWhoAudience }} audience</span>
+                <span style="font-size:12px;font-weight:600;padding:5px 13px;border-radius:999px;border:1px solid rgba(255,255,255,.2);color:#DCE7F3">{{ perfWhoHours }}h delivered</span>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:18px">
+                <button onClick="{{ perfCompareWho }}" style="height:34px;padding:0 15px;border-radius:9px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);font-size:12.5px;font-weight:600;color:#DCE7F3;cursor:pointer;white-space:nowrap;font-family:inherit" style-hover="background:rgba(255,255,255,.14)">Compare</button>
+                <button onClick="{{ perfGoalsWho }}" style="height:34px;padding:0 15px;border-radius:9px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);font-size:12.5px;font-weight:600;color:#DCE7F3;cursor:pointer;white-space:nowrap;font-family:inherit" style-hover="background:rgba(255,255,255,.14)">Set Goals</button>
+                <button onClick="{{ perfDownloadPdf }}" style="height:34px;padding:0 15px;border-radius:9px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);font-size:12.5px;font-weight:600;color:#DCE7F3;cursor:pointer;white-space:nowrap;font-family:inherit" style-hover="background:rgba(255,255,255,.14)">Download PDF</button>
+                <button onClick="{{ perfExportWho }}" style="height:34px;padding:0 15px;border-radius:9px;border:0;background:#0E9384;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer;white-space:nowrap;font-family:inherit" style-hover="background:#0B7A6E">Export Report</button>
+              </div>
+            </div>
+            <div style="width:190px;flex:none;border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:14px 16px;background:rgba(255,255,255,.05)">
+              <div style="font-size:10.5px;font-weight:700;letter-spacing:.1em;color:#8FA6C4">REPORTING PERIOD</div>
+              <div style="font-size:13px;color:#DCE7F3;margin-top:10px">Aug 1 – Aug 31, 2026</div>
+              <div style="font-size:13px;color:#DCE7F3;margin-top:6px">{{ perfWhoEvents }} events in scope</div>
+              <div style="font-size:13px;color:#DCE7F3;margin-top:6px">{{ perfWhoHours }}h delivered</div>
             </div>
           </div>
 
@@ -13284,7 +13490,7 @@ class Component extends DCLogic {
         products:t==='products',comms:t==='comms',logins:t==='logins',devices:t==='devices',
         coordinator:t==='coordinator',audience:t==='audience',performance:t==='performance',content:t==='content',
         payments:t==='payments',documents:t==='documents',tasks:t==='tasks',activity:t==='activity',
-        recruitment:t==='recruitment',ratings:t==='ratings',attendance:t==='attendance',
+        recruitment:t==='recruitment',secTab:t==='recruitment'||t==='profile'||t==='attendance'||t==='payments',ratings:t==='ratings',attendance:t==='attendance',
         schedule:t==='schedule',notes:t==='notes'}; })(),
       spkEvents: SPK_EVENTS.map(e=>({...e, bg:BDG2[e.c][0], fg:BDG2[e.c][1]})),
 
@@ -13662,6 +13868,464 @@ class Component extends DCLogic {
         ['Offer accepted','02 August 2026'],['Onboarded','02 August 2026'],['Speaker type','External Speaker'],
         ['Engagement model','Per Webinar / Workshop'],['Agreement','Signed · valid to 01 Aug 2027']
       ].map(([k,v],i)=>({k,v,bg: i%2 ? '#FCFBF7' : '#fff'})),
+      ...(()=>{
+        const TODAY = '2026-08-26';
+        const pad = n=>String(n).padStart(2,'0');
+        const D = x=>new Date(x+'T00:00:00Z'), iso = d=>d.getUTCFullYear()+'-'+pad(d.getUTCMonth()+1)+'-'+pad(d.getUTCDate());
+        const add = (x,n)=>{ const d=D(x); d.setUTCDate(d.getUTCDate()+n); return iso(d); };
+        const mon = x=>add(x, -((D(x).getUTCDay()+6)%7));
+        const MN = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+        const DN = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+        const short = x=>{ const d=D(x); return pad(d.getUTCDate())+' '+MN[d.getUTCMonth()].slice(0,3)+' '+d.getUTCFullYear(); };
+        const dayLbl = x=>x===TODAY ? 'Today' : short(x);
+        const isoWeek = x=>{ const d=D(x); const t=new Date(Date.UTC(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate()+3-((d.getUTCDay()+6)%7))); const y=new Date(Date.UTC(t.getUTCFullYear(),0,4)); return 1+Math.round(((t-y)/864e5-3+((y.getUTCDay()+6)%7))/7); };
+        const BASE = [
+          ['EV-284','2026-08-08','18:00','19:30','Underwriting Fundamentals','Webinar','Completed','264'],
+          ['EV-291','2026-08-17','18:00','19:40','Insurance Career Masterclass','Masterclass','Completed','380'],
+          ['EV-292','2026-08-18','15:00','17:05','Claims Handling Workshop','Workshop','Completed','210'],
+          ['EV-294','2026-08-20','18:00','19:00','Career Masterclass follow-up','Webinar','Completed','96'],
+          ['EV-295','2026-08-22','11:00','12:00','Claims Workshop debrief','Rehearsal','Completed','—'],
+          ['EV-297','2026-08-25','15:00','16:00','Content review with Priya','Rehearsal','Completed','—'],
+          ['EV-301','2026-08-26','18:00','19:30','Career Masterclass Q&A','Webinar','Live','214'],
+          ['EV-302','2026-08-27','18:00','19:30','Underwriting Deep-Dive','Webinar','Scheduled','290'],
+          ['EV-303','2026-08-28','15:00','17:00','Reinsurance Basics','Webinar','Replacement needed','176'],
+          ['EV-304','2026-08-28','20:00','21:00','Risk Assessment Deep-Dive','Webinar','Cancelled','—'],
+          ['EV-305','2026-08-29','11:00','12:00','Tech rehearsal · IC-11','Rehearsal','Scheduled','—'],
+          ['EV-306','2026-08-30','18:00','20:00','IC-11 Industry Masterclass','Masterclass','Scheduled','420'],
+          ['EV-308','2026-09-01','18:00','19:00','Regulatory Update Panel','Panel','Scheduled','340'],
+          ['EV-310','2026-09-05','11:00','13:00','Fraud Analytics Workshop','Workshop','Rescheduled','88'],
+          ['EV-314','2026-09-12','18:00','20:00','Health Insurance Masterclass','Masterclass','Scheduled','150']
+        ].map(([id,date,s0,e0,title,fmt,st,regs])=>({id,date,s:s0,e:e0,title,fmt,st,regs,coord:'Priya Singh'}));
+        const ov = s.scOv||{};
+        const EV = [...BASE, ...(s.scAdd||[])].map(e=>({...e, ...(ov[e.id]||{})})).sort((a,b)=>(a.date+a.s).localeCompare(b.date+b.s));
+        const COL = {Live:['#E7F7EE','#BFE5CD','#15803D'], Scheduled:['#E9F1FD','#CFDFF7','#1D4ED8'], Completed:['#F5F3EE','#ECEAE2','#7A8699'],
+          'Replacement needed':['#FEF3E2','#F5D9AE','#B45309'], 'Replacement requested':['#FEF3E2','#F5D9AE','#B45309'], Rescheduled:['#FEF3E2','#F5D9AE','#B45309'],
+          Cancelled:['#FDE8E8','#F5C6C2','#B42318'], Blocked:['#F1F3F5','#E4E7EC','#475467'], Rehearsal:['#F0EAFD','#DDD0F7','#6D28D9']};
+        const col = e=> e.fmt==='Rehearsal' && e.st==='Scheduled' ? COL.Rehearsal : COL[e.st];
+        const hr = t=>+t.slice(0,2);
+        const mode = s.scMode||'Week', cur = s.scDate||TODAY;
+        const openE = e=>()=>this.setState({scM:{kind:'view', id:e.id}});
+        const meta = e=>e.fmt+' · '+(e.regs==='—'?'internal':e.regs+' registered')+' · Coordinator '+e.coord;
+        const shift = (dir)=>{ let n = cur;
+          if (mode==='Day') n = add(cur, dir);
+          else if (mode==='Month') { const d=D(cur); d.setUTCDate(1); d.setUTCMonth(d.getUTCMonth()+dir); n = iso(d); }
+          else n = add(cur, 7*dir);
+          this.setState({scDate:n}); };
+        const ws = mon(cur), wdays = [0,1,2,3,4,5,6].map(i=>add(ws,i));
+        const SLOTS = [['09:00 – 11:00',9,11],['11:00 – 13:00',11,15],['15:00 – 17:00',15,18],['18:00 – 20:00',18,20],['20:00 – 21:00',20,24]];
+        const md = D(cur), mStart = mon(iso(new Date(Date.UTC(md.getUTCFullYear(), md.getUTCMonth(), 1))));
+        let range;
+        if (mode==='Day') { const d=D(cur); range = DN[d.getUTCDay()]+', '+d.getUTCDate()+' '+MN[d.getUTCMonth()]+' '+d.getUTCFullYear(); }
+        else if (mode==='Month') range = MN[md.getUTCMonth()]+' '+md.getUTCFullYear();
+        else { const a=D(ws), b=D(add(ws,6)); range = (mode==='Agenda'?'From ':'Week '+isoWeek(ws)+' · ')+a.getUTCDate()+(a.getUTCMonth()===b.getUTCMonth()||mode==='Agenda'?'':' '+MN[a.getUTCMonth()].slice(0,3))+(mode==='Agenda'?' '+MN[a.getUTCMonth()]+' '+a.getUTCFullYear():' – '+b.getUTCDate()+' '+MN[b.getUTCMonth()]+' '+b.getUTCFullYear()); }
+        const row = e=>{ const c=col(e); return {id:e.id, title:e.title, fmt:e.fmt, coord:e.coord, regs:e.regs, state:e.fmt==='Rehearsal'&&e.st==='Scheduled'?'Rehearsal':e.st,
+          date:dayLbl(e.date), slot:e.s+' – '+e.e, meta:meta(e), bg:c[0], bd:c[1], fg:c[2], open:openE(e)}; };
+        const active = e=>!['Completed','Cancelled','Blocked'].includes(e.st);
+        const up14 = EV.filter(e=>e.date>=TODAY && e.date<=add(TODAY,14) && e.st!=='Blocked');
+        const live = EV.filter(e=>e.st==='Live'), need = EV.filter(e=>e.st==='Replacement needed');
+        const nextE = EV.find(e=>e.date>=TODAY && active(e));
+        // modal
+        const m = s.scM, me = m && m.id ? EV.find(e=>e.id===m.id) : null;
+        const close = ()=>this.setState({scM:null});
+        const setM = (k)=>(e)=>this.setState({scM:{...this.state.scM, [k]:e.target.value, err:null}});
+        const SLOTOPT = ['09:00 – 11:00','11:00 – 13:00','15:00 – 17:00','18:00 – 19:30','18:00 – 20:00','20:00 – 21:00'];
+        const ALT = ['Rohit Kapoor — Reinsurance','Meera Iyer — General Insurance','Arjun Rao — Risk & Compliance'];
+        const fld = (label,key,type,opts,def)=>({label, value:(m&&m[key])??def, set:setM(key), dateShow:type==='date'?'block':'none', selShow:type==='select'?'block':'none', opts:(opts||[]).map(o=>({o}))});
+        const vBtn = (label,go,kind)=>({label, go,
+          bd: kind==='primary'?'#0E9384':kind==='danger'?'#F0D2CF':kind==='ghost'?'#BFE3DC':'#E5E3DC',
+          bg: kind==='primary'?'#0E9384':kind==='ghost'?'#EEF6F5':'#fff',
+          fg: kind==='primary'?'#fff':kind==='danger'?'#B42318':kind==='ghost'?'#0B7A6E':'#344054', fw: kind==='primary'||kind==='ghost'?'700':'600'});
+        const to = k=>()=>this.setState({scM:{kind:k, id:m.id, note:'', err:null}});
+        let scm = {open:false};
+        if (m) {
+          const base = {open:true, close, isView:m.kind==='view', isForm:m.kind!=='view', note:m.note||'', setNote:setM('note'),
+            err:m.err||'', errShow:m.err?'block':'none', noteBd: m.err?'#F0D2CF':'#E5E3DC', diffShow:'none', warnShow:'none', warn:'', pillShow:'none',
+            back: m.id && m.kind!=='view' && m.kind!=='block' ? ()=>this.setState({scM:{kind:'view', id:m.id}}) : close, backLabel: m.kind==='block'?'Cancel':'Back',
+            subBd:'0', subBg:'#0E9384', subFg:'#fff', fields:[]};
+          const need = (msg)=>{ if (!(m.note||'').trim()) { this.setState({scM:{...m, err:msg}}); return false; } return true; };
+          const save = (patch, msg, sub)=>{ this.setState({scM:null, scOv:{...ov, [me.id]:{...(ov[me.id]||{}), ...patch}}}); this.fire(msg, sub); };
+          if (m.kind==='view' && me) {
+            const c = col(me), st = row(me).state;
+            const btns = [];
+            if (me.st==='Live') btns.push(vBtn('Join as observer',()=>this.fire('Joining as observer', me.title+' · muted, camera off'),'primary'), vBtn('Send reminder',()=>this.fire('Reminder sent', me.regs+' registrants · '+me.title)));
+            else if (active(me)) btns.push(vBtn('Reschedule',to('resched'),'ghost'), vBtn('Request replacement',to('repl')), vBtn('Cancel event',to('cancel'),'danger'));
+            else if (me.st==='Completed') btns.push(vBtn('View recording',()=>this.fire('Recording opened', me.title+' · '+short(me.date))), vBtn('View feedback',()=>this.setState({scM:null, profTab:'ratings'})));
+            else if (me.st==='Cancelled') btns.push(vBtn('Restore event',()=>save({st:'Scheduled'},'Event restored — '+me.title, short(me.date)+' · registrants notified'),'ghost'));
+            else if (me.st==='Blocked') btns.push(vBtn('Remove block',()=>{ this.setState({scM:null, scAdd:(s.scAdd||[]).filter(x=>x.id!==me.id)}); this.fire('Block removed', short(me.date)+' · slot open again'); },'danger'));
+            scm = {...base, title:me.title, sub:dayLbl(me.date)+' · '+me.s+' – '+me.e+' · '+me.id, pillShow:'inline-block', state:st, bg:c[0], fg:c[2], btns,
+              meta:[['Date',DN[D(me.date).getUTCDay()]+', '+short(me.date)],['Time',me.s+' – '+me.e+' IST'],['Format',me.fmt],['Registrations',me.regs],['Coordinator',me.coord],['Speaker','Ananya Deshmukh'],['Joining link',me.st==='Completed'||me.st==='Cancelled'?'Closed':'live.studycrux.io/'+me.id.toLowerCase()]].concat(me.reason?[['Note',me.reason]]:[])
+                .map(([k,v],i)=>({k,v,bg:i%2?'#FCFBF7':'#fff'}))};
+          } else if (m.kind==='resched' && me) {
+            const nd = m.nd||add(me.date,7), ns = m.ns||(me.s+' – '+me.e);
+            scm = {...base, title:'Reschedule — '+me.title, sub:me.regs+' registrants are notified of the new time', diffShow:'flex', from:short(me.date)+' · '+me.s, to:short(nd)+' · '+ns.split(' – ')[0],
+              fields:[fld('New date','nd','date',null,nd), fld('New time','ns','select',SLOTOPT,ns)], noteLabel:'Reason *', notePh:'Required — shown to registrants and kept in the event history.',
+              submitLabel:'Reschedule event', submit:()=>{ if (!need('Add a reason — registrants see it in the change notice.')) return;
+                const [a,b] = ns.split(' – '); save({date:nd, s:a, e:b, st:'Rescheduled', reason:m.note}, 'Rescheduled — '+me.title, short(me.date)+' → '+short(nd)+' · '+a+' · registrants notified'); }};
+          } else if (m.kind==='cancel' && me) {
+            scm = {...base, title:'Cancel event — '+me.title, sub:short(me.date)+' · '+me.s+' – '+me.e, warnShow:'block',
+              warn:'Cancelling notifies '+(me.regs==='—'?'the coordinator':me.regs+' registrants')+' straight away and releases paid seats for refund. You can restore the event later from this view.',
+              fields:[fld('Refund handling','rf','select',['Full refund','Credit to next event','No refund — complimentary'],'Full refund')],
+              noteLabel:'Reason *', notePh:'Required — written to the audit trail and the cancellation notice.', subBg:'#fff', subBd:'1px solid #F0D2CF', subFg:'#B42318',
+              submitLabel:'Cancel event', submit:()=>{ if (!need('A reason is required to cancel an event.')) return; save({st:'Cancelled', reason:m.note}, 'Event cancelled — '+me.title, 'Reason logged · '+(m.rf||'Full refund')); }};
+          } else if (m.kind==='repl' && me) {
+            scm = {...base, title:'Request replacement — '+me.title, sub:short(me.date)+' · '+me.s+' – '+me.e+' · '+me.fmt,
+              fields:[fld('Suggested speaker','alt','select',ALT,ALT[0]), fld('Respond by','by','date',null,add(me.date,-1))],
+              noteLabel:'Brief for the replacement *', notePh:'Required — topic notes, audience level, deck status.',
+              submitLabel:'Send request', submit:()=>{ if (!need('Add a brief so the replacement can prepare.')) return; save({st:'Replacement requested', reason:'Requested '+(m.alt||ALT[0])}, 'Replacement requested — '+me.title, (m.alt||ALT[0])+' · reply by '+short(m.by||add(me.date,-1))); }};
+          } else if (m.kind==='block') {
+            const bd = m.bd||add(TODAY,2), bs = m.bs||'18:00 – 20:00';
+            const clash = EV.filter(e=>e.date===bd && active(e) && e.s===bs.split(' – ')[0]);
+            scm = {...base, title:'Block availability', sub:'Ananya Deshmukh · the slot is hidden from event scheduling',
+              fields:[fld('Date','bd','date',null,bd), fld('Slot','bs','select',SLOTOPT,bs)],
+              warnShow: clash.length?'block':'none', warn: clash.length ? clash[0].title+' is already scheduled in this slot — request a replacement or reschedule it after blocking.' : '',
+              noteLabel:'Reason *', notePh:'Required — visible to the coordinator.',
+              submitLabel:'Block slot', submit:()=>{ if (!(m.note||'').trim()) return this.setState({scM:{...m, err:'Add a reason for the coordinator.'}});
+                const [a,b] = bs.split(' – '); const id = 'BL-'+(100+(s.scAdd||[]).length);
+                this.setState({scM:null, scAdd:[...(s.scAdd||[]), {id, date:bd, s:a, e:b, title:'Blocked — '+m.note, fmt:'Unavailable', st:'Blocked', regs:'—', coord:'Priya Singh'}]});
+                this.fire('Availability blocked', short(bd)+' · '+bs); }};
+          }
+        }
+        return {
+          scm,
+          sc: {
+            cards:[
+              {label:'UPCOMING EVENTS', n:String(up14.filter(e=>active(e)).length), note:'next 14 days', fg:'#0F2A47', open:()=>this.setState({scMode:'Agenda', scDate:TODAY})},
+              {label:'LIVE NOW', n:String(live.length), note: live[0] ? live[0].title : 'nothing live', fg:'#15803D', open: live[0] ? openE(live[0]) : ()=>{}},
+              {label:'REPLACEMENT NEEDED', n:String(need.length), note: need[0] ? need[0].title+' · '+short(need[0].date).slice(0,6) : 'all events covered', fg:'#B45309', open: need[0] ? openE(need[0]) : ()=>{}},
+              {label:'NEXT EVENT', n: nextE ? (nextE.date===TODAY?'Today':short(nextE.date).slice(0,6))+' · '+nextE.s : '—', note: nextE ? nextE.title : 'none scheduled', fg:'#0E9384', open: nextE ? openE(nextE) : ()=>{}}],
+            modes: ['Day','Week','Month','Agenda'].map(v=>({label:v, bg:mode===v?'#0B1F3E':'transparent', fg:mode===v?'#fff':'#475467', fw:mode===v?'700':'500', pick:()=>this.setState({scMode:v})})),
+            prev:()=>shift(-1), next:()=>shift(1), today:()=>this.setState({scDate:TODAY}), range,
+            legend:[['Live','#15803D'],['Scheduled','#1D4ED8'],['Rehearsal','#6D28D9'],['Completed','#98A2B3'],['Needs action','#B45309'],['Cancelled','#B42318']].map(([label,c])=>({label,c})),
+            isDay:mode==='Day', isWeek:mode==='Week', isMonth:mode==='Month', isAgenda:mode==='Agenda',
+            weekDays: wdays.map(x=>{ const d=D(x); return {d:DN[d.getUTCDay()].slice(0,3)+' '+d.getUTCDate(), fw:x===TODAY?'800':'600', fg:x===TODAY?'#0B7A6E':'#7A8699', open:()=>this.setState({scMode:'Day', scDate:x})}; }),
+            weekRows: SLOTS.map(([slot,lo,hi])=>({slot, cells: wdays.map(x=>{ const es = EV.filter(e=>e.date===x && hr(e.s)>=lo && hr(e.s)<hi);
+              if (!es.length) return {label:'—', bg:'#FCFBF7', bd:'#F0EEE7', fg:'#C4C9D2', cursor:'default', open:()=>{}};
+              const c = col(es[0]); return {label: es[0].title+(es.length>1?' +'+(es.length-1):''), bg:c[0], bd:c[1], fg:c[2], cursor:'pointer', open:openE(es[0])}; })})),
+            dayRows: (()=>{ const es = EV.filter(e=>e.date===cur); const out=[];
+              for (let h=9; h<=21; h++) { const e = es.find(x=>hr(x.s)===h);
+                if (es.some(x=>h>hr(x.s) && h<hr(x.e) + (+x.e.slice(3)>0?1:0) && hr(x.s)!==h)) continue;
+                const t = (h%12||12)+':00 '+(h<12?'AM':'PM');
+                out.push(e ? {...row(e), time:t, empty:'none', filled:'block'} : {time:t, empty:'flex', filled:'none', open:()=>{}, title:'', state:'', slot:'', meta:'', bg:'', fg:'', bd:''}); }
+              return out; })(),
+            dayEmpty: !EV.some(e=>e.date===cur),
+            dows: ['MON','TUE','WED','THU','FRI','SAT','SUN'].map(d=>({d})),
+            monthCells: Array.from({length:42},(_,i)=>{ const x = add(mStart,i), d = D(x), inM = d.getUTCMonth()===md.getUTCMonth();
+              const es = EV.filter(e=>e.date===x);
+              return {d:d.getUTCDate(), fg: x===TODAY?'#0B7A6E':inM?'#0F2A47':'#C4C9D2', bg: x===TODAY?'#EEF6F5':inM?'#fff':'#FCFBF7', bd: x===TODAY?'#BFE3DC':'#F0EEE7',
+                chips: es.slice(0,2).map(e=>({t:e.s+' '+e.title, bg:col(e)[0], fg:col(e)[2]})).concat(es.length>2?[{t:'+'+(es.length-2)+' more', bg:'transparent', fg:'#7A8699'}]:[]),
+                open:()=>this.setState({scMode:'Day', scDate:x})}; }),
+            agenda: EV.filter(e=>e.date>=ws && e.date<add(ws,28)).map(row),
+            cols:['Date','Time','Event','Format','Coordinator','Registrations','Status'].map(c=>({c})),
+            upcoming: up14.map(row),
+            actions:[
+              ['Request Replacement',()=>{ const e = need[0] || EV.find(x=>x.date>=TODAY && active(x)); if (e) this.setState({scM:{kind:'repl', id:e.id, note:''}}); }],
+              ['Block Availability',()=>this.setState({scM:{kind:'block', note:''}})],
+              ['View Event History →',()=>this.setState({profTab:'events'})]].map(([label,go])=>({label,go}))
+          }
+        };
+      })(),
+      spkStu: (()=>{
+        const BD = {green:['#E7F7EE','#15803D'],amber:['#FEF3E2','#B45309'],red:['#FDE8E8','#B42318'],grey:['#F1F3F5','#667085'],blue:['#E9F1FD','#1D4ED8']};
+        const ROWS = [
+          ['Aarav Sharma','SC-10001','IC-11 Industry Masterclass','Masterclass','Confirmed','Attended','green','58 min watched · 3 questions · 5★ feedback'],
+          ['Arjun Malhotra','SC-10013','IC-11 Industry Masterclass','Masterclass','Confirmed','Attended','green','52 min watched · poll 4 of 4 · 4★ feedback'],
+          ['Priya Das','SC-10031','Insurance Career Masterclass','Masterclass','Confirmed','Attended','green','61 min watched · replay opened twice'],
+          ['Kabir Mehta','SC-10017','Claims Handling Workshop','Workshop','Confirmed','Left early','amber','18 min watched · dropped at case study'],
+          ['Divya Krishnan','SC-10014','Claims Handling Workshop','Workshop','Confirmed','Absent','red','No join · reminder opened'],
+          ['Ananya Gupta','SC-10006','Underwriting Fundamentals','Webinar','Confirmed','Attended','green','47 min watched · 2 questions'],
+          ['Meera Nair','SC-10021','Regulatory Update Panel','Panel','Waitlisted','Not started','grey','Seat pending · next event 30 Aug'],
+          ['Rohit Malviya','SC-10030','Regulatory Update Panel','Panel','Pending payment','Not started','grey','Checkout started 26 Aug']];
+        const f = s.spkStuF||{}, get = k=>f[k]||'All';
+        const opts = (i)=>['All',...[...new Set(ROWS.map(r=>r[i]))]].map(o=>({o}));
+        const rows = ROWS.filter(r=>(get('ev')==='All'||r[2]===get('ev'))&&(get('fmt')==='All'||r[3]===get('fmt'))
+          &&(get('reg')==='All'||r[4]===get('reg'))&&(get('att')==='All'||r[5]===get('att')));
+        const att = rows.filter(r=>r[5]==='Attended').length, done = rows.filter(r=>r[5]!=='Not started').length;
+        const set = k=>(e)=>this.setState({spkStuF:{...(this.state.spkStuF||{}), [k]:e.target.value}});
+        const rvSt = s.spkRvState||{};
+        const REV = [
+          ['FB-9112',5,'IC-11 Industry Masterclass','30 Aug 2026','Published','The live claim files made the whole module make sense. Best session I have attended on the platform.'],
+          ['FB-9087',4.5,'Insurance Career Masterclass','18 Aug 2026','Published','Clear career roadmap and honest answers about the industry. Wanted ten more minutes for Q&A.'],
+          ['FB-9041',3,'Claims Handling Workshop','09 Aug 2026','Pending','Great content but the case study section moved too fast for first-time learners.']];
+        const RS = {Published:BD.green, Pending:BD.amber, Hidden:BD.grey};
+        return {
+          kpis:[
+            {label:'STUDENTS (FILTERED)', n:String(rows.length), sub:'of '+ROWS.length+' registered', c:'#0F2A47'},
+            {label:'ATTENDED', n:String(att), sub:'joined and stayed', c:'#0E9384'},
+            {label:'ATTENDANCE RATE', n:(done?Math.round(att/done*100):0)+'%', sub:'of completed events', c:'#15803D'},
+            {label:'NO-SHOW / DROP-OFF', n:String(rows.filter(r=>r[6]==='red'||r[6]==='amber').length), sub:'needs follow-up', c:'#B42318'}],
+          filters:[['Event','ev',2],['Format','fmt',3],['Registration','reg',4],['Attendance','att',5]]
+            .map(([label,k,i])=>({label, value:get(k), set:set(k), opts:opts(i)})),
+          empty: rows.length===0,
+          rows: rows.map(r=>({name:r[0], sid:r[1], event:r[2], format:r[3], reg:r[4], att:r[5], activity:r[7],
+            rBg:(r[4]==='Confirmed'?BD.green:r[4]==='Waitlisted'?BD.blue:BD.amber)[0], rFg:(r[4]==='Confirmed'?BD.green:r[4]==='Waitlisted'?BD.blue:BD.amber)[1],
+            aBg:BD[r[6]][0], aFg:BD[r[6]][1]})),
+          trends:[
+            ['Most appreciated — real claim case files','mentioned in 164 reviews','86%','#0E9384'],
+            ['Most appreciated — industry career insight','mentioned in 128 reviews','72%','#0E9384'],
+            ['Most appreciated — live Q&A','mentioned in 96 reviews','54%','#5AC0B0'],
+            ['Complaint — Q&A time too short','mentioned in 31 reviews','15%','#F0A72A'],
+            ['Complaint — pace in case studies','mentioned in 18 reviews','8%','#F0A72A']].map(([label,sub,pct,color])=>({label,sub,pct,color})),
+          reviews: REV.map(([id,rating,ev,date,st0,text])=>{ const st = rvSt[id]||st0;
+            return {id, event:ev, text, state:st, meta:id+' · '+date, ratingLabel:rating.toFixed(1), sBg:RS[st][0], sFg:RS[st][1],
+              stars:[1,2,3,4,5].map(n=>({fg: n<=Math.round(rating) ? '#F0A72A' : '#E4E1D8'})),
+              canPublish: st==='Published' ? 'none' : 'inline-flex', canHide: st==='Hidden' ? 'none' : 'inline-flex',
+              publish:()=>{ this.setState({spkRvState:{...rvSt,[id]:'Published'}}); this.fire('Review published', id+' · now visible on the speaker page'); },
+              hide:()=>{ this.setState({spkRvState:{...rvSt,[id]:'Hidden'}}); this.fire('Review hidden', id+' · removed from the public page'); },
+              reply:()=>this.fire('Reply box opened', id+' · '+ev),
+              del:()=>this.fire('Delete needs a reason', id+' · reviews are removed only with a logged reason', false, 'bad')}; }),
+          actions:[
+            ['Message Attendees',()=>this.setState({profTab:'comms'})],
+            ['Follow Up No-shows',()=>this.fire('Follow-up queued','2 no-shows and 1 drop-off will get the replay link')],
+            ['Export Student List',()=>this.setState({modal:'export'})],
+            ['Request Feedback Round',()=>this.fire('Feedback round scheduled','Survey goes to all attendees of the last 3 events')]].map(([label,go])=>({label,go}))
+        };
+      })(),
+      spkSecs: (()=>{
+        const BD = {green:['#E7F7EE','#15803D'],amber:['#FEF3E2','#B45309'],blue:['#E9F1FD','#1D4ED8'],grey:['#F1F3F5','#667085'],red:['#FDE8E8','#B42318']};
+        const PROF = [
+          {t:'BASIC DETAILS', kind:'kv', rows:[
+            ['Full Name','Ananya Deshmukh'],['Gender','Female'],['Date of Birth','14 March 1986'],['Blood Group','O+'],
+            ['Nationality','Indian'],['Languages','Marathi (native) · English (fluent) · Hindi (fluent)'],['Marital Status','Married']]},
+          {t:'CONTACT & ADDRESS', kind:'kv', rows:[
+            ['Personal Email','ananya.deshmukh@gmail.com'],['Work Email','ananya.d@studycrux.io'],['Mobile','+91 98201 44517'],
+            ['Address','C-18, Prabhadevi Heights, Worli'],['City / State','Mumbai, Maharashtra'],['Country','India']]},
+          {t:'IDENTITY', kind:'kv', rows:[
+            ['PAN','AKDPD••••7L · verified'],['Aadhaar','XXXX XXXX 3291 · verified'],['Passport','N••••452 · valid till 2033'],['GSTIN','Not registered — pending']]},
+          {t:'BANKING', kind:'kv', rows:[
+            ['Account Holder','Ananya Deshmukh'],['Bank','ICICI Bank — Worli, Mumbai'],['Account Number','••••7710'],
+            ['IFSC','ICIC0000231'],['UPI ID','ananyad@icici'],['Cancelled Cheque','Uploaded · verified by Finance']]},
+          {t:'EMERGENCY CONTACTS', kind:'list', rows:[
+            ['1','Rohan Deshmukh — Spouse','+91 98201 55302 · primary contact','blue'],
+            ['2','Meera Kulkarni — Sister','+91 98920 11846 · secondary contact','blue']]},
+          {t:'SOCIAL & PROFESSIONAL LINKS', kind:'kv', rows:[
+            ['LinkedIn','linkedin.com/in/ananyadeshmukh'],['Portfolio','ananyadeshmukh.in'],['YouTube','youtube.com/@riskwithananya'],['Publications','Medium — Claims & Risk notes']]},
+          {t:'ACTIONS', kind:'actions', btns:[['Edit Personal Details','BASIC DETAILS'],['Update Bank Details','BANKING'],['Request Re-verification','!reverify']]},
+          {t:'EXPERIENCE SUMMARY', kind:'cards', rows:[
+            ['INDUSTRY','18 yrs','insurance & risk','#0F2A47'],['SPEAKING','7 yrs','webinars · conferences','#15803D'],
+            ['EVENTS DELIVERED','64','18 at StudyCrux','#6D28D9'],['AWARDS','3','industry + internal','#B45309']]},
+          {t:'QUALIFICATIONS', kind:'kv', rows:[
+            ['Highest Qualification','Fellowship — Insurance Institute of India (FIII)'],['University / Institute','Insurance Institute of India, Mumbai'],
+            ['Specialization','Claims Management & Risk Analytics'],['Additional Qualification','MBA Risk Management — NMIMS (2010)'],
+            ['Professional Licenses','IRDAI Licentiate · Certified Risk Manager (CRM)'],['Current Role','Head of Claims Strategy, ICICI Lombard']]},
+          {t:'EXPERTISE & PREFERENCES', kind:'kv', rows:[
+            ['Areas of Expertise','Claims · Risk Assessment · Reinsurance · Fraud Analytics'],['Topics Can Present','IC-11 General Insurance · Claims Masterclass · Risk in Practice'],
+            ['Preferred Formats','Webinar · Workshop · Panel'],['Preferred Language','English + Hindi'],['Availability','Weekday evenings · Saturday mornings'],
+            ['Speaker Bio','Eighteen years on claims and risk desks. Brings live case files into every session and runs the masterclass with the highest repeat-attendance on the platform.']]},
+          {t:'AWARDS & ACHIEVEMENTS', kind:'list', rows:[
+            ['★','Speaker of the Quarter — StudyCrux Q3 2026','Highest rating and attendance across masterclasses','amber'],
+            ['★','Insurance Excellence Award — Claims Innovation','2024 · Insurance Alertness Forum','amber'],
+            ['★','Published — Practical Claims Handbook','2023 · used as StudyCrux reference material','green']]},
+          {t:'MEDIA', kind:'table', cols:['Asset','Type','Uploaded','Duration','Status'], rows:[
+            ['Speaker Profile — Ananya Deshmukh','PDF','2026-07-24','—',['Verified','green']],
+            ['Demo Masterclass — Claims in Practice','Video','2026-07-29','46 min',['Reviewed','green']],
+            ['Speaker Introduction Video','Video','2026-08-04','2 min',['Published','green']]]},
+          {t:'ACTIONS', kind:'actions', btns:[['Edit Professional Profile','EXPERTISE & PREFERENCES'],['Add Certification','QUALIFICATIONS'],['Replace Intro Video','!video']]}
+        ];
+        const SECS = [
+          {t:'HIRING SNAPSHOT', kind:'cards', rows:[
+            ['SOURCE','Referral','Vikram Sethi — Academic Head','#0F2A47'],['INTERVIEW AVG','8.8','across 3 rounds','#15803D'],
+            ['DEMO SESSION','9.2','mock masterclass · panel','#B45309'],['OUTCOME','Selected','Masterclass tier','#15803D']]},
+          {t:'ENGAGEMENT SNAPSHOT', kind:'cards', rows:[
+            ['TENURE','2 m','since Aug 2026','#15803D'],['TIER','Masterclass','premium speaker band','#0F2A47'],
+            ['FEE / EVENT','₹25,000','per webinar · workshop','#6D28D9'],['AGREEMENT RENEWAL','01 Aug 2027','annual review','#B45309']]},
+          {t:'APPLICATION INFORMATION', kind:'kv', rows:[
+            ['Application ID','APP-2048'],['Application Source','Referral — Vikram Sethi'],['Referred By','Vikram Sethi (Academic Head)'],
+            ['Application Date','24 July 2026'],['Recruiter Assigned','P. Bose — Talent'],['Expertise Applied For','Insurance & Risk · Claims'],
+            ['Recruitment Status','Closed — Onboarded']]},
+          {t:'INTERVIEW HISTORY', right:'3 rounds', kind:'table',
+            cols:['Round','Date','Interviewer / Panel','Mode','Score','Recommendation','Status'], rows:[
+            ['Screening Call','2026-07-26','P. Bose (Talent)','Telephonic','8.6 / 10','Proceed',['Cleared','green']],
+            ['Subject Expert Interview','2026-07-28','Academic Panel','Video','9.0 / 10','Strong hire',['Cleared','green']],
+            ['Demo Masterclass','2026-07-29','Academic + Ops','Live demo','9.2 / 10','Masterclass tier',['Cleared','green']]]},
+          {t:'EVALUATION RATINGS', right:'Panel consensus', kind:'bars', rows:[
+            ['Subject depth — Insurance & Risk','96%','Academic panel'],['Presentation & delivery','92%','Demo panel'],
+            ['Audience engagement','90%','Demo panel'],['Content structure','88%','Academic panel']]},
+          {t:'RECRUITMENT DOCUMENTS', kind:'table', cols:['Document','Uploaded','Status'], rows:[
+            ['Speaker Profile / CV','24 Jul 2026',['Verified','green']],['Demo Session Recording','29 Jul 2026',['Reviewed','green']],
+            ['Signed Speaker Agreement','02 Aug 2026',['Signed','green']],['PAN / Bank Proof','02 Aug 2026',['Verified','green']],
+            ['GST Certificate','—',['Pending','amber']]]},
+          {t:'OFFER & AGREEMENT', kind:'kv', rows:[
+            ['Expected Fee','₹30,000 per event'],['Offered Fee','₹25,000 per event'],['Negotiated Fee','₹25,000 + 5% revenue share on paid events'],
+            ['Speaker Type','External Speaker'],['Engagement Model','Per Webinar / Workshop'],['Minimum Commitment','2 events per quarter'],
+            ['Offer Released','30 July 2026'],['Offer Accepted','02 August 2026'],['Agreement','Signed · valid to 01 Aug 2027']]},
+          {t:'VERIFICATION & REFERENCES', kind:'table', cols:['Check','Provider / Referee','Completed','Outcome'], rows:[
+            ['Identity & PAN verification','VerifyPro','2026-07-31',['Verified','green']],
+            ['Credentials — FIII / Licentiate','Insurance Institute of India','2026-07-30',['Verified','green']],
+            ['Reference — former employer','R. Kapoor, ICICI Lombard','2026-07-29',['Positive','green']]]},
+          {t:'ENGAGEMENT DETAILS', kind:'kv', rows:[
+            ['Speaker Category','Industry Expert'],['Expertise','Insurance & Risk Specialist'],['Assigned Coordinator','Priya Singh'],
+            ['Reporting To','Vikram Sethi (Academic Head)'],['Base Location','Mumbai · remote delivery'],['Onboarded On','02 August 2026'],
+            ['Payout Cycle','Within 7 days of event closure'],['Payment Method','Bank Transfer'],['TDS','10% · Section 194J'],
+            ['Notice Period','30 days'],['Agreement Review Date','01 August 2027']]},
+          {t:'ENGAGEMENT HISTORY', right:'Tier · fee · scope changes', kind:'table',
+            cols:['Effective Date','Event','From','To','Fee','Approved By'], rows:[
+            ['2026-09-15','Scope extended','Webinars','Webinars + Workshops','₹25,000','Academic Head'],
+            ['2026-08-02','Onboarded','Applicant','Masterclass tier','₹25,000','Super Admin']]},
+          {t:'RECRUITMENT & ENGAGEMENT TIMELINE', right:'9 events · newest last', kind:'table',
+            cols:['Event','Date','Performed By','Detail'], rows:[
+            ['Applied','24 Jul 2026, 10:12','Referral — Vikram Sethi','Applied as Insurance & Risk speaker'],
+            ['Profile Reviewed','25 Jul 2026, 14:40','P. Bose (Talent)','18 years industry experience'],
+            ['Screening Call','26 Jul 2026, 11:00','P. Bose (Talent)','Score 8.6 / 10 · clear communicator'],
+            ['Expert Interview','28 Jul 2026, 16:00','Academic Panel','Score 9.0 / 10 · deep claims expertise'],
+            ['Demo Masterclass','29 Jul 2026, 18:00','Academic + Ops','Score 9.2 / 10 · strong audience handling'],
+            ['Selected','29 Jul 2026, 20:15','Super Admin','Masterclass tier recommended'],
+            ['Offer Released','30 Jul 2026, 12:00','P. Bose (Talent)','₹25,000 per event offered'],
+            ['Agreement Signed','02 Aug 2026, 09:30','Speaker','Negotiated 5% revenue share'],
+            ['Onboarding Completed','02 Aug 2026, 17:00','Speaker Ops','LMS access, payout setup, coordinator assigned']]},
+          {t:'PROFILE ACTIONS', kind:'actions', btns:[
+            ['Edit Personal Info','profile'],['Edit Professional Info','profile'],['Edit Engagement'],['Edit Fee & Payout','payments'],['View Documents','documents'],['Download Profile PDF']]}
+        ];
+        const ed = s.spkRecEdit, dr = s.spkRecDraft||{}, saved = s.spkRecSaved||{};
+        const ATT = [
+          {t:'ATTENDANCE SUMMARY', kind:'cards', rows:[
+            ['SESSIONS DELIVERED','38','of 40 scheduled · lifetime','#0E9384'],['DELIVERY HOURS','64 h','this quarter','#0F2A47'],
+            ['LATE STARTS','1','last 90 days','#B45309'],['EARLY ENDS','1','last 90 days','#B45309'],
+            ['NO-SHOWS','0','none recorded','#15803D'],['RESCHEDULED','2','both with 48h+ notice','#1D4ED8'],
+            ['PENDING REQUESTS','1','awaiting approval','#B45309'],['UNAVAILABLE SLOTS','2','declared this week','#6D28D9']]},
+          {t:'SESSION ATTENDANCE LOG', right:'Last 8 sessions', kind:'table',
+            cols:['Date','Event','Format','Scheduled','Joined','Ended','Duration','Attendees','Status'], rows:[
+            ['2026-08-30','IC-11 Industry Masterclass','Masterclass','18:00','17:52','19:46','1 h 46 m','362',['Delivered','green']],
+            ['2026-08-26','Insurance Career Masterclass','Masterclass','18:00','17:56','19:38','1 h 38 m','334',['Delivered','green']],
+            ['2026-08-17','Claims Handling Workshop','Workshop','15:00','14:55','17:05','2 h 05 m','166',['Delivered','green']],
+            ['2026-08-04','Underwriting Fundamentals','Webinar','18:00','18:14','19:44','1 h 30 m','264',['Late start','amber']],
+            ['2026-07-28','Regulatory Update Panel','Panel','17:00','16:54','17:52','58 m','252',['Early end','amber']],
+            ['2026-07-20','Reinsurance Basics','Webinar','18:00','—','—','—','—',['Rescheduled','blue']],
+            ['2026-07-11','Fraud Analytics in Claims','Workshop','11:00','10:56','13:02','2 h 06 m','148',['Delivered','green']],
+            ['2026-06-12','Risk Assessment Deep-Dive','Webinar','18:00','—','—','—','—',['Cancelled','red']]]},
+          {t:'LEAVE & UNAVAILABILITY', kind:'table',
+            cols:['Request ID','Type','From','To','Days','Reason','Approved By','Status'], rows:[
+            ['UA-0318','Unavailable','2026-09-14','2026-09-14','1','Client conference — Pune','Pending',['Pending','amber']],
+            ['UA-0291','Reschedule','2026-07-20','2026-07-27','—','Travel clash · 7-day notice','Priya Singh',['Approved','green']],
+            ['UA-0264','Medical','2026-06-12','2026-06-16','5','Medical — certificate on file','Vikram Sethi',['Approved','green']],
+            ['UA-0233','Unavailable','2026-05-02','2026-05-02','1','Personal','Priya Singh',['Approved','green']]]},
+          {t:'WEEKLY AVAILABILITY', right:'Mon – Sat · IST', kind:'grid',
+            days:['Mon','Tue','Wed','Thu','Fri','Sat'], rows:[
+            ['09:00 – 11:00',['','','','','','Workshop slot']],
+            ['11:00 – 13:00',['','','Office hours','','','Workshop slot']],
+            ['15:00 – 17:00',['','Recording slot','','Recording slot','','']],
+            ['18:00 – 20:00',['Webinar slot','','Webinar slot','','Webinar slot','']],
+            ['20:00 – 21:00',['','Q&A clinic','','Q&A clinic','','']]]},
+          {t:'ATTENDANCE ACTIONS', kind:'actions', btns:[
+            ['Approve Pending Request','!approve'],['Adjust Availability','!avail'],['Export Attendance','!export'],['Mark Unavailable','!mark',1]]}
+        ];
+        const num = x=>+String(x).replace(/[^0-9]/g,'')||0, inr = n=>'₹'+n.toLocaleString('en-IN');
+        const REVSH = ['₹4,800','₹3,600','₹0','₹2,900','₹0','₹2,900'];
+        const PROWS = SPK_PAYMENTS.map((p,i)=>{ const rs = REVSH[i]||'₹0', dd = i===3?'₹2,000':'₹0';
+          const net = num(p.fee)+num(rs)-num(dd)-num(p.tds); return {p, rs, dd, net}; });
+        const pend = PROWS.filter(r=>r.p.status!=='Paid'), paid = PROWS.filter(r=>r.p.status==='Paid');
+        const PAY = [
+          {t:'PAYOUT SNAPSHOT', kind:'cards', rows:[
+            ['AGREED FEE RANGE','₹18k–25k','per event','#0F2A47'],['LIFETIME EARNED',inr(PROWS.reduce((n,r)=>n+r.net,0)),PROWS.length+' events · net','#6D28D9'],
+            ['PENDING PAYOUT',inr(pend.reduce((n,r)=>n+r.net,0)),pend.length+' awaiting approval','#B45309'],['PAID YTD',inr(paid.reduce((n,r)=>n+r.net,0)),paid.length+' events settled','#15803D'],
+            ['TDS YTD','₹8,700','10% u/s 194J','#0F2A47'],['REVENUE SHARE YTD','₹14,200','5% on paid events','#15803D'],
+            ['DEDUCTIONS YTD','₹2,000','1 late-start adjustment','#B42318'],['REIMBURSEMENTS','₹6,400','2 claims settled','#15803D']]},
+          {t:'COMMERCIAL TERMS', kind:'kv', rows:[
+            ['Payment Model','Per Webinar / Workshop'],['Agreed Fee','₹18,000 – ₹25,000 per event'],['Revenue Share','5% on paid-event ticket revenue'],
+            ['Payment Terms','Net-15 post-event'],['Payment Method','Bank Transfer (NEFT)'],['Bank Account','HDFC ••••4482 · verified'],
+            ['PAN','ABCPV••••2K · verified'],['GST Registered','No — TDS 10% u/s 194J applies'],['Invoice Required','Yes — speaker-raised'],
+            ['Advance Paid','None outstanding'],['Contract Validity','02 Aug 2026 → 01 Aug 2027']]},
+          {t:'PAYMENT HISTORY', right:'Last '+SPK_PAYMENTS.length+' events', kind:'table',
+            cols:['Event','Type','Fee','Rev. Share','Deductions','TDS','Net Paid','UTR','Paid On','Status'],
+            rows: PROWS.map(({p,rs,dd,net})=>[p.event,p.kind,p.fee,rs,dd,p.tds,inr(net),p.utr,p.date,[p.status,p.c]])},
+          {t:'FEE REVISION HISTORY', kind:'table', cols:['Effective','From','To','Change','Reason','Approved By'], rows:[
+            ['2026-09-15','₹18k–22k','₹18k–25k','+13.6% cap','Masterclass tier added — top attendance','Academic Head'],
+            ['2026-08-02','—','₹18k–22k','Onboarding','Initial agreement · webinar + workshop','Super Admin']]},
+          {t:'REIMBURSEMENTS & CLAIMS', kind:'table', cols:['Claim ID','Type','Amount','Submitted','Reason','Status'], rows:[
+            ['EXP-2210','Travel','₹4,200','2026-08-18','Claims workshop — Bengaluru campus',['Settled','green']],
+            ['EXP-2174','Equipment','₹2,200','2026-08-03','Studio microphone for webinars',['Settled','green']],
+            ['EXP-2241','Internet','₹1,500','2026-08-31','Backup broadband for live sessions',['Pending','amber']]]},
+          {t:'PAYOUT ACTIONS', kind:'actions', btns:[
+            ['Approve Pending Payout','@spApprove'],['Generate Invoice','@spInvoice'],['Download Statement','@spStatement'],['Raise Adjustment','@spAdjust'],['Hold Payout','@spHold',1]]}
+        ];
+        const E = ['',''];
+        const WEEKS = [
+          {label:'Week 34 · 17 – 23 August 2026', today:null, days:['Mon 17','Tue 18','Wed 19','Thu 20','Fri 21','Sat 22','Sun 23'], rows:[
+            ['11:00 – 13:00',[E,E,E,E,E,['Claims Workshop · prep','prep'],E]],
+            ['15:00 – 17:00',[E,['Claims Handling Workshop','done'],E,E,E,E,E]],
+            ['18:00 – 20:00',[['Career Masterclass','done'],E,E,['Q&A follow-up','done'],E,E,E]]]},
+          {label:'Week 35 · 24 – 30 August 2026', today:'Wed 26', days:['Mon 24','Tue 25','Wed 26','Thu 27','Fri 28','Sat 29','Sun 30'], rows:[
+            ['11:00 – 13:00',[E,E,E,E,E,['Tech rehearsal · IC-11','prep'],E]],
+            ['15:00 – 17:00',[E,['Content review · Priya','prep'],E,E,['Reinsurance Basics','sub'],E,E]],
+            ['18:00 – 20:00',[E,E,['Career Masterclass Q&A','live'],['Underwriting Webinar','web'],E,E,['IC-11 Masterclass','master']]],
+            ['20:00 – 21:00',[E,E,E,E,['Risk Deep-Dive','cancel'],E,E]]]},
+          {label:'Week 36 · 31 Aug – 6 Sep 2026', today:null, days:['Mon 31','Tue 1','Wed 2','Thu 3','Fri 4','Sat 5','Sun 6'], rows:[
+            ['11:00 – 13:00',[E,E,E,E,E,['Fraud Analytics Workshop','work'],E]],
+            ['15:00 – 17:00',[E,E,['Recording · Claims 101','prep'],E,E,E,E]],
+            ['18:00 – 20:00',[E,['Regulatory Update Panel','web'],E,E,['IC-11 Replay Q&A','web'],E,E]]]}];
+        const SCH = [
+          {t:'SCHEDULE SNAPSHOT', kind:'cards', rows:[
+            ['UPCOMING EVENTS','6','next 14 days','#0F2A47'],['LIVE NOW','1','Career Masterclass Q&A','#15803D'],
+            ['REPLACEMENT NEEDED','1','Reinsurance Basics · 28 Aug','#B45309'],['NEXT EVENT','Today · 18:00','Career Masterclass Q&A','#0E9384']]},
+          {t:'CALENDAR VIEW', right:'Same calendar used on the Speaker Schedule page', kind:'grid', weeks:WEEKS, wk: s.spkWk??1},
+          {t:'UPCOMING & ACTIVE EVENTS', right:'Next 14 days · rescheduled sessions included', kind:'table',
+            cols:['Date','Time','Event','Format','Coordinator','Registrations','Status'], rows:[
+            ['Today','18:00 – 19:30','Career Masterclass Q&A','Webinar','Priya Singh','214',['Live now','green']],
+            ['27 Aug 2026','18:00 – 19:30','Underwriting Fundamentals','Webinar','Priya Singh','290',['Upcoming','blue']],
+            ['28 Aug 2026','15:00 – 17:00','Reinsurance Basics','Webinar','Priya Singh','176',['Replacement needed','amber']],
+            ['28 Aug 2026','20:00 – 21:00','Risk Assessment Deep-Dive','Webinar','Priya Singh','—',['Cancelled','red']],
+            ['30 Aug 2026','18:00 – 20:00','IC-11 Industry Masterclass','Masterclass','Priya Singh','420',['Upcoming','blue']],
+            ['05 Sep 2026','11:00 – 13:00','Fraud Analytics Workshop','Workshop','Priya Singh','88',['Rescheduled','amber']]]},
+          {t:'SCHEDULE ACTIONS', kind:'actions', btns:[['Request Replacement','!repl'],['Block Availability','!block'],['Schedule Event','!sched'],['View Event History','events']]}
+        ];
+        const tabNow = s.profTab||'overview';
+        return (tabNow==='profile' ? PROF : tabNow==='attendance' ? ATT : tabNow==='payments' ? PAY : tabNow==='schedule' ? SCH : SECS).map(sec=>{
+          const kv = sec.kind==='kv', editing = ed===sec.t;
+          const d = {t:sec.t, right:sec.right||'', isCards:sec.kind==='cards', isKv:kv, isList:sec.kind==='list', isGrid:sec.kind==='grid', isTable:sec.kind==='table', isBars:sec.kind==='bars', isActions:sec.kind==='actions',
+            editShow: kv&&!editing ? 'inline-flex' : 'none', saveShow: editing ? 'flex' : 'none',
+            edit:()=>this.setState({spkRecEdit:sec.t, spkRecDraft:{}}),
+            cancel:()=>this.setState({spkRecEdit:null, spkRecDraft:{}}),
+            save:()=>{ this.setState({spkRecEdit:null, spkRecSaved:{...saved, ...dr}, spkRecDraft:{}}); this.fire(sec.t.charAt(0)+sec.t.slice(1).toLowerCase()+' updated','Ananya Deshmukh · change written to the audit log'); }};
+          if (sec.kind==='cards') d.cards = sec.rows.map(([label,n,note,fg])=>({label,n,note,fg}));
+          if (kv) d.kvRows = sec.rows.map(([k,v0],i)=>{ const key=sec.t+'|'+k, v=saved[key]??v0;
+            return {k, v, draft: dr[key]??v, bg: i%2?'#FCFBF7':'#fff', pad: editing?'7px 16px':'11px 16px',
+              viewShow: editing?'none':'block', editShow: editing?'block':'none',
+              set:(e)=>this.setState({spkRecDraft:{...(this.state.spkRecDraft||{}), [key]:e.target.value}})}; });
+          if (sec.kind==='table') { d.cols = sec.cols.map(c=>({c}));
+            d.trs = sec.rows.map((row,i)=>({bg: i%2?'#FCFBF7':'#fff', cells: row.map(v=>Array.isArray(v)
+              ? {isPill:true,isPlain:false,v:v[0],pBg:BD[v[1]][0],pFg:BD[v[1]][1]} : {isPill:false,isPlain:true,v})})); }
+          if (sec.kind==='bars') d.bars = sec.rows.map(([label,pct,sub])=>({label,pct,sub}));
+          if (sec.kind==='list') d.items = sec.rows.map(([ic,t,sub,c])=>({ic,t,s:sub,iBg:BD[c][0],iFg:BD[c][1]}));
+          if (sec.kind==='grid') {
+            const SLOT = {Webinar:['#EEF6F5','#D3ECE7','#0B7A6E'], Workshop:['#EEF6F5','#D3ECE7','#0B7A6E'], Recording:['#F0EAFD','#DDD0F7','#6D28D9'], 'Q&A':['#E9F1FD','#CFDFF7','#1D4ED8'], Office:['#E9F1FD','#CFDFF7','#1D4ED8'],
+              live:['#E7F7EE','#BFE5CD','#15803D'], master:['#EEF6F5','#D3ECE7','#0B7A6E'], web:['#E9F1FD','#CFDFF7','#1D4ED8'], work:['#F0EAFD','#DDD0F7','#6D28D9'],
+              prep:['#F1F3F5','#E4E7EC','#475467'], done:['#F5F3EE','#ECEAE2','#98A2B3'], sub:['#FEF3E2','#F5D9AE','#B45309'], cancel:['#FDE8E8','#F5C6C2','#B42318']};
+            const cal = !!sec.weeks, wk = cal ? sec.weeks[sec.wk] : null, rows = cal ? wk.rows : sec.rows, days = cal ? wk.days : sec.days;
+            const view = cal ? (s.spkCalView||'Week') : 'Week';
+            Object.assign(d, {hasNav:cal, frame: cal?'1px solid #F0EEE7':'0', gridPad: cal?'16px':'0',
+              gridCols:'110px repeat('+days.length+',minmax(100px,1fr))', showGrid: view==='Week', showAgenda: view==='Agenda'});
+            d.days = days.map(x=>({d:x, fw: cal&&x===wk.today ? '700' : '600', fg: cal&&x===wk.today ? '#0F2A47' : '#7A8699'}));
+            const cellOf = (v)=>{ const [txt,k] = Array.isArray(v) ? v : [v, v.split(' ')[0]]; const c = SLOT[k];
+              return txt ? {v:txt, bg:c[0], border:c[1], fg:c[2], fw:'600', fs:'11.5px', justify:'center', h: cal?'52px':'44px'}
+                : {v:'—', bg:'#FCFBF7', border:'#F0EEE7', fg:'#C4C9D2', fw:'400', fs:'11.5px', justify:'center', h: cal?'52px':'44px'}; };
+            d.cells = rows.flatMap(([time,vals])=>[{v:time, bg:'transparent', border:'transparent', fg:'#344054', fw:'600', fs:'12px', justify:'flex-start', h:'44px'}, ...vals.map(cellOf)]);
+            if (cal) {
+              const LBL = {live:'Live now',master:'Masterclass',web:'Webinar',work:'Workshop',prep:'Rehearsal',done:'Completed',sub:'Replacement needed',cancel:'Cancelled'};
+              d.agenda = days.flatMap((day,j)=>rows.map(([time,vals])=>vals[j]).map((v,ri)=>({v, time:rows[ri][0]})).filter(x=>Array.isArray(x.v)&&x.v[0]).map(x=>({day, time:x.time, v:x.v[0], kind:LBL[x.v[1]], bg:SLOT[x.v[1]][0], fg:SLOT[x.v[1]][2]})));
+              d.weekLabel = wk.label;
+              d.legend = [['Masterclass','#0E9384'],['Webinar','#1D4ED8'],['Workshop','#6D28D9'],['Replacement needed','#B45309'],['Cancelled','#B42318']].map(([label,c])=>({label,c}));
+              d.views = ['Week','Agenda'].map(v=>({label:v, bg: view===v?'#0B1F3E':'transparent', fg: view===v?'#fff':'#475467', fw: view===v?'700':'500', pick:()=>this.setState({spkCalView:v})}));
+              d.prev = ()=>this.setState({spkWk: Math.max(0, sec.wk-1)});
+              d.next = ()=>this.setState({spkWk: Math.min(sec.weeks.length-1, sec.wk+1)});
+              d.today = ()=>this.setState({spkWk: 1});
+            } }
+          if (sec.kind==='actions') d.btns = sec.btns.map(([label,tab,danger])=>({label,
+            border: danger?'#F0D2CF':'#E5E3DC', fg: danger?'#B42318':'#344054', hbg: danger?'#FEF7F6':'#F6F5F0',
+            pick: tab && tab[0]==='@' ? ()=>this.setState({modal:tab.slice(1), evErr:null})
+              : tab==='!repl' ? ()=>this.fire('Replacement request sent','Reinsurance Basics · 28 Aug · 3 matching speakers notified')
+              : tab==='!block' ? ()=>this.setState({profTab:'attendance'})
+              : tab==='!sched' ? ()=>this.fire('Event scheduler opened','Ananya Deshmukh · pick an open slot on the calendar')
+              : tab==='!approve' ? ()=>this.fire('Request approved','UA-0318 · 14 Sep blocked in the speaker calendar')
+              : tab==='!avail' ? ()=>this.setState({profTab:'schedule'})
+              : tab==='!export' ? ()=>this.setState({modal:'export'})
+              : tab==='!mark' ? ()=>this.fire('Mark unavailable needs a reason','Add the dates and reason — affected events are flagged for rescheduling', false, 'bad')
+              : tab==='!reverify' ? ()=>this.fire('Re-verification requested','Ananya Deshmukh · identity and bank details sent to Finance')
+              : tab==='!video' ? ()=>this.fire('Upload dialog opened','Choose an MP4 up to 200 MB')
+              : tab && tab===tab.toUpperCase() ? ()=>this.setState({spkRecEdit:tab, spkRecDraft:{}})
+              : tab ? ()=>this.setState({profTab:tab}) : label==='Download Profile PDF' ? ()=>this.setState({modal:'export'})
+              : ()=>this.setState({spkRecEdit:'ENGAGEMENT DETAILS', spkRecDraft:{}})}));
+          return d;
+        });
+      })(),
       spkRatings: {
         overall:'4.8', responses:'412', recommend:'96%', satisfaction:'94%',
         dims: [
@@ -13839,16 +14503,62 @@ class Component extends DCLogic {
               set: (e)=>{ const v=e.target.value; this.setState(x=>({spkFieldVals:{...x.spkFieldVals,[key]:v}})); }};
           })};
       }),
-      spkKpis: [['Total Events','18'],['Registrations','4,820'],['Attendance','81%'],['Rating','4.7★'],
-        ['Engagement','86%'],['Watch Time','3,420 hrs'],['Revenue','₹4.8L'],['Pending Payment','₹25K']].map(([label,n])=>({label,n})),
+      spkKpis: [['Total Events','18','events'],['Registrations','4,820','audience'],['Attendance','81%','attendance'],['Rating','4.7★','ratings'],
+        ['Engagement','86%','performance'],['Watch Time','3,420 hrs','content'],['Revenue','₹4.8L','payments'],['Pending Payment','₹25K','payments','#B45309']]
+        .map(([label,n,tab,fg])=>({label,n,fg:fg||'#0F2A47',go:()=>this.setState({profTab:tab})})),
+      spkChips: [['Active','#E7F7EE','#15803D'],['Industry Expert','rgba(255,255,255,.14)','#DCE7F3'],['Insurance & Risk','rgba(255,255,255,.14)','#DCE7F3'],['External Speaker','rgba(255,255,255,.14)','#DCE7F3']]
+        .map(([label,bg,fg])=>({label,bg,fg})),
+      spkHeaderRows: [
+        ['SPEAKER ID','SPK-0142'],['COORDINATOR','Priya Singh'],['EXPERTISE','Insurance & Risk'],['NEXT EVENT','IC-11 Masterclass · 30 Aug'],
+        ['JOINING DATE','14 Jan 2025'],['LOCATION','Mumbai'],['PHONE','+91 98201 44517'],['EMAIL','ananya.d@studycrux.io']
+      ].map(([k,v])=>({k,v})),
+      spkActions: [
+        ['Message',()=>{ this.setState({profTab:'comms'}); this.fire('Message composer opened','Ananya Deshmukh · Communications'); }],
+        ['Assign Event',()=>this.setState({profTab:'events'})],
+        ['Edit Speaker',()=>this.setState({profTab:'profile'})],
+        ['Export Profile',()=>this.setState({modal:'export'})],
+        ['Suspend',()=>this.fire('Suspend needs a reason','Open Tasks & Alerts to log the reason first', false, 'bad')]
+      ].map(([label,go])=>({label,go})),
       spkGridCols: 'minmax(0,1fr)',
       spkPerfBars: [['Content Quality','95%'],['Audience Engagement','91%'],['Communication','94%'],['Reliability','96%'],['Audience Satisfaction','92%'],['Content Submission','89%']].map(([label,pct])=>({label,pct})),
-      spkContent: [
-        {name:'IC-11 Presentation Deck v2',event:'IC-11 Masterclass',version:'2',status:'Approved'},
-        {name:'Underwriting Case Studies',event:'Underwriting Fundamentals',version:'1',status:'Published'},
-        {name:'Regulatory Update Slides',event:'Regulatory Update Panel',version:'3',status:'Published'},
-        {name:'Claims Workshop Worksheet',event:'Claims Handling Workshop',version:'1',status:'Published'}
-      ].map(c=>({...c, bg: c.status==='Approved'?'#E9F1FD':'#E7F7EE', fg: c.status==='Approved'?'#1D4ED8':'#15803D'})),
+      ...(()=>{
+        const BASE = [
+          {name:'IC-11 Presentation Deck v2',event:'IC-11 Masterclass',version:'2',status:'Approved',type:'PPTX · 14.2 MB',up:'22 Aug 2026',by:'Ananya Deshmukh'},
+          {name:'Underwriting Case Studies',event:'Underwriting Fundamentals',version:'1',status:'Published',type:'PDF · 3.8 MB',up:'01 Aug 2026',by:'Ananya Deshmukh'},
+          {name:'Regulatory Update Slides',event:'Regulatory Update Panel',version:'3',status:'Published',type:'PPTX · 9.6 MB',up:'25 Jul 2026',by:'Priya Singh'},
+          {name:'Claims Workshop Worksheet',event:'Claims Handling Workshop',version:'1',status:'Published',type:'DOCX · 1.1 MB',up:'12 Aug 2026',by:'Ananya Deshmukh'}];
+        const ov = s.spkCOv||{};
+        const items = BASE.map((c,i)=>({...c, ...(ov[i]||{})}));
+        const ST = {Approved:['#E9F1FD','#1D4ED8'], Published:['#E7F7EE','#15803D'], 'In review':['#FEF3E2','#B45309']};
+        const m = s.spkCM, cur = m ? items[m.i] : null;
+        const close = ()=>this.setState({spkCM:null});
+        return {
+          spkContent: items.map((c,i)=>({...c, bg:ST[c.status][0], fg:ST[c.status][1],
+            menuShow: s.spkCMenu===i ? 'flex' : 'none',
+            toggle:(e)=>{ e&&e.stopPropagation&&e.stopPropagation(); this.setState({spkCMenu: s.spkCMenu===i ? null : i}); },
+            view:()=>this.setState({spkCMenu:null, spkCM:{kind:'view', i}}),
+            change:()=>this.setState({spkCMenu:null, spkCM:{kind:'change', i, note:'', file:null, err:null}})})),
+          spkCM: !cur ? {open:false} : {open:true, isView:m.kind==='view', isChange:m.kind==='change', close,
+            name:cur.name, version:cur.version, nextVersion:String(+cur.version+1),
+            title: m.kind==='view' ? cur.name : 'Change file — '+cur.name,
+            sub: cur.event+' · v'+cur.version+' · '+cur.status,
+            meta:[['Event',cur.event],['Version','v'+cur.version],['Status',cur.status],['File',cur.type],['Uploaded',cur.up],['Uploaded by',cur.by]].map(([k,v],j)=>({k,v,bg:j%2?'#FCFBF7':'#fff'})),
+            download:()=>this.fire('Download started', cur.name+' · v'+cur.version),
+            toChange:()=>this.setState({spkCM:{kind:'change', i:m.i, note:'', file:null, err:null}}),
+            fileLabel: m.file ? m.file+' — selected' : 'Click to choose the replacement file',
+            dropBorder: m.file ? '#0E9384' : (m.err && !m.file ? '#F0D2CF' : '#CBD5E1'),
+            pick:()=>this.setState({spkCM:{...m, file:cur.name.replace(/ v\d+$/,'')+' v'+(+cur.version+1)+'.'+cur.type.split(' ')[0].toLowerCase(), err:null}}),
+            note:m.note||'', setNote:(e)=>this.setState({spkCM:{...this.state.spkCM, note:e.target.value}}),
+            noteBorder: m.err && !(m.note||'').trim() ? '#F0D2CF' : '#E5E3DC',
+            err:m.err||'', errShow:m.err ? 'block' : 'none',
+            submit:()=>{
+              if (!m.file || !(m.note||'').trim()) return this.setState({spkCM:{...m, err: !m.file ? 'Choose the replacement file first.' : 'Say what changed — the reviewer needs it.'}});
+              const nv = String(+cur.version+1);
+              this.setState({spkCM:null, spkCOv:{...ov, [m.i]:{version:nv, status:'In review', up:'12 Oct 2026', by:'Dr. Sarah Johnson'}}});
+              this.fire('New version submitted — '+cur.name, 'v'+cur.version+' → v'+nv+' · sent to review');
+            }}
+        };
+      })(),
       spkReadiness: [['Profile','100%','#0E9384'],['Documents','100%','#0E9384'],['Contract','100%','#0E9384'],['Event Preparation','82%','#F0A72A']].map(([label,pct,color])=>({label,pct,color})),
       spkAlerts: [{text:'Presentation not submitted for IC-11 Masterclass'},{text:'Technical rehearsal pending'},{text:'Payment pending — ₹25,000'},{text:'Contract expires in 30 days'}],
       spkJoinNext: ()=>{ window.open('https://meet.studycrux.io/ic-11-masterclass','_blank');

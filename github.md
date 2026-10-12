@@ -2,9 +2,18 @@ repo: uiuxpriti-oss/StudyCrux
 branch: claude/zealous-lovelace-o9hpsg
 
 ## Last sync
-date: 2026-10-07T12:00:00Z
+date: 2026-10-12T09:00:00Z
 
 ### Updated in this project
+- Speaker 360: header card on Coordinator layout; Employment & Recruitment, Personal & Professional, Students, Attendance & Leave, Finance & Payroll rebuilt on Teacher/Coordinator layout.
+- Speaker Schedule tab: Day / Week / Month / Agenda calendar with event view, reschedule, cancel, replacement and block-availability flows.
+- Speaker Content: View / Change overflow menu with versioned replace flow. Performance 360 header matches Teacher hero.
+- Not yet pushed — download the zip and commit to the branch.
+
+## Sync history
+- 2026-10-07T12:00:00Z — reports popups, Speaker schedule/escalations/performance rebuilt on Coordinator layout, Attendance & Activity in Teacher and Speaker.
+
+### Previously updated
 - Reports (Coordinator, Speaker, Teacher): Generate / Schedule / Preview popups in the Student report style.
 - Speaker Schedule: Replacements, Conflicts, Requests, Availability, History tabs (Coordinator layout).
 - Speaker Reminders & Alerts → Escalations rebuilt on Coordinator layout (ladder, history table, reminder sequences).
