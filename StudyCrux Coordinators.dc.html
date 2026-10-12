@@ -126,10 +126,78 @@
             </div>
           </div>
         </div>
-        <button style="position:relative;width:38px;height:38px;flex:none;border-radius:50%;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:#475467" style-hover="background:#F6F5F0">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 1 0 6 8c0 7-3 8-3 8h18s-3-1-3-8" /><path d="M13.7 21a2 2 0 0 1-3.4 0" /></svg>
-          <span style="position:absolute;top:7px;right:8px;width:7px;height:7px;border-radius:50%;background:#E5484D;border:1.5px solid #fff"></span>
-        </button>
+        <div style="position:relative;flex:none">
+          <button onClick="{{ ntToggle }}" style="position:relative;width:38px;height:38px;flex:none;border-radius:50%;border:1px solid {{ ntBtnBd }};background:{{ ntBtnBg }};display:grid;place-items:center;cursor:pointer;color:#475467" style-hover="background:#F6F5F0">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 1 0 6 8c0 7-3 8-3 8h18s-3-1-3-8" /><path d="M13.7 21a2 2 0 0 1-3.4 0" /></svg>
+            <span style="display:{{ ntDot }};position:absolute;top:7px;right:8px;width:7px;height:7px;border-radius:50%;background:#E5484D;border:1.5px solid #fff"></span>
+          </button>
+          <sc-if value="{{ ntOpen }}" hint-placeholder-val="{{ false }}">
+            <div onClick="{{ ntClose }}" style="position:fixed;inset:0;z-index:58"></div>
+            <div style="position:absolute;top:46px;right:0;z-index:59;width:420px;max-width:calc(100vw - 32px);max-height:min(640px, calc(100vh - 90px));display:flex;flex-direction:column;background:#fff;border:1px solid #ECEAE2;border-radius:14px;box-shadow:0 24px 60px rgba(11,31,62,.18);overflow:hidden;text-align:left">
+              <div style="flex:none;padding:16px 18px 12px;display:flex;align-items:flex-start;gap:10px">
+                <div style="flex:1;min-width:0">
+                  <div style="display:flex;align-items:center;gap:8px">
+                    <span style="font-size:15px;font-weight:700;color:#0F2A47">Notifications</span>
+                    <span style="display:{{ ntUnreadShow }};font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:#FDE8E8;color:#B42318">{{ ntUnreadLabel }}</span>
+                  </div>
+                  <div style="font-size:12px;color:#6B7C93;margin-top:3px">Coordinator module · last 7 days</div>
+                </div>
+                <button onClick="{{ ntMarkAll }}" style="height:28px;padding:0 10px;border-radius:7px;border:0;background:transparent;font-size:12px;font-weight:600;color:#0B7A6E;cursor:pointer;white-space:nowrap;font-family:inherit" style-hover="background:#EEF6F5">Mark all as read</button>
+              </div>
+              <div style="flex:none;display:flex;gap:4px;padding:0 18px 12px;border-bottom:1px solid #F0EEE7;overflow-x:auto">
+                <sc-for list="{{ ntTabs }}" as="t" hint-placeholder-count="4">
+                  <button onClick="{{ t.pick }}" style="display:flex;align-items:center;gap:6px;height:30px;padding:0 11px;border-radius:999px;border:1px solid {{ t.bd }};background:{{ t.bg }};font-size:12px;font-weight:600;color:{{ t.fg }};cursor:pointer;white-space:nowrap;font-family:inherit">{{ t.label }}<span style="font-size:10.5px;font-weight:700;color:{{ t.nFg }}">{{ t.n }}</span></button>
+                </sc-for>
+              </div>
+              <div style="flex:1;overflow-y:auto">
+                <sc-for list="{{ ntGroups }}" as="g" hint-placeholder-count="2">
+                  <div>
+                    <div style="padding:12px 18px 6px;font-size:10.5px;font-weight:700;letter-spacing:.07em;color:#98A2B3">{{ g.label }}</div>
+                    <sc-for list="{{ g.items }}" as="n" hint-placeholder-count="3">
+                      <div onClick="{{ n.open }}" style="display:flex;gap:12px;padding:12px 18px;background:{{ n.bg }};cursor:pointer;border-bottom:1px solid #F7F5F0" style-hover="background:#FAF9F4">
+                        <div style="width:34px;height:34px;flex:none;border-radius:10px;background:{{ n.iBg }};color:{{ n.iFg }};display:grid;place-items:center">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{{ n.path }}" /></svg>
+                        </div>
+                        <div style="min-width:0;flex:1">
+                          <div style="display:flex;align-items:flex-start;gap:8px">
+                            <div style="flex:1;min-width:0;font-size:13px;font-weight:{{ n.weight }};color:#0F2A47;line-height:1.4;text-wrap:pretty">{{ n.title }}</div>
+                            <span style="display:{{ n.dot }};width:8px;height:8px;flex:none;border-radius:50%;background:#0E9384;margin-top:5px"></span>
+                          </div>
+                          <div style="font-size:12px;color:#6B7C93;line-height:1.5;margin-top:2px;text-wrap:pretty">{{ n.body }}</div>
+                          <div style="display:flex;align-items:center;gap:8px;margin-top:7px;flex-wrap:wrap">
+                            <span style="font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px;background:{{ n.tBg }};color:{{ n.tFg }}">{{ n.tag }}</span>
+                            <span style="font-size:11px;color:#98A2B3">{{ n.time }}</span>
+                            <span style="flex:1"></span>
+                            <sc-if value="{{ n.hasActs }}" hint-placeholder-val="{{ false }}">
+                              <div style="display:flex;gap:6px">
+                                <button onClick="{{ n.secondary }}" style="height:26px;padding:0 10px;border-radius:7px;border:1px solid #E5E3DC;background:#fff;font-size:11.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">{{ n.secondaryLabel }}</button>
+                                <button onClick="{{ n.primary }}" style="height:26px;padding:0 10px;border-radius:7px;border:0;background:#0E9384;font-size:11.5px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit" style-hover="background:#0B7A6E">{{ n.primaryLabel }}</button>
+                              </div>
+                            </sc-if>
+                          </div>
+                        </div>
+                      </div>
+                    </sc-for>
+                  </div>
+                </sc-for>
+                <div style="display:{{ ntEmpty }};padding:40px 24px;text-align:center">
+                  <div style="width:44px;height:44px;margin:0 auto 10px;border-radius:12px;background:#EEF6F5;display:grid;place-items:center;color:#0B7A6E">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+                  </div>
+                  <div style="font-size:13.5px;font-weight:700;color:#0F2A47">You're all caught up</div>
+                  <div style="font-size:12px;color:#6B7C93;margin-top:3px">Nothing new in this view.</div>
+                </div>
+              </div>
+              <div style="flex:none;display:flex;align-items:center;gap:10px;padding:11px 18px;border-top:1px solid #F0EEE7;background:#FCFBF7">
+                <button onClick="{{ ntSettings }}" style="display:flex;align-items:center;gap:6px;height:30px;padding:0 10px;border-radius:7px;border:0;background:transparent;font-size:12px;font-weight:600;color:#475467;cursor:pointer;font-family:inherit" style-hover="background:#F2F0EA">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z" /></svg>Notification settings
+                </button>
+                <span style="flex:1"></span>
+                <button onClick="{{ ntViewAll }}" style="height:30px;padding:0 12px;border-radius:8px;border:1px solid #BFE3DC;background:#EEF6F5;font-size:12px;font-weight:700;color:#0B7A6E;cursor:pointer;font-family:inherit" style-hover="background:#E2F1EE">View all activity</button>
+              </div>
+            </div>
+          </sc-if>
+        </div>
           <sc-if value="{{ showAddCta }}" hint-placeholder-val="{{ false }}">
           <div style="position:relative;flex:none">
             <button onClick="{{ openAdd }}" style="display:flex;align-items:center;gap:7px;flex:none;height:38px;padding:0 16px;border-radius:9px;border:0;background:#0E9384;font-size:13px;font-weight:700;color:#fff;cursor:pointer;white-space:nowrap" style-hover="background:#0B7A6E">
@@ -1374,17 +1442,38 @@
 
       <sc-if value="{{ isPerf360 }}" hint-placeholder-val="{{ false }}">
         <div>
-          <div style="display:flex;align-items:flex-start;gap:14px;background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:18px 20px;margin-bottom:16px;flex-wrap:wrap">
-            <button onClick="{{ p3Back }}" style="width:32px;height:32px;flex:none;border-radius:9px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:#475467;margin-top:4px" style-hover="background:#F6F5F0">
+          <div style="display:flex;align-items:flex-start;gap:22px;background:#0B1F3E;border-radius:18px;padding:26px 28px;margin-bottom:16px;flex-wrap:wrap">
+            <button onClick="{{ p3Back }}" style="width:32px;height:32px;flex:none;border-radius:9px;border:1px solid #2A4468;background:#14335C;display:grid;place-items:center;cursor:pointer;color:#C7D3E3" style-hover="background:#1B3F6B">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6" /></svg>
             </button>
-            <div style="width:44px;height:44px;flex:none;border-radius:50%;background:#0E9384;display:grid;place-items:center;color:#fff;font-size:14px;font-weight:700">{{ p3Init }}</div>
-            <div style="min-width:0;flex:1 1 260px">
-              <div style="font-size:18px;font-weight:800;color:#0F2A47;letter-spacing:-.02em">{{ p3Name }}</div>
-              <div style="font-size:12px;color:#98A2B3;margin-top:5px;text-wrap:pretty">{{ p3Meta }}</div>
+            <div style="width:116px;height:116px;flex:none;border-radius:16px;background:#14335C;border:3px solid #2E4A72;display:grid;place-items:center;color:#fff;font-size:40px;font-weight:800;letter-spacing:-.02em">{{ p3Init }}</div>
+            <div style="min-width:0;flex:1 1 320px">
+              <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+                <span style="font-size:28px;font-weight:800;color:#fff;letter-spacing:-.02em">{{ p3Name }}</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#3B9EF5"><path d="M12 1.5l2.6 1.9 3.2-.2 1 3 2.6 1.9-1 3.1 1 3.1-2.6 1.9-1 3-3.2-.2L12 22.5l-2.6-1.9-3.2.2-1-3-2.6-1.9 1-3.1-1-3.1 2.6-1.9 1-3 3.2.2z" /><path d="M8 12.2l2.7 2.6L16.2 9.3" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                <span style="display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;padding:5px 13px;border-radius:999px;background:{{ p3BandBg }};color:{{ p3BandFg }}"><span style="width:7px;height:7px;border-radius:50%;background:{{ p3BandFg }}"></span>{{ p3Band }}</span>
+              </div>
+              <div style="font-size:14px;color:#9FB2CC;margin-top:8px;text-wrap:pretty">{{ p3Sub }}</div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
+                <sc-for list="{{ p3Chips }}" as="c" hint-placeholder-count="4">
+                  <span style="font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:999px;border:1px solid #3A5577;color:#fff;white-space:nowrap">{{ c.v }}</span>
+                </sc-for>
+              </div>
+              <div style="display:flex;gap:9px;flex-wrap:wrap;margin-top:18px">
+                <button onClick="{{ p3Compare }}" style="height:38px;padding:0 16px;border-radius:9px;border:1px solid #3A5577;background:#14335C;font-size:13px;font-weight:600;color:#fff;cursor:pointer;font-family:inherit" style-hover="background:#1B3F6B">Compare</button>
+                <button onClick="{{ p3Goals }}" style="height:38px;padding:0 16px;border-radius:9px;border:1px solid #3A5577;background:#14335C;font-size:13px;font-weight:600;color:#fff;cursor:pointer;font-family:inherit" style-hover="background:#1B3F6B">Set Goals</button>
+                <button onClick="{{ p3Pdf }}" style="height:38px;padding:0 16px;border-radius:9px;border:1px solid #3A5577;background:#14335C;font-size:13px;font-weight:600;color:#fff;cursor:pointer;font-family:inherit" style-hover="background:#1B3F6B">Download PDF</button>
+                <button onClick="{{ p3Export }}" style="height:38px;padding:0 17px;border-radius:9px;border:0;background:#0E9384;font-size:13px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit" style-hover="background:#0B7A6E">Export Report</button>
+              </div>
             </div>
-            <span style="flex:none;font-size:12px;font-weight:600;padding:8px 14px;border-radius:9px;background:#FCFBF7;border:1px solid #EDEBE4;color:#475467;white-space:nowrap">{{ p3Period }}</span>
-            <button onClick="{{ p3Export }}" style="flex:none;height:36px;padding:0 15px;border-radius:9px;border:0;background:#0E9384;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer;white-space:nowrap" style-hover="background:#0B7A6E">Export Report</button>
+            <div style="flex:0 1 260px;min-width:220px;border:1px solid #2A4468;background:#122B4D;border-radius:14px;padding:16px 18px">
+              <div style="font-size:11px;font-weight:700;letter-spacing:.12em;color:#8EA3BF">REPORTING PERIOD</div>
+              <div style="display:flex;flex-direction:column;gap:6px;margin-top:10px">
+                <sc-for list="{{ p3PeriodRows }}" as="r" hint-placeholder-count="3">
+                  <span style="font-size:13.5px;color:#fff">{{ r.v }}</span>
+                </sc-for>
+              </div>
+            </div>
           </div>
 
           <div style="display:flex;gap:2px;background:#fff;border:1px solid #ECEAE2;border-radius:12px;padding:4px;margin-bottom:16px;overflow-x:auto">
@@ -2429,9 +2518,30 @@
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#98A2B3" stroke-width="2.1" stroke-linecap="round" style="position:absolute;left:13px;top:12px"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.6-3.6" /></svg>
               <input value="{{ rcQ }}" onChange="{{ setRcQ }}" placeholder="Search course or coordinator…" style="width:100%;height:38px;padding:0 13px 0 35px;border:1px solid #E5E3DC;border-radius:10px;font-size:13px;color:#0F2A47;background:#fff;outline:0;box-sizing:border-box" />
             </div>
+            <button onClick="{{ rcTFToggle }}" style="display:{{ rcTFBtn }};align-items:center;gap:7px;flex:none;height:38px;padding:0 14px;border-radius:10px;border:1px solid {{ rcTFBd }};background:{{ rcTFBg }};font-size:12.5px;font-weight:600;color:{{ rcTFFg }};cursor:pointer;font-family:inherit">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M4 6h16M7 12h10M10 18h4" /></svg>Filters<span style="display:{{ rcTFCountShow }};min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:#0E9384;color:#fff;font-size:10.5px;font-weight:700;align-items:center;justify-content:center">{{ rcTFCount }}</span>
+            </button>
             <button onClick="{{ rcReset }}" style="display:{{ rcResetShow }};align-items:center;flex:none;height:38px;padding:0 14px;border-radius:10px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer" style-hover="background:#F6F5F0">Reset</button>
             <button onClick="{{ rcBulk }}" style="flex:none;height:38px;padding:0 14px;border-radius:10px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer" style-hover="background:#F6F5F0">Bulk actions</button>
             <button onClick="{{ rcExport }}" style="flex:none;height:38px;padding:0 14px;border-radius:10px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer" style-hover="background:#F6F5F0">Export</button>
+          </div>
+
+          <div style="display:{{ rcTFPanel }};background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:16px 20px;margin-bottom:16px">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px">
+              <sc-for list="{{ rcTF }}" as="p" hint-placeholder-count="5">
+                <div style="min-width:0">
+                  <label style="display:block;font-size:11px;font-weight:600;color:#475467;margin-bottom:6px">{{ p.label }}</label>
+                  <select value="{{ p.value }}" onChange="{{ p.set }}" style="width:100%;height:36px;padding:0 10px;border:1px solid #E5E3DC;border-radius:8px;font-size:12.5px;background:#fff;color:#0F2A47;outline:0;font-family:inherit">
+                    <sc-for list="{{ p.opts }}" as="o" hint-placeholder-count="4"><option>{{ o.o }}</option></sc-for>
+                  </select>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:12px;padding-top:12px;border-top:1px solid #F2F0EA">
+              <span style="font-size:12px;color:#6B7C93">{{ rcTFSummary }}</span>
+              <span style="flex:1"></span>
+              <button onClick="{{ rcTFClear }}" style="height:30px;padding:0 12px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:12px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Clear filters</button>
+            </div>
           </div>
 
           <sc-if value="{{ rcIsDash }}" hint-placeholder-val="{{ true }}">
@@ -2966,9 +3076,14 @@
                           </div>
                         </td>
                         <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.sBg }};color:{{ r.sFg }};white-space:nowrap">{{ r.band }}</span></td>
-                        <td style="padding:11px 20px 11px 13px;border-bottom:1px solid #F5F3EE;text-align:right;white-space:nowrap">
-                          <button onClick="{{ r.assign }}" style="height:29px;padding:0 11px;border-radius:8px;border:1px solid #BFE3DC;background:#EEF6F5;font-size:11.5px;font-weight:600;color:#0B7A6E;cursor:pointer;margin-right:6px">Assign batch</button>
-                          <button onClick="{{ r.open }}" style="height:29px;padding:0 11px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:11.5px;font-weight:600;color:#344054;cursor:pointer">View Profile</button>
+                        <td style="padding:11px 20px 11px 13px;border-bottom:1px solid #F5F3EE;text-align:right;white-space:nowrap;position:relative">
+                          <button onClick="{{ r.menu }}" style="width:28px;height:28px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;display:inline-grid;place-items:center;cursor:pointer;color:#98A2B3;vertical-align:middle" style-hover="background:#F6F5F0">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.6" /><circle cx="12" cy="12" r="1.6" /><circle cx="12" cy="19" r="1.6" /></svg>
+                          </button>
+                          <div style="display:{{ r.menuDisplay }};position:absolute;top:{{ r.mTop }};bottom:{{ r.mBottom }};right:20px;width:170px;background:#fff;border:1px solid #ECEAE2;border-radius:12px;box-shadow:0 18px 44px rgba(11,31,62,.16);padding:6px;z-index:40;text-align:left">
+                            <div onClick="{{ r.assignM }}" style="padding:8px 11px;border-radius:8px;font-size:12.5px;color:#344054;cursor:pointer" style-hover="background:#F7FBFA">Assign batch</div>
+                            <div onClick="{{ r.openM }}" style="padding:8px 11px;border-radius:8px;font-size:12.5px;color:#344054;cursor:pointer" style-hover="background:#F7FBFA">View Profile</div>
+                          </div>
                         </td>
                       </tr>
                     </sc-for>
@@ -3167,6 +3282,231 @@
                           </div>
                         </sc-for>
                       </div>
+                    </sc-if>
+
+                    <sc-if value="{{ sec.isStudentsView }}" hint-placeholder-val="{{ false }}">
+                      <div>
+                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:13px;margin-bottom:16px">
+                          <sc-for list="{{ sec.stuAnalytics }}" as="k" hint-placeholder-count="4">
+                            <div style="background:#fff;border:1px solid #ECEAE2;border-top:3px solid {{ k.c }};border-radius:10px;padding:13px 16px">
+                              <div style="font-size:10.5px;font-weight:700;letter-spacing:.06em;color:#7A8699">{{ k.label }}</div>
+                              <div style="font-size:21px;font-weight:800;letter-spacing:-.02em;margin-top:6px;color:{{ k.c }}">{{ k.n }}</div>
+                              <div style="font-size:11px;color:#98A2B3;margin-top:3px">{{ k.sub }}</div>
+                            </div>
+                          </sc-for>
+                        </div>
+                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px">
+                          <sc-for list="{{ sec.stuFilters }}" as="p" hint-placeholder-count="5">
+                            <div style="min-width:0">
+                              <label style="display:block;font-size:11px;font-weight:600;color:#475467;margin-bottom:6px">{{ p.label }}</label>
+                              <select value="{{ p.value }}" onChange="{{ p.set }}" style="width:100%;height:36px;padding:0 10px;border:1px solid #E5E3DC;border-radius:8px;font-size:12.5px;background:#fff;color:#0F2A47;outline:0;font-family:inherit">
+                                <sc-for list="{{ p.opts }}" as="o" hint-placeholder-count="4"><option>{{ o.o }}</option></sc-for>
+                              </select>
+                            </div>
+                          </sc-for>
+                        </div>
+                        <div style="border:1px solid #F0EEE7;border-radius:12px;overflow:hidden">
+                          <div style="overflow-x:auto">
+                            <table style="width:100%;min-width:1000px;border-collapse:collapse">
+                              <thead>
+                                <tr style="background:#FCFBF7">
+                                  <th style="padding:11px 16px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7">STUDENT</th>
+                                  <th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">COURSE</th>
+                                  <th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">BATCH</th>
+                                  <th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">TEACHER</th>
+                                  <th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">ENROLLMENT STATUS</th>
+                                  <th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">COURSE STATUS</th>
+                                  <th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">ACTIVITY</th>
+                                  <th style="padding:11px 16px 11px 13px;border-bottom:1px solid #F0EEE7"></th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <sc-for list="{{ sec.stuRows }}" as="x" hint-placeholder-count="6">
+                                  <tr style-hover="background:#FCFBF7">
+                                    <td style="padding:11px 16px;border-bottom:1px solid #F5F3EE">
+                                      <div style="font-size:13px;font-weight:600;color:#0F2A47;white-space:nowrap">{{ x.name }}</div>
+                                      <div style="font-size:10.5px;color:#98A2B3;margin-top:2px;font-family:ui-monospace,monospace">{{ x.sid }}</div>
+                                    </td>
+                                    <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ x.course }}</td>
+                                    <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ x.batch }}</td>
+                                    <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ x.teacher }}</td>
+                                    <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ x.eBg }};color:{{ x.eFg }};white-space:nowrap">{{ x.enroll }}</span></td>
+                                    <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ x.cBg }};color:{{ x.cFg }};white-space:nowrap">{{ x.cState }}</span></td>
+                                    <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12px;color:#475467;white-space:nowrap">{{ x.att }} attendance · {{ x.mock }} mock avg · last {{ x.last }}</td>
+                                    <td style="padding:11px 16px 11px 13px;border-bottom:1px solid #F5F3EE;text-align:right"><button onClick="{{ x.open }}" style="height:29px;padding:0 12px;border-radius:8px;border:1px solid #BFE3DC;background:#EEF6F5;font-size:11.5px;font-weight:600;color:#0B7A6E;cursor:pointer;white-space:nowrap;font-family:inherit" style-hover="background:#E2F1EE">View Student</button></td>
+                                  </tr>
+                                </sc-for>
+                              </tbody>
+                            </table>
+                          </div>
+                          <div style="display:{{ sec.stuEmpty }};padding:28px;text-align:center;font-size:13px;font-weight:600;color:#7A8699">No students match these filters.</div>
+                        </div>
+                      </div>
+                    </sc-if>
+
+                    <sc-if value="{{ sec.isReviews }}" hint-placeholder-val="{{ false }}">
+                      <div style="display:flex;flex-direction:column;gap:12px">
+                        <sc-for list="{{ sec.revRows }}" as="rv" hint-placeholder-count="3">
+                          <div style="border:1px solid #F0EEE7;border-radius:12px;padding:15px 17px;background:#FCFBF7">
+                            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+                              <div style="display:flex;gap:2px">
+                                <sc-for list="{{ rv.stars }}" as="st" hint-placeholder-count="5">
+                                  <svg width="14" height="14" viewBox="0 0 24 24" fill="{{ st.fg }}"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.5 6.1 20.6l1.2-6.5L2.5 9.5l6.6-.9z" /></svg>
+                                </sc-for>
+                              </div>
+                              <span style="font-size:13px;font-weight:800;color:#0F2A47">{{ rv.ratingLabel }}</span>
+                              <span style="font-size:12.5px;font-weight:600;color:#344054">{{ rv.product }}</span>
+                              <span style="font-size:11.5px;font-weight:600;padding:3px 9px;border-radius:999px;background:{{ rv.sBg }};color:{{ rv.sFg }}">{{ rv.state }}</span>
+                              <span style="flex:1"></span>
+                              <span style="font-size:11.5px;color:#98A2B3;font-family:ui-monospace,monospace">{{ rv.id }} · {{ rv.date }}</span>
+                            </div>
+                            <div style="font-size:13px;color:#475467;line-height:1.55;margin-top:9px;text-wrap:pretty">{{ rv.text }}</div>
+                            <div style="display:flex;gap:8px;margin-top:12px">
+                              <button onClick="{{ rv.publish }}" style="display:{{ rv.canPublish }};align-items:center;height:32px;padding:0 13px;border-radius:8px;border:0;background:#0E9384;font-size:12px;font-weight:600;color:#fff;cursor:pointer;font-family:inherit" style-hover="background:#0B7A6E">Publish</button>
+                              <button onClick="{{ rv.hide }}" style="display:{{ rv.canHide }};align-items:center;height:32px;padding:0 13px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:12px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Hide</button>
+                              <button onClick="{{ rv.reply }}" style="height:32px;padding:0 13px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:12px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Reply</button>
+                              <span style="flex:1"></span>
+                              <button onClick="{{ rv.del }}" style="height:32px;padding:0 13px;border-radius:8px;border:1px solid #F0D2CF;background:#fff;font-size:12px;font-weight:600;color:#B42318;cursor:pointer;font-family:inherit" style-hover="background:#FEF7F6">Delete</button>
+                            </div>
+                          </div>
+                        </sc-for>
+                      </div>
+                    </sc-if>
+
+                    <sc-if value="{{ sec.isCalView }}" hint-placeholder-val="{{ false }}">
+                      <div style="background:#fff;border:1px solid #F0EEE7;border-radius:12px;overflow:hidden">
+              <div style="display:flex;align-items:center;gap:12px;padding:15px 20px;border-bottom:1px solid #F2F0EA;flex-wrap:wrap">
+                <div style="display:flex;gap:2px;background:#FCFBF7;border:1px solid #ECEAE2;border-radius:10px;padding:3px;flex:none">
+                  <sc-for list="{{ calModes }}" as="m" hint-placeholder-count="3">
+                    <button onClick="{{ m.pick }}" style="height:28px;padding:0 13px;border:0;border-radius:7px;font-size:12px;cursor:pointer;background:{{ m.bg }};color:{{ m.fg }};font-weight:{{ m.weight }}">{{ m.label }}</button>
+                  </sc-for>
+                </div>
+                <div style="display:flex;align-items:center;gap:7px;flex:none">
+                  <button onClick="{{ calPrev }}" style="width:30px;height:30px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:#475467"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M15 18l-6-6 6-6" /></svg></button>
+                  <button onClick="{{ calToday }}" style="height:30px;padding:0 12px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:12px;font-weight:600;color:#344054;cursor:pointer">Today</button>
+                  <button onClick="{{ calNext }}" style="width:30px;height:30px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:#475467"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 6l6 6-6 6" /></svg></button>
+                </div>
+                <span style="font-size:14.5px;font-weight:700;color:#0F2A47">{{ calRange }}</span>
+                <span style="flex:1"></span>
+                <label style="flex:none;font-size:11.5px;color:#7A8699">Colour by</label>
+                <select value="{{ calGroup }}" onChange="{{ setCalGroup }}" style="flex:none;height:32px;padding:0 10px;border:1px solid #E5E3DC;border-radius:8px;font-size:12px;background:#fff;color:#0F2A47;outline:0">
+                  <option>Status</option><option>Course</option><option>Teacher</option><option>Batch</option>
+                </select>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;padding:13px 20px;border-bottom:1px solid #F2F0EA;background:#FCFBF7">
+                <sc-for list="{{ calLegend }}" as="l" hint-placeholder-count="8">
+                  <span style="display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;background:{{ l.bg }};color:{{ l.fg }}">
+                    <span style="width:6px;height:6px;border-radius:50%;background:{{ l.fg }}"></span>{{ l.label }}
+                  </span>
+                </sc-for>
+              </div>
+
+              <sc-if value="{{ calIsDay }}" hint-placeholder-val="{{ false }}">
+                <div style="padding:18px 20px;display:flex;flex-direction:column;gap:8px">
+                  <sc-for list="{{ calDayRows }}" as="r" hint-placeholder-count="8">
+                    <div style="display:grid;grid-template-columns:88px 1fr;gap:14px;align-items:stretch">
+                      <div style="font-size:12px;font-weight:600;color:#7A8699;padding-top:12px">{{ r.time }}</div>
+                      <div style="display:{{ r.empty }};align-items:center;min-height:34px;border-top:1px dashed #EFEDE6"></div>
+                      <div class="sc-hover-host" style="display:{{ r.filled }};border:1px solid {{ r.bd }};border-left:4px solid {{ r.sFg }};border-radius:11px;padding:13px 16px;background:#FCFBF7;cursor:pointer" onClick="{{ r.open }}">
+                        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+                          <span style="font-size:13.5px;font-weight:700;color:#0F2A47;text-wrap:pretty">{{ r.title }}</span>
+                          <span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.sBg }};color:{{ r.sFg }}">{{ r.status }}</span>
+                          <span style="flex:1"></span>
+                          <span style="font-size:12px;color:#7A8699;white-space:nowrap">{{ r.slot }}</span>
+                        </div>
+                        <div style="font-size:12px;color:#7A8699;margin-top:6px">{{ r.batch }} · {{ r.teacher }} · {{ r.students }}</div>
+                        <div style="display:flex;align-items:center;gap:8px;margin-top:3px">
+                          <span style="font-size:11.5px;color:#98A2B3;flex:1;min-width:0">{{ r.topic }}</span>
+                          <div class="sc-hover-acts" style="display:flex;gap:6px;flex:none">
+                            <button onClick="{{ r.link }}" style="height:27px;padding:0 10px;border-radius:7px;border:1px solid #E5E3DC;background:#fff;font-size:11px;font-weight:600;color:#344054;cursor:pointer;white-space:nowrap" style-hover="background:#F6F5F0">Copy Link</button>
+                            <button onClick="{{ r.join }}" style="height:27px;padding:0 10px;border-radius:7px;border:0;background:#0E9384;font-size:11px;font-weight:700;color:#fff;cursor:pointer;white-space:nowrap" style-hover="background:#0B7A6E">Join Class</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ calIsWeek }}" hint-placeholder-val="{{ true }}">
+                <div style="padding:18px 20px;overflow-x:auto">
+                  <div style="min-width:820px">
+                    <div style="display:grid;grid-template-columns:130px repeat(6,minmax(0,1fr));gap:8px;margin-bottom:8px">
+                      <span></span>
+                      <sc-for list="{{ calWeekDays }}" as="d" hint-placeholder-count="6">
+                        <div style="text-align:center;font-size:11.5px;font-weight:700;color:{{ d.fg }}">{{ d.d }}</div>
+                      </sc-for>
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:8px">
+                      <sc-for list="{{ calWeek }}" as="row" hint-placeholder-count="5">
+                        <div style="display:grid;grid-template-columns:130px repeat(6,minmax(0,1fr));gap:8px">
+                          <div style="display:flex;align-items:center;font-size:11.5px;font-weight:600;color:#475467">{{ row.slot }}</div>
+                          <sc-for list="{{ row.cells }}" as="c" hint-placeholder-count="6">
+                            <div onClick="{{ c.open }}" class="sc-hover-host" style="min-width:0;min-height:56px;border:1px solid {{ c.bd }};border-radius:10px;background:{{ c.bg }};color:{{ c.fg }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:7px;font-size:11px;font-weight:600;text-align:center;text-wrap:pretty;cursor:pointer">
+                              <span>{{ c.label }}</span>
+                              <sc-if value="{{ c.isClass }}" hint-placeholder-val="{{ false }}">
+                                <div class="sc-hover-acts" style="display:flex;gap:4px;width:100%">
+                                  <button onClick="{{ c.link }}" style="flex:1;height:22px;padding:0;border-radius:6px;border:1px solid #E5E3DC;background:#fff;font-size:9.5px;font-weight:600;color:#344054;cursor:pointer" style-hover="background:#F6F5F0">Copy</button>
+                                  <button onClick="{{ c.join }}" style="flex:1;height:22px;padding:0;border-radius:6px;border:0;background:#0E9384;font-size:9.5px;font-weight:700;color:#fff;cursor:pointer" style-hover="background:#0B7A6E">Join</button>
+                                </div>
+                              </sc-if>
+                            </div>
+                          </sc-for>
+                        </div>
+                      </sc-for>
+                    </div>
+                  </div>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ calIsAgenda }}" hint-placeholder-val="{{ false }}">
+                <div>
+                  <sc-for list="{{ scAgenda }}" as="r" hint-placeholder-count="10">
+                    <div onClick="{{ r.open }}" class="sc-hover-host" style="display:flex;align-items:center;gap:14px;padding:13px 20px;border-bottom:1px solid #F5F3EE;cursor:pointer;flex-wrap:wrap" style-hover="background:#FCFBF7">
+                      <div style="width:96px;flex:none">
+                        <div style="font-size:12.5px;font-weight:700;color:#0F2A47">{{ r.date }}</div>
+                        <div style="font-size:11px;color:#98A2B3;margin-top:2px">{{ r.slot }}</div>
+                      </div>
+                      <div style="width:32px;height:32px;flex:none;border-radius:50%;background:{{ r.avBg }};display:grid;place-items:center;color:#fff;font-size:11px;font-weight:700">{{ r.init }}</div>
+                      <div style="min-width:0;flex:1 1 220px">
+                        <div style="font-size:13.5px;font-weight:600;color:#0F2A47;text-wrap:pretty">{{ r.course }} · {{ r.topic }}</div>
+                        <div style="font-size:11.5px;color:#98A2B3;margin-top:3px">{{ r.teacher }} · {{ r.batch }} · {{ r.students }}</div>
+                      </div>
+                      <div class="sc-hover-acts" style="display:flex;gap:6px;flex:none">
+                        <button onClick="{{ r.link }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid #E5E3DC;background:#fff;font-size:11px;font-weight:600;color:#344054;cursor:pointer;white-space:nowrap" style-hover="background:#F6F5F0">Copy Link</button>
+                        <button onClick="{{ r.join }}" style="height:28px;padding:0 10px;border-radius:7px;border:0;background:#0E9384;font-size:11px;font-weight:700;color:#fff;cursor:pointer;white-space:nowrap" style-hover="background:#0B7A6E">Join Class</button>
+                      </div>
+                      <span style="flex:none;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:{{ r.sBg }};color:{{ r.sFg }};white-space:nowrap">{{ r.status }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ calIsMonth }}" hint-placeholder-val="{{ false }}">
+                <div style="padding:18px 20px">
+                  <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;margin-bottom:8px">
+                    <sc-for list="{{ calMonthDows }}" as="d" hint-placeholder-count="7">
+                      <div style="text-align:center;font-size:11px;font-weight:700;letter-spacing:.05em;color:#98A2B3">{{ d.d }}</div>
+                    </sc-for>
+                  </div>
+                  <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px">
+                    <sc-for list="{{ calMonthCells }}" as="c" hint-placeholder-count="35">
+                      <div onClick="{{ c.open }}" class="sc-hover-host" style="min-width:0;min-height:84px;border:1px solid {{ c.bd }};border-radius:10px;background:{{ c.bg }};padding:9px 10px;cursor:pointer" style-hover="border-color:#BFE3DC">
+                        <div style="font-size:12.5px;font-weight:700;color:{{ c.fg }}">{{ c.d }}</div>
+                        <div style="font-size:11px;color:#98A2B3;margin-top:6px">{{ c.n }}</div>
+                        <span style="display:{{ c.flagDisplay }};align-items:center;margin-top:7px;font-size:10px;font-weight:700;padding:3px 8px;border-radius:999px;background:{{ c.fBg }};color:{{ c.fFg }}">{{ c.flag }}</span>
+                        <sc-if value="{{ c.hasClasses }}" hint-placeholder-val="{{ false }}">
+                          <div class="sc-hover-acts" style="display:flex;gap:5px;margin-top:8px">
+                            <button onClick="{{ c.link }}" style="flex:1;height:24px;padding:0;border-radius:6px;border:1px solid #E5E3DC;background:#fff;font-size:10px;font-weight:600;color:#344054;cursor:pointer" style-hover="background:#F6F5F0">Copy</button>
+                            <button onClick="{{ c.join }}" style="flex:1;height:24px;padding:0;border-radius:6px;border:0;background:#0E9384;font-size:10px;font-weight:700;color:#fff;cursor:pointer" style-hover="background:#0B7A6E">Join</button>
+                          </div>
+                        </sc-if>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-if>
+            </div>
                     </sc-if>
 
                     <sc-if value="{{ sec.isLpView }}" hint-placeholder-val="{{ false }}">
@@ -4846,6 +5186,108 @@
                     </div>
                   </div>
                 </sc-for>
+              <sc-if value="{{ dspM.open }}" hint-placeholder-val="{{ false }}">
+                <div onClick="{{ dspM.close }}" style="position:fixed;inset:0;background:rgba(11,31,62,.42);z-index:80"></div>
+                <div style="position:fixed;z-index:81;top:50%;left:50%;transform:translate(-50%,-50%);width:660px;max-width:94vw;max-height:90vh;display:flex;flex-direction:column;background:#fff;border-radius:16px;box-shadow:0 24px 64px rgba(11,31,62,.22);overflow:hidden;text-align:left">
+                  <div style="flex:none;padding:22px 24px 18px;border-bottom:1px solid #F0EEE7;display:flex;align-items:flex-start;gap:12px">
+                    <div style="width:38px;height:38px;flex:none;border-radius:11px;background:{{ dspM.iBg }};color:{{ dspM.iFg }};display:grid;place-items:center">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="{{ dspM.iPath }}" /></svg>
+                    </div>
+                    <div style="flex:1;min-width:0">
+                      <h3 style="margin:0;font-size:16.5px;font-weight:700;color:#0F2A47">{{ dspM.title }}</h3>
+                      <p style="margin:5px 0 0;font-size:13px;color:#6B7C93;text-wrap:pretty">{{ dspM.sub }}</p>
+                    </div>
+                    <button onClick="{{ dspM.close }}" style="width:32px;height:32px;flex:none;border-radius:9px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:#7A8699" style-hover="background:#F6F5F0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12" /></svg></button>
+                  </div>
+                  <div style="flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:18px">
+                    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px">
+                      <div style="border:1px solid #F0EEE7;border-radius:10px;padding:11px 13px;background:#FCFBF7"><div style="font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#98A2B3">CLAIMED</div><div style="font-size:17px;font-weight:800;color:#0F2A47;margin-top:4px">{{ dspM.claimed }}</div></div>
+                      <div style="border:1px solid #F0EEE7;border-radius:10px;padding:11px 13px;background:#FCFBF7"><div style="font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#98A2B3">CALCULATED</div><div style="font-size:17px;font-weight:800;color:#0F2A47;margin-top:4px">{{ dspM.calc }}</div></div>
+                      <div style="border:1px solid #F0D2CF;border-radius:10px;padding:11px 13px;background:#FEF7F6"><div style="font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#B42318">DIFFERENCE</div><div style="font-size:17px;font-weight:800;color:#B42318;margin-top:4px">{{ dspM.diff }}</div></div>
+                    </div>
+                    <div style="padding:11px 14px;border-radius:10px;background:#FCFBF7;border:1px solid #F0EEE7">
+                      <div style="font-size:10.5px;font-weight:700;letter-spacing:.06em;color:#98A2B3">{{ dspM.claimLabel }}</div>
+                      <div style="font-size:12.5px;color:#475467;margin-top:4px;text-wrap:pretty">{{ dspM.comment }}</div>
+                    </div>
+                    <sc-if value="{{ dspM.isResolve }}" hint-placeholder-val="{{ false }}">
+                      <div style="display:flex;flex-direction:column;gap:16px">
+                        <div>
+                          <div style="font-size:11.5px;font-weight:700;letter-spacing:.07em;color:#7A8699;margin-bottom:10px">DECISION</div>
+                          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px">
+                            <sc-for list="{{ dspM.decisions }}" as="o" hint-placeholder-count="2">
+                              <div onClick="{{ o.pick }}" style="border:1.5px solid {{ o.bd }};background:{{ o.bg }};border-radius:12px;padding:12px 14px;cursor:pointer;display:flex;gap:10px;align-items:flex-start">
+                                <span style="width:16px;height:16px;flex:none;border-radius:50%;border:5px solid {{ o.dot }};background:#fff;margin-top:1px;box-sizing:border-box"></span>
+                                <div style="min-width:0"><div style="font-size:13px;font-weight:700;color:#0F2A47">{{ o.label }}</div><div style="font-size:11.5px;color:#7A8699;margin-top:3px">{{ o.sub }}</div></div>
+                              </div>
+                            </sc-for>
+                          </div>
+                        </div>
+                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px">
+                          <div style="min-width:0">
+                            <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Amount to pay (₹) <span style="color:#B42318">*</span></label>
+                            <input value="{{ dspM.amt }}" onChange="{{ dspM.setAmt }}" readOnly="{{ dspM.amtLocked }}" style="width:100%;height:40px;padding:0 12px;border:1px solid #E5E3DC;border-radius:9px;font-size:13.5px;background:#fff;color:#0F2A47;outline:0;font-family:inherit;box-sizing:border-box;background:{{ dspM.amtBg }};border-color:{{ dspM.amtBd }}" />
+                          </div>
+                          <div style="min-width:0">
+                            <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Settle via</label>
+                            <select value="{{ dspM.via }}" onChange="{{ dspM.setVia }}" style="width:100%;height:40px;padding:0 12px;border:1px solid #E5E3DC;border-radius:9px;font-size:13.5px;background:#fff;color:#0F2A47;outline:0;font-family:inherit;box-sizing:border-box"><sc-for list="{{ dspM.viaOpts }}" as="x" hint-placeholder-count="3"><option>{{ x.o }}</option></sc-for></select>
+                          </div>
+                          <div style="min-width:0">
+                            <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Root cause</label>
+                            <select value="{{ dspM.cause }}" onChange="{{ dspM.setCause }}" style="width:100%;height:40px;padding:0 12px;border:1px solid #E5E3DC;border-radius:9px;font-size:13.5px;background:#fff;color:#0F2A47;outline:0;font-family:inherit;box-sizing:border-box"><sc-for list="{{ dspM.causeOpts }}" as="x" hint-placeholder-count="4"><option>{{ x.o }}</option></sc-for></select>
+                          </div>
+                        </div>
+                      </div>
+                    </sc-if>
+                    <sc-if value="{{ dspM.isReject }}" hint-placeholder-val="{{ false }}">
+                      <div style="display:flex;flex-direction:column;gap:16px">
+                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px">
+                          <div style="min-width:0">
+                            <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Rejection reason <span style="color:#B42318">*</span></label>
+                            <select value="{{ dspM.reason }}" onChange="{{ dspM.setReason }}" style="width:100%;height:40px;padding:0 12px;border:1px solid #E5E3DC;border-radius:9px;font-size:13.5px;background:#fff;color:#0F2A47;outline:0;font-family:inherit;box-sizing:border-box"><sc-for list="{{ dspM.reasonOpts }}" as="x" hint-placeholder-count="4"><option>{{ x.o }}</option></sc-for></select>
+                          </div>
+                          <div style="min-width:0">
+                            <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Re-appeal</label>
+                            <select value="{{ dspM.appeal }}" onChange="{{ dspM.setAppeal }}" style="width:100%;height:40px;padding:0 12px;border:1px solid #E5E3DC;border-radius:9px;font-size:13.5px;background:#fff;color:#0F2A47;outline:0;font-family:inherit;box-sizing:border-box"><sc-for list="{{ dspM.appealOpts }}" as="x" hint-placeholder-count="3"><option>{{ x.o }}</option></sc-for></select>
+                          </div>
+                        </div>
+                        <div>
+                          <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Evidence shared with the payee</label>
+                          <div style="display:flex;gap:8px;flex-wrap:wrap">
+                            <sc-for list="{{ dspM.evidence }}" as="n" hint-placeholder-count="4">
+                              <button onClick="{{ n.toggle }}" style="height:32px;padding:0 13px;border-radius:999px;border:1px solid {{ n.bd }};background:{{ n.bg }};color:{{ n.fg }};font-size:12px;font-weight:600;cursor:pointer;font-family:inherit">{{ n.n }}</button>
+                            </sc-for>
+                          </div>
+                        </div>
+                      </div>
+                    </sc-if>
+                    <div>
+                      <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">{{ dspM.noteLabel }} <span style="color:#B42318">*</span></label>
+                      <textarea value="{{ dspM.note }}" onChange="{{ dspM.setNote }}" placeholder="{{ dspM.notePh }}" style="width:100%;min-height:84px;padding:10px 12px;border:1px solid {{ dspM.noteBd }};border-radius:9px;font-size:13.5px;color:#0F2A47;outline:0;font-family:inherit;resize:vertical;box-sizing:border-box"></textarea>
+                      <div style="font-size:11px;color:#98A2B3;margin-top:5px">{{ dspM.noteHint }}</div>
+                    </div>
+                    <div>
+                      <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Notify {{ dspM.payeeLower }}</label>
+                      <div style="display:flex;gap:8px;flex-wrap:wrap">
+                        <sc-for list="{{ dspM.notify }}" as="n" hint-placeholder-count="3">
+                          <button onClick="{{ n.toggle }}" style="height:32px;padding:0 13px;border-radius:999px;border:1px solid {{ n.bd }};background:{{ n.bg }};color:{{ n.fg }};font-size:12px;font-weight:600;cursor:pointer;font-family:inherit">{{ n.n }}</button>
+                        </sc-for>
+                      </div>
+                    </div>
+                    <div style="display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border-radius:10px;background:{{ dspM.infoBg }}">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="{{ dspM.infoFg }}" stroke-width="2.1" stroke-linecap="round" style="flex:none;margin-top:1px"><circle cx="12" cy="12" r="9" /><path d="M12 11v5M12 8h.01" /></svg>
+                      <span style="font-size:12.5px;color:{{ dspM.infoFg }};text-wrap:pretty">{{ dspM.info }}</span>
+                    </div>
+                    <sc-if value="{{ dspM.hasErr }}" hint-placeholder-val="{{ false }}">
+                      <div style="padding:10px 14px;border-radius:10px;background:#FEF7F6;border:1px solid #FDE8E8;font-size:12.5px;font-weight:600;color:#B42318">{{ dspM.err }}</div>
+                    </sc-if>
+                  </div>
+                  <div style="flex:none;display:flex;align-items:center;gap:10px;padding:16px 24px;border-top:1px solid #F0EEE7;background:#FCFBF7">
+                    <span style="flex:1"></span>
+                    <button onClick="{{ dspM.close }}" style="height:38px;padding:0 16px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:13px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Cancel</button>
+                    <button onClick="{{ dspM.submit }}" style="height:38px;padding:0 18px;border-radius:9px;border:0;background:{{ dspM.pBg }};font-size:13px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit;white-space:nowrap">{{ dspM.btn }}</button>
+                  </div>
+                </div>
+              </sc-if>
               </div>
             </div>
           </sc-if>
@@ -6397,34 +6839,74 @@ const C360 = {
     {t:'PROFILE ACTIONS', kind:'actions', btns:[['Edit Personal Info'],['Edit Professional Info'],['Edit Employment'],['Edit Compensation'],['View Documents'],['Download Profile PDF']]}
   ],
   'Personal & Professional': [
-    {t:'PERSONAL', kind:'kv', rows:[
-      ['Full name','Priya Sharma'],['Date of birth','12 Mar 1994'],['Gender','Female'],
-      ['Mobile','+91 98400 21188'],['Alternate mobile','+91 80 4123 8890'],
-      ['Personal email','priya.sharma@gmail.com'],['Work email','priya.sharma@studycrux.io'],
-      ['Current address','412, Prestige Elm Park, Whitefield, Bengaluru'],
-      ['Permanent address','18 Kamala Nivas, Mylapore, Chennai'],
-      ['Emergency contact','Rohit S. (Spouse) · +91 98450 11220']]},
-    {t:'PROFESSIONAL', kind:'kv', rows:[
-      ['Highest qualification','MBA — Operations & Service Management'],['Institution','Christ University, Bengaluru'],
-      ['Total experience','6 years 4 months'],['Academic coordination experience','4 years'],
-      ['LMS experience','Moodle + StudyCrux LMS'],['Student management experience','4 years · 900+ students'],
-      ['Teacher coordination experience','3 years · 18 faculty'],
-      ['Skills','LMS management, scheduling, attendance, reporting, conflict resolution'],
-      ['Certifications','PMP Foundation · Google Workspace Admin']]},
-    {t:'ACTIONS', kind:'actions', btns:[['Edit Personal Info'],['Edit Professional Info'],['Download Profile PDF']]}
+    {t:'BASIC DETAILS', kind:'kv', rows:[
+      ['Full Name','Priya Sharma'],['Gender','Female'],['Date of Birth','12 March 1994'],['Blood Group','O+'],['Nationality','Indian'],
+      ['Languages','English (fluent) · Hindi (fluent) · Tamil (native) · Kannada (conversational)'],['Marital Status','Married']]},
+    {t:'CONTACT', kind:'kv', rows:[
+      ['Mobile','+91 98400 21188'],['Alternate Mobile','+91 80 4123 8890'],
+      ['Personal Email','priya.sharma@gmail.com'],['Work Email','priya.sharma@studycrux.io'],
+      ['Current Address','412, Prestige Elm Park, Whitefield, Bengaluru'],
+      ['Permanent Address','18 Kamala Nivas, Mylapore, Chennai']]},
+    {t:'IDENTITY', kind:'kv', rows:[
+      ['PAN','BQSPS••••4L · verified'],['Aadhaar','XXXX XXXX 7731 · verified'],
+      ['Passport','N••••562 · valid till 2033'],['Voter ID','TN/••••/4417'],['Driving License','KA-0320190••••']]},
+    {t:'BANKING', kind:'kv', rows:[
+      ['Account Holder','Priya Sharma'],['Bank','ICICI Bank — Whitefield, Bengaluru'],
+      ['Account Number','••••7731'],['IFSC','ICIC0001842'],['UPI ID','priyasharma@icici'],
+      ['Cancelled Cheque','Uploaded · verified by Finance']]},
+    {t:'EMERGENCY CONTACTS', kind:'list', rows:[
+      {ic:'1',c:'blue',t:'Rohit Sharma — Spouse',s:'+91 98450 11220 · primary contact'},
+      {ic:'2',c:'grey',t:'Lakshmi Iyer — Mother',s:'+91 94440 35512 · secondary contact'}]},
+    {t:'SOCIAL & PROFESSIONAL LINKS', kind:'kv', rows:[
+      ['LinkedIn','linkedin.com/in/priyasharma-ops'],['Portfolio','notion.so/priya-coordination'],
+      ['Community','StudyCrux Coordinator Guild · moderator']]},
+    {t:'ACTIONS', kind:'actions', btns:[['Edit Personal Details'],['Update Bank Details'],['Request Re-verification']]},
+    {t:'EXPERIENCE SUMMARY', kind:'cards', rows:[
+      ['TOTAL EXPERIENCE','6.3 yrs','1.5 yrs at StudyCrux','#0B7A6E'],['ACADEMIC COORDINATION','4 yrs','batches, schedules, attendance','#0F2A47'],
+      ['STUDENTS MANAGED','900+','across 3 institutions','#6D28D9'],['FACULTY COORDINATED','18','current + previous roles','#B45309']]},
+    {t:'QUALIFICATIONS', kind:'kv', rows:[
+      ['Highest Qualification','MBA — Operations & Service Management'],
+      ['University / Institute','Christ University, Bengaluru'],
+      ['Specialization','Service operations & process design'],
+      ['Additional Qualification','B.Com — Stella Maris College, Chennai (2015)'],
+      ['Professional Certifications','PMP Foundation (2023) · Google Workspace Admin (2024)'],
+      ['Domain Certification','IRDAI IC-38 — passed (2025, for course context)']]},
+    {t:'EXPERTISE & PREFERENCES', kind:'kv', rows:[
+      ['Areas of Expertise','Batch operations · Scheduling · Attendance · Escalation handling'],
+      ['LMS & Tools','StudyCrux LMS · Moodle · Google Workspace · Zoho Desk'],
+      ['Courses Can Coordinate','IC-01 · IC-02 · IC-11 · IC-38 Full Prep'],
+      ['Preferred Batch Timing','Morning and afternoon batches'],
+      ['Preferred Language','English + Hindi'],
+      ['Working Style','Process-first · daily batch health check, weekly faculty sync'],
+      ['Professional Bio','Six years running academic operations. Coordinates 12 live batches, keeps attendance above 92% and closes most student issues inside a day.']]},
+    {t:'AWARDS & ACHIEVEMENTS', kind:'list', rows:[
+      {ic:'★',c:'amber',t:'Coordinator of the Quarter — Q2 2026',s:'Fastest issue turnaround across all coordinators'},
+      {ic:'★',c:'amber',t:'Zero missed classes — 6 consecutive months',s:'Feb – Jul 2026 · all assigned batches'},
+      {ic:'★',c:'green',t:'LMS migration lead',s:'2025 · moved 14 batches from Moodle to StudyCrux LMS'},
+      {ic:'★',c:'green',t:'Attendance playbook author',s:'2026 · adopted as the coordinator standard'}]},
+    {t:'MEDIA', kind:'table', cols:['Asset','Type','Uploaded','Size','Status'], rows:[
+      ['Resume — Priya Sharma 2026','PDF','2026-01-18','420 KB',['Verified','green']],
+      ['Certification — PMP Foundation','PDF','2023-09-04','310 KB',['Verified','green']],
+      ['Profile Photo','Image','2025-03-20','1.2 MB',['Published','green']],
+      ['Introduction Video','Video','2025-04-02','3 min',['Archived','grey']]]},
+    {t:'ACTIONS', kind:'actions', btns:[['Edit Professional Profile'],['Add Certification'],['Download Profile PDF']]}
   ],
   'Students': [
-    {t:'STUDENT SUMMARY', kind:'cards', rows:[
-      ['Total students','486','across 12 batches','#0F2A47'],['Active','462','currently enrolled','#15803D'],
-      ['At risk','18','attendance below 60%','#B42318'],['Avg attendance','87%','all batches','#15803D']]},
-    {t:'STUDENTS UNDER COORDINATION', right:'Grouped by course', kind:'table', rowAct:'View Student',
-      cols:['Student','Student ID','Course','Batch','Attendance','Progress','Status'], rows:[
-      ['Aarav Sharma','SC-10001','IC-01','Batch A','94%','84%',['Active','green']],
-      ['Ananya Gupta','SC-10006','IC-01','Batch A','100%','91%',['Active','green']],
-      ['Kabir Mehta','SC-10017','IC-02','Batch B','90%','72%',['Active','green']],
-      ['Meera Nair','SC-10021','IC-02','Batch B','77%','61%',['At risk','amber']],
-      ['Divya Krishnan','SC-10014','IC-11','Batch D','58%','44%',['At risk','red']]]},
-    {t:'STUDENT ACTIONS', kind:'actions', btns:[['Message Batch'],['Flag At-Risk Students'],['Export Student List']]}
+    {t:'ASSIGNED STUDENTS', kind:'studentsview'},
+    {t:'FEEDBACK TRENDS', kind:'bars', rows:[
+      ['Most appreciated — same-day doubt routing','86%','#0E9384','mentioned in 184 reviews'],
+      ['Most appreciated — schedule shared in advance','78%','#0E9384','mentioned in 167 reviews'],
+      ['Most appreciated — quick batch transfers','61%','#5AC0B0','mentioned in 131 reviews'],
+      ['Complaint — late timing-change notices','12%','#F0A72A','mentioned in 26 reviews'],
+      ['Complaint — recording links shared late','8%','#F0A72A','mentioned in 17 reviews']]},
+    {t:'RECENT REVIEWS', kind:'reviews', rows:[
+      {id:'FB-6612',product:'IC-01 · Batch A',rating:5,date:'28 Aug 2026',state:'Published',
+       text:'Every doubt I raised was routed to the right teacher the same day. Class changes always reached us a day early.'},
+      {id:'FB-6598',product:'IC-02 · Batch B',rating:4.5,date:'24 Aug 2026',state:'Published',
+       text:'Batch transfer was handled in one call. Would like recordings to be shared a little sooner after class.'},
+      {id:'FB-6571',product:'IC-02 · Batch B',rating:3,date:'18 Aug 2026',state:'Pending',
+       text:'The evening batch timing change was communicated only on the same day, which clashed with work.'}]},
+    {t:'STUDENT ACTIONS', kind:'actions', btns:[['Message Batch'],['Flag At-Risk Students'],['Export Student List'],['Request Feedback Round']]}
   ],
   'Ratings & Reviews': [
     {t:'RATING SUMMARY', kind:'cards', rows:[
@@ -6444,22 +6926,33 @@ const C360 = {
   ],
   'Finance & Payroll': [
     {t:'PAYROLL SNAPSHOT', kind:'cards', rows:[
-      ['Monthly salary','₹42,000','fixed · 1–31 cycle','#0F2A47'],['Annual CTC','₹8.40L','revised Jul 2026','#6D28D9'],
-      ['Paid YTD','₹3,78,000','9 cycles settled','#15803D'],['Next payout','01 Sep 2026','₹42,000','#B45309']]},
-    {t:'COMPENSATION', kind:'kv', rows:[
-      ['Compensation mode','Fixed Salary'],['Monthly salary','₹42,000'],['Annual CTC','₹8,40,000'],
-      ['Payment cycle','Monthly · 1–31'],['Payment method','Bank Transfer'],
-      ['Bank account','HDFC ••••4482 · verified'],['PAN','ABCPS••••4K · verified'],
-      ['Last revision','01 Jul 2026 · +₹3,000'],['Next review','01 Jan 2027']]},
-    {t:'PAYOUT HISTORY', right:'Last 6 cycles', kind:'table',
-      cols:['Cycle','Gross','Deductions','Net','Paid on','Status'], rows:[
-      ['Aug 2026','₹42,000','₹4,200','₹37,800','—',['Pending','amber']],
-      ['Jul 2026','₹42,000','₹4,200','₹37,800','01 Aug 2026',['Paid','green']],
-      ['Jun 2026','₹39,000','₹3,900','₹35,100','01 Jul 2026',['Paid','green']],
-      ['May 2026','₹39,000','₹3,900','₹35,100','01 Jun 2026',['Paid','green']],
-      ['Apr 2026','₹39,000','₹3,900','₹35,100','01 May 2026',['Paid','green']],
-      ['Mar 2026','₹39,000','₹3,900','₹35,100','01 Apr 2026',['Paid','green']]]},
-    {t:'PAYROLL ACTIONS', kind:'actions', btns:[['Approve Pending Payout'],['Download Payslip'],['Edit Compensation'],['Hold Payout',1]]}
+      ['CURRENT SALARY','₹42,000','monthly fixed','#0F2A47'],['CTC','₹8.40L','annual · revised Jul 2026','#6D28D9'],
+      ['AUGUST CYCLE','₹37,800','pending approval','#B45309'],['PAID YTD','₹3,78,000','9 cycles','#15803D'],
+      ['TDS YTD','₹38,700','10% u/s 192','#0F2A47'],['INCENTIVES YTD','₹9,000','batch outcome bonus','#15803D'],
+      ['DEDUCTIONS YTD','₹1,400','1 unpaid leave day','#B42318'],['REIMBURSEMENTS','₹3,600','2 claims settled','#0B7A6E']]},
+    {t:'SALARY STRUCTURE', kind:'kv', rows:[
+      ['Payout Model','Fixed monthly salary'],['Base Salary','₹42,000 per month'],
+      ['Batch Incentive','₹1,500 per batch above 90% attendance'],['Outcome Bonus','₹3,000 per quarter at ≥ 85% completion'],
+      ['Payment Cycle','Monthly · 1–31 · processed on the 1st'],['Bank Account','HDFC ••••4482 · verified'],
+      ['PAN','ABCPS••••4K · verified'],['Tax Regime','New regime · TDS u/s 192'],['Advance Salary','None outstanding']]},
+    {t:'PAYSLIP HISTORY', right:'Last 6 cycles', kind:'table',
+      cols:['Cycle','Working Days','Base','Incentive','Deductions','TDS','Net Paid','UTR','Paid On','Status'], rows:[
+      ['Aug 2026','22','₹42,000','₹0','₹0','₹4,200','₹37,800','—','—',['Pending Approval','amber']],
+      ['Jul 2026','23','₹42,000','₹1,500','₹0','₹4,350','₹39,150','UTR-88210512','2026-08-01',['Paid','green']],
+      ['Jun 2026','21','₹39,000','₹3,000','₹1,400','₹4,060','₹36,540','UTR-88104377','2026-07-01',['Paid','green']],
+      ['May 2026','22','₹39,000','₹1,500','₹0','₹4,050','₹36,450','UTR-87990218','2026-06-01',['Paid','green']],
+      ['Apr 2026','22','₹39,000','₹0','₹0','₹3,900','₹35,100','UTR-87880456','2026-05-01',['Paid','green']],
+      ['Mar 2026','21','₹39,000','₹3,000','₹0','₹4,200','₹37,800','UTR-87740331','2026-04-01',['Paid','green']]]},
+    {t:'SALARY REVISION HISTORY', kind:'table',
+      cols:['Effective','From','To','Change','Reason','Approved By'], rows:[
+      ['2026-07-01','₹39,000','₹42,000','+7.7%','Mid-year review — took on 3 additional batches','Academic Head'],
+      ['2025-03-20','—','₹39,000','—','Joining salary · Class Coordinator','HR']]},
+    {t:'REIMBURSEMENTS & CLAIMS', kind:'table',
+      cols:['Claim ID','Type','Amount','Submitted','Reason','Status'], rows:[
+      ['EXP-2214','Travel','₹2,400','2026-07-18','Campus orientation — Chennai',['Settled','green']],
+      ['EXP-2176','Internet','₹1,200','2026-06-04','Monthly broadband — WFH days',['Settled','green']],
+      ['EXP-2251','Telephone','₹800','2026-08-06','Parent call follow-ups',['Pending','amber']]]},
+    {t:'PAYROLL ACTIONS', kind:'actions', btns:[['Approve August Cycle'],['Generate Payslip'],['Download Form 16'],['Raise Adjustment'],['Hold Payout',1]]}
   ],
   'Internal Notes': [
     {t:'INTERNAL NOTES', right:'Visible to administrators only', kind:'list', rows:[
@@ -6506,23 +6999,17 @@ const C360 = {
   ],
   'Schedule': [
     {t:'SCHEDULE SNAPSHOT', kind:'cards', rows:[
-      ['Classes this month','142','across 12 batches','#0F2A47'],['Completed','128','90%','#15803D'],
-      ['Upcoming','11','next 7 days','#1D4ED8'],['Cancelled','2','make-ups planned','#B42318'],
-      ['Rescheduled','3','this week','#B45309'],['No instructor','1','needs assignment','#B42318'],
-      ['Recording pending','2','beyond 24 h','#B45309'],['On-time start rate','93%','this month','#15803D']]},
-    {t:'UPCOMING & ACTIVE CLASSES', right:'Next 7 days · rescheduled sessions included', kind:'table', rowAct:'Open Class', cols:['Date','Time','Course','Batch','Teacher','Class Type','Duration','Attendance','Recording','Status'], rows:[
-      ['2026-08-16','07:00 – 09:00','IC-01','BT-101','Dr. Vikram Verma','Live class','120 min','40 / 42','Uploaded',['Completed','green']],
-      ['2026-08-16','11:00 – 12:30','IC-02','BT-204','Neha Kulkarni','Live class','90 min','32 / 35','Uploaded',['Completed','green']],
-      ['2026-08-16','14:00 – 16:00','IC-11','BT-310','Prof. Arun Mehta','Live class','120 min','—','—',['Live','green']],
-      ['2026-08-16','18:00 – 19:30','IC-02','BT-103','Amit Sharma','Doubt session','90 min','—','—',['Scheduled','blue']],
-      ['2026-08-17','07:00 – 09:00','IC-11','BT-408','—','Live class','120 min','—','—',['No instructor','red']],
-      ['2026-08-15','18:00 – 20:00','IC-01','BT-103','Ritu Bansal','Live class','120 min','34 / 38','Pending',['Recording pending','amber']]]},
-    {t:'CLASS HISTORY', right:'Completed sessions with delivery outcome', kind:'table', cols:['Date','Course','Batch','Teacher','Attendance','Recording','On time','Status'], rows:[
-      ['2026-08-15','IC-01','BT-101','Dr. Vikram Verma','40 / 42','Uploaded','Yes',['Completed','green']],
-      ['2026-08-14','IC-02','BT-204','Neha Kulkarni','32 / 35','Uploaded','Yes',['Completed','green']],
-      ['2026-08-13','IC-11','BT-310','Prof. Arun Mehta','44 / 51','Uploaded','No',['Completed','amber']],
-      ['2026-08-12','IC-01','BT-103','Ritu Bansal','34 / 38','Pending','Yes',['Recording pending','amber']]]},
-    {t:'SCHEDULE ACTIONS', kind:'actions', btns:[['Open Calendar View'],['Schedule Class'],['Reschedule'],['Assign Substitute'],['Change Teacher'],['Send Notification'],['View Recording'],['Cancel Class',1],['Mark Issue',1]]}
+      ['UPCOMING CLASSES','11','next 7 days','#1D4ED8'],['LIVE NOW','1','IC-11 · BT-310','#0B7A6E'],
+      ['NO INSTRUCTOR','1','IC-11 · 17 Aug','#B45309'],['NEXT CLASS','Today · 18:00','IC-02 doubt session','#0B7A6E']]},
+    {t:'CALENDAR VIEW', kind:'calview'},
+    {t:'UPCOMING & ACTIVE CLASSES', kind:'table', rowAct:'Open Class', cols:['Date','Time','Course','Batch','Teacher','Class Type','Status'], rows:[
+      ['Today','14:00 – 16:00','IC-11','BT-310','Prof. Arun Mehta','Regular Class',['Live now','green']],
+      ['Today','18:00 – 19:30','IC-02','BT-103','Amit Sharma','Doubt Session',['Upcoming','blue']],
+      ['17 Aug 2026','07:00 – 09:00','IC-11','BT-408','—','Regular Class',['No instructor','red']],
+      ['17 Aug 2026','10:00 – 11:30','IC-01','BT-101','Dr. Vikram Verma','Regular Class',['Upcoming','blue']],
+      ['18 Aug 2026','19:00 – 20:30','IC-01','BT-103','Ritu Bansal','Revision Session',['Rescheduled','amber']],
+      ['19 Aug 2026','11:00 – 12:30','IC-02','BT-204','Neha Kulkarni','Regular Class',['Upcoming','blue']]]},
+    {t:'SCHEDULE ACTIONS', kind:'actions', btns:[['Schedule Class'],['Assign Substitute'],['Reschedule'],['Send Notification'],['View Class History →'],['Cancel Class',1]]}
   ],
   'Attendance & Leave': [
     {t:'MY ATTENDANCE KPIS', right:'This coordinator · current month', kind:'cards', rows:[
@@ -7027,7 +7514,28 @@ const CPRODUCTS = [
   {id:'CPR-7107', name:'IC-11 Mock Test Set B', kind:'Mock Test', plan:'12 tests · standard', buyId:'PRD-71107-M',
    purchased:'15 Jul 2026', valid:'31 Dec 2026', status:'Active', progress:58, last:'Yesterday, 05:22 PM', learners:142, teacher:'Ritu Bansal', rating:'4.2'},
   {id:'CPR-7108', name:'IC-38 Starter — Recorded', kind:'Recorded', plan:'Standard · 90 days', buyId:'PRD-71108-R',
-   purchased:'01 Aug 2025', valid:'31 Jan 2026', status:'Expired', progress:100, last:'31 Jan 2026', learners:72, teacher:'Ayesha Khan', rating:'4.4'}
+   purchased:'01 Aug 2025', valid:'31 Jan 2026', status:'Expired', progress:100, last:'31 Jan 2026', learners:72, teacher:'Ayesha Khan', rating:'4.4'},
+  {id:'CPR-7109', name:'IC-38 Exam Strategy Webinar', kind:'Webinar', plan:'Live · 90 min · 28 Aug 2026', buyId:'PRD-71109-W',
+   purchased:'10 Aug 2026', valid:'28 Aug 2026', status:'Active', progress:86, last:'Today, 10:30 AM', learners:186, teacher:'Dr. Vikram Verma', rating:'4.8'},
+  {id:'CPR-7110', name:'Claims Career Pathways Webinar', kind:'Webinar', plan:'Recorded replay · 60 min', buyId:'PRD-71110-W',
+   purchased:'02 Jul 2026', valid:'02 Oct 2026', status:'Expiring Soon', progress:74, last:'Yesterday, 06:15 PM', learners:142, teacher:'Neha Kulkarni', rating:'4.6'},
+  {id:'CPR-7111', name:'Claims Handling Workshop', kind:'Workshop', plan:'Hands-on · 3 h · 50 seats', buyId:'PRD-71111-K',
+   purchased:'01 Aug 2026', valid:'29 Aug 2026', status:'Active', progress:68, last:'Today, 11:40 AM', learners:42, teacher:'Prof. Arun Mehta', rating:'4.7'},
+  {id:'CPR-7112', name:'Underwriting Case Clinic', kind:'Workshop', plan:'Hybrid · 2 sessions · draft', buyId:'PRD-71112-K',
+   purchased:'—', valid:'—', status:'Draft', progress:0, last:'3 days ago', learners:0, teacher:'Ritu Bansal', rating:'—'}
+];
+
+const CSTU = [
+  {name:'Aarav Sharma',sid:'SC-10001',course:'IC-01',batch:'BT-101',teacher:'Dr. Vikram Verma',enroll:'Active',cState:'Active',att:'94%',mock:'84%',last:'15 Aug 2026',enrollDate:'2026-04-01'},
+  {name:'Ananya Gupta',sid:'SC-10006',course:'IC-01',batch:'BT-101',teacher:'Dr. Vikram Verma',enroll:'Active',cState:'Active',att:'100%',mock:'91%',last:'15 Aug 2026',enrollDate:'2026-04-01'},
+  {name:'Rohan Kulkarni',sid:'SC-10009',course:'IC-01',batch:'BT-103',teacher:'Ritu Bansal',enroll:'Active',cState:'Active',att:'88%',mock:'76%',last:'14 Aug 2026',enrollDate:'2026-06-10'},
+  {name:'Kabir Mehta',sid:'SC-10017',course:'IC-02',batch:'BT-204',teacher:'Neha Kulkarni',enroll:'Active',cState:'Active',att:'90%',mock:'72%',last:'14 Aug 2026',enrollDate:'2026-07-01'},
+  {name:'Meera Nair',sid:'SC-10021',course:'IC-02',batch:'BT-204',teacher:'Neha Kulkarni',enroll:'Paused',cState:'Active',att:'77%',mock:'61%',last:'08 Aug 2026',enrollDate:'2026-07-01'},
+  {name:'Ishaan Verma',sid:'SC-10024',course:'IC-02',batch:'BT-103',teacher:'Amit Sharma',enroll:'Active',cState:'Active',att:'92%',mock:'81%',last:'15 Aug 2026',enrollDate:'2026-07-20'},
+  {name:'Divya Krishnan',sid:'SC-10014',course:'IC-11',batch:'BT-310',teacher:'Prof. Arun Mehta',enroll:'Active',cState:'Active',att:'58%',mock:'44%',last:'31 Jul 2026',enrollDate:'2026-06-01'},
+  {name:'Sana Qureshi',sid:'SC-10033',course:'IC-11',batch:'BT-310',teacher:'Prof. Arun Mehta',enroll:'Active',cState:'Active',att:'86%',mock:'68%',last:'13 Aug 2026',enrollDate:'2026-06-01'},
+  {name:'Kunal Joshi',sid:'SC-10038',course:'IC-11',batch:'BT-408',teacher:'—',enroll:'Active',cState:'Upcoming',att:'—',mock:'—',last:'Not started',enrollDate:'2026-08-12'},
+  {name:'Pooja Rao',sid:'SC-09982',course:'IC-01',batch:'BT-322',teacher:'Ritu Bansal',enroll:'Expired',cState:'Completed',att:'84%',mock:'79%',last:'30 Jun 2026',enrollDate:'2026-03-01'}
 ];
 
 const CANDIDATES = [
@@ -7461,11 +7969,182 @@ class Component extends DCLogic {
     };
   }
 
+  dspOpen = (kind, d) => this.setState({dspM:{kind, d, dec:'full', amt:'', via:'Adjustment in next cycle', cause:'Calculation error', reason:'Calculation verified as correct', appeal:'Allowed within 7 days', ev:['Calculation breakdown'], notify:['Email','In-app'], note:'', err:null}});
+  dspFix = (r) => { const o = (this.state.dspOv||{})[r.id]; if (!o) return r;
+    const C = o.state==='Resolved' ? ['#E7F7EE','#15803D'] : ['#F1F3F5','#667085'];
+    return {...r, state:o.state, status:o.state, sBg:C[0], sFg:C[1], response:o.response, actionsDisplay:'none', resolveDisplay:'none', actsDisplay:'none'}; };
+  dspVals = (payee) => {
+    const m = this.state.dspM; if (!m) return {dspM:{open:false}};
+    const d = m.d, num = (v)=>Number(String(v).replace(/[^0-9.]/g,''))||0, inr = (n)=>'₹'+Math.round(n).toLocaleString('en-IN');
+    const diffN = num(d.diff), up = (p)=>this.setState(x=>({dspM:{...x.dspM, ...p, err:null}}));
+    const chips = (list, key)=>list.map(n=>{ const on = (m[key]||[]).includes(n); return {n, bd:on?'#0E9384':'#E5E3DC', bg:on?'#EEF6F5':'#fff', fg:on?'#0B7A6E':'#475467', toggle:()=>up({[key]: on ? m[key].filter(x=>x!==n) : (m[key]||[]).concat(n)})}; });
+    const isR = m.kind==='resolve', partial = m.dec==='partial';
+    const amtN = partial ? num(m.amt) : diffN;
+    const fail = (err)=>this.setState(x=>({dspM:{...x.dspM, err}}));
+    const close = ()=>this.setState({dspM:null});
+    const commit = (state, response, msg, sub)=>{ this.setState(x=>({dspM:null, dspOv:{...(x.dspOv||{}), [d.id]:{state, response}}})); this.fire(msg, sub, true); };
+    return {dspM: {open:true, isResolve:isR, isReject:!isR, close,
+      title: (isR ? 'Resolve dispute' : 'Reject dispute')+' — '+d.id,
+      sub: d.name+' · '+d.txn+' · '+d.kind,
+      iBg: isR ? '#E7F7EE' : '#FDE8E8', iFg: isR ? '#15803D' : '#B42318',
+      iPath: isR ? 'M20 6 9 17l-5-5' : 'M18 6 6 18M6 6l12 12',
+      claimed:d.claimed, calc:d.calc, diff:d.diff, comment:d.comment, claimLabel: payee.toUpperCase()+' CLAIM',
+      payeeLower: payee.toLowerCase(),
+      decisions: [['full','Accept full claim','Pay the full difference of '+d.diff],['partial','Partial settlement','Pay part of the difference']].map(([k,label,sub])=>{ const on=m.dec===k;
+        return {label, sub, bd:on?'#0E9384':'#ECEAE2', bg:on?'#EEF6F5':'#fff', dot:on?'#0E9384':'#D0D5DD', pick:()=>up({dec:k, amt: k==='full' ? '' : m.amt})}; }),
+      amt: partial ? m.amt : String(diffN), setAmt:(e)=>up({amt:e.target.value.replace(/[^0-9]/g,'')}), amtLocked: !partial,
+      amtBg: partial ? '#fff' : '#F6F5F0', amtBd: m.err && partial && (!amtN || amtN>=diffN) ? '#F0D2CF' : '#E5E3DC',
+      via:m.via, setVia:(e)=>up({via:e.target.value}), viaOpts:['Adjustment in next cycle','Add to current pending payout','Off-cycle payment within 48 h'].map(o=>({o})),
+      cause:m.cause, setCause:(e)=>up({cause:e.target.value}), causeOpts:['Calculation error','Missing sessions / attendance','Rate or agreement mismatch','Refund or deduction applied late','Other'].map(o=>({o})),
+      reason:m.reason, setReason:(e)=>up({reason:e.target.value}), reasonOpts:['Calculation verified as correct','Insufficient evidence provided','Outside the 30-day dispute window','Policy does not apply','Duplicate of an earlier dispute'].map(o=>({o})),
+      appeal:m.appeal, setAppeal:(e)=>up({appeal:e.target.value}), appealOpts:['Allowed within 7 days','Allowed within 30 days','Not allowed — final decision'].map(o=>({o})),
+      evidence: chips(['Calculation breakdown','Attendance / session log','Agreement clause','Payment record'],'ev'),
+      notify: chips(['Email','In-app','WhatsApp'],'notify'),
+      note:m.note, setNote:(e)=>up({note:e.target.value}),
+      noteLabel: isR ? 'Resolution note' : 'Explanation to the '+payee.toLowerCase(),
+      notePh: isR ? 'What was wrong and how it is being corrected' : 'Why the calculated amount stands — shared with the '+payee.toLowerCase(),
+      noteHint: isR ? 'Shared with the '+payee.toLowerCase()+' and written to the audit trail.' : 'Minimum 20 characters · shared with the '+payee.toLowerCase()+' together with the selected evidence.',
+      noteBd: m.err && (m.note||'').trim().length < (isR?1:20) ? '#F0D2CF' : '#E5E3DC',
+      infoBg: isR ? '#EEF6F5' : '#FEF7F6', infoFg: isR ? '#0B7A6E' : '#B42318',
+      info: isR ? d.name+' receives '+inr(amtN||0)+' via '+m.via.toLowerCase()+'. The payout line is released and the dispute closes as Resolved.'
+               : 'The payout stays at '+d.calc+'. The '+payee.toLowerCase()+' is notified'+((m.notify||[]).length ? ' by '+m.notify.join(', ') : '')+' · re-appeal: '+m.appeal.toLowerCase()+'.',
+      hasErr: !!m.err, err: m.err||'',
+      btn: isR ? 'Resolve · pay '+inr(amtN||0) : 'Reject dispute', pBg: isR ? '#0E9384' : '#B42318',
+      submit: ()=>{
+        if (isR) {
+          if (partial && (!amtN || amtN>=diffN)) return fail('Enter a partial amount between ₹1 and '+inr(diffN-1)+', or choose Accept full claim.');
+          if (!(m.note||'').trim()) return fail('Add a resolution note — it is shared with the '+payee.toLowerCase()+'.');
+          commit('Resolved', inr(amtN)+' approved · '+m.via+' · '+m.cause, 'Dispute resolved — '+d.id, d.name+' · '+inr(amtN)+' · '+m.via);
+        } else {
+          if ((m.note||'').trim().length < 20) return fail('Explain the rejection in at least 20 characters.');
+          commit('Rejected', m.reason+' · re-appeal '+m.appeal.toLowerCase(), 'Dispute rejected — '+d.id, d.name+' notified · '+m.reason);
+        }
+      }}};
+  };
+
   renderVals() { const v = this.renderVals0(); Object.assign(v, this.rxVals()); { const IC=(l)=>/cal/i.test(l)?'M8 3v4M16 3v4M3 10h18M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z':/agenda/i.test(l)?'M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01':/table|list/i.test(l)?'M4 6h16M4 12h16M4 18h16':'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z'; if (Array.isArray(v.scSegs)) { v.scSegsView = v.scSegs.filter(x=>/^(Calendar|Table|Cards)$/.test(x.label)).map(x=>({...x, ic: IC(x.label)})); v.scSegsTabs = v.scSegs.filter(x=>!/^(Calendar|Table|Cards)$/.test(x.label)); } } { const on = !!this.state.pvfOpen; const base = this._pvfBase = this._pvfBase || JSON.stringify((v.pvFilters||[]).map(f=>f.value)); const cur = (v.pvFilters||[]).map(f=>f.value); const b = JSON.parse(base); const n = cur.filter((x,i)=>x!==b[i]).length;
       Object.assign(v, {pvfToggle:()=>this.setState({pvfOpen:!on}), pvfClose:()=>this.setState({pvfOpen:false}), pvfMatch: String((v.pvRows||[]).length), pvfDisplay: on?'block':'none', pvfCount:String(n), pvfHas: n?'grid':'none', pvfBd: on||n?'#0E9384':'#E5E3DC', pvfBg: on||n?'#EEF6F5':'#fff', pvfFg: on||n?'#0B7A6E':'#344054'}); } if (Array.isArray(v.pvRows)) v.pvRows = v.pvRows.map((r,i)=>{ const on = this.state.pvMenu===i, close=(fn)=>()=>{ this.setState({pvMenu:null}); fn(); }, nm = r.name||'coordinator';
       const up = i >= v.pvRows.length-3 && v.pvRows.length>4; return {...r, menuTop: up ? 'auto' : '36px', menuBottom: up ? '36px' : 'auto', menuDisplay: on ? 'block' : 'none', menu: ()=>this.setState({pvMenu: on ? null : i}),
         menuItems: [['View Performance', r.open||(()=>{})], ['View Batches', ()=>this.setState({perfWho:nm, perfTab:'Batches & Teachers'})], ['Compare Performance', ()=>this.setState({pvAct:{kind:'compare', who:nm}, pvCmpWith:null})],
           ['Export Report', ()=>this.setState({fm:'export', fmCtx:{type:'Performance Summary', who:nm}, fmStep:0, fmErr:null})], ['Set Goals', ()=>this.setState({pvAct:{kind:'goal', who:nm}, pvGoalTarget:'', pvGoalTried:false})], ['View Activity', ()=>this.setState({perfWho:nm, perfTab:'Activity & Goals'})]].map(([label,fn])=>({label, pick: close(fn)}))}; }); Object.assign(v, this.rptVals()); Object.assign(v, this.pvActVals()); v.fp = this.fpVals(); this._gfBase = this._gfBase || JSON.stringify((v.globalFilters||[]).map(f=>f.value)); v.gfResetShow = (v.filterHas!=='none' || JSON.stringify((v.globalFilters||[]).map(f=>f.value))!==this._gfBase) ? 'inline-flex' : 'none'; this.frShow(v, ["at","pv","sc","rc","al","dir"]); v.dirCount = String((v.dirCards||[]).length); return v; }
+  rcTFDefs = () => {
+    const uniq = (rows,i)=>['All', ...new Set(rows.map(r=>r[i]).filter(v=>v && v!=='\u2014' && v!=='—'))];
+    const coordOf = (course)=>{ const c = RC_COURSES.find(x=>x[0]===String(course).split(' ')[0]); return c ? c[2] : '—'; };
+    const pct = (v)=>parseInt(v)||0;
+    const days = (v)=>{ v=String(v); if (/today/i.test(v)) return 0; if (/yesterday/i.test(v)) return 1; const m=v.match(/(\d+)\s*day/); return m ? +m[1] : 99; };
+    return {
+      students: [
+        ['Course','course',uniq(RC_STUDENTS,2),(r,v)=>r[2]===v],
+        ['Coordinator','coord',['All', ...new Set(RC_STUDENTS.map(r=>coordOf(r[2])))],(r,v)=>coordOf(r[2])===v],
+        ['Risk level','risk',['All','Low','Medium','High'],(r,v)=>r[10]===v],
+        ['Progress','prog',['All','Below 25%','25 – 50%','50 – 75%','75% and above'],(r,v)=>{ const p=pct(r[4]); return v==='Below 25%'?p<25:v==='25 – 50%'?p>=25&&p<50:v==='50 – 75%'?p>=50&&p<75:p>=75; }],
+        ['Completion','comp',['All','Below 25%','25 – 50%','50 – 75%','75% and above'],(r,v)=>{ const p=pct(r[7]); return v==='Below 25%'?p<25:v==='25 – 50%'?p>=25&&p<50:v==='50 – 75%'?p>=50&&p<75:p>=75; }],
+        ['Last active','last',['All','Today','Within 7 days','8 – 30 days','Over 30 days'],(r,v)=>{ const d=days(r[6]); return v==='Today'?d===0:v==='Within 7 days'?d<=7:v==='8 – 30 days'?d>7&&d<=30:d>30; }],
+        ['Doubts','doubts',['All','No doubts','1 – 2 doubts','3+ doubts'],(r,v)=>v==='No doubts'?+r[8]===0:v==='1 – 2 doubts'?+r[8]>=1&&+r[8]<=2:+r[8]>=3],
+        ['Coordinator contact','contact',['All','Contacted','Never contacted'],(r,v)=>v==='Contacted'?!/^[\u2014—]$/.test(r[9]):/^[\u2014—]$/.test(r[9])]
+      ],
+      doubts: [
+        ['Course','course',uniq(RC_DOUBTS,2),(r,v)=>r[2]===v],
+        ['Coordinator','coord',uniq(RC_DOUBTS,6),(r,v)=>r[6]===v],
+        ['Status','status',uniq(RC_DOUBTS,7),(r,v)=>r[7]===v],
+        ['Priority','pri',uniq(RC_DOUBTS,8),(r,v)=>r[8]===v],
+        ['SLA','sla',uniq(RC_DOUBTS,9),(r,v)=>r[9]===v]
+      ],
+      activity: [
+        ['Activity','act',uniq(RC_ACTIVITY,1),(r,v)=>r[1]===v],
+        ['Course','course',uniq(RC_ACTIVITY,3),(r,v)=>r[3]===v],
+        ['Coordinator','coord',uniq(RC_ACTIVITY,4),(r,v)=>r[4]===v],
+        ['Status','status',uniq(RC_ACTIVITY,5),(r,v)=>r[5]===v]
+      ],
+      content: [
+        ['Module','mod',uniq(RC_CONTENT,0),(r,v)=>r[0]===v],
+        ['Avg watch','watch',['All','Below 50%','50 – 70%','Above 70%'],(r,v)=>{ const p=pct(r[5]); return v==='Below 50%'?p<50:v==='50 – 70%'?p>=50&&p<=70:p>70; }],
+        ['Drop-off','drop',['All','High (30%+)','Normal (under 30%)'],(r,v)=>v.startsWith('High')?pct(r[7])>=30:pct(r[7])<30]
+      ],
+      assignhist: [
+        ['Coordinator','coord',uniq(RC_ASSIGN_HIST,0),(r,v)=>r[0]===v],
+        ['Assignment','state',['All','Current','Ended'],(r,v)=>v==='Current'?r[2]==='Present':r[2]!=='Present'],
+        ['Reason','reason',uniq(RC_ASSIGN_HIST,3),(r,v)=>r[3]===v],
+        ['Assigned by','by',uniq(RC_ASSIGN_HIST,4),(r,v)=>r[4]===v]
+      ],
+      audit: [
+        ['User','user',uniq(RC_AUDIT,1),(r,v)=>r[1]===v],
+        ['Action','action',uniq(RC_AUDIT,3),(r,v)=>r[3]===v],
+        ['Role','role',uniq(RC_AUDIT,2),(r,v)=>r[2]===v],
+        ['Course','course',uniq(RC_AUDIT,4),(r,v)=>r[4]===v],
+        ['Date','date',['All','Today','Last 7 days','Last 30 days'],(r,v)=>{ const m=String(r[0]).match(/^(\d+) Aug/); const d=m?16-(+m[1]):99; return v==='Today'?d===0:v==='Last 7 days'?d<=7:d<=30; }]
+      ]
+    };
+  };
+  rcF = (tab, rows) => {
+    const s = this.state, defs = this.rcTFDefs()[tab] || [], q = (s.rcQ||'').trim().toLowerCase();
+    return rows.filter(r => defs.every(([l,k,o,test])=>{ const v = s['rcTF_'+tab+'_'+k]||'All'; return v==='All' || test(r,v); })
+      && (!q || r.join(' ').toLowerCase().includes(q)));
+  };
+  rcTFVals = () => {
+    const s = this.state, tab = {students:'students', doubts:'doubts', activity:'activity', content:'content', audit:'audit', assignhist:'assignhist'}[s.rcTab||'dash'];
+    if (!tab) return {rcTFBtn:'none', rcTFPanel:'none', rcTF:[], rcTFCount:'0', rcTFCountShow:'none', rcTFSummary:'', rcTFToggle:()=>{}, rcTFClear:()=>{}, rcTFBd:'#E5E3DC', rcTFBg:'#fff', rcTFFg:'#344054'};
+    const defs = this.rcTFDefs()[tab];
+    const n = defs.filter(([l,k])=>(s['rcTF_'+tab+'_'+k]||'All')!=='All').length, open = !!s.rcTFOpen;
+    const SRC = {students:RC_STUDENTS, doubts:RC_DOUBTS, activity:RC_ACTIVITY, content:RC_CONTENT, audit:RC_AUDIT, assignhist:RC_ASSIGN_HIST}[tab];
+    const shown = this.rcF(tab, SRC).length;
+    return {
+      rcTFBtn:'inline-flex', rcTFPanel: open ? 'block' : 'none',
+      rcTFToggle: ()=>this.setState({rcTFOpen:!open}),
+      rcTFBd: open||n ? '#0E9384' : '#E5E3DC', rcTFBg: open||n ? '#EEF6F5' : '#fff', rcTFFg: open||n ? '#0B7A6E' : '#344054',
+      rcTFCount: String(n), rcTFCountShow: n ? 'inline-flex' : 'none',
+      rcTFSummary: 'Showing '+shown+' of '+SRC.length+(n ? ' · '+n+' filter'+(n>1?'s':'')+' applied' : ''),
+      rcTF: defs.map(([label,k,opts])=>({label, value:s['rcTF_'+tab+'_'+k]||'All', opts:opts.map(o=>({o})), set:(e)=>this.setState({['rcTF_'+tab+'_'+k]:e.target.value})})),
+      rcTFClear: ()=>{ const r={}; defs.forEach(([l,k])=>{ r['rcTF_'+tab+'_'+k]='All'; }); this.setState(r); }
+    };
+  };
+  ntVals = () => {
+    const s = this.state, read = s.ntRead||{}, gone = s.ntGone||{}, tab = s.ntTab||'all';
+    const P = {alert:'M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z',
+      approval:'M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11',
+      class:'M23 7l-7 5 7 5V7zM1 5h15v14H1z', doubt:'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z',
+      user:'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM19 8v6M22 11h-6',
+      pay:'M2 7h20v12H2zM2 11h20M6 15h4'};
+    const T = {Alert:['#FDE8E8','#B42318'], Approval:['#FEF3E2','#B45309'], Class:['#E9F1FD','#1D4ED8'], Doubt:['#F0EAFD','#6D28D9'], Onboarding:['#EEF6F5','#0B7A6E'], Payroll:['#E7F7EE','#15803D']};
+    const N = [
+      ['N1','today','Alert','alert','BT-408 has no instructor for tomorrow 07:00','IC-11 · 51 students enrolled · assign a teacher or substitute before 20:00 today.','12 min ago',['Assign substitute','Open batch']],
+      ['N2','today','Approval','approval','Leave request from Sneha Iyer','Casual leave · 22 – 23 Aug · 4 batches need cover while she is away.','38 min ago',['Approve','Review']],
+      ['N3','today','Doubt','doubt','3 doubts breached the 4-hour SLA','RC-04 IC-38 Starter · oldest raised 6 h ago by Kabir Mehta.','1 h ago',['Escalate','View doubts']],
+      ['N4','today','Class','class','Live class started late — IC-02 · BT-204','Neha Kulkarni joined 9 minutes after the scheduled 11:00 start.','2 h ago',null],
+      ['N5','today','Onboarding','user','Ananya Bose is ready to activate','All onboarding checks passed · access setup complete.','3 h ago',['Activate','Open file']],
+      ['N6','earlier','Payroll','pay','August payroll cycle is ready for approval','24 coordinators · ₹9,84,600 net payable · due 01 Sep.','Yesterday',['Approve cycle','Review']],
+      ['N7','earlier','Alert','alert','Rahul Sharma workload above 80%','5 active batches · 218 students · consider redistributing one batch.','Yesterday',null],
+      ['N8','earlier','Class','class','Recording pending beyond 24 h — IC-01 · BT-103','Ritu Bansal · 15 Aug class · students cannot access the replay yet.','2 days ago',null],
+      ['N9','earlier','Doubt','doubt','Student feedback round closed','214 responses · coordination rating 4.6 / 5.','3 days ago',null]
+    ].filter(n=>!gone[n[0]]);
+    const isUnread = (n)=>!read[n[0]] && n[0]!=='N9' && n[0]!=='N8';
+    const match = (n)=> tab==='all' || (tab==='unread' && isUnread(n)) || (tab==='alerts' && (n[2]==='Alert' || n[2]==='Doubt')) || (tab==='approvals' && n[2]==='Approval' || (tab==='approvals' && n[2]==='Payroll'));
+    const unread = N.filter(isUnread).length;
+    const markRead = (id)=>this.setState(x=>({ntRead:{...(x.ntRead||{}), [id]:true}}));
+    const done = (id, msg, sub)=>(e)=>{ e&&e.stopPropagation&&e.stopPropagation(); this.setState(x=>({ntGone:{...(x.ntGone||{}), [id]:true}})); this.fire(msg, sub, true); };
+    const view = (id, msg, sub)=>(e)=>{ e&&e.stopPropagation&&e.stopPropagation(); markRead(id); this.fire(msg, sub, true); };
+    const item = (n)=>{ const [id,grp,tag,ic,title,body,time,acts] = n, u = isUnread(n);
+      return {title, body, time, tag, path:P[ic], iBg:T[tag][0], iFg:T[tag][1], tBg:T[tag][0], tFg:T[tag][1],
+        bg: u ? '#F7FBFA' : '#fff', weight: u ? '700' : '600', dot: u ? 'block' : 'none',
+        hasActs: !!acts, primaryLabel: acts ? acts[0] : '', secondaryLabel: acts ? acts[1] : '',
+        primary: acts ? done(id, acts[0]+' — done', title) : ()=>{},
+        secondary: acts ? view(id, acts[1], title) : ()=>{},
+        open: ()=>{ markRead(id); this.fire('Opened — '+tag, title, true); }}; };
+    const vis = N.filter(match);
+    const groups = [['TODAY','today'],['EARLIER','earlier']].map(([label,k])=>({label, items: vis.filter(n=>n[1]===k).map(item)})).filter(g=>g.items.length);
+    const cnt = {all:N.length, unread, alerts:N.filter(n=>n[2]==='Alert'||n[2]==='Doubt').length, approvals:N.filter(n=>n[2]==='Approval'||n[2]==='Payroll').length};
+    return {
+      ntOpen: !!s.ntOpen, ntToggle: ()=>this.setState({ntOpen:!s.ntOpen}), ntClose: ()=>this.setState({ntOpen:false}),
+      ntBtnBd: s.ntOpen ? '#0E9384' : '#E5E3DC', ntBtnBg: s.ntOpen ? '#EEF6F5' : '#fff', ntDot: unread ? 'block' : 'none',
+      ntUnreadShow: unread ? 'inline-flex' : 'none', ntUnreadLabel: unread+' new',
+      ntTabs: [['All','all'],['Unread','unread'],['Alerts','alerts'],['Approvals','approvals']].map(([label,k])=>{ const on = tab===k;
+        return {label, n:String(cnt[k]), bd: on?'#0E9384':'#E5E3DC', bg: on?'#0E9384':'#fff', fg: on?'#fff':'#475467', nFg: on?'#CDEDE7':'#98A2B3', pick:()=>this.setState({ntTab:k})}; }),
+      ntGroups: groups, ntEmpty: groups.length ? 'none' : 'block',
+      ntMarkAll: ()=>{ const r={}; N.forEach(n=>{ r[n[0]]=true; }); this.setState(x=>({ntRead:{...(x.ntRead||{}), ...r}})); this.fire('All notifications marked as read', unread+' updated', true); },
+      ntSettings: ()=>{ this.setState({ntOpen:false}); this.fire('Notification settings','Choose channels and quiet hours per alert type', true); },
+      ntViewAll: ()=>{ this.setState({ntOpen:false}); this.fire('Activity log opened','Every coordinator-module notification from the last 90 days', true); }
+    };
+  };
   renderVals0() {
     const s = this.state;
     const q = (s.q||'').trim().toLowerCase();
@@ -9638,6 +10317,7 @@ class Component extends DCLogic {
     ].filter(a => !s.dismissed.includes(a.id));
 
     return {
+      ...this.ntVals(),
       q: s.q, setQ:(e)=>this.setState({q:e.target.value}),
       searchDisplay: q ? 'block' : 'none',
       searchResults: searchable.map(r=>({...r, open: r.kind==='Coordinator' ? (()=>this.setState({route:'all', prof:r.name, profTab:'Overview', q:''})) : this.drill(r.kind, r.name)})),
@@ -9903,6 +10583,14 @@ class Component extends DCLogic {
       p3Meta: (()=>{ const p = PERF.find(x=>x[0]===s.perfWho) || PERF[0];
         return p[1]+' · Active · '+p[2]+' students · '+p[3]+' batches · '+p[13]+' teachers'; })(),
       p3Period: 'Aug 1 – Aug 31, 2026',
+      ...(()=>{ const p = PERF.find(x=>x[0]===s.perfWho) || PERF[0], nm = s.perfWho || p[0];
+        return {
+          p3Sub: 'Academic Coordinator · '+p[3]+' batches · Performance 360°',
+          p3Chips: [p[1], p[2]+' students', p[3]+' batches', p[13]+' teachers'].map(v=>({v:String(v)})),
+          p3PeriodRows: ['Aug 1 – Aug 31, 2026', p[3]+' batches in scope', p[2]+' students tracked'].map(v=>({v})),
+          p3Compare: ()=>this.setState({pvAct:{kind:'compare', who:nm}, pvCmpWith:null}),
+          p3Goals: ()=>this.setState({pvAct:{kind:'goal', who:nm}, pvGoalTarget:'', pvGoalTried:false}),
+          p3Pdf: ()=>this.fire('Downloading PDF — '+nm, 'Performance 360° · Aug 1 – Aug 31, 2026', true)}; })(),
       p3Score: (()=>{ const p = PERF.find(x=>x[0]===s.perfWho) || PERF[0]; return String(p[9]); })(),
       p3Band: (()=>{ const p = PERF.find(x=>x[0]===s.perfWho) || PERF[0]; return p[10]; })(),
       p3BandBg: (()=>{ const p = PERF.find(x=>x[0]===s.perfWho) || PERF[0]; return BDG[p[11]][0]; })(),
@@ -10330,14 +11018,18 @@ class Component extends DCLogic {
       alBatchRows: this.alFilteredRows(),
       alBatchEmpty: this.alFilteredRows().length ? 'none' : 'block',
 
-      alCoordRows: CWL.map(([name,id,courses,active,students,pct,band,c])=>({
+      alCoordRows: CWL.map(([name,id,courses,active,students,pct,band,c],i,all)=>({
+        menuDisplay: s.alCMenu===id ? 'block' : 'none', mTop: i>=all.length-2 ? 'auto' : '38px', mBottom: i>=all.length-2 ? '36px' : 'auto',
+        menu: ()=>this.setState({alCMenu: s.alCMenu===id ? null : id}),
         name, id, courses:String(courses), active:String(active), students:String(students),
         pct:pct+'%', band, w:Math.min(100,pct)+'%',
         sBg:BDG[c][0], sFg:BDG[c][1],
         barBg: band==='Overloaded' ? '#E88B78' : band==='High' ? '#F0A72A' : band==='Low' ? '#98A2B3' : '#0E9384',
         init:this.initials(name), avBg:AVc(name),
         open: ()=>this.setState({route:'all', prof:name, profTab:'Overview'}),
-        assign: ()=>this.setState({fm:'assignCoord', fmCtx:{coordinator:name}, fmStep:0, fmErr:null})})),
+        assign: ()=>this.setState({fm:'assignCoord', fmCtx:{coordinator:name}, fmStep:0, fmErr:null}),
+        openM: ()=>this.setState({alCMenu:null, route:'all', prof:name, profTab:'Overview'}),
+        assignM: ()=>this.setState({alCMenu:null, fm:'assignCoord', fmCtx:{coordinator:name}, fmStep:0, fmErr:null})})),
 
       alAlerts: [
         ['4 batches without coordinators','IC 01 Batch 03 · IC 02 Batch 04 · IC 11 Batch 05 · Exam Strategy Batch 02','Critical','red','Unassigned'],
@@ -10387,7 +11079,7 @@ class Component extends DCLogic {
         {label:'Coordinator Performance',n:'91%',fg:'#15803D',go:()=>this.setState({profTab:'Performance'})}
       ],
       profTabs: (()=>{
-        const ORDER = ['Overview','Employment & Recruitment','Personal & Professional','Course & Batch',
+        const ORDER = ['Overview','Employment & Recruitment','Personal & Professional','Course & Batch','Learning & Products',
           'Performance & Reports','Ratings & Reviews','Attendance & Leave','Schedule','Finance & Payroll',
           'Internal Notes','Students'];
         const keys = Object.keys(C360);
@@ -10405,7 +11097,65 @@ class Component extends DCLogic {
           isAlerts:sec.kind==='alerts', isCards:sec.kind==='cards', isBars:sec.kind==='bars',
           isActions:sec.kind==='actions', isScore:sec.kind==='score', isTasks:sec.kind==='tasks',
           isScope:sec.kind==='scope', isPermTable:sec.kind==='permtable', isWithheld:sec.kind==='withheld',
-          isAudit:sec.kind==='audit', isList:sec.kind==='list', isUpload:sec.kind==='upload', isComms:sec.kind==='comms'};
+          isAudit:sec.kind==='audit', isList:sec.kind==='list', isUpload:sec.kind==='upload', isComms:sec.kind==='comms', isLpView:sec.kind==='lpview'};
+        d.isStudentsView = sec.kind==='studentsview'; d.isReviews = sec.kind==='reviews'; d.isCalView = sec.kind==='calview';
+        if (sec.kind==='studentsview') {
+          const opt = (k)=>['All', ...new Set(CSTU.map(x=>x[k]))];
+          const inP = (ds, p)=>{ if (!p||p==='All') return true; const dd=(new Date('2026-08-16')-new Date(ds))/86400000; return p==='Last 30 days'?dd<=30:p==='Last 90 days'?dd<=90:dd>90; };
+          const rows = CSTU.filter(x=>((s.cstuCourse||'All')==='All'||x.course===s.cstuCourse) && ((s.cstuBatch||'All')==='All'||x.batch===s.cstuBatch)
+            && ((s.cstuEnroll||'All')==='All'||x.enroll===s.cstuEnroll) && ((s.cstuCst||'All')==='All'||x.cState===s.cstuCst) && inP(x.enrollDate, s.cstuPeriod));
+          const F = (label,key,opts)=>({label, value:s[key]||'All', opts:opts.map(o=>({o})), set:(e)=>this.setState({[key]:e.target.value})});
+          d.stuFilters = [F('Course','cstuCourse',opt('course')), F('Batch','cstuBatch',opt('batch')), F('Student status','cstuEnroll',['All','Active','Paused','Expired']),
+            F('Course status','cstuCst',['All','Active','Upcoming','Completed']), F('Enrollment period','cstuPeriod',['All','Last 30 days','Last 90 days','Older'])];
+          const num = rows.filter(x=>parseInt(x.att)); const avg = num.length ? Math.round(num.reduce((a,x)=>a+parseInt(x.att),0)/num.length) : 0;
+          const risk = rows.filter(x=>parseInt(x.mock) && parseInt(x.mock)<70).length;
+          d.stuAnalytics = [
+            {label:'ASSIGNED (FILTERED)', n:String(rows.length), sub:'of '+CSTU.length+' shown · 486 total', c:'#0F2A47'},
+            {label:'ACTIVE ENROLLMENT', n:String(rows.filter(x=>x.enroll==='Active').length), sub:'currently active', c:'#0B7A6E'},
+            {label:'AVG ATTENDANCE', n:avg+'%', sub:'across filtered set', c:'#0B7A6E'},
+            {label:'AT-RISK (MOCK <70%)', n:String(risk), sub:'needs attention', c: risk ? '#B42318' : '#0B7A6E'}];
+          const E = {Active:'green',Paused:'amber',Expired:'grey'}, C = {Active:'green',Upcoming:'blue',Completed:'grey'};
+          d.stuRows = rows.map(x=>({...x, eBg:BDG[E[x.enroll]][0], eFg:BDG[E[x.enroll]][1], cBg:BDG[C[x.cState]][0], cFg:BDG[C[x.cState]][1],
+            open: this.act('Opening student 360 — '+x.name, x.sid+' · '+x.course+' · '+x.batch)}));
+          d.stuEmpty = rows.length ? 'none' : 'block';
+        }
+        if (sec.kind==='reviews') {
+          const ov = s.cRevOv||{};
+          d.revRows = sec.rows.map(r0=>{ const r = {...r0, state: ov[r0.id]||r0.state};
+            const S = {Published:['#E7F7EE','#15803D'], Pending:['#FEF3E2','#B45309'], Hidden:['#F1F3F5','#667085']}[r.state];
+            const setSt = (st, msg, sub)=>()=>{ this.setState(x=>({cRevOv:{...(x.cRevOv||{}), [r.id]:st}})); this.fire(msg, sub, true); };
+            return {...r, sBg:S[0], sFg:S[1], ratingLabel:r.rating.toFixed(1),
+              stars:[1,2,3,4,5].map(i=>({fg: r.rating>=i ? '#F0A72A' : r.rating>=i-0.5 ? '#F6CE86' : '#E5E3DC'})),
+              canPublish: r.state==='Published' ? 'none' : 'inline-flex', canHide: r.state==='Hidden' ? 'none' : 'inline-flex',
+              publish: setSt('Published','Feedback published — '+r.id,'Now visible on the coordinator page'),
+              hide: setSt('Hidden','Feedback hidden — '+r.id,'Removed from the public page · coordinator notified'),
+              reply: this.act('Reply composer opened','Public reply appears under the review'),
+              del: setSt('Hidden','Feedback moved to Trash — '+r.id,'Recoverable for 30 days')}; });
+        }
+        if (sec.kind==='lpview') {
+          const P = CPRODUCTS, by = (st)=>P.filter(x=>x.status===st).length;
+          const live = P.filter(x=>x.status!=='Draft');
+          const prog = Math.round(live.reduce((n,x)=>n+x.progress,0)/Math.max(1,live.length));
+          const reach = P.reduce((n,x)=>n+x.learners,0);
+          d.lpKpis = [
+            {label:'Total Products',n:String(P.length),note:'live · recorded · mock · webinar · workshop',fg:'#6B7C93'},
+            {label:'Active',n:String(by('Active')),note:'currently delivering',fg:'#15803D'},
+            {label:'Expiring Soon',n:String(by('Expiring Soon')),note:'within 30 days',fg:'#B45309'},
+            {label:'Expired',n:String(by('Expired')),note:'archived · not renewed',fg:'#B42318'},
+            {label:'Avg Completion',n:prog+'%',note:'weighted across products',fg:'#0B7A6E'},
+            {label:'Learners Reached',n:reach.toLocaleString('en-IN'),note:'lifetime, all products',fg:'#6B7C93'},
+            {label:'Last Activity',n:'Today',note:'11:40 AM · Claims Handling Workshop',fg:'#15803D'}];
+          const MAP = {'All Products':null,'Live Classes':'Live Class','Recorded Classes':'Recorded','Mock Tests':'Mock Test','Webinars':'Webinar','Workshops':'Workshop'};
+          const f = s.lpFilter && MAP.hasOwnProperty(s.lpFilter) ? s.lpFilter : 'All Products';
+          d.lpTabs = Object.keys(MAP).map(x=>{ const on=f===x, n = MAP[x] ? P.filter(p=>p.kind===MAP[x]).length : P.length;
+            return {label:x+' · '+n, bg:on?'#0E9384':'transparent', fg:on?'#fff':'#6B7C93', weight:on?'600':'500', pick:()=>this.setState({lpFilter:x})}; });
+          const SC = {Active:['#E7F7EE','#15803D'],'Expiring Soon':['#FEF3E2','#B45309'],Expired:['#F1F3F5','#667085'],Draft:['#F1F3F5','#667085']};
+          const KC = {'Mock Test':['#FDE8E8','#B42318'],'Live Class':['#E6F4F1','#0B7A6E'],'Recorded':['#F0EAFD','#6D28D9'],'Webinar':['#E9F1FD','#1D4ED8'],'Workshop':['#FEF3E2','#B45309']};
+          d.lpRows = P.filter(x=>!MAP[f] || x.kind===MAP[f]).map(x=>({...x, sBg:SC[x.status][0], sFg:SC[x.status][1], kBg:KC[x.kind][0], kFg:KC[x.kind][1],
+            learners:String(x.learners), pct:x.progress+'%', barBg: x.progress>=70?'#0E9384':x.progress>=40?'#F0A72A':'#E88B78',
+            open:(e)=>{ e&&e.stopPropagation&&e.stopPropagation(); this.fire('Opened — '+x.name, x.kind+' · '+x.plan+' · '+x.learners+' learners · '+x.progress+'% completion', true); }}));
+          d.lpEmpty = d.lpRows.length ? 'none' : 'block';
+        }
         if (sec.kind==='list') d.listRows = sec.rows.map(r=>({...r, iBg:BDG[r.c][0], iFg:BDG[r.c][1],
           isBtn: r.kind==='btn', hasRight: !!r.right && r.kind!=='btn', hasTag: !!r.tag,
           act: r.kind==='btn' ? this.act(r.right+' — '+r.t) : undefined}));
@@ -10468,7 +11218,7 @@ class Component extends DCLogic {
           open: ()=>this.setState({fm:'resolve', fmStep:0, fmErr:null, fmCtx:{title, sev, who:s.prof||'Priya Sharma', meta}})}));
         if (sec.kind==='actions') d.btns = sec.btns.map(b=>({label:b[0],
           border: b[1]?'#F0D2CF':'#E5E3DC', fg: b[1]?'#B42318':'#344054', hbg: b[1]?'#FEF7F6':'#F6F5F0',
-          pick: ()=>{ const PF = {'Edit Personal Info':'cpPersonal','Edit Professional Info':'cpProf','Edit Employment':'cpEmp','Edit Compensation':'cpComp','View Documents':'cpDocs','Download Profile PDF':'cpPdf'}[b[0]];
+          pick: ()=>{ const PF = {'Edit Personal Info':'cpPersonal','Edit Personal Details':'cpPersonal','Edit Professional Profile':'cpProf','Edit Professional Info':'cpProf','Edit Employment':'cpEmp','Edit Compensation':'cpComp','View Documents':'cpDocs','Download Profile PDF':'cpPdf'}[b[0]];
             const r = {}; if (PF) Object.keys(this.state).forEach(k=>{ if (/^cp[A-Z]/.test(k)) r[k]=undefined; });
             this.setState({...r, fm: PF || 'act', fmStep:0, fmErr:null,
               fmCtx:{label:b[0], danger:b[1]||0, who:s.prof||'Priya Sharma', tab:s.profTab||'Overview'}}); }}));
@@ -10703,26 +11453,27 @@ class Component extends DCLogic {
       rcIsActivity: s.rcTab==='activity', rcIsInterventions: s.rcTab==='interventions',
       rcIsStudents: s.rcTab==='students', rcIsContent: s.rcTab==='content',
       rcIsAssignHist: s.rcTab==='assignhist', rcIsAudit: s.rcTab==='audit',
-      rcActivityRows: RC_ACTIVITY.map(([time,activity,obj,course,coord,status])=>{
+      rcActivityRows: this.rcF('activity',RC_ACTIVITY).map(([time,activity,obj,course,coord,status])=>{
         const c = status==='Completed'?'green':status==='Pending'?'amber':'red';
         return {time,activity,obj,course,coord,status,sBg:BDG[c][0],sFg:BDG[c][1]};
       }),
-      rcStudentRows: RC_STUDENTS.map(([name,id,course,enrolled,progress,watch,lastActive,completion,doubts,lastContact,risk])=>{
+      rcStudentRows: this.rcF('students',RC_STUDENTS).map(([name,id,course,enrolled,progress,watch,lastActive,completion,doubts,lastContact,risk])=>{
         const c = risk==='Low'?'green':risk==='Medium'?'amber':'red';
         return {name,id,course,enrolled,progress,watch,lastActive,completion,doubts:String(doubts),lastContact,risk,
           rBg:BDG[c][0],rFg:BDG[c][1],
           open: ()=>this.fire('Opened — '+name, id+' · '+course)};
       }),
-      rcContentRows: RC_CONTENT.map(([mod,lecture,duration,views,uniq,avgWatch,completion,dropoff,rewatch,lastViewed])=>{
+      rcContentRows: this.rcF('content',RC_CONTENT).map(([mod,lecture,duration,views,uniq,avgWatch,completion,dropoff,rewatch,lastViewed])=>{
         const high = parseInt(dropoff)>=30;
         return {mod,lecture,duration,views:String(views),uniq:String(uniq),avgWatch,completion,dropoff,rewatch,lastViewed,
           dropoffFg: high ? '#B42318' : '#475467',
           viewStudents: high ? this.act('Opened — '+lecture, 'Students who dropped off before completion') : this.act('Opened — '+lecture, 'Content analytics')};
       }),
-      rcAssignHistRows: RC_ASSIGN_HIST.map(([coord,from,to,reason,by])=>({coord,from,to,reason,by,
+      rcAssignHistRows: this.rcF('assignhist',RC_ASSIGN_HIST).map(([coord,from,to,reason,by])=>({coord,from,to,reason,by,
         toFg: to==='Present' ? '#15803D' : '#475467'})),
-      rcAuditRows: RC_AUDIT.map(([ts,user,role,action,course,coord,prev,next,reason])=>({ts,user,role,action,course,coord,prev,next,reason})),
+      rcAuditRows: this.rcF('audit',RC_AUDIT).map(([ts,user,role,action,course,coord,prev,next,reason])=>({ts,user,role,action,course,coord,prev,next,reason})),
       rcQ: s.rcQ||'', setRcQ:(e)=>this.setState({rcQ:e.target.value}),
+      ...this.rcTFVals(),
       rcFilters: [
         ['Coordinator','rcfCoord',['All','Rahul Sharma','Priya Menon','Sneha Iyer','Neha Rathi','Ritika Sen','Karan Bhatt','Deepak Rao','Unassigned']],
         ['Course status','rcfStatus',['All','Published','Draft','Archived']],
@@ -10730,7 +11481,7 @@ class Component extends DCLogic {
         ['Support status','rcfSla',['All','Normal','Open','SLA Breached']]
       ].map(([label,key,opts])=>({label, value:s[key]||'All', opts:opts.map(o=>({o})),
         set:(e)=>this.setState({[key]:e.target.value})})),
-      rcReset: ()=>{ this.setState({rcfCoord:'All',rcfStatus:'All',rcfHealth:'All',rcfSla:'All',rcQ:''});
+      rcReset: ()=>{ const r={}; Object.keys(this.state).forEach(k=>{ if (k.startsWith('rcTF_')) r[k]='All'; }); this.setState({...r, rcfCoord:'All',rcfStatus:'All',rcfHealth:'All',rcfSla:'All',rcQ:''});
         this.fire('Filters reset','Showing every recorded course'); },
       rcExport: ()=>this.setState({fm:'rcExport', fmCtx:{}, fmStep:0, fmErr:null}),
       rcBulk: ()=>this.setState({fm:'rcBulk', fmCtx:{}, fmStep:0, fmErr:null}),
@@ -10770,7 +11521,7 @@ class Component extends DCLogic {
       }),
       rcCourseEmpty: rcVisible ? 'none' : 'block',
 
-      rcDoubtRows: RC_DOUBTS.map(([id,student,course,topic,lecture,raised,coord,status,priority,slaState])=>{
+      rcDoubtRows: this.rcF('doubts',RC_DOUBTS).map(([id,student,course,topic,lecture,raised,coord,status,priority,slaState])=>{
         const sC = status==='Resolved'?'green':status==='In Progress'?'blue':status==='Responded'?'amber':'red';
         return {id,student,course,topic,lecture,raised,coord,status,priority,slaState,
           sBg:BDG[sC][0],sFg:BDG[sC][1], slaFg: slaState==='SLA Breached' ? '#B42318' : '#15803D',
@@ -11200,8 +11951,9 @@ class Component extends DCLogic {
         id,name,txn,period,claimed,calculated,diff,kind,comment,response,assigned,state,
         init:this.initials(name), avBg:AVc(name), sBg:BDG[c][0], sFg:BDG[c][1],
         actionsDisplay: state==='Rejected' ? 'none' : 'inline-flex',
-        resolve: ()=>this.setState({fm:'act', fmStep:0, fmErr:null, fmCtx:{label:'Resolve Dispute', who:name, detail:id+' · difference '+diff}}),
-        rejectD: ()=>this.setState({fm:'act', fmStep:0, fmErr:null, fmCtx:{label:'Reject Dispute', danger:1, who:name, detail:id}})})),
+        resolve: ()=>this.dspOpen('resolve',{id,name,txn,claimed,calc:calculated,diff,kind,comment}),
+        rejectD: ()=>this.dspOpen('reject',{id,name,txn,claimed,calc:calculated,diff,kind,comment})})).map(this.dspFix),
+      ...this.dspVals('Coordinator'),
 
       payReconRows: SRECON.map(([id,bank,date,expected,actual,expectedN,actualN,state,c])=>({
         id,bank,date,expected,actual,state, expectedN:String(expectedN), actualN:String(actualN),

@@ -3238,6 +3238,108 @@
                       </div>
                     </div>
                   </sc-for>
+              <sc-if value="{{ dspM.open }}" hint-placeholder-val="{{ false }}">
+                <div onClick="{{ dspM.close }}" style="position:fixed;inset:0;background:rgba(11,31,62,.42);z-index:80"></div>
+                <div style="position:fixed;z-index:81;top:50%;left:50%;transform:translate(-50%,-50%);width:660px;max-width:94vw;max-height:90vh;display:flex;flex-direction:column;background:#fff;border-radius:16px;box-shadow:0 24px 64px rgba(11,31,62,.22);overflow:hidden;text-align:left">
+                  <div style="flex:none;padding:22px 24px 18px;border-bottom:1px solid #F0EEE7;display:flex;align-items:flex-start;gap:12px">
+                    <div style="width:38px;height:38px;flex:none;border-radius:11px;background:{{ dspM.iBg }};color:{{ dspM.iFg }};display:grid;place-items:center">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="{{ dspM.iPath }}" /></svg>
+                    </div>
+                    <div style="flex:1;min-width:0">
+                      <h3 style="margin:0;font-size:16.5px;font-weight:700;color:#0F2A47">{{ dspM.title }}</h3>
+                      <p style="margin:5px 0 0;font-size:13px;color:#6B7C93;text-wrap:pretty">{{ dspM.sub }}</p>
+                    </div>
+                    <button onClick="{{ dspM.close }}" style="width:32px;height:32px;flex:none;border-radius:9px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:#7A8699" style-hover="background:#F6F5F0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12" /></svg></button>
+                  </div>
+                  <div style="flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:18px">
+                    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px">
+                      <div style="border:1px solid #F0EEE7;border-radius:10px;padding:11px 13px;background:#FCFBF7"><div style="font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#98A2B3">CLAIMED</div><div style="font-size:17px;font-weight:800;color:#0F2A47;margin-top:4px">{{ dspM.claimed }}</div></div>
+                      <div style="border:1px solid #F0EEE7;border-radius:10px;padding:11px 13px;background:#FCFBF7"><div style="font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#98A2B3">CALCULATED</div><div style="font-size:17px;font-weight:800;color:#0F2A47;margin-top:4px">{{ dspM.calc }}</div></div>
+                      <div style="border:1px solid #F0D2CF;border-radius:10px;padding:11px 13px;background:#FEF7F6"><div style="font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#B42318">DIFFERENCE</div><div style="font-size:17px;font-weight:800;color:#B42318;margin-top:4px">{{ dspM.diff }}</div></div>
+                    </div>
+                    <div style="padding:11px 14px;border-radius:10px;background:#FCFBF7;border:1px solid #F0EEE7">
+                      <div style="font-size:10.5px;font-weight:700;letter-spacing:.06em;color:#98A2B3">{{ dspM.claimLabel }}</div>
+                      <div style="font-size:12.5px;color:#475467;margin-top:4px;text-wrap:pretty">{{ dspM.comment }}</div>
+                    </div>
+                    <sc-if value="{{ dspM.isResolve }}" hint-placeholder-val="{{ false }}">
+                      <div style="display:flex;flex-direction:column;gap:16px">
+                        <div>
+                          <div style="font-size:11.5px;font-weight:700;letter-spacing:.07em;color:#7A8699;margin-bottom:10px">DECISION</div>
+                          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px">
+                            <sc-for list="{{ dspM.decisions }}" as="o" hint-placeholder-count="2">
+                              <div onClick="{{ o.pick }}" style="border:1.5px solid {{ o.bd }};background:{{ o.bg }};border-radius:12px;padding:12px 14px;cursor:pointer;display:flex;gap:10px;align-items:flex-start">
+                                <span style="width:16px;height:16px;flex:none;border-radius:50%;border:5px solid {{ o.dot }};background:#fff;margin-top:1px;box-sizing:border-box"></span>
+                                <div style="min-width:0"><div style="font-size:13px;font-weight:700;color:#0F2A47">{{ o.label }}</div><div style="font-size:11.5px;color:#7A8699;margin-top:3px">{{ o.sub }}</div></div>
+                              </div>
+                            </sc-for>
+                          </div>
+                        </div>
+                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px">
+                          <div style="min-width:0">
+                            <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Amount to pay (₹) <span style="color:#B42318">*</span></label>
+                            <input value="{{ dspM.amt }}" onChange="{{ dspM.setAmt }}" readOnly="{{ dspM.amtLocked }}" style="width:100%;height:40px;padding:0 12px;border:1px solid #E5E3DC;border-radius:9px;font-size:13.5px;background:#fff;color:#0F2A47;outline:0;font-family:inherit;box-sizing:border-box;background:{{ dspM.amtBg }};border-color:{{ dspM.amtBd }}" />
+                          </div>
+                          <div style="min-width:0">
+                            <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Settle via</label>
+                            <select value="{{ dspM.via }}" onChange="{{ dspM.setVia }}" style="width:100%;height:40px;padding:0 12px;border:1px solid #E5E3DC;border-radius:9px;font-size:13.5px;background:#fff;color:#0F2A47;outline:0;font-family:inherit;box-sizing:border-box"><sc-for list="{{ dspM.viaOpts }}" as="x" hint-placeholder-count="3"><option>{{ x.o }}</option></sc-for></select>
+                          </div>
+                          <div style="min-width:0">
+                            <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Root cause</label>
+                            <select value="{{ dspM.cause }}" onChange="{{ dspM.setCause }}" style="width:100%;height:40px;padding:0 12px;border:1px solid #E5E3DC;border-radius:9px;font-size:13.5px;background:#fff;color:#0F2A47;outline:0;font-family:inherit;box-sizing:border-box"><sc-for list="{{ dspM.causeOpts }}" as="x" hint-placeholder-count="4"><option>{{ x.o }}</option></sc-for></select>
+                          </div>
+                        </div>
+                      </div>
+                    </sc-if>
+                    <sc-if value="{{ dspM.isReject }}" hint-placeholder-val="{{ false }}">
+                      <div style="display:flex;flex-direction:column;gap:16px">
+                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px">
+                          <div style="min-width:0">
+                            <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Rejection reason <span style="color:#B42318">*</span></label>
+                            <select value="{{ dspM.reason }}" onChange="{{ dspM.setReason }}" style="width:100%;height:40px;padding:0 12px;border:1px solid #E5E3DC;border-radius:9px;font-size:13.5px;background:#fff;color:#0F2A47;outline:0;font-family:inherit;box-sizing:border-box"><sc-for list="{{ dspM.reasonOpts }}" as="x" hint-placeholder-count="4"><option>{{ x.o }}</option></sc-for></select>
+                          </div>
+                          <div style="min-width:0">
+                            <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Re-appeal</label>
+                            <select value="{{ dspM.appeal }}" onChange="{{ dspM.setAppeal }}" style="width:100%;height:40px;padding:0 12px;border:1px solid #E5E3DC;border-radius:9px;font-size:13.5px;background:#fff;color:#0F2A47;outline:0;font-family:inherit;box-sizing:border-box"><sc-for list="{{ dspM.appealOpts }}" as="x" hint-placeholder-count="3"><option>{{ x.o }}</option></sc-for></select>
+                          </div>
+                        </div>
+                        <div>
+                          <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Evidence shared with the payee</label>
+                          <div style="display:flex;gap:8px;flex-wrap:wrap">
+                            <sc-for list="{{ dspM.evidence }}" as="n" hint-placeholder-count="4">
+                              <button onClick="{{ n.toggle }}" style="height:32px;padding:0 13px;border-radius:999px;border:1px solid {{ n.bd }};background:{{ n.bg }};color:{{ n.fg }};font-size:12px;font-weight:600;cursor:pointer;font-family:inherit">{{ n.n }}</button>
+                            </sc-for>
+                          </div>
+                        </div>
+                      </div>
+                    </sc-if>
+                    <div>
+                      <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">{{ dspM.noteLabel }} <span style="color:#B42318">*</span></label>
+                      <textarea value="{{ dspM.note }}" onChange="{{ dspM.setNote }}" placeholder="{{ dspM.notePh }}" style="width:100%;min-height:84px;padding:10px 12px;border:1px solid {{ dspM.noteBd }};border-radius:9px;font-size:13.5px;color:#0F2A47;outline:0;font-family:inherit;resize:vertical;box-sizing:border-box"></textarea>
+                      <div style="font-size:11px;color:#98A2B3;margin-top:5px">{{ dspM.noteHint }}</div>
+                    </div>
+                    <div>
+                      <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Notify {{ dspM.payeeLower }}</label>
+                      <div style="display:flex;gap:8px;flex-wrap:wrap">
+                        <sc-for list="{{ dspM.notify }}" as="n" hint-placeholder-count="3">
+                          <button onClick="{{ n.toggle }}" style="height:32px;padding:0 13px;border-radius:999px;border:1px solid {{ n.bd }};background:{{ n.bg }};color:{{ n.fg }};font-size:12px;font-weight:600;cursor:pointer;font-family:inherit">{{ n.n }}</button>
+                        </sc-for>
+                      </div>
+                    </div>
+                    <div style="display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border-radius:10px;background:{{ dspM.infoBg }}">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="{{ dspM.infoFg }}" stroke-width="2.1" stroke-linecap="round" style="flex:none;margin-top:1px"><circle cx="12" cy="12" r="9" /><path d="M12 11v5M12 8h.01" /></svg>
+                      <span style="font-size:12.5px;color:{{ dspM.infoFg }};text-wrap:pretty">{{ dspM.info }}</span>
+                    </div>
+                    <sc-if value="{{ dspM.hasErr }}" hint-placeholder-val="{{ false }}">
+                      <div style="padding:10px 14px;border-radius:10px;background:#FEF7F6;border:1px solid #FDE8E8;font-size:12.5px;font-weight:600;color:#B42318">{{ dspM.err }}</div>
+                    </sc-if>
+                  </div>
+                  <div style="flex:none;display:flex;align-items:center;gap:10px;padding:16px 24px;border-top:1px solid #F0EEE7;background:#FCFBF7">
+                    <span style="flex:1"></span>
+                    <button onClick="{{ dspM.close }}" style="height:38px;padding:0 16px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:13px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Cancel</button>
+                    <button onClick="{{ dspM.submit }}" style="height:38px;padding:0 18px;border-radius:9px;border:0;background:{{ dspM.pBg }};font-size:13px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit;white-space:nowrap">{{ dspM.btn }}</button>
+                  </div>
+                </div>
+              </sc-if>
                 </div>
               </div>
             </div>
@@ -7433,6 +7535,59 @@ class Component extends DCLogic {
     };
   }
 
+  dspOpen = (kind, d) => this.setState({dspM:{kind, d, dec:'full', amt:'', via:'Adjustment in next cycle', cause:'Calculation error', reason:'Calculation verified as correct', appeal:'Allowed within 7 days', ev:['Calculation breakdown'], notify:['Email','In-app'], note:'', err:null}});
+  dspFix = (r) => { const o = (this.state.dspOv||{})[r.id]; if (!o) return r;
+    const C = o.state==='Resolved' ? ['#E7F7EE','#15803D'] : ['#F1F3F5','#667085'];
+    return {...r, state:o.state, status:o.state, sBg:C[0], sFg:C[1], response:o.response, actionsDisplay:'none', resolveDisplay:'none', actsDisplay:'none'}; };
+  dspVals = (payee) => {
+    const m = this.state.dspM; if (!m) return {dspM:{open:false}};
+    const d = m.d, num = (v)=>Number(String(v).replace(/[^0-9.]/g,''))||0, inr = (n)=>'₹'+Math.round(n).toLocaleString('en-IN');
+    const diffN = num(d.diff), up = (p)=>this.setState(x=>({dspM:{...x.dspM, ...p, err:null}}));
+    const chips = (list, key)=>list.map(n=>{ const on = (m[key]||[]).includes(n); return {n, bd:on?'#0E9384':'#E5E3DC', bg:on?'#EEF6F5':'#fff', fg:on?'#0B7A6E':'#475467', toggle:()=>up({[key]: on ? m[key].filter(x=>x!==n) : (m[key]||[]).concat(n)})}; });
+    const isR = m.kind==='resolve', partial = m.dec==='partial';
+    const amtN = partial ? num(m.amt) : diffN;
+    const fail = (err)=>this.setState(x=>({dspM:{...x.dspM, err}}));
+    const close = ()=>this.setState({dspM:null});
+    const commit = (state, response, msg, sub)=>{ this.setState(x=>({dspM:null, dspOv:{...(x.dspOv||{}), [d.id]:{state, response}}})); this.fire(msg, sub, true); };
+    return {dspM: {open:true, isResolve:isR, isReject:!isR, close,
+      title: (isR ? 'Resolve dispute' : 'Reject dispute')+' — '+d.id,
+      sub: d.name+' · '+d.txn+' · '+d.kind,
+      iBg: isR ? '#E7F7EE' : '#FDE8E8', iFg: isR ? '#15803D' : '#B42318',
+      iPath: isR ? 'M20 6 9 17l-5-5' : 'M18 6 6 18M6 6l12 12',
+      claimed:d.claimed, calc:d.calc, diff:d.diff, comment:d.comment, claimLabel: payee.toUpperCase()+' CLAIM',
+      payeeLower: payee.toLowerCase(),
+      decisions: [['full','Accept full claim','Pay the full difference of '+d.diff],['partial','Partial settlement','Pay part of the difference']].map(([k,label,sub])=>{ const on=m.dec===k;
+        return {label, sub, bd:on?'#0E9384':'#ECEAE2', bg:on?'#EEF6F5':'#fff', dot:on?'#0E9384':'#D0D5DD', pick:()=>up({dec:k, amt: k==='full' ? '' : m.amt})}; }),
+      amt: partial ? m.amt : String(diffN), setAmt:(e)=>up({amt:e.target.value.replace(/[^0-9]/g,'')}), amtLocked: !partial,
+      amtBg: partial ? '#fff' : '#F6F5F0', amtBd: m.err && partial && (!amtN || amtN>=diffN) ? '#F0D2CF' : '#E5E3DC',
+      via:m.via, setVia:(e)=>up({via:e.target.value}), viaOpts:['Adjustment in next cycle','Add to current pending payout','Off-cycle payment within 48 h'].map(o=>({o})),
+      cause:m.cause, setCause:(e)=>up({cause:e.target.value}), causeOpts:['Calculation error','Missing sessions / attendance','Rate or agreement mismatch','Refund or deduction applied late','Other'].map(o=>({o})),
+      reason:m.reason, setReason:(e)=>up({reason:e.target.value}), reasonOpts:['Calculation verified as correct','Insufficient evidence provided','Outside the 30-day dispute window','Policy does not apply','Duplicate of an earlier dispute'].map(o=>({o})),
+      appeal:m.appeal, setAppeal:(e)=>up({appeal:e.target.value}), appealOpts:['Allowed within 7 days','Allowed within 30 days','Not allowed — final decision'].map(o=>({o})),
+      evidence: chips(['Calculation breakdown','Attendance / session log','Agreement clause','Payment record'],'ev'),
+      notify: chips(['Email','In-app','WhatsApp'],'notify'),
+      note:m.note, setNote:(e)=>up({note:e.target.value}),
+      noteLabel: isR ? 'Resolution note' : 'Explanation to the '+payee.toLowerCase(),
+      notePh: isR ? 'What was wrong and how it is being corrected' : 'Why the calculated amount stands — shared with the '+payee.toLowerCase(),
+      noteHint: isR ? 'Shared with the '+payee.toLowerCase()+' and written to the audit trail.' : 'Minimum 20 characters · shared with the '+payee.toLowerCase()+' together with the selected evidence.',
+      noteBd: m.err && (m.note||'').trim().length < (isR?1:20) ? '#F0D2CF' : '#E5E3DC',
+      infoBg: isR ? '#EEF6F5' : '#FEF7F6', infoFg: isR ? '#0B7A6E' : '#B42318',
+      info: isR ? d.name+' receives '+inr(amtN||0)+' via '+m.via.toLowerCase()+'. The payout line is released and the dispute closes as Resolved.'
+               : 'The payout stays at '+d.calc+'. The '+payee.toLowerCase()+' is notified'+((m.notify||[]).length ? ' by '+m.notify.join(', ') : '')+' · re-appeal: '+m.appeal.toLowerCase()+'.',
+      hasErr: !!m.err, err: m.err||'',
+      btn: isR ? 'Resolve · pay '+inr(amtN||0) : 'Reject dispute', pBg: isR ? '#0E9384' : '#B42318',
+      submit: ()=>{
+        if (isR) {
+          if (partial && (!amtN || amtN>=diffN)) return fail('Enter a partial amount between ₹1 and '+inr(diffN-1)+', or choose Accept full claim.');
+          if (!(m.note||'').trim()) return fail('Add a resolution note — it is shared with the '+payee.toLowerCase()+'.');
+          commit('Resolved', inr(amtN)+' approved · '+m.via+' · '+m.cause, 'Dispute resolved — '+d.id, d.name+' · '+inr(amtN)+' · '+m.via);
+        } else {
+          if ((m.note||'').trim().length < 20) return fail('Explain the rejection in at least 20 characters.');
+          commit('Rejected', m.reason+' · re-appeal '+m.appeal.toLowerCase(), 'Dispute rejected — '+d.id, d.name+' notified · '+m.reason);
+        }
+      }}};
+  };
+
   renderVals() { const v = this.renderVals1(); Object.assign(v, this.rxVals()); Object.assign(v, this.attVals()); { const IC=(l)=>/cal/i.test(l)?'M8 3v4M16 3v4M3 10h18M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z':/agenda/i.test(l)?'M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01':/table|list/i.test(l)?'M4 6h16M4 12h16M4 18h16':'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z'; if (Array.isArray(v.schSegs)) { v.schSegsView = v.schSegs.filter(x=>/^(Calendar|Table|Cards)$/.test(x.label)).map(x=>({...x, ic: IC(x.label)})); v.schSegsTabs = v.schSegs.filter(x=>!/^(Calendar|Table|Cards)$/.test(x.label)); } } { const on = !!this.state.pvfOpen; const base = this._pvfBase = this._pvfBase || JSON.stringify((v.pvFilters||[]).map(f=>f.value)); const cur = (v.pvFilters||[]).map(f=>f.value); const b = JSON.parse(base); const n = cur.filter((x,i)=>x!==b[i]).length;
       Object.assign(v, {pvfToggle:()=>this.setState({pvfOpen:!on}), pvfClose:()=>this.setState({pvfOpen:false}), pvfMatch: String((v.pvRows||[]).length), pvfDisplay: on?'block':'none', pvfCount:String(n), pvfHas: n?'grid':'none', pvfBd: on||n?'#0E9384':'#E5E3DC', pvfBg: on||n?'#EEF6F5':'#fff', pvfFg: on||n?'#0B7A6E':'#344054'}); } if (Array.isArray(v.pvRows)) v.pvRows = v.pvRows.map((r,i)=>{ const on = this.state.pvMenu===i, close=(fn)=>()=>{ this.setState({pvMenu:null}); fn(); }, nm = r.name||'teacher';
       const up = i >= v.pvRows.length-3 && v.pvRows.length>4; return {...r, menuTop: up ? 'auto' : '36px', menuBottom: up ? '36px' : 'auto', menuDisplay: on ? 'block' : 'none', menu: ()=>this.setState({pvMenu: on ? null : i}),
@@ -10498,8 +10653,9 @@ class Component extends DCLogic {
         id,name,tid,txn,kind,claimed,calc,diff,comment,response,owner,state,
         init:this.initials(name), avBg:AVc(name), sBg:BDG[c][0], sFg:BDG[c][1],
         resolveDisplay: state==='Resolved' ? 'none' : 'inline-flex',
-        resolve: this.guard('Resolve Dispute',[['Dispute',id],['Teacher',name],['Transaction',txn],['Claimed',claimed],['Calculated',calc],['Difference',diff],['Effect','Adjustment raised in the next cycle if upheld']]),
-        reject: this.guard('Reject Dispute',[['Dispute',id],['Teacher',name],['Reason','Calculation verified as correct'],['Effect','Teacher notified with the calculation breakdown']])})),
+        resolve: ()=>this.dspOpen('resolve',{id,name,txn,claimed,calc,diff,kind,comment}),
+        reject: ()=>this.dspOpen('reject',{id,name,txn,claimed,calc,diff,kind,comment})})).map(this.dspFix),
+      ...this.dspVals('Teacher'),
 
       poRecon: [
         ['PAY-2026-000184','Dr. Vikram Verma','₹94,150','₹94,150','₹0','UTR-88210441','2026-08-05','Matched','green'],
