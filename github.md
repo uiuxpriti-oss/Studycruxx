@@ -2,9 +2,10 @@ repo: uiuxpriti-oss/StudyCrux
 branch: claude/zealous-lovelace-o9hpsg
 
 ## Last sync
-date: 2026-10-15T13:00:00Z
+date: 2026-10-15T14:00:00Z
 
 ### Updated in this project
+- Coordinator Manual Entry rebuilt to match Speaker: 4-step form (Identity, Role & Allocation, Documents, Review) with Save Draft + success screen.
 - Report row actions (Saved Reports, Scheduled, Export Center) moved into a vertical ⋮ overflow menu in all 4 modules.
 - Reports rebuilt in Speaker, Student, Teacher and Coordinator on the new Speaker report layout: Overview library + 8 module data tabs (directory, onboarding/enrollment, verification, events/classes/batches, performance, payout/payroll, contracts, activity) + Saved Reports, Scheduled, Export Center.
 - Not yet pushed — download the zip and commit to the branch.

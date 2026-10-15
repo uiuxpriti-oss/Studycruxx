@@ -5771,6 +5771,173 @@
         </div>
       </sc-if>
 
+      <sc-if value="{{ m2Open }}" hint-placeholder-val="{{ false }}">
+        <div onClick="{{ m2Close }}" style="position:fixed;inset:0;background:rgba(11,31,62,.42);z-index:84"></div>
+        <div style="position:fixed;z-index:85;top:50%;left:50%;transform:translate(-50%,-50%);width:860px;max-width:94vw;max-height:90vh;display:flex;flex-direction:column;overflow:hidden;background:#fff;border-radius:16px;box-shadow:0 24px 64px rgba(11,31,62,.22)">
+          <div style="flex:none;padding:22px 24px 0">
+            <div style="display:flex;align-items:flex-start;gap:12px">
+              <div style="flex:1;min-width:0">
+                <h3 style="margin:0;font-size:18px;font-weight:700;letter-spacing:-.02em;color:#0F2A47">Add Coordinator</h3>
+                <p style="margin:5px 0 0;font-size:13px;color:#6B7C93;text-wrap:pretty">Create the coordinator record — onboarding and verification are generated automatically</p>
+              </div>
+              <button onClick="{{ m2Close }}" style="width:32px;height:32px;flex:none;border-radius:9px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:#7A8699" style-hover="background:#F6F5F0">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12" /></svg>
+              </button>
+            </div>
+            <sc-if value="{{ m2NotDone }}" hint-placeholder-val="{{ true }}">
+              <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:18px;padding-bottom:16px">
+                <sc-for list="{{ m2Steps }}" as="st" hint-placeholder-count="4">
+                  <div onClick="{{ st.pick }}" style="min-width:0;cursor:{{ st.cursor }}">
+                    <div style="height:4px;border-radius:3px;background:{{ st.barBg }}"></div>
+                    <div style="display:flex;align-items:center;gap:8px;margin-top:10px;min-width:0">
+                      <span style="width:20px;height:20px;flex:none;border-radius:50%;background:{{ st.numBg }};color:{{ st.numFg }};display:grid;place-items:center;font-size:10.5px;font-weight:700">{{ st.n }}</span>
+                      <span style="font-size:12.5px;color:{{ st.labelColor }};font-weight:{{ st.labelWeight }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ st.label }}</span>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+          </div>
+          <div style="flex:none;height:1px;background:#F0EEE7"></div>
+
+          <sc-if value="{{ m2Done }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:36px 24px 30px;text-align:center">
+              <div style="width:54px;height:54px;border-radius:50%;background:#E7F7EE;display:grid;place-items:center;margin:0 auto 16px">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#15803D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+              </div>
+              <div style="font-size:17px;font-weight:700;color:#0F2A47">Coordinator created</div>
+              <div style="font-size:13px;color:#6B7C93;margin-top:7px;line-height:1.6;text-wrap:pretty">{{ m2DoneMsg }}<br />The coordinator will receive onboarding instructions and login access by email.</div>
+              <div style="display:flex;gap:10px;justify-content:center;margin-top:20px">
+                <button onClick="{{ m2Reset }}" style="height:38px;padding:0 16px;border-radius:10px;border:1px solid #E5E3DC;background:#fff;font-size:13px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Add Another Coordinator</button>
+                <button onClick="{{ m2GoDir }}" style="display:inline-flex;align-items:center;justify-content:center;height:38px;padding:0 18px;border-radius:10px;border:0;background:#0E9384;font-size:13px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit" style-hover="background:#0B7A6E">Go to Coordinator Directory</button>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ m2NotDone }}" hint-placeholder-val="{{ true }}">
+            <div style="flex:1;min-height:0;overflow-y:auto;padding:22px 24px 24px">
+              <sc-if value="{{ m2S0 }}" hint-placeholder-val="{{ true }}">
+                <div style="display:flex;flex-direction:column;gap:16px">
+                  <div style="display:flex;align-items:center;gap:10px"><span style="width:3px;height:14px;border-radius:2px;background:#0E9384;flex:none"></span><span style="font-size:12px;font-weight:700;letter-spacing:.06em;color:#344054;white-space:nowrap">Identity &amp; Contact</span><span style="flex:1;height:1px;background:#F0EEE7"></span></div>
+                  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px 16px">
+                    <div style="min-width:0"><label style="display:block;font-size:12.5px;font-weight:600;color:#344054;margin-bottom:7px">Full Name *</label><input value="{{ m2Form.name }}" onChange="{{ m2SetName }}" placeholder="e.g. Rahul Sharma" style="width:100%;height:40px;border-radius:9px;font-size:13.5px;padding:0 13px;outline:0;box-sizing:border-box;font-family:inherit;color:#0F2A47;background:#fff;border:1px solid {{ m2Err.nameBd }}" /><div style="display:{{ m2Err.nameD }};font-size:11.5px;color:#B42318;margin-top:6px">{{ m2Err.name }}</div></div>
+                    <div style="min-width:0"><label style="display:block;font-size:12.5px;font-weight:600;color:#344054;margin-bottom:7px">Email Address *</label><input value="{{ m2Form.email }}" onChange="{{ m2SetEmail }}" placeholder="name@studycrux.io" style="width:100%;height:40px;border-radius:9px;font-size:13.5px;padding:0 13px;outline:0;box-sizing:border-box;font-family:inherit;color:#0F2A47;background:#fff;border:1px solid {{ m2Err.emailBd }}" /><div style="display:{{ m2Err.emailD }};font-size:11.5px;color:#B42318;margin-top:6px">{{ m2Err.email }}</div></div>
+                    <div style="min-width:0"><label style="display:block;font-size:12.5px;font-weight:600;color:#344054;margin-bottom:7px">Mobile Number *</label><input value="{{ m2Form.phone }}" onChange="{{ m2SetPhone }}" placeholder="+91 98400 21188" style="width:100%;height:40px;border-radius:9px;font-size:13.5px;padding:0 13px;outline:0;box-sizing:border-box;font-family:inherit;color:#0F2A47;background:#fff;border:1px solid {{ m2Err.phoneBd }}" /><div style="display:{{ m2Err.phoneD }};font-size:11.5px;color:#B42318;margin-top:6px">{{ m2Err.phone }}</div></div>
+                  </div>
+                  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px 16px">
+                    <div style="min-width:0"><label style="display:block;font-size:12.5px;font-weight:600;color:#344054;margin-bottom:7px">Employee ID</label><input value="{{ m2EmpId }}" readOnly="{{ true }}" style="width:100%;height:40px;border-radius:9px;font-size:13.5px;padding:0 13px;outline:0;box-sizing:border-box;font-family:inherit;color:#667085;background:#F6F5F0;border:1px solid #E5E3DC" /></div>
+                    <div style="min-width:0"><label style="display:block;font-size:12.5px;font-weight:600;color:#344054;margin-bottom:7px">Date of Birth</label><input type="date" value="{{ m2Form.dob }}" onChange="{{ m2SetDob }}" style="width:100%;height:40px;border-radius:9px;font-size:13.5px;padding:0 13px;outline:0;box-sizing:border-box;font-family:inherit;color:#0F2A47;background:#fff;border:1px solid #E5E3DC" /></div>
+                    <div style="min-width:0"><label style="display:block;font-size:12.5px;font-weight:600;color:#344054;margin-bottom:7px">Location</label><select value="{{ m2Form.loc }}" onChange="{{ m2SetLoc }}" style="width:100%;height:40px;border-radius:9px;font-size:13.5px;padding:0 12px;outline:0;box-sizing:border-box;font-family:inherit;color:#0F2A47;background:#fff;border:1px solid #E5E3DC"><sc-for list="{{ m2LocOpts }}" as="o" hint-placeholder-count="3"><option value="{{ o.o }}">{{ o.o }}</option></sc-for></select></div>
+                  </div>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ m2S1 }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;flex-direction:column;gap:16px">
+                  <div style="display:flex;align-items:center;gap:10px"><span style="width:3px;height:14px;border-radius:2px;background:#0E9384;flex:none"></span><span style="font-size:12px;font-weight:700;letter-spacing:.06em;color:#344054;white-space:nowrap">Role &amp; Reporting</span><span style="flex:1;height:1px;background:#F0EEE7"></span></div>
+                  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px 16px">
+                    <div style="min-width:0"><label style="display:block;font-size:12.5px;font-weight:600;color:#344054;margin-bottom:7px">Designation</label><select value="{{ m2Form.role }}" onChange="{{ m2SetRole }}" style="width:100%;height:40px;border-radius:9px;font-size:13.5px;padding:0 12px;outline:0;box-sizing:border-box;font-family:inherit;color:#0F2A47;background:#fff;border:1px solid #E5E3DC"><sc-for list="{{ m2RoleOpts }}" as="o" hint-placeholder-count="3"><option value="{{ o.o }}">{{ o.o }}</option></sc-for></select></div>
+                    <div style="min-width:0"><label style="display:block;font-size:12.5px;font-weight:600;color:#344054;margin-bottom:7px">Employment Type</label><select value="{{ m2Form.type }}" onChange="{{ m2SetType }}" style="width:100%;height:40px;border-radius:9px;font-size:13.5px;padding:0 12px;outline:0;box-sizing:border-box;font-family:inherit;color:#0F2A47;background:#fff;border:1px solid #E5E3DC"><sc-for list="{{ m2TypeOpts }}" as="o" hint-placeholder-count="3"><option value="{{ o.o }}">{{ o.o }}</option></sc-for></select></div>
+                    <div style="min-width:0"><label style="display:block;font-size:12.5px;font-weight:600;color:#344054;margin-bottom:7px">Reporting Manager</label><select value="{{ m2Form.manager }}" onChange="{{ m2SetManager }}" style="width:100%;height:40px;border-radius:9px;font-size:13.5px;padding:0 12px;outline:0;box-sizing:border-box;font-family:inherit;color:#0F2A47;background:#fff;border:1px solid #E5E3DC"><sc-for list="{{ m2MgrOpts }}" as="o" hint-placeholder-count="3"><option value="{{ o.o }}">{{ o.o }}</option></sc-for></select></div>
+                    <div style="min-width:0"><label style="display:block;font-size:12.5px;font-weight:600;color:#344054;margin-bottom:7px">Date of Joining</label><input type="date" value="{{ m2Form.join }}" onChange="{{ m2SetJoin }}" style="width:100%;height:40px;border-radius:9px;font-size:13.5px;padding:0 13px;outline:0;box-sizing:border-box;font-family:inherit;color:#0F2A47;background:#fff;border:1px solid #E5E3DC" /></div>
+                    <div style="min-width:0"><label style="display:block;font-size:12.5px;font-weight:600;color:#344054;margin-bottom:7px">Years of Experience</label><input value="{{ m2Form.yrs }}" onChange="{{ m2SetYrs }}" placeholder="e.g. 4" style="width:100%;height:40px;border-radius:9px;font-size:13.5px;padding:0 13px;outline:0;box-sizing:border-box;font-family:inherit;color:#0F2A47;background:#fff;border:1px solid #E5E3DC" /></div>
+                    <div style="min-width:0"><label style="display:block;font-size:12.5px;font-weight:600;color:#344054;margin-bottom:7px">Working Hours</label><select value="{{ m2Form.hours }}" onChange="{{ m2SetHours }}" style="width:100%;height:40px;border-radius:9px;font-size:13.5px;padding:0 12px;outline:0;box-sizing:border-box;font-family:inherit;color:#0F2A47;background:#fff;border:1px solid #E5E3DC"><sc-for list="{{ m2HourOpts }}" as="o" hint-placeholder-count="3"><option value="{{ o.o }}">{{ o.o }}</option></sc-for></select></div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:10px"><span style="width:3px;height:14px;border-radius:2px;background:#0E9384;flex:none"></span><span style="font-size:12px;font-weight:700;letter-spacing:.06em;color:#344054;white-space:nowrap">Allocation</span><span style="flex:1;height:1px;background:#F0EEE7"></span></div>
+                  <div><div><label style="display:block;font-size:12.5px;font-weight:600;color:#344054;margin-bottom:7px">Courses to coordinate *</label>
+                      <div style="display:flex;gap:8px;flex-wrap:wrap">
+                        <sc-for list="{{ m2CourseChips }}" as="c" hint-placeholder-count="5">
+                          <button onClick="{{ c.pick }}" style="height:34px;padding:0 14px;border-radius:999px;border:1.5px solid {{ c.border }};background:{{ c.bg }};font-size:12.5px;font-weight:{{ c.weight }};color:{{ c.fg }};cursor:pointer;font-family:inherit;white-space:nowrap">{{ c.label }}</button>
+                        </sc-for>
+                      </div>
+                    </div><div style="display:{{ m2Err.coursesD }};font-size:11.5px;color:#B42318;margin-top:6px">{{ m2Err.courses }}</div></div>
+                  <div><label style="display:block;font-size:12.5px;font-weight:600;color:#344054;margin-bottom:7px">Batches to assign</label>
+                      <div style="display:flex;gap:8px;flex-wrap:wrap">
+                        <sc-for list="{{ m2BatchChips }}" as="c" hint-placeholder-count="5">
+                          <button onClick="{{ c.pick }}" style="height:34px;padding:0 14px;border-radius:999px;border:1.5px solid {{ c.border }};background:{{ c.bg }};font-size:12.5px;font-weight:{{ c.weight }};color:{{ c.fg }};cursor:pointer;font-family:inherit;white-space:nowrap">{{ c.label }}</button>
+                        </sc-for>
+                      </div>
+                    </div>
+                  <div style="display:flex;align-items:center;gap:10px"><span style="width:3px;height:14px;border-radius:2px;background:#0E9384;flex:none"></span><span style="font-size:12px;font-weight:700;letter-spacing:.06em;color:#344054;white-space:nowrap">Capacity &amp; Responsibilities</span><span style="flex:1;height:1px;background:#F0EEE7"></span></div>
+                  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px 16px">
+                    <div style="min-width:0"><label style="display:block;font-size:12.5px;font-weight:600;color:#344054;margin-bottom:7px">Maximum Batches</label><select value="{{ m2Form.maxB }}" onChange="{{ m2SetMaxB }}" style="width:100%;height:40px;border-radius:9px;font-size:13.5px;padding:0 12px;outline:0;box-sizing:border-box;font-family:inherit;color:#0F2A47;background:#fff;border:1px solid #E5E3DC"><sc-for list="{{ m2MaxBOpts }}" as="o" hint-placeholder-count="3"><option value="{{ o.o }}">{{ o.o }}</option></sc-for></select></div>
+                    <div style="min-width:0"><label style="display:block;font-size:12.5px;font-weight:600;color:#344054;margin-bottom:7px">Maximum Students</label><select value="{{ m2Form.maxS }}" onChange="{{ m2SetMaxS }}" style="width:100%;height:40px;border-radius:9px;font-size:13.5px;padding:0 12px;outline:0;box-sizing:border-box;font-family:inherit;color:#0F2A47;background:#fff;border:1px solid #E5E3DC"><sc-for list="{{ m2MaxSOpts }}" as="o" hint-placeholder-count="3"><option value="{{ o.o }}">{{ o.o }}</option></sc-for></select></div>
+                  </div>
+                  <div><label style="display:block;font-size:12.5px;font-weight:600;color:#344054;margin-bottom:7px">Responsibilities</label>
+                      <div style="display:flex;gap:8px;flex-wrap:wrap">
+                        <sc-for list="{{ m2RespChips }}" as="c" hint-placeholder-count="5">
+                          <button onClick="{{ c.pick }}" style="height:34px;padding:0 14px;border-radius:999px;border:1.5px solid {{ c.border }};background:{{ c.bg }};font-size:12.5px;font-weight:{{ c.weight }};color:{{ c.fg }};cursor:pointer;font-family:inherit;white-space:nowrap">{{ c.label }}</button>
+                        </sc-for>
+                      </div>
+                    </div>
+                  <div><label style="display:block;font-size:12.5px;font-weight:600;color:#344054;margin-bottom:7px">Languages</label>
+                      <div style="display:flex;gap:8px;flex-wrap:wrap">
+                        <sc-for list="{{ m2LangChips }}" as="c" hint-placeholder-count="5">
+                          <button onClick="{{ c.pick }}" style="height:34px;padding:0 14px;border-radius:999px;border:1.5px solid {{ c.border }};background:{{ c.bg }};font-size:12.5px;font-weight:{{ c.weight }};color:{{ c.fg }};cursor:pointer;font-family:inherit;white-space:nowrap">{{ c.label }}</button>
+                        </sc-for>
+                      </div>
+                    </div>
+                  <div style="display:flex;align-items:center;gap:10px"><span style="width:3px;height:14px;border-radius:2px;background:#0E9384;flex:none"></span><span style="font-size:12px;font-weight:700;letter-spacing:.06em;color:#344054;white-space:nowrap">System Access</span><span style="flex:1;height:1px;background:#F0EEE7"></span></div>
+                  <div><label style="display:block;font-size:12.5px;font-weight:600;color:#344054;margin-bottom:7px">Grant access to</label>
+                      <div style="display:flex;gap:8px;flex-wrap:wrap">
+                        <sc-for list="{{ m2AccessChips }}" as="c" hint-placeholder-count="5">
+                          <button onClick="{{ c.pick }}" style="height:34px;padding:0 14px;border-radius:999px;border:1.5px solid {{ c.border }};background:{{ c.bg }};font-size:12.5px;font-weight:{{ c.weight }};color:{{ c.fg }};cursor:pointer;font-family:inherit;white-space:nowrap">{{ c.label }}</button>
+                        </sc-for>
+                      </div>
+                    </div>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ m2S2 }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;flex-direction:column;gap:12px">
+                  <div style="display:flex;align-items:center;gap:10px"><span style="width:3px;height:14px;border-radius:2px;background:#0E9384;flex:none"></span><span style="font-size:12px;font-weight:700;letter-spacing:.06em;color:#344054;white-space:nowrap">Documents</span><span style="flex:1;height:1px;background:#F0EEE7"></span></div>
+                  <div style="font-size:12.5px;color:#6B7C93;text-wrap:pretty">Optional at creation — the coordinator can upload these during onboarding. Verification stays blocked until required documents are received.</div>
+                  <sc-for list="{{ m2Docs }}" as="doc" hint-placeholder-count="6">
+                    <div style="display:flex;align-items:center;gap:13px;padding:13px 16px;border:1.5px {{ doc.borderStyle }} {{ doc.borderColor }};border-radius:10px;background:#FCFBF7">
+                      <span style="width:32px;height:32px;flex:none;border-radius:9px;background:{{ doc.iBg }};color:{{ doc.iFg }};display:grid;place-items:center;font-size:9.5px;font-weight:800">{{ doc.ext }}</span>
+                      <div style="flex:1;min-width:0">
+                        <div style="font-size:13.5px;font-weight:600;color:#0F2A47">{{ doc.d }}</div>
+                        <div style="font-size:11.5px;color:#98A2B3;margin-top:2px">{{ doc.note }}</div>
+                      </div>
+                      <span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;background:{{ doc.tagBg }};color:{{ doc.tagFg }};white-space:nowrap;flex:none">{{ doc.tag }}</span>
+                      <button onClick="{{ doc.upload }}" style="height:30px;padding:0 12px;border-radius:8px;border:1px solid {{ doc.btnBd }};background:{{ doc.btnBg }};font-size:12px;font-weight:600;color:{{ doc.btnFg }};cursor:pointer;font-family:inherit;white-space:nowrap;flex:none" style-hover="background:#F6F5F0">{{ doc.btnLabel }}</button>
+                    </div>
+                  </sc-for>
+                  <div style="padding:12px 14px;border-radius:10px;background:#EEF6F5;font-size:12.5px;font-weight:600;color:#0B7A6E;text-wrap:pretty">{{ m2DocNote }}</div>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ m2S3 }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;flex-direction:column;gap:16px">
+                  <sc-for list="{{ m2Review }}" as="g" hint-placeholder-count="3">
+                    <div style="display:flex;flex-direction:column;gap:10px">
+                      <div style="display:flex;align-items:center;gap:10px"><span style="width:3px;height:14px;border-radius:2px;background:#0E9384;flex:none"></span><span style="font-size:12px;font-weight:700;letter-spacing:.06em;color:#344054;white-space:nowrap">{{ g.title }}</span><span style="flex:1;height:1px;background:#F0EEE7"></span><button onClick="{{ g.edit }}" style="height:26px;padding:0 10px;border-radius:7px;border:1px solid #E5E3DC;background:#fff;font-size:11.5px;font-weight:600;color:#0B7A6E;cursor:pointer;font-family:inherit" style-hover="background:#EEF6F5">Edit</button></div>
+                      <div style="border:1px solid #ECEAE2;border-radius:12px;overflow:hidden">
+                        <sc-for list="{{ g.rows }}" as="r" hint-placeholder-count="5">
+                          <div style="display:flex;justify-content:space-between;gap:16px;padding:11px 16px;border-bottom:1px solid #F5F3EE;background:{{ r.rowBg }}">
+                            <span style="font-size:12.5px;color:#7A8699;flex:none">{{ r.k }}</span>
+                            <span style="font-size:13px;font-weight:600;color:{{ r.fg }};min-width:0;text-align:right;text-wrap:pretty">{{ r.v }}</span>
+                          </div>
+                        </sc-for>
+                      </div>
+                    </div>
+                  </sc-for>
+                  <div style="padding:12px 14px;border-radius:10px;background:#FEF3E2;border:1px solid #F5DFC0;font-size:12.5px;font-weight:600;color:#B45309;text-wrap:pretty">{{ m2ReviewNote }}</div>
+                </div>
+              </sc-if>
+            </div>
+            <div style="flex:none;display:flex;align-items:center;gap:10px;padding:16px 24px;border-top:1px solid #F0EEE7;background:#FCFBF7">
+              <button onClick="{{ m2SaveDraft }}" style="height:38px;padding:0 16px;border-radius:10px;border:1px solid #E5E3DC;background:#fff;font-size:13px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit;white-space:nowrap;flex:none" style-hover="background:#F6F5F0">Save Draft</button>
+              <span style="flex:1"></span>
+              <button onClick="{{ m2Close }}" style="display:{{ m2CancelD }};align-items:center;justify-content:center;height:38px;padding:0 16px;border-radius:10px;border:1px solid #E5E3DC;background:#fff;font-size:13px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Cancel</button>
+              <button onClick="{{ m2Prev }}" style="display:{{ m2BackD }};align-items:center;justify-content:center;height:38px;padding:0 16px;border-radius:10px;border:1px solid #E5E3DC;background:#fff;font-size:13px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Back</button>
+              <button onClick="{{ m2Next }}" style="display:{{ m2NextD }};align-items:center;justify-content:center;height:38px;padding:0 18px;border-radius:10px;border:0;background:#0E9384;font-size:13px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit" style-hover="background:#0B7A6E">Continue</button>
+              <button onClick="{{ m2Submit }}" style="display:{{ m2SubmitD }};align-items:center;justify-content:center;height:38px;padding:0 18px;border-radius:10px;border:0;background:#0E9384;font-size:13px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit" style-hover="background:#0B7A6E">Create Coordinator</button>
+            </div>
+          </sc-if>
+        </div>
+      </sc-if>
+
       <sc-if value="{{ fm.open }}" hint-placeholder-val="{{ false }}">
         <div onClick="{{ fm.cancel }}" style="position:fixed;inset:0;background:rgba(11,31,62,.46);z-index:84"></div>
         <div style="position:fixed;z-index:85;top:50%;left:50%;transform:translate(-50%,-50%);width:{{ fm.width }};max-width:95vw;max-height:92vh;display:flex;flex-direction:column;background:#fff;border-radius:16px;box-shadow:0 30px 80px rgba(11,31,62,.32);overflow:hidden">
@@ -7509,6 +7676,67 @@ class Component extends DCLogic {
       v[p+'ResetShow'] = sig===this._frBase[p] ? 'none' : 'inline-flex'; });
     return v; }
 
+  m2Vals() { const m=this.state.m2; if(!m) return {m2Open:false};
+    const f=m.form||{}, er=m.errors||{}, step=m.step||0;
+    const put=(o)=>this.setState(x=>({m2:{...x.m2,...o}}));
+    const setF=(k)=>(e)=>this.setState(x=>({m2:{...x.m2, form:{...x.m2.form,[k]:e.target.value}, errors:{...(x.m2.errors||{}),[k]:null}}}));
+    const opts=(a)=>a.map(o=>({o}));
+    const chips=(k,all,def)=>{ const sel=f[k]||def; return all.map(x=>{ const on=sel.includes(x); return {label:x, border:on?'#0E9384':'#E5E3DC', bg:on?'#EEF6F5':'#fff', fg:on?'#0B7A6E':'#667085', weight:on?'700':'500',
+      pick:()=>this.setState(p=>({m2:{...p.m2, form:{...p.m2.form,[k]:on?sel.filter(v=>v!==x):sel.concat([x])}, errors:{...(p.m2.errors||{}),[k]:null}}}))}; }); };
+    const E=(k)=>({[k]:er[k]||'', [k+'D']:er[k]?'block':'none', [k+'Bd']:er[k]?'#D92D20':'#E5E3DC'});
+    const D={role:'Class Coordinator', type:'Full-Time', manager:'Vikram Sethi (Academic Head)', loc:'Bengaluru HQ', hours:'09:00 – 18:00', maxB:'8', maxS:'350'};
+    const g=(k)=>f[k]||D[k];
+    const name=(f.name||'').trim(), empId='CRD-'+(3000+Math.abs([...(name||'x')].reduce((a,c)=>a*31+c.charCodeAt(0)|0,7))%999);
+    const LABELS=['Identity & Contact','Role & Allocation','Documents','Review & Create'];
+    const DOCS=[['Resume / CV','PDF','Work history and coordination experience',1],['Photo ID (Aadhaar / PAN)','ID','Identity verification — required before activation',1],['Address proof','DOC','Utility bill, rental agreement or passport',1],
+      ['Educational certificates','PDF','Highest qualification and any IRDAI certifications',1],['Bank details','DOC','Cancelled cheque or bank letter for payroll',1],['Signed offer letter','DOC','Generated after approval — coordinator e-signs',0],['Profile photo','IMG','Shown in LMS, batch groups and the student app',0]];
+    const EXTC={PDF:['#FDE8E8','#B42318'],ID:['#E9F1FD','#1D4ED8'],DOC:['#E9F1FD','#1D4ED8'],IMG:['#F0EAFD','#6D28D9']};
+    const up=f.uploads||{}, done=DOCS.filter(d=>up[d[0]]).length, reqP=DOCS.filter(d=>d[3]&&!up[d[0]]).length;
+    const V=(x)=>(x&&String(x).trim())?String(x):'Not provided', L=(k,def)=>(f[k]||def).length?(f[k]||def).join(' · '):'None selected';
+    const RG=[['IDENTITY & CONTACT',0,[['Full name',V(f.name)],['Employee ID',empId],['Email',V(f.email)],['Mobile',V(f.phone)],['Date of birth',V(f.dob)],['Location',g('loc')]]],
+      ['ROLE & ALLOCATION',1,[['Designation',g('role')],['Employment type',g('type')],['Reporting manager',g('manager')],['Date of joining',V(f.join)],['Experience',f.yrs?f.yrs+' yrs':'Not provided'],['Working hours',g('hours')],
+        ['Courses',L('courses',[])],['Batches',L('batches',[])],['Capacity',g('maxB')+' batches · '+g('maxS')+' students'],['Responsibilities',L('resp',['Student doubts','Teacher coordination','Attendance tracking'])],['Languages',L('langs',['English'])],['System access',L('access',['LMS','Admin Panel','WhatsApp Group'])]]],
+      ['DOCUMENTS & ONBOARDING',2,[['Documents attached',done?done+' of '+DOCS.length:'None yet'],['Onboarding','Three-stage flow generated on creation'],['Verification','Checklist generated automatically'],['Notifications','Welcome email + login credentials']]]];
+    const gaps=[f.dob,f.join,f.yrs].filter(x=>!(x&&String(x).trim())).length + ((f.batches||[]).length?0:1);
+    return { m2Open:true, m2Done:!!m.submitted, m2NotDone:!m.submitted, m2Form:{...D,...f}, m2EmpId:empId,
+      m2Err:{...E('name'),...E('email'),...E('phone'),...E('courses')},
+      m2Steps: LABELS.map((label,i)=>({label, n:String(i+1), barBg:i<=step?'#0E9384':'#EFEDE6', numBg:i<step?'#0E9384':i===step?'#0F2A47':'#EFEDE6', numFg:i<=step?'#fff':'#98A2B3',
+        labelColor:i===step?'#0F2A47':'#98A2B3', labelWeight:i===step?'700':'500', cursor:i<step?'pointer':'default', pick:()=>{ if(i<step) put({step:i}); }})),
+      m2S0:step===0, m2S1:step===1, m2S2:step===2, m2S3:step===3,
+      m2CancelD:step>0?'none':'inline-flex', m2BackD:step>0?'inline-flex':'none', m2NextD:step<3?'inline-flex':'none', m2SubmitD:step===3?'inline-flex':'none',
+      m2SetName:setF('name'), m2SetEmail:setF('email'), m2SetPhone:setF('phone'), m2SetDob:setF('dob'), m2SetLoc:setF('loc'), m2SetRole:setF('role'), m2SetType:setF('type'), m2SetManager:setF('manager'),
+      m2SetJoin:setF('join'), m2SetYrs:setF('yrs'), m2SetHours:setF('hours'), m2SetMaxB:setF('maxB'), m2SetMaxS:setF('maxS'),
+      m2LocOpts:opts(['Bengaluru HQ','Delhi NCR','Mumbai','Chennai','Hyderabad','Remote']), m2RoleOpts:opts(['Class Coordinator','Senior Coordinator','Academic Coordinator','Batch Coordinator']),
+      m2TypeOpts:opts(['Full-Time','Part-Time','Contract']), m2MgrOpts:opts(['Vikram Sethi (Academic Head)','Anita Rao (Operations Head)','Super Admin']),
+      m2HourOpts:opts(['09:00 – 18:00','10:00 – 19:00','11:00 – 20:00','Flexible']), m2MaxBOpts:opts(['4','6','8','10','12']), m2MaxSOpts:opts(['150','250','350','450','600']),
+      m2CourseChips:chips('courses',['IC 01','IC 02','IC 11','IC 38','Health Crux','Taxation Intensive','Exam Strategy'],[]),
+      m2BatchChips:chips('batches',['B01 — IC 01 Morning','B03 — IC 02 Evening','B07 — IC 01 Morning','B12 — IC 11 Afternoon','Assign later'],[]),
+      m2RespChips:chips('resp',['Student doubts','Teacher coordination','Attendance tracking','Parent communication','Mock test scheduling','Recording QA'],['Student doubts','Teacher coordination','Attendance tracking']),
+      m2LangChips:chips('langs',['English','Hindi','Kannada','Tamil','Marathi','Bengali'],['English']),
+      m2AccessChips:chips('access',['LMS','Admin Panel','Live Class Console','WhatsApp Group','Reports','Payouts'],['LMS','Admin Panel','WhatsApp Group']),
+      m2Docs: DOCS.map(([d,ext,note,req])=>{ const has=!!up[d]; return {d,ext,note,iBg:EXTC[ext][0],iFg:EXTC[ext][1], borderStyle:has?'solid':'dashed', borderColor:has?'#C5E8D4':'#E5E3DC',
+        tag:has?'Uploaded':req?'Required':'Optional', tagBg:has?'#E7F7EE':req?'#FEF3E2':'#F1F3F5', tagFg:has?'#15803D':req?'#B45309':'#667085',
+        btnLabel:has?'Replace':'Upload', btnBd:has?'#E5E3DC':'#BFE3DC', btnBg:has?'#fff':'#EEF6F5', btnFg:has?'#344054':'#0B7A6E',
+        upload:()=>{ this.setState(x=>({m2:{...x.m2, form:{...x.m2.form, uploads:{...((x.m2.form||{}).uploads||{}), [d]:!has}}}})); this.fire(has?'Removed — '+d:'Uploaded — '+d, has?'Slot cleared':ext+' attached to this coordinator record'); }}; }),
+      m2DocNote: reqP ? done+' of '+DOCS.length+' attached · '+reqP+' required document'+(reqP>1?'s':'')+' still outstanding. The coordinator can upload these during onboarding.' : 'All required documents attached — verification can begin as soon as the record is created.',
+      m2Review: RG.map(([title,st,rows])=>({title, edit:()=>put({step:st}), rows:rows.map(([k,v],i)=>({k,v, fg:v==='Not provided'||v==='None yet'||v==='None selected'?'#98A2B3':'#0F2A47', rowBg:i%2?'#FCFBF7':'#fff'}))})),
+      m2ReviewNote: gaps ? gaps+' optional field'+(gaps>1?'s':'')+' left blank — the coordinator completes these during onboarding. Nothing here blocks creation.' : 'Everything captured. The record activates once identity and qualification documents clear verification.',
+      m2DoneMsg: empId+' — '+(name||'Coordinator')+' has been created and a verification checklist was generated automatically.',
+      m2Close:()=>this.setState({m2:null}),
+      m2Prev:()=>put({step:Math.max(0,step-1), errors:{}}),
+      m2Next:()=>{ const e={};
+        if(step===0){ const em=(f.email||'').trim(), ph=(f.phone||'').replace(/[\s-]/g,'');
+          if(!name) e.name='Full name is required.';
+          if(!em) e.email='Email is required.'; else if(!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(em)) e.email='Enter a valid email address.';
+          if(!ph) e.phone='Mobile number is required for OTP verification.'; else if(!/^(\+91)?[6-9]\d{9}$/.test(ph)) e.phone='Enter a valid 10-digit Indian mobile number.'; }
+        if(step===1 && !(f.courses||[]).length) e.courses='Select at least one course to coordinate.';
+        if(Object.keys(e).length) return put({errors:e});
+        put({step:step+1, errors:{}}); },
+      m2Submit:()=>{ put({submitted:true}); this.fire('Coordinator created — '+(name||'Coordinator'), empId+' · verification checklist generated'); },
+      m2Reset:()=>this.setState({m2:{step:0, submitted:false, form:{}, errors:{}}}),
+      m2GoDir:()=>this.setState({m2:null, route:'all', prof:null}),
+      m2SaveDraft:()=>this.fire('Draft saved', (name||'Untitled coordinator')+' · resume any time from Onboarding → Drafts')
+    }; }
   rpt2Menus(o) { const M=this.state.rpt2Menu;
     const mk=(id,items)=>({menuD:M===id?'block':'none', menu:()=>this.setState({rpt2Menu:M===id?null:id}),
       items:items.map(([label,fn,red])=>({label, c:red?'#B42318':'#344054', hov:red?'#FEF3F2':'#F7FBFA', pick:()=>{ this.setState({rpt2Menu:null}); fn(); }}))});
@@ -7744,7 +7972,7 @@ class Component extends DCLogic {
       Object.assign(v, {pvfToggle:()=>this.setState({pvfOpen:!on}), pvfClose:()=>this.setState({pvfOpen:false}), pvfMatch: String((v.pvRows||[]).length), pvfDisplay: on?'block':'none', pvfCount:String(n), pvfHas: n?'grid':'none', pvfBd: on||n?'#0E9384':'#E5E3DC', pvfBg: on||n?'#EEF6F5':'#fff', pvfFg: on||n?'#0B7A6E':'#344054'}); } if (Array.isArray(v.pvRows)) v.pvRows = v.pvRows.map((r,i)=>{ const on = this.state.pvMenu===i, close=(fn)=>()=>{ this.setState({pvMenu:null}); fn(); }, nm = r.name||'coordinator';
       const up = i >= v.pvRows.length-3 && v.pvRows.length>4; return {...r, menuTop: up ? 'auto' : '36px', menuBottom: up ? '36px' : 'auto', menuDisplay: on ? 'block' : 'none', menu: ()=>this.setState({pvMenu: on ? null : i}),
         menuItems: [['View Performance', r.open||(()=>{})], ['View Batches', ()=>this.setState({perfWho:nm, perfTab:'Batches & Teachers'})], ['Compare Performance', ()=>this.setState({pvAct:{kind:'compare', who:nm}, pvCmpWith:null})],
-          ['Export Report', ()=>this.setState({fm:'export', fmCtx:{type:'Performance Summary', who:nm}, fmStep:0, fmErr:null})], ['Set Goals', ()=>this.setState({pvAct:{kind:'goal', who:nm}, pvGoalTarget:'', pvGoalTried:false})], ['View Activity', ()=>this.setState({perfWho:nm, perfTab:'Activity & Goals'})]].map(([label,fn])=>({label, pick: close(fn)}))}; }); Object.assign(v, this.rptVals()); Object.assign(v, this.rpt2Menus(this.rpt2Vals())); Object.assign(v, this.pvActVals()); v.fp = this.fpVals(); this._gfBase = this._gfBase || JSON.stringify((v.globalFilters||[]).map(f=>f.value)); v.gfResetShow = (v.filterHas!=='none' || JSON.stringify((v.globalFilters||[]).map(f=>f.value))!==this._gfBase) ? 'inline-flex' : 'none'; this.frShow(v, ["at","pv","sc","rc","al","dir"]); v.dirCount = String((v.dirCards||[]).length); return v; }
+          ['Export Report', ()=>this.setState({fm:'export', fmCtx:{type:'Performance Summary', who:nm}, fmStep:0, fmErr:null})], ['Set Goals', ()=>this.setState({pvAct:{kind:'goal', who:nm}, pvGoalTarget:'', pvGoalTried:false})], ['View Activity', ()=>this.setState({perfWho:nm, perfTab:'Activity & Goals'})]].map(([label,fn])=>({label, pick: close(fn)}))}; }); Object.assign(v, this.rptVals()); Object.assign(v, this.rpt2Menus(this.rpt2Vals())); Object.assign(v, this.m2Vals()); Object.assign(v, this.pvActVals()); v.fp = this.fpVals(); this._gfBase = this._gfBase || JSON.stringify((v.globalFilters||[]).map(f=>f.value)); v.gfResetShow = (v.filterHas!=='none' || JSON.stringify((v.globalFilters||[]).map(f=>f.value))!==this._gfBase) ? 'inline-flex' : 'none'; this.frShow(v, ["at","pv","sc","rc","al","dir"]); v.dirCount = String((v.dirCards||[]).length); return v; }
   renderVals0() {
     const s = this.state;
     const q = (s.q||'').trim().toLowerCase();
@@ -7960,8 +8188,7 @@ class Component extends DCLogic {
           infoDisplay:'flex', backDisplay:'none', primaryLabel:'Continue',
           primary: ()=>{
             if ((s.addMethod||'Generate Link')==='Manual Entry')
-              this.setState({fm:'manualAdd', fmStep:0, fmErr:null,
-                maName:'', maMobile:'', maEmail:'', maRole:'Class Coordinator', maType:'Full-time', maCourses:[]});
+              this.setState({fm:null, fmStep:0, fmErr:null, m2:{step:0, submitted:false, form:{}, errors:{}}});
             else
               this.setState({fm:'add', fmStep:0, fmErr:null,
                 adMobile:'', adEmail:'', adValidity:'7 days', adChannel:['Email'], adNote:''});
@@ -11779,8 +12006,7 @@ class Component extends DCLogic {
       addDdOptions: [
         ['Generate Link','Send a secure onboarding link',()=>this.setState({fm:'add', fmStep:0, fmErr:null, addDdOpen:false,
           adMobile:'', adEmail:'', adValidity:'7 days', adChannel:['Email'], adNote:''})],
-        ['Manual Entry','Enter every detail yourself now',()=>this.setState({fm:'manualAdd', fmStep:0, fmErr:null, addDdOpen:false,
-          maName:'', maMobile:'', maEmail:'', maRole:'Class Coordinator', maType:'Full-time', maCourses:[]})]
+        ['Manual Entry','Enter every detail yourself now',()=>this.setState({addDdOpen:false, m2:{step:0, submitted:false, form:{}, errors:{}}})]
       ].map(([label,sub,pick])=>({label,sub,pick})),
       openExport: ()=>this.setState({fm:'export', fmCtx:{}, fmStep:0, fmErr:null}),
       openAllocate: ()=>this.setState({fm:'allocate', fmCtx:{}, fmStep:0, fmErr:null}),
