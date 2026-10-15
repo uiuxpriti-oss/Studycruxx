@@ -2,17 +2,23 @@ repo: uiuxpriti-oss/StudyCrux
 branch: claude/zealous-lovelace-o9hpsg
 
 ## Last sync
-date: 2026-10-12T12:00:00Z
+date: 2026-10-15T13:00:00Z
 
 ### Updated in this project
-- All module uploads (Dashboard, Students, Teachers, Coordinators, Speakers, Roles & Access, Design System) integrated at project root; launcher and cross-module links live.
+- Report row actions (Saved Reports, Scheduled, Export Center) moved into a vertical ⋮ overflow menu in all 4 modules.
+- Reports rebuilt in Speaker, Student, Teacher and Coordinator on the new Speaker report layout: Overview library + 8 module data tabs (directory, onboarding/enrollment, verification, events/classes/batches, performance, payout/payroll, contracts, activity) + Saved Reports, Scheduled, Export Center.
+- Not yet pushed — download the zip and commit to the branch.
+
+## Sync history
+- 2026-10-12T09:00:00Z — Speaker 360 / Schedule / Content updates.
+
+### Previously updated (2026-10-12)
 - Speaker 360: header card on Coordinator layout; Employment & Recruitment, Personal & Professional, Students, Attendance & Leave, Finance & Payroll rebuilt on Teacher/Coordinator layout.
 - Speaker Schedule tab: Day / Week / Month / Agenda calendar with event view, reschedule, cancel, replacement and block-availability flows.
 - Speaker Content: View / Change overflow menu with versioned replace flow. Performance 360 header matches Teacher hero.
 - Not yet pushed — download the zip and commit to the branch.
 
 ## Sync history
-- 2026-10-12T09:00:00Z — Speaker 360 header/tabs on Coordinator layout, Speaker Schedule calendar, Content replace flow.
 - 2026-10-07T12:00:00Z — reports popups, Speaker schedule/escalations/performance rebuilt on Coordinator layout, Attendance & Activity in Teacher and Speaker.
 
 ### Previously updated

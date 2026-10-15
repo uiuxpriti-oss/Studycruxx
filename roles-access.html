@@ -374,90 +374,7 @@
                   </div>
                 </div>
               </sc-for>
-              <div style="display:{{ recEmpty }};padding:30px 20px;text-align:center">
-                <div style="font-size:13.5px;font-weight:700;color:#0F2A47">No open recommendations</div>
-                <div style="font-size:12px;color:#6B7C93;margin-top:3px">Everything has been fixed, ignored or snoozed. New findings appear after the nightly analysis.</div>
-              </div>
             </div>
-            <sc-if value="{{ recM.open }}" hint-placeholder-val="{{ false }}">
-              <div onClick="{{ recM.close }}" style="position:fixed;inset:0;background:rgba(11,31,62,.42);z-index:80"></div>
-              <div style="position:fixed;z-index:81;top:50%;left:50%;transform:translate(-50%,-50%);width:680px;max-width:94vw;max-height:90vh;display:flex;flex-direction:column;background:#fff;border-radius:16px;box-shadow:0 24px 64px rgba(11,31,62,.22);overflow:hidden;text-align:left">
-                <div style="flex:none;padding:22px 24px 18px;border-bottom:1px solid #F0EEE7;display:flex;align-items:flex-start;gap:12px">
-                  <span style="width:38px;height:38px;flex:none;border-radius:11px;background:{{ recM.ibg }};color:{{ recM.ifg }};display:grid;place-items:center;font-size:16px;font-weight:800">{{ recM.icon }}</span>
-                  <div style="flex:1;min-width:0">
-                    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-                      <h3 style="margin:0;font-size:16.5px;font-weight:700;color:#0F2A47">{{ recM.title }}</h3>
-                      <span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ recM.kBg }};color:{{ recM.kFg }}">{{ recM.kindLabel }}</span>
-                    </div>
-                    <p style="margin:5px 0 0;font-size:13px;color:#6B7C93;text-wrap:pretty">{{ recM.sub }}</p>
-                  </div>
-                  <button onClick="{{ recM.close }}" style="width:32px;height:32px;flex:none;border-radius:9px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:#7A8699" style-hover="background:#F6F5F0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12" /></svg></button>
-                </div>
-                <div style="flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:18px">
-                  <sc-if value="{{ recM.hasStats }}" hint-placeholder-val="{{ false }}">
-                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px">
-                      <sc-for list="{{ recM.stats }}" as="st" hint-placeholder-count="3">
-                        <div style="border:1px solid #F0EEE7;border-radius:10px;padding:11px 13px;background:#FCFBF7">
-                          <div style="font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#98A2B3">{{ st.l }}</div>
-                          <div style="font-size:18px;font-weight:800;color:{{ st.fg }};margin-top:4px">{{ st.v }}</div>
-                        </div>
-                      </sc-for>
-                    </div>
-                  </sc-if>
-                  <sc-if value="{{ recM.hasItems }}" hint-placeholder-val="{{ false }}">
-                    <div>
-                      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-                        <div style="flex:1;font-size:11.5px;font-weight:700;letter-spacing:.07em;color:#7A8699">{{ recM.itemsTitle }}</div>
-                        <button onClick="{{ recM.selAll }}" style="display:{{ recM.selAllShow }};height:28px;padding:0 10px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:11.5px;font-weight:600;color:#0B7A6E;cursor:pointer;font-family:inherit">{{ recM.selAllLabel }}</button>
-                      </div>
-                      <div style="border:1px solid #ECEAE2;border-radius:12px;overflow:hidden">
-                        <sc-for list="{{ recM.items }}" as="it" hint-placeholder-count="5">
-                          <div onClick="{{ it.toggle }}" style="display:flex;align-items:center;gap:12px;padding:11px 14px;border-bottom:1px solid #F5F3EE;background:{{ it.rowBg }};cursor:{{ it.cur }}">
-                            <span style="display:{{ it.cbShow }};width:18px;height:18px;flex:none;border-radius:5px;border:1.5px solid {{ it.cbBd }};background:{{ it.cbBg }};place-items:center;box-sizing:border-box">
-                              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" style="display:{{ it.cbMark }}"><path d="M5 12.5 10 17 19 7" /></svg>
-                            </span>
-                            <div style="flex:1;min-width:0">
-                              <div style="font-size:13px;font-weight:600;color:#0F2A47">{{ it.a }}</div>
-                              <div style="font-size:11.5px;color:#7A8699;margin-top:2px;text-wrap:pretty">{{ it.b }}</div>
-                            </div>
-                            <span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ it.tBg }};color:{{ it.tFg }};white-space:nowrap">{{ it.tag }}</span>
-                          </div>
-                        </sc-for>
-                      </div>
-                    </div>
-                  </sc-if>
-                  <sc-if value="{{ recM.hasFields }}" hint-placeholder-val="{{ false }}">
-                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px">
-                      <sc-for list="{{ recM.fields }}" as="f" hint-placeholder-count="3">
-                        <div style="min-width:0">
-                          <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">{{ f.label }}</label>
-                          <select value="{{ f.value }}" onChange="{{ f.set }}" style="width:100%;height:40px;padding:0 12px;border:1px solid #E5E3DC;border-radius:9px;font-size:13.5px;background:#fff;color:#0F2A47;outline:0;font-family:inherit;box-sizing:border-box"><sc-for list="{{ f.opts }}" as="o" hint-placeholder-count="3"><option>{{ o.o }}</option></sc-for></select>
-                        </div>
-                      </sc-for>
-                    </div>
-                  </sc-if>
-                  <sc-if value="{{ recM.hasNote }}" hint-placeholder-val="{{ false }}">
-                    <div>
-                      <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">{{ recM.noteLabel }}</label>
-                      <textarea value="{{ recM.note }}" onChange="{{ recM.setNote }}" placeholder="{{ recM.notePh }}" style="width:100%;min-height:78px;padding:10px 12px;border:1px solid {{ recM.noteBd }};border-radius:9px;font-size:13.5px;color:#0F2A47;outline:0;font-family:inherit;resize:vertical;box-sizing:border-box"></textarea>
-                    </div>
-                  </sc-if>
-                  <div style="display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border-radius:10px;background:{{ recM.infoBg }}">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="{{ recM.infoFg }}" stroke-width="2.1" stroke-linecap="round" style="flex:none;margin-top:1px"><circle cx="12" cy="12" r="9" /><path d="M12 11v5M12 8h.01" /></svg>
-                    <span style="font-size:12.5px;color:{{ recM.infoFg }};text-wrap:pretty">{{ recM.info }}</span>
-                  </div>
-                  <sc-if value="{{ recM.hasErr }}" hint-placeholder-val="{{ false }}">
-                    <div style="padding:10px 14px;border-radius:10px;background:#FEF7F6;border:1px solid #FDE8E8;font-size:12.5px;font-weight:600;color:#B42318">{{ recM.err }}</div>
-                  </sc-if>
-                </div>
-                <div style="flex:none;display:flex;align-items:center;gap:10px;padding:16px 24px;border-top:1px solid #F0EEE7;background:#FCFBF7">
-                  <button onClick="{{ recM.secondary }}" style="display:{{ recM.secShow }};height:38px;padding:0 14px;border-radius:9px;border:0;background:transparent;font-size:13px;font-weight:600;color:#475467;cursor:pointer;font-family:inherit" style-hover="background:#F2F0EA">{{ recM.secLabel }}</button>
-                  <span style="flex:1"></span>
-                  <button onClick="{{ recM.close }}" style="height:38px;padding:0 16px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:13px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Cancel</button>
-                  <button onClick="{{ recM.submit }}" style="height:38px;padding:0 18px;border-radius:9px;border:0;background:{{ recM.pBg }};font-size:13px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit;white-space:nowrap">{{ recM.btn }}</button>
-                </div>
-              </div>
-            </sc-if>
 
             <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
               <div style="padding:16px 20px;border-bottom:1px solid #F2F0EA">
@@ -635,66 +552,48 @@
           </div>
 
           <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden;margin-bottom:16px">
-            <div style="display:flex;align-items:center;gap:10px;padding:16px 20px;border-bottom:1px solid #F2F0EA;flex-wrap:wrap">
-              <div style="flex:1 1 280px;min-width:0">
-                <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-                  <span style="font-size:14.5px;font-weight:700;color:#0F2A47">Permission matrix</span>
-                  <span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:#EEF6F5;color:#0B7A6E">{{ spSummary }}</span>
-                </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid #F2F0EA;flex-wrap:wrap">
+              <div style="flex:1;min-width:0">
+                <div style="font-size:14.5px;font-weight:700;color:#0F2A47">Permission matrix</div>
                 <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">{{ rdMatrixHint }}</div>
               </div>
-              <button onClick="{{ spExpandAll }}" style="height:32px;padding:0 13px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:12px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">{{ spExpandLabel }}</button>
               <sc-if value="{{ rdEditing }}" hint-placeholder-val="{{ false }}">
-                <button onClick="{{ spGrantAll }}" style="height:32px;padding:0 13px;border-radius:8px;border:1px solid #BFE3DC;background:#EEF6F5;font-size:12px;font-weight:700;color:#0B7A6E;cursor:pointer;font-family:inherit">Grant all</button>
-                <button onClick="{{ spRevokeAll }}" style="height:32px;padding:0 13px;border-radius:8px;border:1px solid #F0D2CF;background:#fff;font-size:12px;font-weight:600;color:#B42318;cursor:pointer;font-family:inherit">Revoke all</button>
+                <button onClick="{{ rdGrantAll }}" style="height:32px;padding:0 13px;border-radius:8px;border:1px solid #BFE3DC;background:#EEF6F5;font-size:12px;font-weight:700;color:#0B7A6E;cursor:pointer;font-family:inherit;white-space:nowrap">Grant all</button>
+                <button onClick="{{ rdRevokeAll }}" style="height:32px;padding:0 13px;border-radius:8px;border:1px solid #F0D2CF;background:#fff;font-size:12px;font-weight:600;color:#B42318;cursor:pointer;font-family:inherit;white-space:nowrap">Revoke all</button>
               </sc-if>
             </div>
             <div style="overflow-x:auto">
-              <div style="min-width:900px">
-                <div style="display:grid;grid-template-columns:minmax(260px,1fr) repeat(6,76px) 130px;align-items:center;background:#FCFBF7;border-bottom:1px solid #F0EEE7">
-                  <div style="padding:11px 20px;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699">MODULE / SCREEN</div>
-                  <sc-for list="{{ spCols }}" as="c" hint-placeholder-count="6">
-                    <div style="padding:11px 4px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699">{{ c.label }}</div>
-                  </sc-for>
-                  <div style="padding:11px 20px 11px 4px;text-align:right;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699">SCOPE</div>
-                </div>
-                <sc-for list="{{ spGroups }}" as="g" hint-placeholder-count="6">
-                  <div>
-                    <div style="display:grid;grid-template-columns:minmax(260px,1fr) repeat(6,76px) 130px;align-items:center;background:#F4F2EC;border-bottom:1px solid #ECEAE2">
-                      <div onClick="{{ g.toggleOpen }}" style="display:flex;align-items:center;gap:10px;padding:11px 20px;cursor:pointer;min-width:0">
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#475467" stroke-width="2.4" stroke-linecap="round" style="flex:none;transform:{{ g.chev }}"><path d="M6 9l6 6 6-6" /></svg>
-                        <span style="font-size:13.5px;font-weight:700;color:#0F2A47;white-space:nowrap">{{ g.name }}</span>
-                        <span style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:#E2F1EE;color:#0B7A6E;white-space:nowrap">{{ g.count }}</span>
-                      </div>
-                      <sc-for list="{{ g.cells }}" as="c" hint-placeholder-count="6">
-                        <div style="display:flex;justify-content:center;padding:8px 4px">
-                          <span style="display:{{ c.dash }};color:#C4C9D0;font-size:14px">—</span>
-                          <button onClick="{{ c.toggle }}" style="display:{{ c.box }};width:22px;height:22px;border-radius:6px;border:1.5px solid {{ c.bd }};background:{{ c.bg }};color:#fff;cursor:{{ c.cur }};place-items:center;padding:0;font-family:inherit">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" style="display:{{ c.mark }}"><path d="{{ c.path }}" /></svg>
+              <table style="width:100%;min-width:860px;border-collapse:collapse">
+                <thead>
+                  <tr style="background:#FCFBF7">
+                    <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7">MODULE</th>
+                    <sc-for list="{{ rdActions }}" as="ac" hint-placeholder-count="6">
+                      <th style="padding:11px 10px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">{{ ac.label }}</th>
+                    </sc-for>
+                    <th style="padding:11px 20px 11px 10px;text-align:right;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">SCOPE</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <sc-for list="{{ rdMatrix }}" as="row" hint-placeholder-count="8">
+                    <tr style="background:{{ row.bg }}">
+                      <td style="padding:12px 20px;border-bottom:1px solid #F5F3EE">
+                        <div style="font-size:13px;font-weight:600;color:#0F2A47;white-space:nowrap">{{ row.module }}</div>
+                        <div style="font-size:10.5px;color:#98A2B3;margin-top:2px">{{ row.note }}</div>
+                      </td>
+                      <sc-for list="{{ row.cells }}" as="c" hint-placeholder-count="6">
+                        <td style="padding:12px 10px;border-bottom:1px solid #F5F3EE;text-align:center">
+                          <button onClick="{{ c.toggle }}" style="width:26px;height:26px;border-radius:7px;border:1.5px solid {{ c.border }};background:{{ c.bg }};color:{{ c.fg }};cursor:{{ c.cursor }};display:inline-grid;place-items:center;font-family:inherit;padding:0">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="opacity:{{ c.iconOpacity }}"><path d="{{ c.icon }}" /></svg>
                           </button>
-                        </div>
+                        </td>
                       </sc-for>
-                      <div style="padding:8px 20px 8px 4px;text-align:right"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ g.sBg }};color:{{ g.sFg }};white-space:nowrap">{{ g.scope }}</span></div>
-                    </div>
-                    <sc-if value="{{ g.open }}" hint-placeholder-val="{{ false }}">
-                      <sc-for list="{{ g.rows }}" as="r" hint-placeholder-count="4">
-                        <div style="display:grid;grid-template-columns:minmax(260px,1fr) repeat(6,76px) 130px;align-items:center;background:#fff;border-bottom:1px solid #F5F3EE" style-hover="background:#FCFBF7">
-                          <div style="padding:10px 20px 10px 43px;font-size:13px;color:#344054;min-width:0;text-wrap:pretty">{{ r.label }}</div>
-                          <sc-for list="{{ r.cells }}" as="c" hint-placeholder-count="6">
-                            <div style="display:flex;justify-content:center;padding:7px 4px">
-                              <span style="display:{{ c.dash }};color:#C4C9D0;font-size:14px">—</span>
-                              <button onClick="{{ c.toggle }}" style="display:{{ c.box }};width:22px;height:22px;border-radius:6px;border:1.5px solid {{ c.bd }};background:{{ c.bg }};color:#fff;cursor:{{ c.cur }};place-items:center;padding:0;font-family:inherit">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" style="display:{{ c.mark }}"><path d="M5 12.5 10 17 19 7" /></svg>
-                              </button>
-                            </div>
-                          </sc-for>
-                          <div></div>
-                        </div>
-                      </sc-for>
-                    </sc-if>
-                  </div>
-                </sc-for>
-              </div>
+                      <td style="padding:12px 20px 12px 10px;border-bottom:1px solid #F5F3EE;text-align:right">
+                        <span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ row.scopeBg }};color:{{ row.scopeFg }};white-space:nowrap">{{ row.scope }}</span>
+                      </td>
+                    </tr>
+                  </sc-for>
+                </tbody>
+              </table>
             </div>
           </div>
 
@@ -1920,117 +1819,17 @@
       </div>
       <div style="padding:20px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px">
         <sc-for list="{{ roleTemplates }}" as="t" hint-placeholder-count="12">
-          <div onClick="{{ t.use }}" style="display:flex;align-items:flex-start;gap:10px;padding:14px 14px 14px 16px;border:1px solid #ECEAE2;border-radius:12px;background:#fff;cursor:pointer" style-hover="border-color:#BFE3DC;background:#FCFBF7">
-            <div style="flex:1;min-width:0">
-              <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-                <span style="font-size:13.5px;font-weight:700;color:#0F2A47">{{ t.name }}</span>
-                <span style="font-size:9.5px;font-weight:700;padding:2px 7px;border-radius:999px;background:{{ t.tierBg }};color:{{ t.tierFg }};white-space:nowrap">{{ t.tier }}</span>
-              </div>
-              <div style="font-size:11.5px;color:#98A2B3;margin-top:5px">{{ t.perms }}</div>
+          <button onClick="{{ t.use }}" style="text-align:left;padding:14px 16px;border:1px solid #ECEAE2;border-radius:12px;background:#fff;cursor:pointer;font-family:inherit" style-hover="border-color:#BFE3DC;background:#FCFBF7">
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+              <span style="font-size:13.5px;font-weight:700;color:#0F2A47">{{ t.name }}</span>
+              <span style="font-size:9.5px;font-weight:700;padding:2px 7px;border-radius:999px;background:{{ t.tierBg }};color:{{ t.tierFg }};white-space:nowrap">{{ t.tier }}</span>
             </div>
-            <div style="display:flex;gap:6px;flex:none">
-              <button onClick="{{ t.view }}" title="View permissions" style="width:30px;height:30px;flex:none;border-radius:8px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:#475467;padding:0" style-hover="background:#EEF6F5;color:#0B7A6E;border-color:#BFE3DC"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" /><circle cx="12" cy="12" r="3" /></svg></button>
-              <button onClick="{{ t.edit }}" title="Edit template" style="width:30px;height:30px;flex:none;border-radius:8px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:#475467;padding:0" style-hover="background:#EEF6F5;color:#0B7A6E;border-color:#BFE3DC"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9" /><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z" /></svg></button>
-            </div>
-          </div>
+            <div style="font-size:11.5px;color:#98A2B3;margin-top:5px">{{ t.perms }}</div>
+          </button>
         </sc-for>
       </div>
     </div>
   </sc-if>
-  <sc-if value="{{ tvOpen }}" hint-placeholder-val="{{ false }}">
-    <div onClick="{{ tvClose }}" style="position:fixed;inset:0;background:rgba(11,31,62,.42);z-index:90"></div>
-    <div style="position:fixed;z-index:91;top:50%;left:50%;transform:translate(-50%,-50%);width:820px;max-width:94vw;max-height:90vh;display:flex;flex-direction:column;background:#fff;border-radius:16px;box-shadow:0 24px 64px rgba(11,31,62,.22);overflow:hidden">
-      <div style="flex:none;padding:20px 24px 16px;border-bottom:1px solid #F0EEE7;display:flex;align-items:flex-start;gap:12px">
-        <div style="flex:1;min-width:0">
-          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-            <h3 style="margin:0;font-size:16.5px;font-weight:700;color:#0F2A47">{{ tvTitle }}</h3>
-            <span style="font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ tvTierBg }};color:{{ tvTierFg }}">{{ tvTier }}</span>
-          </div>
-          <p style="margin:5px 0 0;font-size:13px;color:#6B7C93">{{ tvSub }}</p>
-        </div>
-        <div style="display:flex;gap:2px;background:#FCFBF7;border:1px solid #ECEAE2;border-radius:9px;padding:3px;flex:none">
-          <sc-for list="{{ tvModes }}" as="m" hint-placeholder-count="2">
-            <button onClick="{{ m.pick }}" style="height:28px;padding:0 13px;border:0;border-radius:7px;font-size:12px;cursor:pointer;background:{{ m.bg }};color:{{ m.fg }};font-weight:600;font-family:inherit">{{ m.label }}</button>
-          </sc-for>
-        </div>
-        <button onClick="{{ tvClose }}" style="width:32px;height:32px;flex:none;border-radius:9px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:#7A8699" style-hover="background:#F6F5F0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12" /></svg></button>
-      </div>
-      <div style="flex:1;overflow-y:auto;padding:18px 24px;display:flex;flex-direction:column;gap:14px">
-        <sc-if value="{{ tvIsEdit }}" hint-placeholder-val="{{ false }}">
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px">
-            <div>
-              <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Template name *</label>
-              <input value="{{ tvName }}" onChange="{{ setTvName }}" style="width:100%;height:40px;padding:0 12px;border:1px solid {{ tvNameBd }};border-radius:9px;font-size:13.5px;color:#0F2A47;outline:0;box-sizing:border-box;font-family:inherit" />
-            </div>
-            <div>
-              <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Tier</label>
-              <select value="{{ tvTierSel }}" onChange="{{ setTvTier }}" style="width:100%;height:40px;padding:0 12px;border:1px solid #E5E3DC;border-radius:9px;font-size:13.5px;background:#fff;color:#0F2A47;outline:0;font-family:inherit">
-                <sc-for list="{{ tvTierOpts }}" as="o" hint-placeholder-count="5"><option>{{ o.o }}</option></sc-for>
-              </select>
-            </div>
-          </div>
-        </sc-if>
-        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-          <span style="font-size:12px;font-weight:600;color:#344054">Permissions</span>
-          <span style="font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px;background:#E6F4F1;color:#0B7A6E">{{ tvSummary }}</span>
-          <span style="display:{{ tvChangedShow }};font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px;background:#FEF3E2;color:#B45309">{{ tvChanged }}</span>
-          <span style="flex:1"></span>
-          <button onClick="{{ tvExpand }}" style="border:0;background:transparent;font-size:12px;font-weight:600;color:#0B7A6E;cursor:pointer;font-family:inherit;padding:0">{{ tvExpandLabel }}</button>
-          <button onClick="{{ tvReset }}" style="display:{{ tvResetShow }};border:0;background:transparent;font-size:12px;font-weight:600;color:#475467;cursor:pointer;font-family:inherit;padding:0">Reset to template</button>
-        </div>
-        <div style="font-size:11.5px;color:#6B7C93;text-wrap:pretty">{{ tvHint }}</div>
-        <div style="border:1px solid #ECEAE2;border-radius:12px;overflow:auto;pointer-events:{{ tvPointer }}">
-          <div style="min-width:650px">
-              <div style="position:sticky;top:0;z-index:2;display:grid;grid-template-columns:minmax(220px,1fr) repeat(6,64px);background:#FCFBF7;border-bottom:1px solid #F0EEE7">
-                <div style="padding:10px 14px;font-size:10.5px;font-weight:700;letter-spacing:.06em;color:#7A8699">MODULE / SCREEN</div>
-                <div style="padding:10px 4px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699">VIEW</div><div style="padding:10px 4px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699">ADD</div><div style="padding:10px 4px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699">EDIT</div><div style="padding:10px 4px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699">DELETE</div><div style="padding:10px 4px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699">PUBLISH</div><div style="padding:10px 4px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699">EXPORT</div>
-              </div>
-              <sc-for list="{{ tvMenuSections }}" as="g" hint-placeholder-count="7">
-                <div>
-                  <div style="display:grid;grid-template-columns:minmax(220px,1fr) repeat(6,64px);align-items:center;background:#F4F2EC;border-bottom:1px solid #ECEAE2">
-                    <div onClick="{{ g.toggle }}" style="display:flex;align-items:center;gap:9px;padding:9px 14px;cursor:pointer;min-width:0">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#475467" stroke-width="2.6" stroke-linecap="round" style="flex:none;transform:{{ g.chev }};transition:transform .15s"><path d="M6 9l6 6 6-6" /></svg>
-                      <span style="font-size:12.5px;font-weight:800;color:#0F2A47;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ g.sec }}</span>
-                      <span style="font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px;background:{{ g.cntBg }};color:{{ g.cntFg }};white-space:nowrap">{{ g.count }}</span>
-                      <span style="display:{{ g.chgShow }};font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px;background:#FEF3E2;color:#B45309;white-space:nowrap">{{ g.chg }}</span>
-                    </div>
-                    <sc-for list="{{ g.colAll }}" as="c" hint-placeholder-count="6">
-                      <div style="display:grid;place-items:center;padding:5px 0">
-                          <span style="display:{{ c.na }};font-size:12px;color:#C8CDD4">—</span>
-                          <button onClick="{{ c.tog }}" style="display:{{ c.cb }};position:relative;width:20px;height:20px;border-radius:5px;border:1.5px solid {{ c.bd }};background:{{ c.bg }};color:#fff;place-items:center;cursor:pointer;font-size:11px;font-weight:800;padding:0">{{ c.mark }}<span style="display:none;position:absolute;top:-4px;right:-4px;width:7px;height:7px;border-radius:50%;background:#F0A72A;border:1.5px solid #fff"></span></button>
-                        </div>
-                    </sc-for>
-                  </div>
-                  <div style="display:{{ g.rowsShow }}">
-                    <sc-for list="{{ g.items }}" as="r" hint-placeholder-count="5">
-                      <div style="display:grid;grid-template-columns:minmax(220px,1fr) repeat(6,64px);align-items:center;border-bottom:1px solid #F5F3EE" style-hover="background:#FCFBF7">
-                        <div style="padding:8px 14px 8px 35px;font-size:12px;color:#344054;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.label }}</div>
-                        <sc-for list="{{ r.cells }}" as="c" hint-placeholder-count="4">
-                        <div style="display:grid;place-items:center;padding:5px 0">
-                          <span style="display:{{ c.na }};font-size:12px;color:#C8CDD4">—</span>
-                          <button onClick="{{ c.tog }}" style="display:{{ c.cb }};position:relative;width:20px;height:20px;border-radius:5px;border:1.5px solid {{ c.bd }};background:{{ c.bg }};color:#fff;place-items:center;cursor:pointer;font-size:11px;font-weight:800;padding:0">{{ c.mark }}<span style="display:{{ c.dot }};position:absolute;top:-4px;right:-4px;width:7px;height:7px;border-radius:50%;background:#F0A72A;border:1.5px solid #fff"></span></button>
-                        </div>
-                        </sc-for>
-                      </div>
-                    </sc-for>
-                  </div>
-                </div>
-              </sc-for>
-            </div>
-        </div>
-        <sc-if value="{{ tvHasErr }}" hint-placeholder-val="{{ false }}">
-          <div style="padding:10px 14px;border-radius:10px;background:#FEF7F6;border:1px solid #FDE8E8;font-size:12.5px;font-weight:600;color:#B42318">{{ tvErr }}</div>
-        </sc-if>
-      </div>
-      <div style="flex:none;display:flex;align-items:center;gap:10px;padding:14px 24px;border-top:1px solid #F0EEE7;background:#FCFBF7">
-        <span style="flex:1"></span>
-        <button onClick="{{ tvClose }}" style="height:38px;padding:0 16px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:13px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">{{ tvCancelLabel }}</button>
-        <button onClick="{{ tvUse }}" style="display:{{ tvUseShow }};height:38px;padding:0 16px;border-radius:9px;border:1px solid #BFE3DC;background:#EEF6F5;font-size:13px;font-weight:700;color:#0B7A6E;cursor:pointer;font-family:inherit">Use template</button>
-        <button onClick="{{ tvPrimary }}" style="height:38px;padding:0 18px;border-radius:9px;border:0;background:#0E9384;font-size:13px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit;white-space:nowrap" style-hover="background:#0B7A6E">{{ tvPrimaryLabel }}</button>
-      </div>
-    </div>
-  </sc-if>
-
 
   <sc-if value="{{ mMatrix }}" hint-placeholder-val="{{ false }}">
     <div style="position:fixed;z-index:61;top:50%;left:50%;transform:translate(-50%,-50%);width:820px;max-width:94vw;max-height:88vh;overflow-y:auto;background:#fff;border-radius:16px;box-shadow:0 24px 64px rgba(11,31,62,.22);animation:popIn .16s ease">
@@ -2127,20 +1926,7 @@
                 <button onClick="{{ hAddRel }}" style="display:flex;align-items:center;gap:6px;height:34px;padding:0 14px;border-radius:9px;border:0;background:#0E9384;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit" style-hover="background:#0B7A6E"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14" /></svg>Add relationship</button>
               </div>
               <div style="padding:14px 18px 18px;display:flex;flex-direction:column;gap:6px">
-                <div style="display:{{ hTopInlineShow }};margin-bottom:6px">
-                  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 12px;border:1.5px dashed #0E9384;border-radius:11px;background:#F7FBFA">
-                        <span style="font-size:12px;font-weight:700;color:#0B7A6E;white-space:nowrap">Add role</span>
-                        <select value="{{ hTopInl.role }}" onChange="{{ hTopInl.setRole }}" style="height:34px;padding:0 10px;border:1px solid #E5E3DC;border-radius:8px;font-size:12.5px;background:#fff;color:#0F2A47;outline:0;font-family:inherit;min-width:0;flex:1 1 170px"><sc-for list="{{ hTopInl.roleOpts }}" as="o" hint-placeholder-count="4"><option>{{ o.o }}</option></sc-for></select>
-                        <span style="font-size:12px;color:#7A8699;white-space:nowrap">reports to</span>
-                        <select value="{{ hTopInl.parent }}" onChange="{{ hTopInl.setParent }}" style="height:34px;padding:0 10px;border:1px solid #E5E3DC;border-radius:8px;font-size:12.5px;background:#fff;color:#0F2A47;outline:0;font-family:inherit;min-width:0;flex:1 1 170px"><sc-for list="{{ hTopInl.parentOpts }}" as="o" hint-placeholder-count="4"><option>{{ o.o }}</option></sc-for></select>
-                        <button onClick="{{ hTopInl.save }}" style="height:34px;padding:0 14px;border-radius:8px;border:0;background:#0E9384;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit;white-space:nowrap" style-hover="background:#0B7A6E">Add</button>
-                        <button onClick="{{ hTopInl.cancel }}" style="height:34px;padding:0 12px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit">Cancel</button>
-                        <div style="display:{{ hTopInl.errShow }};flex-basis:100%;font-size:12px;font-weight:600;color:#B42318">{{ hTopInl.err }}</div>
-                        <div style="display:{{ hTopInl.noteShow }};flex-basis:100%;font-size:11.5px;color:#6B7C93">{{ hTopInl.note }}</div>
-                      </div>
-                </div>
                 <sc-for list="{{ hNodes }}" as="n" hint-placeholder-count="8">
-                  <div>
                   <div style="display:flex;align-items:stretch">
                     <div style="width:{{ n.indent }};flex:none;position:relative">
                       <div style="display:{{ n.connShow }};position:absolute;right:8px;top:-8px;height:calc(50% + 8px);width:14px;border-left:1.5px solid #DDD9CF;border-bottom:1.5px solid #DDD9CF;border-bottom-left-radius:8px"></div>
@@ -2161,39 +1947,6 @@
                       <button onClick="{{ n.remove }}" title="Remove from hierarchy" style="display:{{ n.removeShow }};width:28px;height:28px;flex:none;border-radius:8px;border:1px solid #E5E3DC;background:#fff;place-items:center;cursor:pointer;color:#98A2B3" style-hover="background:#FEF7F6;color:#B42318;border-color:#F0D2CF"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3" /></svg></button>
                     </div>
                   </div>
-                  <div style="display:{{ n.usersShow }};margin:6px 0 2px {{ n.subIndent }};border:1px solid #ECEAE2;border-radius:11px;background:#fff;overflow:hidden">
-                    <div style="display:flex;align-items:center;gap:8px;padding:9px 14px;background:#FCFBF7;border-bottom:1px solid #F0EEE7">
-                      <span style="font-size:11px;font-weight:700;letter-spacing:.06em;color:#7A8699">USERS WITH {{ n.nameUpper }}</span>
-                      <span style="font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px;background:#E6F4F1;color:#0B7A6E">{{ n.userCount }}</span>
-                      <span style="flex:1"></span>
-                      <button onClick="{{ n.assign }}" style="height:26px;padding:0 10px;border-radius:7px;border:1px solid #BFE3DC;background:#EEF6F5;font-size:11.5px;font-weight:700;color:#0B7A6E;cursor:pointer;font-family:inherit">+ Assign user</button>
-                    </div>
-                    <sc-for list="{{ n.users }}" as="u" hint-placeholder-count="3">
-                      <div onClick="{{ u.open }}" style="display:flex;align-items:center;gap:11px;padding:9px 14px;border-bottom:1px solid #F7F5F0;cursor:pointer" style-hover="background:#FCFBF7">
-                        <span style="width:28px;height:28px;flex:none;border-radius:50%;background:{{ u.av }};color:#fff;display:grid;place-items:center;font-size:10.5px;font-weight:700">{{ u.init }}</span>
-                        <div style="min-width:0;flex:1">
-                          <div style="font-size:12.5px;font-weight:600;color:#0F2A47">{{ u.name }}</div>
-                          <div style="font-size:11px;color:#98A2B3;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ u.meta }}</div>
-                        </div>
-                        <span style="font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px;background:{{ u.sBg }};color:{{ u.sFg }};white-space:nowrap">{{ u.status }}</span>
-                      </div>
-                    </sc-for>
-                    <div style="display:{{ n.usersEmpty }};padding:14px;font-size:12px;color:#7A8699;text-align:center">No users hold this role yet.</div>
-                    <div style="display:{{ n.moreShow }};padding:9px 14px;font-size:12px;color:#6B7C93">{{ n.moreLabel }}</div>
-                  </div>
-                  <div style="display:{{ n.inlineShow }};margin:6px 0 2px {{ n.subIndent }}">
-                    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 12px;border:1.5px dashed #0E9384;border-radius:11px;background:#F7FBFA">
-                        <span style="font-size:12px;font-weight:700;color:#0B7A6E;white-space:nowrap">Add role</span>
-                        <select value="{{ n.inl.role }}" onChange="{{ n.inl.setRole }}" style="height:34px;padding:0 10px;border:1px solid #E5E3DC;border-radius:8px;font-size:12.5px;background:#fff;color:#0F2A47;outline:0;font-family:inherit;min-width:0;flex:1 1 170px"><sc-for list="{{ n.inl.roleOpts }}" as="o" hint-placeholder-count="4"><option>{{ o.o }}</option></sc-for></select>
-                        <span style="font-size:12px;color:#7A8699;white-space:nowrap">reports to</span>
-                        <select value="{{ n.inl.parent }}" onChange="{{ n.inl.setParent }}" style="height:34px;padding:0 10px;border:1px solid #E5E3DC;border-radius:8px;font-size:12.5px;background:#fff;color:#0F2A47;outline:0;font-family:inherit;min-width:0;flex:1 1 170px"><sc-for list="{{ n.inl.parentOpts }}" as="o" hint-placeholder-count="4"><option>{{ o.o }}</option></sc-for></select>
-                        <button onClick="{{ n.inl.save }}" style="height:34px;padding:0 14px;border-radius:8px;border:0;background:#0E9384;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit;white-space:nowrap" style-hover="background:#0B7A6E">Add</button>
-                        <button onClick="{{ n.inl.cancel }}" style="height:34px;padding:0 12px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit">Cancel</button>
-                        <div style="display:{{ n.inl.errShow }};flex-basis:100%;font-size:12px;font-weight:600;color:#B42318">{{ n.inl.err }}</div>
-                        <div style="display:{{ n.inl.noteShow }};flex-basis:100%;font-size:11.5px;color:#6B7C93">{{ n.inl.note }}</div>
-                      </div>
-                  </div>
-                </div>
                 </sc-for>
                 <div onDragOver="{{ hRootOver }}" onDragLeave="{{ hRootLeave }}" onDrop="{{ hRootDrop }}" style="display:{{ hRootShow }};margin-top:6px;padding:12px;border:1.5px dashed {{ hRootBd }};border-radius:11px;background:{{ hRootBg }};text-align:center;font-size:12px;font-weight:600;color:#7A8699">Drop here to remove from hierarchy</div>
                 <div style="display:{{ hUnplacedShow }};margin-top:12px;padding:12px 14px;border:1.5px dashed #E5E3DC;border-radius:11px;background:#FCFBF7">
@@ -2208,106 +1961,6 @@
             </div>
           </div>
         </div>
-    </div>
-  </sc-if>
-
-  <sc-if value="{{ iv2Open }}" hint-placeholder-val="{{ false }}">
-    <div onClick="{{ iv2Close }}" style="position:fixed;inset:0;background:rgba(11,31,62,.42);z-index:90"></div>
-    <div style="position:fixed;z-index:91;top:50%;left:50%;transform:translate(-50%,-50%);width:820px;max-width:94vw;max-height:92vh;display:flex;flex-direction:column;background:#fff;border-radius:16px;box-shadow:0 24px 64px rgba(11,31,62,.22);overflow:hidden">
-      <div style="flex:none;padding:20px 24px 16px;border-bottom:1px solid #F0EEE7;display:flex;align-items:flex-start;gap:12px">
-        <div style="flex:1;min-width:0">
-          <h3 style="margin:0;font-size:16.5px;font-weight:700;color:#0F2A47">Invite User</h3>
-          <p style="margin:4px 0 0;font-size:12.5px;color:#6B7C93">Add one or more names and tick the screens they can access.</p>
-        </div>
-        <button onClick="{{ iv2Close }}" style="width:32px;height:32px;flex:none;border-radius:9px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:#7A8699" style-hover="background:#F6F5F0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12" /></svg></button>
-      </div>
-      <div style="flex:1;overflow-y:auto;padding:16px 24px 18px;display:flex;flex-direction:column;gap:18px">
-        <div>
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span style="width:3px;height:13px;border-radius:2px;background:#0E9384"></span><span style="font-size:12px;font-weight:700;color:#0F2A47">User details</span><span style="flex:1"></span><span style="font-size:11.5px;color:#98A2B3">{{ iv2AddedLabel }}</span></div>
-          <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Full names <span style="color:#B42318">*</span></label>
-          <div style="position:relative">
-            <div onClick="{{ iv2Focus }}" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:40px;padding:5px 8px;border:1px solid {{ iv2Bd }};border-radius:9px;background:#fff;box-sizing:border-box;cursor:text">
-              <sc-for list="{{ iv2Chips }}" as="c" hint-placeholder-count="2">
-                <span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 6px 0 10px;border-radius:999px;background:#E6F4F1;border:1px solid #BFE3DC;font-size:12px;font-weight:600;color:#0B7A6E;white-space:nowrap">{{ c.name }}<span style="font-size:10px;font-family:ui-monospace,monospace;color:#3F8C80">{{ c.id }}</span><button onClick="{{ c.rm }}" style="width:18px;height:18px;border-radius:50%;border:0;background:transparent;color:#0B7A6E;cursor:pointer;display:grid;place-items:center;padding:0;font-size:13px;line-height:1">×</button></span>
-              </sc-for>
-              <input value="{{ iv2Q }}" onChange="{{ setIv2Q }}" onKeyDown="{{ iv2Key }}" onFocus="{{ iv2Focus }}" placeholder="{{ iv2Ph }}" style="flex:1;min-width:140px;height:28px;border:0;outline:0;font-size:13px;color:#0F2A47;background:transparent;font-family:inherit" />
-            </div>
-            <div style="display:{{ iv2SugShow }};position:absolute;top:44px;left:0;right:0;z-index:5;background:#fff;border:1px solid #ECEAE2;border-radius:11px;box-shadow:0 18px 44px rgba(11,31,62,.14);padding:5px;max-height:260px;overflow-y:auto">
-              <sc-for list="{{ iv2Sug }}" as="u" hint-placeholder-count="5">
-                <div onClick="{{ u.add }}" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;cursor:pointer;background:{{ u.bg }}" style-hover="background:#F7FBFA">
-                  <span style="width:28px;height:28px;flex:none;border-radius:50%;background:{{ u.av }};color:#fff;display:grid;place-items:center;font-size:10.5px;font-weight:700">{{ u.init }}</span>
-                  <div style="min-width:0;flex:1">
-                    <div style="font-size:12.5px;font-weight:600;color:#0F2A47">{{ u.name }} <span style="font-size:10.5px;font-weight:500;color:#98A2B3;font-family:ui-monospace,monospace">{{ u.id }}</span></div>
-                    <div style="font-size:11px;color:#98A2B3;margin-top:1px">{{ u.email }}</div>
-                  </div>
-                  <span style="font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px;background:{{ u.rBg }};color:{{ u.rFg }};white-space:nowrap">{{ u.role }}</span>
-                </div>
-              </sc-for>
-              <div style="display:{{ iv2NoSug }};padding:14px;text-align:center;font-size:12px;color:#7A8699">No matching people — only users already in the system can be invited here.</div>
-            </div>
-          </div>
-          <div style="font-size:11.5px;color:#98A2B3;margin-top:6px">Start typing a name, email or user ID — pick from people already in the system. Enter adds the top match.</div>
-        </div>
-        <div>
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span style="width:3px;height:13px;border-radius:2px;background:#0E9384"></span><span style="font-size:12px;font-weight:700;color:#0F2A47">Menu access</span><span style="flex:1"></span><span style="font-size:11.5px;color:#98A2B3">{{ iv2GrantedLabel }}</span></div>
-          <div style="padding:10px 14px;border-radius:10px;background:#FCFBF7;border:1px solid #F0EEE7;font-size:12.5px;color:#475467;margin-bottom:12px">Tick View / Add / Edit / Delete / Publish / Export per screen. The same access applies to every name above.</div>
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
-            <span style="font-size:12.5px;font-weight:700;color:#0F2A47">{{ iv2Summary }}</span>
-            <span style="display:{{ iv2ChangedShow }};font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px;background:#FEF3E2;color:#B45309">{{ iv2Changed }}</span>
-            <span style="flex:1"></span>
-            <button onClick="{{ iv2Expand }}" style="height:30px;padding:0 12px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:12px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">{{ iv2ExpandLabel }}</button>
-            <button onClick="{{ iv2Reset }}" style="height:30px;padding:0 12px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:12px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Reset to defaults</button>
-          </div>
-          <div style="border:1px solid #ECEAE2;border-radius:12px;overflow:auto;max-height:46vh">
-            <div style="min-width:650px">
-              <div style="position:sticky;top:0;z-index:2;display:grid;grid-template-columns:minmax(220px,1fr) repeat(6,64px);background:#FCFBF7;border-bottom:1px solid #F0EEE7">
-                <div style="padding:10px 14px;font-size:10.5px;font-weight:700;letter-spacing:.06em;color:#7A8699">MODULE / SCREEN</div>
-                <div style="padding:10px 4px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699">VIEW</div><div style="padding:10px 4px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699">ADD</div><div style="padding:10px 4px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699">EDIT</div><div style="padding:10px 4px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699">DELETE</div><div style="padding:10px 4px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699">PUBLISH</div><div style="padding:10px 4px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699">EXPORT</div>
-              </div>
-              <sc-for list="{{ ivMenuSections }}" as="g" hint-placeholder-count="7">
-                <div>
-                  <div style="display:grid;grid-template-columns:minmax(220px,1fr) repeat(6,64px);align-items:center;background:#F4F2EC;border-bottom:1px solid #ECEAE2">
-                    <div onClick="{{ g.toggle }}" style="display:flex;align-items:center;gap:9px;padding:9px 14px;cursor:pointer;min-width:0">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#475467" stroke-width="2.6" stroke-linecap="round" style="flex:none;transform:{{ g.chev }};transition:transform .15s"><path d="M6 9l6 6 6-6" /></svg>
-                      <span style="font-size:12.5px;font-weight:800;color:#0F2A47;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ g.sec }}</span>
-                      <span style="font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px;background:{{ g.cntBg }};color:{{ g.cntFg }};white-space:nowrap">{{ g.count }}</span>
-                      <span style="display:{{ g.chgShow }};font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px;background:#FEF3E2;color:#B45309;white-space:nowrap">{{ g.chg }}</span>
-                    </div>
-                    <sc-for list="{{ g.colAll }}" as="c" hint-placeholder-count="6">
-                      <div style="display:grid;place-items:center;padding:5px 0">
-                          <span style="display:{{ c.na }};font-size:12px;color:#C8CDD4">—</span>
-                          <button onClick="{{ c.tog }}" style="display:{{ c.cb }};position:relative;width:20px;height:20px;border-radius:5px;border:1.5px solid {{ c.bd }};background:{{ c.bg }};color:#fff;place-items:center;cursor:pointer;font-size:11px;font-weight:800;padding:0">{{ c.mark }}<span style="display:none;position:absolute;top:-4px;right:-4px;width:7px;height:7px;border-radius:50%;background:#F0A72A;border:1.5px solid #fff"></span></button>
-                        </div>
-                    </sc-for>
-                  </div>
-                  <div style="display:{{ g.rowsShow }}">
-                    <sc-for list="{{ g.items }}" as="r" hint-placeholder-count="5">
-                      <div style="display:grid;grid-template-columns:minmax(220px,1fr) repeat(6,64px);align-items:center;border-bottom:1px solid #F5F3EE" style-hover="background:#FCFBF7">
-                        <div style="padding:8px 14px 8px 35px;font-size:12px;color:#344054;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.label }}</div>
-                        <sc-for list="{{ r.cells }}" as="c" hint-placeholder-count="4">
-                        <div style="display:grid;place-items:center;padding:5px 0">
-                          <span style="display:{{ c.na }};font-size:12px;color:#C8CDD4">—</span>
-                          <button onClick="{{ c.tog }}" style="display:{{ c.cb }};position:relative;width:20px;height:20px;border-radius:5px;border:1.5px solid {{ c.bd }};background:{{ c.bg }};color:#fff;place-items:center;cursor:pointer;font-size:11px;font-weight:800;padding:0">{{ c.mark }}<span style="display:{{ c.dot }};position:absolute;top:-4px;right:-4px;width:7px;height:7px;border-radius:50%;background:#F0A72A;border:1.5px solid #fff"></span></button>
-                        </div>
-                        </sc-for>
-                      </div>
-                    </sc-for>
-                  </div>
-                </div>
-              </sc-for>
-            </div>
-          </div>
-          <div style="font-size:11.5px;color:#98A2B3;margin-top:8px">— = not applicable to that screen · orange dot = changed from the designation default.</div>
-        </div>
-        <sc-if value="{{ iv2HasErr }}" hint-placeholder-val="{{ false }}">
-          <div style="padding:10px 14px;border-radius:10px;background:#FEF7F6;border:1px solid #FDE8E8;font-size:12.5px;font-weight:600;color:#B42318">{{ iv2Err }}</div>
-        </sc-if>
-      </div>
-      <div style="flex:none;display:flex;align-items:center;gap:10px;padding:14px 24px;border-top:1px solid #F0EEE7;background:#FCFBF7">
-        <span style="flex:1"></span>
-        <button onClick="{{ iv2Close }}" style="height:38px;padding:0 16px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:13px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Cancel</button>
-        <button onClick="{{ iv2Send }}" style="height:38px;padding:0 18px;border-radius:9px;border:0;background:#0E9384;font-size:13px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit;white-space:nowrap" style-hover="background:#0B7A6E">{{ iv2SendLabel }}</button>
-      </div>
     </div>
   </sc-if>
 
@@ -2500,21 +2153,21 @@
             <button onClick="{{ rfMenuReset }}" style="height:30px;padding:0 12px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:12px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Reset to defaults</button>
           </div>
           <div style="border:1px solid #ECEAE2;border-radius:12px;overflow:auto;max-height:52vh">
-            <div style="min-width:650px">
-              <div style="position:sticky;top:0;z-index:2;display:grid;grid-template-columns:minmax(220px,1fr) repeat(6,64px);background:#FCFBF7;border-bottom:1px solid #F0EEE7">
+            <div style="min-width:520px">
+              <div style="position:sticky;top:0;z-index:2;display:grid;grid-template-columns:minmax(220px,1fr) repeat(4,64px);background:#FCFBF7;border-bottom:1px solid #F0EEE7">
                 <div style="padding:10px 14px;font-size:10.5px;font-weight:700;letter-spacing:.06em;color:#7A8699">MODULE / SCREEN</div>
-                <div style="padding:10px 4px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699">VIEW</div><div style="padding:10px 4px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699">ADD</div><div style="padding:10px 4px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699">EDIT</div><div style="padding:10px 4px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699">DELETE</div><div style="padding:10px 4px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699">PUBLISH</div><div style="padding:10px 4px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699">EXPORT</div>
+                <div style="padding:10px 4px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699">VIEW</div><div style="padding:10px 4px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699">ADD</div><div style="padding:10px 4px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699">EDIT</div><div style="padding:10px 4px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699">DELETE</div>
               </div>
               <sc-for list="{{ rfMenuSections }}" as="g" hint-placeholder-count="7">
                 <div>
-                  <div style="display:grid;grid-template-columns:minmax(220px,1fr) repeat(6,64px);align-items:center;background:#F4F2EC;border-bottom:1px solid #ECEAE2">
+                  <div style="display:grid;grid-template-columns:minmax(220px,1fr) repeat(4,64px);align-items:center;background:#F4F2EC;border-bottom:1px solid #ECEAE2">
                     <div onClick="{{ g.toggle }}" style="display:flex;align-items:center;gap:9px;padding:9px 14px;cursor:pointer;min-width:0">
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#475467" stroke-width="2.6" stroke-linecap="round" style="flex:none;transform:{{ g.chev }};transition:transform .15s"><path d="M6 9l6 6 6-6" /></svg>
                       <span style="font-size:12.5px;font-weight:800;color:#0F2A47;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ g.sec }}</span>
                       <span style="font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px;background:{{ g.cntBg }};color:{{ g.cntFg }};white-space:nowrap">{{ g.count }}</span>
                       <span style="display:{{ g.chgShow }};font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px;background:#FEF3E2;color:#B45309;white-space:nowrap">{{ g.chg }}</span>
                     </div>
-                    <sc-for list="{{ g.colAll }}" as="c" hint-placeholder-count="6">
+                    <sc-for list="{{ g.colAll }}" as="c" hint-placeholder-count="4">
                       <div style="display:grid;place-items:center;padding:5px 0">
                           <span style="display:{{ c.na }};font-size:12px;color:#C8CDD4">—</span>
                           <button onClick="{{ c.tog }}" style="display:{{ c.cb }};position:relative;width:20px;height:20px;border-radius:5px;border:1.5px solid {{ c.bd }};background:{{ c.bg }};color:#fff;place-items:center;cursor:pointer;font-size:11px;font-weight:800;padding:0">{{ c.mark }}<span style="display:none;position:absolute;top:-4px;right:-4px;width:7px;height:7px;border-radius:50%;background:#F0A72A;border:1.5px solid #fff"></span></button>
@@ -2523,7 +2176,7 @@
                   </div>
                   <div style="display:{{ g.rowsShow }}">
                     <sc-for list="{{ g.items }}" as="r" hint-placeholder-count="5">
-                      <div style="display:grid;grid-template-columns:minmax(220px,1fr) repeat(6,64px);align-items:center;border-bottom:1px solid #F5F3EE" style-hover="background:#FCFBF7">
+                      <div style="display:grid;grid-template-columns:minmax(220px,1fr) repeat(4,64px);align-items:center;border-bottom:1px solid #F5F3EE" style-hover="background:#FCFBF7">
                         <div style="padding:8px 14px 8px 35px;font-size:12px;color:#344054;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.label }}</div>
                         <sc-for list="{{ r.cells }}" as="c" hint-placeholder-count="4">
                         <div style="display:grid;place-items:center;padding:5px 0">
@@ -2651,58 +2304,6 @@
           </sc-for>
         </div>
 
-        <div style="display:{{ ufPermShow }};margin-bottom:18px">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
-            <label style="font-size:12px;font-weight:600;color:#344054">Permissions for {{ ufPermRole }}</label>
-            <span style="font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px;background:#E6F4F1;color:#0B7A6E">{{ ufMenuSummary }}</span>
-            <span style="display:{{ ufMenuChangedShow }};font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px;background:#FEF3E2;color:#B45309">{{ ufMenuChanged }}</span>
-            <span style="flex:1"></span>
-            <button onClick="{{ ufMenuExpand }}" style="border:0;background:transparent;font-size:12px;font-weight:600;color:#0B7A6E;cursor:pointer;font-family:inherit;padding:0">{{ ufMenuExpandLabel }}</button>
-            <button onClick="{{ ufMenuReset }}" style="display:{{ ufMenuChangedShow }};border:0;background:transparent;font-size:12px;font-weight:600;color:#475467;cursor:pointer;font-family:inherit;padding:0">Reset to role defaults</button>
-          </div>
-          <div style="font-size:11.5px;color:#6B7C93;margin-bottom:10px;text-wrap:pretty">Pre-filled from the role's default permissions. Change any cell to customise access for this user only.</div>
-          <div style="border:1px solid #ECEAE2;border-radius:12px;overflow:auto;max-height:360px">
-            <div style="min-width:650px">
-              <div style="position:sticky;top:0;z-index:2;display:grid;grid-template-columns:minmax(220px,1fr) repeat(6,64px);background:#FCFBF7;border-bottom:1px solid #F0EEE7">
-                <div style="padding:10px 14px;font-size:10.5px;font-weight:700;letter-spacing:.06em;color:#7A8699">MODULE / SCREEN</div>
-                <div style="padding:10px 4px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699">VIEW</div><div style="padding:10px 4px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699">ADD</div><div style="padding:10px 4px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699">EDIT</div><div style="padding:10px 4px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699">DELETE</div><div style="padding:10px 4px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699">PUBLISH</div><div style="padding:10px 4px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699">EXPORT</div>
-              </div>
-              <sc-for list="{{ ufMenuSections }}" as="g" hint-placeholder-count="7">
-                <div>
-                  <div style="display:grid;grid-template-columns:minmax(220px,1fr) repeat(6,64px);align-items:center;background:#F4F2EC;border-bottom:1px solid #ECEAE2">
-                    <div onClick="{{ g.toggle }}" style="display:flex;align-items:center;gap:9px;padding:9px 14px;cursor:pointer;min-width:0">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#475467" stroke-width="2.6" stroke-linecap="round" style="flex:none;transform:{{ g.chev }};transition:transform .15s"><path d="M6 9l6 6 6-6" /></svg>
-                      <span style="font-size:12.5px;font-weight:800;color:#0F2A47;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ g.sec }}</span>
-                      <span style="font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px;background:{{ g.cntBg }};color:{{ g.cntFg }};white-space:nowrap">{{ g.count }}</span>
-                      <span style="display:{{ g.chgShow }};font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px;background:#FEF3E2;color:#B45309;white-space:nowrap">{{ g.chg }}</span>
-                    </div>
-                    <sc-for list="{{ g.colAll }}" as="c" hint-placeholder-count="6">
-                      <div style="display:grid;place-items:center;padding:5px 0">
-                          <span style="display:{{ c.na }};font-size:12px;color:#C8CDD4">—</span>
-                          <button onClick="{{ c.tog }}" style="display:{{ c.cb }};position:relative;width:20px;height:20px;border-radius:5px;border:1.5px solid {{ c.bd }};background:{{ c.bg }};color:#fff;place-items:center;cursor:pointer;font-size:11px;font-weight:800;padding:0">{{ c.mark }}<span style="display:none;position:absolute;top:-4px;right:-4px;width:7px;height:7px;border-radius:50%;background:#F0A72A;border:1.5px solid #fff"></span></button>
-                        </div>
-                    </sc-for>
-                  </div>
-                  <div style="display:{{ g.rowsShow }}">
-                    <sc-for list="{{ g.items }}" as="r" hint-placeholder-count="5">
-                      <div style="display:grid;grid-template-columns:minmax(220px,1fr) repeat(6,64px);align-items:center;border-bottom:1px solid #F5F3EE" style-hover="background:#FCFBF7">
-                        <div style="padding:8px 14px 8px 35px;font-size:12px;color:#344054;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.label }}</div>
-                        <sc-for list="{{ r.cells }}" as="c" hint-placeholder-count="4">
-                        <div style="display:grid;place-items:center;padding:5px 0">
-                          <span style="display:{{ c.na }};font-size:12px;color:#C8CDD4">—</span>
-                          <button onClick="{{ c.tog }}" style="display:{{ c.cb }};position:relative;width:20px;height:20px;border-radius:5px;border:1.5px solid {{ c.bd }};background:{{ c.bg }};color:#fff;place-items:center;cursor:pointer;font-size:11px;font-weight:800;padding:0">{{ c.mark }}<span style="display:{{ c.dot }};position:absolute;top:-4px;right:-4px;width:7px;height:7px;border-radius:50%;background:#F0A72A;border:1.5px solid #fff"></span></button>
-                        </div>
-                        </sc-for>
-                      </div>
-                    </sc-for>
-                  </div>
-                </div>
-              </sc-for>
-            </div>
-          </div>
-          <div style="font-size:11.5px;color:#98A2B3;margin-top:8px">— = not applicable to that screen · orange dot = changed from the role default.</div>
-        </div>
-
         <div style="display:{{ ufSessionsShow }};margin-bottom:18px">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
             <label style="font-size:12px;font-weight:600;color:#344054">Active sessions</label>
@@ -2811,18 +2412,18 @@ const MODULES = [
 ];
 const ACTIONS = ['View','Create','Edit','Delete','Approve','Export'];
 const MENU = [
-  ['Dashboard','*',[['Platform overview','VX']]],
-  ['Student','Student Management',[['Dashboard','VX'],['All Students','VAEDX'],['Student 360°','VEX'],['Attendance & Activity','VEX'],['Payments & Wallet','VAEX','Finance & Payouts'],['Reminders & Alerts','VAEDP'],['Reports','VX','Reports & Analytics']]],
-  ['Teachers','Teacher Management',[['Dashboard','VX'],['Onboarding & Recruitment','VAEDP'],['All Teachers','VAEDX'],['Teacher 360°','VEX'],['Course & Batch Allocation','VAED','Course & Batch Allocation'],['Schedules','VAEDP'],['Attendance & Activity','VEX'],['Reminders & Alerts','VAEDP'],['Payouts','VAEPX','Finance & Payouts'],['Performance','VX'],['Reports','VX','Reports & Analytics']]],
-  ['Coordinator','Coordinator Management',[['Dashboard','VX'],['All Coordinators','VAEDX'],['Coordinator 360°','VEX'],['Onboarding','VAEDP'],['Course & Batch Allocation','VAED','Course & Batch Allocation'],['Recorded Course Monitoring','VEX'],['Performance','VX'],['Live Class Schedule','VAEDP'],['Attendance & Activity','VEX'],['Payroll & Payouts','VAEPX','Finance & Payouts'],['Reminders & Alerts','VAEDP'],['Reports','VX','Reports & Analytics']]],
-  ['Become a Speaker','Speaker Management',[['Dashboard','VX'],['All Speakers','VAEDX'],['Speaker 360°','VEX'],['Speaker Schedule','VAEDP'],['Webinars & Workshops','VAEDPX'],['Onboarding','VAEDP'],['Performance','VX'],['Speaker Payouts','VAEPX','Finance & Payouts'],['Content Library','VAEDPX'],['Attendance & Activity','VEX'],['Reminders & Alerts','VAEDP'],['Reports','VX','Reports & Analytics']]],
-  ['Role & Access','Roles & Access',[['Dashboard','V'],['Roles','VAEDP'],['Users','VAEDX'],['Access Requests','VEP'],['Sessions','VD'],['Audit Log','VX']]],
+  ['Dashboard','*',[['Platform overview','V']]],
+  ['Student','Student Management',[['Dashboard','V'],['All Students','VAED'],['Student 360°','VE'],['Attendance & Activity','VE'],['Payments & Wallet','VAE','Finance & Payouts'],['Reports','V','Reports & Analytics']]],
+  ['Teachers','Teacher Management',[['Dashboard','V'],['Onboarding & Recruitment','VAED'],['All Teachers','VAED'],['Course & Batch Allocation','VAED','Course & Batch Allocation'],['Schedules','VAED'],['Reminders & Alerts','VAED'],['Payouts','VAE','Finance & Payouts'],['Performance','V'],['Reports','V','Reports & Analytics']]],
+  ['Coordinator','Coordinator Management',[['Dashboard','V'],['All Coordinators','VAED'],['Onboarding','VAED'],['Course & Batch Allocation','VAED','Course & Batch Allocation'],['Recorded Course Monitoring','VE'],['Performance','V'],['Live Class Schedule','VAED'],['Attendance & Activity','VE'],['Payouts','VAE','Finance & Payouts'],['Reminders & Alerts','VAED'],['Reports','V','Reports & Analytics']]],
+  ['Become a Speaker','Speaker Management',[['Applications','VAED'],['Verification Centre','VE'],['Speaker Dashboard','V'],['Onboarding','VAED'],['Events','VAED']]],
+  ['Role & Access','Roles & Access',[['Dashboard','V'],['Roles','VAED'],['Users','VAED'],['Access Requests','VE'],['Sessions','VD'],['Audit Log','V']]],
   ['Additional permissions','',[['Export data','V','Reports & Analytics',5],['Approve payouts','V','Finance & Payouts',4],['Approve access requests','V','Roles & Access',4],['Change password','V','*'],['Menu personalize (names & order)','VE','*']]]
 ];
-const LETTER = ['V','A','E','D','P','X'];
+const LETTER = ['V','A','E','D'];
 const menuFor = (d)=>{ const p = permsFor(d), out = {};
   MENU.forEach(([sec,mod,rows])=>rows.forEach(([n,ap,mo,mi])=>{ const m = mo||mod, key = sec+' › '+n;
-    out[key] = [0,1,2,3,4,5].filter(i=>ap.includes(LETTER[i]) && (m==='*' ? (i===0 || i===2) : (mi!==undefined ? (p[m]||[]).includes(mi) : (p[m]||[]).includes(i)))); }));
+    out[key] = [0,1,2,3].filter(i=>ap.includes(LETTER[i]) && (m==='*' ? (i===0 || i===2) : (mi!==undefined ? (p[m]||[]).includes(mi) : (p[m]||[]).includes(i)))); }));
   return out; };
 
 // name, tier, tierColor, desc, users, scope, iconColor
@@ -2944,7 +2545,7 @@ class Component extends DCLogic {
   rfReset = (prefix) => { const r = {}; Object.keys(this.state).forEach(k=>{ if (k.startsWith(prefix)) r[k]=undefined; }); return r; };
   openRC = (desig, parent) => { const d = desig || 'Coordinator';
     this.setState({...this.rfReset('rc'), modal:'rf', rfKind:'createRole', rfStep:0, rfErr:null, rcDesig:d, rcPerm:permsFor(d), rcMenu:menuFor(d), rcParent: parent || undefined}); };
-  openInvite = (role) => this.setState({modal:'iv2', iv2Sel:[], iv2Q:'', iv2Err:null, iv2Sug:false, iv2Role: role || 'Coordinator', iv2Menu:undefined, iv2MenuOpen:undefined});
+  openInvite = (role) => this.setState({...this.rfReset('iv'), modal:'rf', rfKind:'invite', rfStep:0, rfErr:null, ivDone:false, ivDesig:'Coordinator', ivRole: role || undefined, ivPerm:permsFor('Coordinator')});
   openHier = (kind, role, parent) => this.setState({...this.rfReset('he'), modal:'rf', rfKind:kind, rfStep:0, rfErr:null, heRole:role, heParent:parent});
 
   rfF = (kind, label, key, def, opts, extra) => {
@@ -2988,13 +2589,13 @@ class Component extends DCLogic {
       const isOpen = open[sec]!==undefined ? open[sec] : si<2;
       let sg = 0, st = 0, sc = 0;
       const items = rows.map(([n,ap])=>{ const k = sec+' › '+n, a = cur[k]||[], d = defs[k]||[];
-        const cells = [0,1,2,3,4,5].map(i=>{
+        const cells = [0,1,2,3].map(i=>{
           if (!ap.includes(LETTER[i])) return {na:'block', cb:'none', mark:'', bg:'#fff', bd:'#fff', dot:'none', tog:()=>{}};
           const on = a.includes(i), diff = on!==d.includes(i); st++; total++; if (on) { sg++; granted++; } if (diff) { sc++; changed++; }
           return {na:'none', cb:'grid', mark:on?'✓':'', bg:on?'#0E9384':'#fff', bd:on?'#0E9384':'#D0D5DD', dot:diff?'block':'none',
             tog:()=>this.setState(x=>{ const c = {...(x[key]||defs)}; if (on && i===0) c[k]=[]; else { setCell(c,k,i,!on); if (!on && i>0 && ap.includes('V')) setCell(c,k,0,true); } return {[key]:c}; })}; });
         return {label: sec==='Additional permissions' ? n : sec+' › '+n, cells}; });
-      const colAll = [0,1,2,3,4,5].map(i=>{ const app = rows.filter(r=>r[1].includes(LETTER[i]));
+      const colAll = [0,1,2,3].map(i=>{ const app = rows.filter(r=>r[1].includes(LETTER[i]));
         if (!app.length) return {na:'block', cb:'none', mark:'', bg:'#fff', bd:'#fff', tog:()=>{}};
         const allOn = app.every(([n])=>(cur[sec+' › '+n]||[]).includes(i));
         return {na:'none', cb:'grid', mark:allOn?'✓':'', bg:allOn?'#0B1F3E':'#fff', bd:allOn?'#0B1F3E':'#B8BFCA',
@@ -3282,27 +2883,6 @@ class Component extends DCLogic {
       const prev = h[role];
       this.setState(x=>({hier:{...x.hier, [role]:tgt}, hierSel:role, hDrag:null, hOver:null, hUndo:{role, prev}}));
       this.fire('Moved — '+role, (prev ? 'From '+prev+' → ' : 'Placed under ')+tgt, true); };
-    const unplaced = ROLES.map(r=>r[0]).filter(r=>!(r in h));
-    const inl = s.hInl; const ROLEN = ROLES.map(x=>x[0]);
-    const mkInl = (where)=>{ if (!inl || inl.where!==where) return null;
-      const roleOpts = ROLEN.filter(x=>x!=='Super Admin');
-      const role = inl.role || unplaced[0] || roleOpts.find(x=>!this.hierDesc(h, x).includes(inl.parent) && x!==inl.parent) || roleOpts[0];
-      const parentOpts = Object.keys(h).filter(x=>x!==role && !this.hierDesc(h, role).includes(x));
-      const parent = parentOpts.includes(inl.parent) ? inl.parent : parentOpts[0];
-      const placed = role in h;
-      const up = (p)=>this.setState(x=>({hInl:{...x.hInl, ...p, err:null}}));
-      return {role, parent, roleOpts: roleOpts.map(o=>({o})), parentOpts: parentOpts.map(o=>({o})),
-        setRole:(e)=>up({role:e.target.value}), setParent:(e)=>up({parent:e.target.value}),
-        err: inl.err||'', errShow: inl.err ? 'block' : 'none',
-        note: placed ? role+' currently reports to '+(h[role]||'—')+' — adding moves it with its '+this.hierDesc(h, role).length+' sub-role(s).' : role+' is not in the hierarchy yet.',
-        noteShow: role ? 'block' : 'none',
-        cancel:(e)=>{ e&&e.stopPropagation&&e.stopPropagation(); this.setState({hInl:null}); },
-        save:(e)=>{ e&&e.stopPropagation&&e.stopPropagation();
-          if (!parent) return this.setState(x=>({hInl:{...x.hInl, err:'Pick who this role reports to.'}}));
-          if (h[role]===parent) return this.setState(x=>({hInl:{...x.hInl, err:role+' already reports to '+parent+'.'}}));
-          const prev = h[role];
-          this.setState(x=>({hier:{...(x.hier||HIER0), [role]:parent}, hierSel:role, hInl:null, hUndo:{role, prev}}));
-          this.fire(prev ? 'Relationship updated — '+role : 'Relationship added — '+role, (prev ? prev+' → ' : 'Now reports to ')+parent, true); }}; };
     const nodeView = nodes.map(([r,d])=>{ const on = r===sel, tier = tierOf(r), c = BDG[TIERC[tier]||'blue'] || BDG.blue, kids = this.hierKids(h, r);
       const isDrag = drag===r, isOver = over===r && !!drag, bad = isOver && badTarget(r), root = r==='Super Admin';
       return {name:r, tier, lvl:'L'+(d+1), indent:(d*30)+'px', connShow: d>0 ? 'block' : 'none',
@@ -3317,21 +2897,11 @@ class Component extends DCLogic {
         drop:(e)=>{ e.preventDefault(); if (drag) moveTo(drag, r); },
         meta: (h[r] ? 'Reports to '+h[r]+' · ' : 'Top level · ')+((R[r]||[])[4]||0)+' users · '+(kids.length ? kids.length+' direct report'+(kids.length>1?'s':'') : 'no reports')+' · '+((R[r]||[])[5]||''),
         bd: isOver ? (bad ? '#F04438' : '#0E9384') : on?'#0E9384':'#F0EEE7', bg: isOver ? (bad ? '#FEF7F6' : '#EEF6F5') : on?'#F7FBFA':'#fff', ibg:c[0], ifg:c[1], tBg:c[0], tFg:c[1],
-        pick:()=>this.setState({hierSel:r, hUsersHide: on ? !s.hUsersHide : false}),
-        addChild:(e)=>{ e.stopPropagation(); this.setState({hInl:{where:r, parent:r, role:null}}); },
-        ...(()=>{ const us = USERS.filter(u=>u[2]===r), show = on && !s.hUsersHide, total = (R[r]||[])[4]||us.length;
-          const SC = {Active:'green', Invited:'blue', Suspended:'red', Locked:'red', Inactive:'grey', Pending:'amber'};
-          return {usersShow: show ? 'block' : 'none', subIndent: (d*30+20)+'px', nameUpper: r.toUpperCase(), userCount: us.length+' of '+total,
-            users: us.slice(0,6).map(u=>{ const st = u[7]||'Active', cc = BDG[SC[st]||'grey'];
-              return {name:u[0], init:initials(u[0]), av:avColor(u[0]), meta:u[1]+(u[3] ? ' · '+u[3] : '')+(u[6] ? ' · last login '+u[6] : ''), status:st, sBg:cc[0], sFg:cc[1],
-                open:(e)=>{ e.stopPropagation(); this.fire('Opening user — '+u[0], u[1]+' · '+r, true); }}; }),
-            usersEmpty: us.length ? 'none' : 'block', moreShow: total>Math.min(6,us.length) ? 'block' : 'none',
-            moreLabel: 'Showing '+Math.min(6,us.length)+' of '+total+' users · open Users to see everyone with this role',
-            assign:(e)=>{ e.stopPropagation(); this.openInvite ? this.openInvite(r) : this.fire('Assign user', r, true); }}; })(),
-        inlineShow: inl && inl.where===r ? 'block' : 'none', inl: mkInl(r) || {roleOpts:[], parentOpts:[]},
+        pick:()=>this.setState({hierSel:r}),
+        addChild:(e)=>{ e.stopPropagation(); this.openHier('hAdd', ROLES.map(x=>x[0]).find(x=>!(x in h)) || ROLES.map(x=>x[0]).find(x=>x!==r && !this.hierChain(h,r).includes(x)), r); this.setState({heParent:r}); },
         edit:(e)=>{ e.stopPropagation(); this.openHier('hEdit', r); },
         removeShow: root ? 'none' : 'grid', remove:(e)=>{ e.stopPropagation(); this.openHier('hRemove', r); }}; });
-
+    const unplaced = ROLES.map(r=>r[0]).filter(r=>!(r in h));
     const chain = this.hierChain(h, sel), kids = this.hierKids(h, sel), desc = this.hierDesc(h, sel), tier = tierOf(sel), c = BDG[TIERC[tier]||'blue'];
     const dSel = nodes.find(n=>n[0]===sel);
     return {
@@ -3349,8 +2919,7 @@ class Component extends DCLogic {
       hsEdit: ()=>this.openHier('hEdit', sel),
       hsAdd: ()=>{ this.openHier('hAdd', ROLES.map(x=>x[0]).find(x=>!(x in h)) || ROLES.map(x=>x[0]).find(x=>x!==sel && !this.hierChain(h,sel).includes(x)), sel); this.setState({heParent:sel}); },
       hsRemove: ()=>this.openHier('hRemove', sel), hsRemoveShow: sel==='Super Admin' ? 'none' : 'block',
-      hAddRel: ()=>this.setState({hInl: s.hInl && s.hInl.where==='__top' ? null : {where:'__top', parent:'Academic Head', role:null}}),
-      hTopInlineShow: inl && inl.where==='__top' ? 'block' : 'none', hTopInl: mkInl('__top') || {roleOpts:[], parentOpts:[]},
+      hAddRel: ()=>this.openHier('hAdd', unplaced[0] || 'Reviewer', 'Academic Head'),
       hValidate: ()=> unplaced.length ? this.fire('Hierarchy has '+unplaced.length+' issue'+(unplaced.length>1?'s':''), unplaced.join(', ')+' not placed', false) : this.fire('Hierarchy is valid','No cycles · every role has one parent · '+(maxD+1)+' levels', true),
       hExport: this.act('Hierarchy exported','Org chart · PDF + CSV of reporting lines', true)
     };
@@ -3397,232 +2966,6 @@ class Component extends DCLogic {
 
   fpVals() { const s = this.state; const o = {}; ["p4","p3","p2","p1"].forEach(id=>{ const on = !!(s.fpOpen||{})[id];
     o[id] = {d: on ? 'block' : 'none', toggle: ()=>this.setState(x=>({fpOpen:{...(x.fpOpen||{}), [id]: !on}})), bd: on ? '#0E9384' : '#E5E3DC', bg: on ? '#EEF6F5' : '#fff', fg: on ? '#0B7A6E' : '#344054'}; }); return o; }
-
-  recVals = () => {
-    const s = this.state, m = s.recM, done = s.recDone||{};
-    const REC = [
-      {title:'12 users have unused privileged permissions', icon:'↓', c:'violet', impact:'Trimming these would lift Least Privilege from 82 to an estimated 91',
-       itemsTitle:'USERS WITH UNUSED PRIVILEGED PERMISSIONS', items:[
-        ['Ravi Menon','Finance Admin · payout.approve unused 64 days','Finance'],['Kavya Iyer','Ops Lead · role.edit unused 91 days','Operations'],
-        ['Arjun Patel','Content Admin · user.delete unused 120 days','Content'],['Sana Khan','Support Lead · refund.issue unused 47 days','Support'],
-        ['Mohit Rao','Academic Head · payroll.export unused 73 days','Academic'],['Divya Shah','Coordinator Lead · batch.archive unused 58 days','Academic'],
-        ['Nikhil Jain','Finance Exec · gateway.config unused 102 days','Finance'],['Priya Das','HR Admin · audit.export unused 66 days','HR']],
-       stats:[['USERS AFFECTED','12'],['UNUSED PERMISSIONS','31'],['LEAST PRIVILEGE','82 → 91','#15803D']],
-       fields:[['Action','fxAct','Remove unused permissions',['Remove unused permissions','Move to a lower-privilege role','Convert to time-bound access (30 days)']],
-         ['Effective','fxWhen','Immediately',['Immediately','After 24 h notice','At next login']],['Notify','fxNotify','Users + their managers',['Users + their managers','Users only','Do not notify']]],
-       fixInfo:'Removed permissions are logged and can be restored in one click from the audit log for 30 days.', fixVerb:'Revoke from', unit:'user'},
-      {title:'7 roles are more than 90% identical', icon:'⧉', c:'blue', impact:'Merging the overlap would remove 4 redundant role definitions',
-       itemsTitle:'ROLES TO MERGE', items:[
-        ['Batch Coordinator','42 users · 96% identical to Class Coordinator','Academic'],['Class Coordinator','18 users · base role','Academic'],
-        ['Finance Reviewer','6 users · 94% identical to Finance Exec','Finance'],['Finance Exec','9 users · base role','Finance'],
-        ['Support Agent L1','22 users · 92% identical to Support Agent','Support'],['Support Agent','31 users · base role','Support'],
-        ['Content Editor (old)','4 users · 98% identical to Content Editor','Content']],
-       stats:[['ROLES IN SCOPE','7'],['REDUNDANT','4'],['USERS MIGRATED','121']],
-       fields:[['Keep as primary','fxKeep','Highest-usage role in each group',['Highest-usage role in each group','Oldest role in each group','Choose per group']],
-         ['Differing permissions','fxDiff','Keep the union',['Keep the union','Keep the intersection','Review each difference']],['Merged roles','fxOld','Archive (restorable)',['Archive (restorable)','Delete permanently']]],
-       fixInfo:'Users move to the primary role with no change in effective access when "Keep the union" is selected.', fixVerb:'Merge', unit:'role'},
-      {title:'19 users do not have MFA enabled', icon:'!', c:'red', impact:'Authentication would move from 94 to 100 once enforced',
-       itemsTitle:'USERS WITHOUT MFA', items:[
-        ['Anil Kapoor','Super Admin · last login today','Privileged'],['Meera Joshi','Finance Admin · last login yesterday','Privileged'],
-        ['Rahul Sharma','Coordinator · last login today','Standard'],['Sneha Iyer','Coordinator · last login 2 days ago','Standard'],
-        ['Kabir Sethi','Teacher · last login today','Standard'],['Ayesha Khan','Teacher · last login 5 days ago','Standard']],
-       stats:[['USERS WITHOUT MFA','19'],['PRIVILEGED','2','#B42318'],['AUTHENTICATION','94 → 100','#15803D']],
-       fields:[['Enforcement','fxMode','Require at next login',['Require at next login','7-day grace period','Send reminder only']],
-         ['Allowed methods','fxMfa','Authenticator app or passkey',['Authenticator app or passkey','Authenticator app only','Any method incl. SMS']],['Notify','fxNotify','Email + in-app',['Email + in-app','Email only']]],
-       fixInfo:'Privileged users are blocked from admin actions until MFA is set up, regardless of the grace period.', fixVerb:'Enforce MFA for', unit:'user'},
-      {title:'6 access assignments have expired', icon:'⊘', c:'amber', impact:'Residual grants still resolve at the permission layer — revoke to close',
-       itemsTitle:'EXPIRED ASSIGNMENTS', items:[
-        ['Vendor — Razorpay audit','payout.read · expired 12 Aug 2026','Temporary'],['Intern — Riya Kapoor','content.edit · expired 31 Jul 2026','Temporary'],
-        ['Guest reviewer — IRDAI','course.read · expired 05 Aug 2026','External'],['Ankit Verma (acting Ops)','role.assign · expired 01 Aug 2026','Delegated'],
-        ['Contractor — UX audit','analytics.read · expired 20 Jul 2026','External'],['Neha Rathi (cover)','payroll.approve · expired 10 Aug 2026','Delegated']],
-       stats:[['EXPIRED GRANTS','6'],['STILL RESOLVING','6','#B42318'],['OLDEST','27 days']],
-       fields:[['Action','fxAct','Revoke immediately',['Revoke immediately','Extend by 7 days','Convert to permanent (needs approval)']],['Notify','fxNotify','Grant owner',['Grant owner','Grant owner + user','Do not notify']]],
-       fixInfo:'Revoked grants stop resolving at the permission layer within 60 seconds.', fixVerb:'Revoke', unit:'grant'}
-    ];
-    const rows = REC.map((r,i)=>({r,i})).filter(x=>!done[x.i]);
-    const open = (i,kind)=>()=>this.setState({recM:{i, kind, sel: REC[i].items.map((_,j)=>j), f:{}, note:'', err:null}});
-    const out = {
-      recEmpty: rows.length ? 'none' : 'block',
-      recommendations: rows.map(({r,i})=>({title:r.title, icon:r.icon, impact:r.impact, ibg:BDG[r.c][0], ifg:BDG[r.c][1],
-        actions: ['Review','Fix','Ignore','Snooze'].map(label=>({label,
-          border: label==='Fix' ? '#BFE3DC' : '#E5E3DC', bg: label==='Fix' ? '#EEF6F5' : '#fff',
-          fg: label==='Fix' ? '#0B7A6E' : '#344054', hbg: label==='Fix' ? '#E2F1EE' : '#F6F5F0', weight: label==='Fix' ? '700' : '600',
-          go: open(i, label.toLowerCase())}))}))
-    };
-    if (!m) return {...out, recM:{open:false}};
-    const r = REC[m.i], up = (p)=>this.setState(x=>({recM:{...x.recM, ...p, err:null}})), close = ()=>this.setState({recM:null});
-    const fv = (k,d)=>m.f[k]||d, F = (label,k,d,opts)=>({label, value:fv(k,d), opts:opts.map(o=>({o})), set:(e)=>{ const v=e.target.value; this.setState(x=>({recM:{...x.recM, f:{...x.recM.f, [k]:v}, err:null}})); }});
-    const n = m.sel.length;
-    const finish = (state, msg, sub)=>{ this.setState(x=>({recM:null, recDone:{...(x.recDone||{}), [m.i]:state}})); this.fire(msg, sub, true); };
-    const KL = {review:['Review','#E9F1FD','#1D4ED8'], fix:['Fix','#E7F7EE','#15803D'], ignore:['Ignore','#F1F3F5','#667085'], snooze:['Snooze','#FEF3E2','#B45309']}[m.kind];
-    const base = {open:true, close, title:r.title, icon:r.icon, ibg:BDG[r.c][0], ifg:BDG[r.c][1], kindLabel:KL[0], kBg:KL[1], kFg:KL[2],
-      hasErr:!!m.err, err:m.err||'', note:m.note, setNote:(e)=>up({note:e.target.value}), noteBd: m.err ? '#F0D2CF' : '#E5E3DC',
-      secShow:'none', secLabel:'', secondary:()=>{}, selAllShow:'none', infoBg:'#EEF6F5', infoFg:'#0B7A6E', pBg:'#0E9384'};
-    const items = (sel)=>r.items.map(([a,b,tag],j)=>{ const on = sel && m.sel.includes(j);
-      return {a,b,tag, tBg:'#F1F3F5', tFg:'#475467', cbShow: sel?'grid':'none', cbBg:on?'#0E9384':'#fff', cbBd:on?'#0E9384':'#D0D5DD', cbMark:on?'block':'none',
-        rowBg:on?'#F7FBFA':'#fff', cur: sel?'pointer':'default',
-        toggle: sel ? ()=>up({sel: m.sel.includes(j) ? m.sel.filter(x=>x!==j) : m.sel.concat(j)}) : undefined}; });
-    let v;
-    if (m.kind==='review') v = {sub:r.impact, hasStats:true, stats:r.stats.map(([l,val,fg])=>({l, v:val, fg:fg||'#0F2A47'})),
-      hasItems:true, itemsTitle:r.itemsTitle+' · '+r.items.length+' SHOWN', items:items(false), hasFields:false, hasNote:false,
-      info:'Derived from the last 90 days of permission usage, role overlap and policy checks. Nothing changes until you choose Fix.',
-      btn:'Fix now', submit:()=>up({kind:'fix'}), secShow:'inline-flex', secLabel:'Snooze 30 days', secondary:()=>up({kind:'snooze'})};
-    else if (m.kind==='fix') v = {sub:'Choose what to change — every action is reversible from the audit log', hasStats:false,
-      hasItems:true, itemsTitle:r.itemsTitle+' · '+n+' OF '+r.items.length+' SELECTED', items:items(true),
-      selAllShow:'inline-flex', selAllLabel: n===r.items.length ? 'Clear all' : 'Select all', selAll:()=>up({sel: n===r.items.length ? [] : r.items.map((_,j)=>j)}),
-      hasFields:true, fields:r.fields.map(([l,k,d,o])=>F(l,k,d,o)), hasNote:true, noteLabel:'Change note (optional)', notePh:'Recorded in the audit log',
-      info:r.fixInfo, btn: r.fixVerb+' '+n+' '+r.unit+(n===1?'':'s'),
-      submit:()=>{ if (!n) return this.setState(x=>({recM:{...x.recM, err:'Select at least one item to fix.'}}));
-        finish('fixed', 'Recommendation fixed', r.fixVerb+' '+n+' '+r.unit+(n===1?'':'s')+' · '+fv(r.fields[0][1], r.fields[0][2])+' · audit logged'); }};
-    else if (m.kind==='ignore') v = {sub:'Ignored recommendations stay hidden until the underlying data changes', hasStats:false, hasItems:false,
-      hasFields:true, fields:[F('Reason','igWhy','Accepted risk',['Accepted risk','False positive','Handled outside the platform','Not applicable to our policy'])],
-      hasNote:true, noteLabel:'Justification *', notePh:'Why this is safe to ignore — visible to auditors',
-      info:'Ignoring is recorded in the audit log with your name and justification.', infoBg:'#FEF3E2', infoFg:'#B45309',
-      btn:'Ignore recommendation', pBg:'#475467',
-      submit:()=>{ if ((m.note||'').trim().length < 10) return this.setState(x=>({recM:{...x.recM, err:'Add a justification of at least 10 characters.'}}));
-        finish('ignored','Recommendation ignored', fv('igWhy','Accepted risk')+' · audit logged'); }};
-    else v = {sub:'Hide this recommendation for a while — it reappears automatically', hasStats:false, hasItems:false,
-      hasFields:true, fields:[F('Snooze for','snFor','30 days',['7 days','14 days','30 days','90 days']), F('Remind','snWho','Me',['Me','Security team','Do not remind'])],
-      hasNote:true, noteLabel:'Note (optional)', notePh:'e.g. waiting on the quarterly access review',
-      info:'Snoozed until '+({'7 days':'19 Oct','14 days':'26 Oct','30 days':'11 Nov','90 days':'10 Jan'})[fv('snFor','30 days')]+' — it returns sooner if the risk increases.',
-      btn:'Snooze '+fv('snFor','30 days'), submit:()=>finish('snoozed','Recommendation snoozed', 'Hidden for '+fv('snFor','30 days'))};
-    return {...out, recM:{...base, ...v}};
-  };
-
-  spVals = (rd, editing) => {
-    const s = this.state, ov = s.sp||{}, openM = s.spOpen||{}, role = rd[0];
-    const COLS = ['View','Add','Edit','Delete','Publish','Export'], L = 'VAEDPX';
-    const SCR = [
-      ['Dashboard','*',[['Platform overview','VX']]],
-      ['Student','Student Management',[['Dashboard','VX'],['All Students','VAEDX'],['Student 360°','VEX'],['Attendance & Activity','VEX'],['Payments & Wallet','VAEX','Finance & Payouts'],['Reminders & Alerts','VAEDP'],['Reports','VX','Reports & Analytics']]],
-      ['Teachers','Teacher Management',[['Dashboard','VX'],['Onboarding & Recruitment','VAEDP'],['All Teachers','VAEDX'],['Teacher 360°','VEX'],['Course & Batch Allocation','VAED','Course & Batch Allocation'],['Schedules','VAEDP'],['Attendance & Activity','VEX'],['Reminders & Alerts','VAEDP'],['Payouts','VAEPX','Finance & Payouts'],['Performance','VX'],['Reports','VX','Reports & Analytics']]],
-      ['Coordinator','Coordinator Management',[['Dashboard','VX'],['All Coordinators','VAEDX'],['Coordinator 360°','VEX'],['Onboarding','VAEDP'],['Course & Batch Allocation','VAED','Course & Batch Allocation'],['Recorded Course Monitoring','VEX'],['Performance','VX'],['Live Class Schedule','VAEDP'],['Attendance & Activity','VEX'],['Payroll & Payouts','VAEPX','Finance & Payouts'],['Reminders & Alerts','VAEDP'],['Reports','VX','Reports & Analytics']]],
-      ['Become a Speaker','Speaker Management',[['Dashboard','VX'],['All Speakers','VAEDX'],['Speaker 360°','VEX'],['Speaker Schedule','VAEDP'],['Webinars & Workshops','VAEDPX'],['Onboarding','VAEDP'],['Performance','VX'],['Speaker Payouts','VAEPX','Finance & Payouts'],['Content Library','VAEDPX'],['Attendance & Activity','VEX'],['Reminders & Alerts','VAEDP'],['Reports','VX','Reports & Analytics']]],
-      ['Role & Access','Roles & Access',[['Dashboard','V'],['Roles','VAEDP'],['Users','VAEDX'],['Access Requests','VEP'],['Sessions','VD'],['Audit Log','VX']]]
-    ];
-    const AI = [0,1,2,3,4,5];
-    const def = (mod, ci)=> mod==='*' ? (ci===0 || this.hasPerm(role,'Reports & Analytics',5)) : this.hasPerm(role, mod, AI[ci]);
-    const key = (sec, scr, ci)=>role+'|'+sec+'|'+scr+'|'+ci;
-    const isOn = (sec, mod, scr, ci)=>{ const k = key(sec,scr,ci); return ov[k]!==undefined ? ov[k] : def(mod, ci); };
-    const ro = ()=>this.fire('Read-only', 'Press Edit Permissions to change this role', false);
-    const setMany = (pairs, val)=>{ if (!editing) return ro(); const n = {...ov}; pairs.forEach(k=>{ n[k]=val; }); this.setState({sp:n}); };
-    let granted = 0, total = 0;
-    const SC = {'*':['teal'], 'Finance & Payouts':['orange','Financial data'], 'Roles & Access':['red','Platform-wide']};
-    const groups = SCR.map(([sec,mod,rows],gi)=>{
-      const open = openM[sec]!==undefined ? openM[sec] : gi<2;
-      let gGr = 0, gTot = 0;
-      const rws = rows.map(([scr,ap,mo])=>{ const m = mo||mod;
-        return {label: sec+' › '+scr, cells: COLS.map((_,ci)=>{ const has = ap.includes(L[ci]); if (!has) return {dash:'inline', box:'none'};
-          const on = isOn(sec,m,scr,ci); gTot++; if (on) gGr++;
-          return {dash:'none', box:'inline-grid', bd: on?'#0E9384':'#D0D5DD', bg: on?'#0E9384':'#fff', mark: on?'block':'none', cur: editing?'pointer':'default',
-            toggle: ()=>setMany([key(sec,scr,ci)], !on)}; })}; });
-      granted += gGr; total += gTot;
-      const cells = COLS.map((_,ci)=>{ const app = rows.filter(r=>r[1].includes(L[ci]));
-        if (!app.length) return {dash:'inline', box:'none'};
-        const ons = app.filter(([scr,ap,mo])=>isOn(sec, mo||mod, scr, ci)).length, all = ons===app.length, some = ons>0;
-        return {dash:'none', box:'inline-grid', bd: some?'#0B1F3E':'#D0D5DD', bg: some?'#0B1F3E':'#fff', mark: some?'block':'none',
-          path: all ? 'M5 12.5 10 17 19 7' : 'M6 12h12', cur: editing?'pointer':'default',
-          toggle: ()=>setMany(app.map(([scr])=>key(sec,scr,ci)), !all)}; });
-      const restricted = mod==='Roles & Access' && role!=='Super Admin' && !gGr;
-      const sc = !gGr ? ['grey','No access'] : mod==='Roles & Access' ? ['red','Platform-wide'] : mod==='*' ? ['teal','All data'] : ['teal', rd[5]];
-      return {name:sec, count: gGr+' / '+gTot, open, chev: open?'rotate(0deg)':'rotate(-90deg)',
-        toggleOpen: ()=>this.setState(x=>({spOpen:{...(x.spOpen||{}), [sec]: !open}})),
-        cells, rows: rws, scope: sc[1], sBg: BDG[sc[0]][0], sFg: BDG[sc[0]][1]};
-    });
-    const allKeys = []; SCR.forEach(([sec,mod,rows])=>rows.forEach(([scr,ap])=>COLS.forEach((_,ci)=>{ if (ap.includes(L[ci])) allKeys.push(key(sec,scr,ci)); })));
-    const allOpen = groups.every(g=>g.open);
-    return {
-      spCols: COLS.map(c=>({label:c.toUpperCase()})), spGroups: groups,
-      spSummary: granted+' of '+total+' screen permissions',
-      spExpandLabel: allOpen ? 'Collapse all' : 'Expand all',
-      spExpandAll: ()=>this.setState({spOpen: Object.fromEntries(SCR.map(([sec])=>[sec, !allOpen]))}),
-      spGrantAll: ()=>{ setMany(allKeys, true); this.fire('All permissions granted', role+' now has full access — review before saving', false); },
-      spRevokeAll: ()=>{ setMany(allKeys, false); this.fire('All permissions revoked', role+' now has no access — review before saving', false); }
-    };
-  };
-
-  ufPerm = (u) => {
-    const s = this.state, nr = s.ufRole || u.role, P = PROFILE[nr] || {}, defs = {};
-    MENU.forEach(([sec,mod,rows])=>rows.forEach(([n,ap,mo,mi])=>{ const m = mo||mod, k = sec+' › '+n;
-      const has = (i)=> m==='*' ? (i===0 || i===2) : (P.all ? (mi!==undefined ? P.all.includes(mi) : P.all.includes(i)) : (mi!==undefined ? (P[m]||[]).includes(mi) : (P[m]||[]).includes(i)));
-      defs[k] = [0,1,2,3,4,5].filter(i=>ap.includes(LETTER[i]) && has(i)); }));
-    const mn = this.rfMenu('ufMenu|'+nr, defs);
-    return {ufPermShow:'block', ufPermRole:nr, ufMenuSections:mn.rfMenuSections, ufMenuSummary:mn.rfMenuSummary,
-      ufMenuChanged:mn.rfMenuChanged, ufMenuChangedShow:mn.rfMenuChangedShow, ufMenuExpandLabel:mn.rfMenuExpandLabel,
-      ufMenuExpand:mn.rfMenuExpand, ufMenuReset:mn.rfMenuReset, _ufMn:mn};
-  };
-
-  tvVals = () => {
-    const s = this.state, t = s.tvCur; if (!t) return {tvOpen:false, tvMenuSections:[]};
-    const BASE = {'Super Admin':'Super Admin','Admin':'Academic Head','LMS Admin':'Content Admin','Course Manager':'Academic Head','Course Coordinator':'Coordinator','Teacher':'Reviewer','Speaker Manager':'Academic Head','Event Manager':'Coordinator','Finance Manager':'Finance','Support Agent':'Support','Report Analyst':'Reviewer','Auditor':'Reviewer'};
-    const P = PROFILE[BASE[t.key]||'Coordinator'] || {}, defs = {};
-    MENU.forEach(([sec,mod,rows])=>rows.forEach(([n,ap,mo,mi])=>{ const m = mo||mod, k = sec+' › '+n;
-      const has = (i)=> m==='*' ? (i===0 || i===2) : (P.all ? true : (mi!==undefined ? (P[m]||[]).includes(mi) : (P[m]||[]).includes(i)));
-      defs[k] = [0,1,2,3,4,5].filter(i=>ap.includes(LETTER[i]) && has(i)); }));
-    const key = 'tvMenu|'+t.key, saved = (s.tplSaved||{})[t.key];
-    const mn = this.rfMenu(key, saved && saved.menu ? saved.menu : defs);
-    const edit = s.tvMode==='edit', close = ()=>this.setState({tvCur:null});
-    const TC = {Unrestricted:'red', Elevated:'violet', Standard:'blue', Limited:'teal', 'Read-only':'grey'};
-    return {tvOpen:true, tvClose:close, tvIsEdit:edit,
-      tvTitle: edit ? 'Edit template — '+t.name : t.name, tvTier: edit ? (s.tvTierSel||t.tier) : t.tier,
-      tvTierBg: BDG[TC[edit ? (s.tvTierSel||t.tier) : t.tier]||'grey'][0], tvTierFg: BDG[TC[edit ? (s.tvTierSel||t.tier) : t.tier]||'grey'][1],
-      tvSub: edit ? 'Change the default permissions every new role created from this template starts with' : 'Default permissions included in this template · read-only',
-      tvModes: [['View','view'],['Edit','edit']].map(([label,k])=>{ const on = (s.tvMode||'view')===k; return {label, bg:on?'#0B1F3E':'transparent', fg:on?'#fff':'#6B7C93', pick:()=>this.setState({tvMode:k, tvErr:null})}; }),
-      tvName: s.tvName ?? t.name, setTvName:(e)=>this.setState({tvName:e.target.value, tvErr:null}), tvNameBd: s.tvErr && !String(s.tvName||'').trim() ? '#F0D2CF' : '#E5E3DC',
-      tvTierSel: s.tvTierSel||t.tier, setTvTier:(e)=>this.setState({tvTierSel:e.target.value}), tvTierOpts: Object.keys(TC).map(o=>({o})),
-      tvMenuSections: mn.rfMenuSections, tvSummary: mn.rfMenuSummary, tvChanged: mn.rfMenuChanged, tvChangedShow: edit ? mn.rfMenuChangedShow : 'none',
-      tvExpand: mn.rfMenuExpand, tvExpandLabel: mn.rfMenuExpandLabel, tvReset: mn.rfMenuReset, tvResetShow: edit ? mn.rfMenuChangedShow : 'none',
-      tvPointer: edit ? 'auto' : 'none',
-      tvHint: edit ? 'Tick or untick any cell. Group checkboxes set the whole module column. Roles already created from this template are not changed.' : 'Switch to Edit to change these defaults.',
-      tvHasErr: !!s.tvErr, tvErr: s.tvErr||'',
-      tvCancelLabel: edit ? 'Cancel' : 'Close', tvUseShow: edit ? 'none' : 'inline-flex',
-      tvUse: ()=>{ close(); this.setState({modal:'createRole', crStep:0, crErr:null, crName:'', crDesc:'', crType: t.tier==='Unrestricted' ? 'System' : t.tier==='Elevated' ? 'Privileged' : 'Custom', crActions:['View'], crScope:'Assigned', crSec:['MFA required']}); this.fire('Template loaded — '+t.name, mn.granted+' permissions pre-selected', true); },
-      tvPrimaryLabel: edit ? 'Save template' : 'Edit permissions',
-      tvPrimary: edit ? ()=>{ const nm = String(s.tvName ?? t.name).trim(); if (!nm) return this.setState({tvErr:'Template name is required.'});
-          const tier = s.tvTierSel||t.tier;
-          this.setState(x=>({tvCur:null, tplSaved:{...(x.tplSaved||{}), [t.key]:{name:nm, tier, c:TC[tier]||'grey', perms:mn.granted+' permissions', menu:mn.cur}}}));
-          this.fire('Template saved — '+nm, mn.granted+' permissions'+(mn.changed ? ' · '+mn.changed+' changed' : '')+' · audit logged', true); }
-        : ()=>this.setState({tvMode:'edit'})
-    };
-  };
-
-  iv2Vals = () => {
-    const s = this.state; if (s.modal!=='iv2') return {iv2Open:false, ivMenuSections:[], iv2Chips:[], iv2Sug:[]};
-    const PEOPLE = USERS.map((u,i)=>({name:u[0], email:u[1], role:u[2], id:'USR-'+(1101+i)}));
-    const sel = s.iv2Sel||[], q = (s.iv2Q||'').trim().toLowerCase();
-    const avail = PEOPLE.filter(p=>!sel.includes(p.id) && (!q || (p.name+' '+p.email+' '+p.id).toLowerCase().includes(q)));
-    const first = PEOPLE.find(p=>p.id===sel[0]);
-    const base = first ? first.role : (s.iv2Role||'Coordinator'), P = PROFILE[base] || {}, defs = {};
-    MENU.forEach(([sec,mod,rows])=>rows.forEach(([n,ap,mo,mi])=>{ const m = mo||mod, k = sec+' › '+n;
-      const has = (i)=> m==='*' ? (i===0 || i===2) : (P.all ? true : (mi!==undefined ? (P[m]||[]).includes(mi) : (P[m]||[]).includes(i)));
-      defs[k] = [0,1,2,3,4,5].filter(i=>ap.includes(LETTER[i]) && has(i)); }));
-    const mn = this.rfMenu('iv2Menu', defs);
-    const add = (p)=>this.setState(x=>({iv2Sel:[...(x.iv2Sel||[]), p.id], iv2Q:'', iv2Err:null, iv2Sug:true}));
-    const RC = {'Super Admin':'red','Academic Head':'violet','Content Admin':'violet','Finance':'violet','Coordinator':'blue','Support':'blue','Reviewer':'grey','Speaker':'orange'};
-    const close = ()=>this.setState({modal:null, iv2Sel:[], iv2Q:'', iv2Err:null, iv2Sug:false, iv2Menu:undefined, iv2MenuOpen:undefined});
-    const n = sel.length;
-    return {iv2Open:true, iv2Close:close,
-      iv2AddedLabel: n ? n+' added' : 'none added',
-      iv2Chips: sel.map(id=>{ const p = PEOPLE.find(x=>x.id===id)||{name:id, id}; return {name:p.name, id:p.id, rm:(e)=>{ e&&e.stopPropagation&&e.stopPropagation(); this.setState(x=>({iv2Sel:(x.iv2Sel||[]).filter(y=>y!==id)})); }}; }),
-      iv2Q: s.iv2Q||'', setIv2Q:(e)=>this.setState({iv2Q:e.target.value, iv2Sug:true, iv2Err:null}),
-      iv2Ph: n ? 'Add another…' : 'Type a name, email or user ID',
-      iv2Focus: ()=>{ if (!s.iv2Sug) this.setState({iv2Sug:true}); },
-      iv2Key: (e)=>{ if (e.key==='Enter') { e.preventDefault(); if (avail[0]) add(avail[0]); } else if (e.key==='Escape') this.setState({iv2Sug:false}); else if (e.key==='Backspace' && !(s.iv2Q||'') && n) this.setState({iv2Sel:sel.slice(0,-1)}); },
-      iv2SugShow: s.iv2Sug && (q || !n) ? 'block' : 'none',
-      iv2Sug: avail.slice(0,8).map((p,i)=>{ const c = BDG[RC[p.role]||'grey']; return {...p, init:initials(p.name), av:avColor(p.name), rBg:c[0], rFg:c[1], bg: i===0 && q ? '#F7FBFA' : '#fff', add:(e)=>{ e&&e.stopPropagation&&e.stopPropagation(); add(p); }}; }),
-      iv2NoSug: avail.length ? 'none' : 'block',
-      iv2Bd: s.iv2Err && !n ? '#F0D2CF' : (s.iv2Sug ? '#0E9384' : '#E5E3DC'),
-      iv2GrantedLabel: mn.granted+' granted',
-      iv2Summary: mn.granted+' of '+mn.total+' permissions granted'+(first ? ' · defaults from '+base : ''),
-      iv2Changed: mn.rfMenuChanged, iv2ChangedShow: mn.rfMenuChangedShow,
-      ivMenuSections: mn.rfMenuSections, iv2Expand: mn.rfMenuExpand, iv2ExpandLabel: mn.rfMenuExpandLabel, iv2Reset: mn.rfMenuReset,
-      iv2HasErr: !!s.iv2Err, iv2Err: s.iv2Err||'',
-      iv2SendLabel: n>1 ? 'Send '+n+' Invites' : 'Send Invite',
-      iv2Send: ()=>{ if (!n) return this.setState({iv2Err:'Add at least one person to invite.'});
-        if (!mn.granted) return this.setState({iv2Err:'Grant at least one screen permission.'});
-        const names = sel.map(id=>(PEOPLE.find(x=>x.id===id)||{name:id}).name);
-        close(); this.fire(n>1 ? n+' invites sent' : 'Invite sent — '+names[0], (n>1 ? names.slice(0,3).join(', ')+(n>3?' +'+(n-3):'')+' · ' : '')+mn.granted+' permissions · link valid 72 hours', true); }};
-  };
 
   renderVals() { const v = this.renderVals1(); v.fp = this.fpVals(); return v; }
   renderVals1() {
@@ -3878,7 +3221,17 @@ class Component extends DCLogic {
       })(),
 
       // ---------- Recommendations ----------
-      ...this.recVals(),
+      recommendations: [
+        ['12 users have unused privileged permissions','↓','violet','Trimming these would lift Least Privilege from 82 to an estimated 91'],
+        ['7 roles are more than 90% identical','⧉','blue','Merging the overlap would remove 4 redundant role definitions'],
+        ['19 users do not have MFA enabled','!','red','Authentication would move from 94 to 100 once enforced'],
+        ['6 access assignments have expired','⊘','amber','Residual grants still resolve at the permission layer — revoke to close']
+      ].map(([title,icon,c,impact])=>({title, icon, impact, ibg:BDG[c][0], ifg:BDG[c][1],
+        actions: [['Review',0],['Fix',0],['Ignore',0],['Snooze',0]].map(([label])=>({label,
+          border: label==='Fix' ? '#BFE3DC' : '#E5E3DC', bg: label==='Fix' ? '#EEF6F5' : '#fff',
+          fg: label==='Fix' ? '#0B7A6E' : '#344054', hbg: label==='Fix' ? '#E2F1EE' : '#F6F5F0',
+          weight: label==='Fix' ? '700' : '600',
+          go: ()=>this.fire(label+' — '+title.slice(0,40), label==='Snooze' ? 'Hidden for 30 days' : 'Recommendation actioned', true)}))})),
 
       // ---------- Relationship graph ----------
       ...(()=>{
@@ -4103,7 +3456,6 @@ class Component extends DCLogic {
         {label:'DATA SCOPE', v:rd[5], note:'record visibility', fg:'#6D28D9'}
       ],
       rdActions: ACTIONS.map(label=>({label: label.toUpperCase()})),
-      ...this.spVals(rd, rdEditing),
       rdMatrix: MODULES.map(([module,note,gate],i)=>{
         const restricted = gate==='admin' && rd[0]!=='Super Admin';
         const scopeMap = {all: rd[5], finance:'Financial data', admin:'Platform-wide'};
@@ -4478,7 +3830,6 @@ class Component extends DCLogic {
       })(),
 
       // ---------- Modals ----------
-      ...this.iv2Vals(),
       overlay: !!s.modal,
       closeModal: ()=>this.setState({modal:null}),
       mCreateRole: s.modal==='createRole', mInvite: s.modal==='invite', mConfirm: s.modal==='confirm',
@@ -5100,7 +4451,6 @@ class Component extends DCLogic {
       })(),
 
       // ---------- Templates / Matrix / Hierarchy ----------
-      ...this.tvVals(),
       roleTemplates: [
         ['Super Admin','Unrestricted','142 permissions','red'],['Admin','Elevated','98 permissions','violet'],
         ['LMS Admin','Elevated','64 permissions','violet'],['Course Manager','Standard','41 permissions','blue'],
@@ -5108,9 +4458,7 @@ class Component extends DCLogic {
         ['Speaker Manager','Standard','31 permissions','orange'],['Event Manager','Standard','28 permissions','orange'],
         ['Finance Manager','Elevated','28 permissions','green'],['Support Agent','Limited','9 permissions','grey'],
         ['Report Analyst','Limited','14 permissions','teal'],['Auditor','Read-only','21 permissions','grey']
-      ].map(([name0,tier0,perms0,c0])=>{ const sv = (s.tplSaved||{})[name0]||{}; return [sv.name||name0, sv.tier||tier0, sv.perms||perms0, sv.c||c0, name0]; }).map(([name,tier,perms,c,key])=>({name, tier, perms, tierBg:BDG[c][0], tierFg:BDG[c][1],
-        view: (e)=>{ e&&e.stopPropagation&&e.stopPropagation(); this.setState({tvCur:{key, name, tier, c, perms}, tvMode:'view', tvErr:null, tvName:name, tvTierSel:tier}); },
-        edit: (e)=>{ e&&e.stopPropagation&&e.stopPropagation(); this.setState({tvCur:{key, name, tier, c, perms}, tvMode:'edit', tvErr:null, tvName:name, tvTierSel:tier}); },
+      ].map(([name,tier,perms,c])=>({name, tier, perms, tierBg:BDG[c][0], tierFg:BDG[c][1],
         use: ()=>{ this.setState({modal:'createRole', crStep:0, crErr:null, crName:'', crDesc:'',
           crType: tier==='Unrestricted' ? 'System' : tier==='Elevated' ? 'Privileged' : 'Custom',
           crActions:['View'], crScope: tier==='Read-only' ? 'All' : 'Assigned', crSec:['MFA required']});
@@ -5210,11 +4558,12 @@ class Component extends DCLogic {
 
         const CFG = {
           role: {
-            title:'Change role — '+u.name, sub:'Currently '+u.role,
+            title:'Change role — '+u.name, sub:'Currently '+u.role+' · '+u.scope,
             info:'Permissions switch the moment you confirm. Approvals they currently own are reassigned so nothing stalls.',
             btn:'Change Role', fields:[
               F('New role','ufRole',u.role, ROLES.map(r=>r[0])),
-              F('Effective from','ufEffective','Immediately',['Immediately','Start of next day','Specific date'])
+              F('Data scope','ufScope',u.scope, ['All data','All academic data','Assigned batches','Content only','Financial data','Review queues','Support queues','Own records']),
+              F('Effective from','ufEffective','Immediately',['Immediately','Start of next day','Specific date'],{span:'span 2'})
             ],
             toggles:[
               T('Reassign in-flight approvals','Anything awaiting their sign-off moves to their manager.','ufReassign',true),
@@ -5222,12 +4571,13 @@ class Component extends DCLogic {
             ],
             channels:true,
             summary:()=>{
-              const nr = s.ufRole||u.role, mn = this.ufPerm(u)._ufMn;
-              return u.role+' → '+nr+' · '+mn.granted+' of '+mn.total+' screen permissions'+(mn.changed ? ' · '+mn.changed+' customised' : '')+' · '+(s.ufEffective||'Immediately').toLowerCase();
+              const nr = s.ufRole||u.role;
+              const perms = MODULES.reduce((n,[mod])=>n + ACTIONS.filter((_,ai)=>this.hasPerm(nr, mod, ai)).length, 0);
+              return u.role+' → '+nr+' · '+perms+' permissions · scope '+(s.ufScope||u.scope)+' · '+(s.ufEffective||'Immediately').toLowerCase();
             },
             validate:()=>{
-              if ((s.ufRole||u.role)===u.role && !this.ufPerm(u)._ufMn.changed)
-                return 'Nothing changed — pick a different role or edit a permission.';
+              if ((s.ufRole||u.role)===u.role && (s.ufScope||u.scope)===u.scope)
+                return 'Nothing changed — pick a different role or scope.';
               return null;
             },
             done:(r)=>this.fire('Role changed — '+u.name, u.role+' → '+(s.ufRole||u.role)+' · '+r, true)
@@ -5339,7 +4689,6 @@ class Component extends DCLogic {
 
         const chSel = s.ufChannelSel || ['Email'];
         return {
-          ...(s.ufKind==='role' ? this.ufPerm(u) : {ufPermShow:'none', ufMenuSections:[]}),
           ufTitle: CFG.title, ufSub: CFG.sub,
           ufInit: initials(u.name), ufIbg: BDG[CFG.danger ? 'red' : 'teal'][0], ufIfg: BDG[CFG.danger ? 'red' : 'teal'][1],
           ufInfo: CFG.info, ufInfoShow: CFG.info ? 'block' : 'none',

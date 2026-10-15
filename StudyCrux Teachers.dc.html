@@ -2708,7 +2708,7 @@
           <div style="display:flex;align-items:center;gap:9px;margin-bottom:16px;flex-wrap:wrap">
             <div style="position:relative;flex:1;min-width:220px">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#98A2B3" stroke-width="2.1" stroke-linecap="round" style="position:absolute;left:12px;top:11px"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.6-3.6" /></svg>
-              <input value="{{ rptQ }}" onChange="{{ setRptQ }}" placeholder="Search report types…" style="width:100%;height:37px;padding:0 13px 0 34px;border:1px solid #E5E3DC;border-radius:9px;font-size:13px;color:#0F2A47;background:#fff;outline:0;box-sizing:border-box;font-family:inherit" />
+              <input value="{{ rptQ }}" onChange="{{ setRptQ }}" placeholder="{{ rpt2Ph }}" style="width:100%;height:37px;padding:0 13px 0 34px;border:1px solid #E5E3DC;border-radius:9px;font-size:13px;color:#0F2A47;background:#fff;outline:0;box-sizing:border-box;font-family:inherit" />
             </div>
             <select value="{{ rptCat }}" onChange="{{ setRptCat }}" style="height:37px;padding:0 11px;border:1px solid #E5E3DC;border-radius:9px;font-size:12.5px;background:#fff;color:#0F2A47;outline:0">
               <sc-for list="{{ rptCatOpts }}" as="o" hint-placeholder-count="5"><option value="{{ o.o }}" selected="{{ o.sel }}">{{ o.label }}</option></sc-for>
@@ -2716,47 +2716,217 @@
             <select value="{{ rptRange }}" onChange="{{ setRptRange }}" style="height:37px;padding:0 11px;border:1px solid #E5E3DC;border-radius:9px;font-size:12.5px;background:#fff;color:#0F2A47;outline:0">
               <sc-for list="{{ rptRangeOpts }}" as="o" hint-placeholder-count="5"><option value="{{ o.o }}" selected="{{ o.sel }}">{{ o.o }}</option></sc-for>
             </select>
+            <button onClick="{{ rpt2Export }}" style="display:flex;align-items:center;gap:7px;height:37px;padding:0 15px;border-radius:9px;border:0;background:#0E9384;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit" style-hover="background:#0B7A6E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M4.5 19h15" /></svg>Export</button>
           </div>
 
           <div style="display:flex;gap:2px;background:#fff;border:1px solid #ECEAE2;border-radius:12px;padding:4px;margin-bottom:16px;overflow-x:auto">
-            <sc-for list="{{ rptTabs }}" as="t" hint-placeholder-count="8">
-              <button onClick="{{ t.go }}" style="height:33px;padding:0 13px;border:0;border-radius:8px;font-size:12px;cursor:pointer;background:{{ t.bg }};color:{{ t.fg }};font-weight:{{ t.weight }};white-space:nowrap;flex:none">{{ t.label }}</button>
+            <sc-for list="{{ rptTabs }}" as="t" hint-placeholder-count="12">
+              <button onClick="{{ t.go }}" style="height:33px;padding:0 13px;border:0;border-radius:8px;font-size:12px;cursor:pointer;background:{{ t.bg }};color:{{ t.fg }};font-weight:{{ t.weight }};white-space:nowrap;flex:none;font-family:inherit">{{ t.label }}</button>
             </sc-for>
           </div>
 
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px">
-            <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
-            <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">{{ rptHead }}</span>
-            <span style="flex:1;height:1px;background:#F0EEE7"></span>
-            <span style="font-size:11.5px;color:#98A2B3">{{ rptCount }} of {{ rptTotal }} report types</span>
-          </div>
-          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px">
-            <sc-for list="{{ rptCards }}" as="r" hint-placeholder-count="9">
-              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:20px 22px;display:flex;flex-direction:column" style-hover="border-color:#BFE3DC;box-shadow:0 8px 22px rgba(11,31,62,.05)">
-                <div style="display:flex;align-items:flex-start;gap:12px">
-                  <div style="width:40px;height:40px;flex:none;border-radius:11px;background:{{ r.ibg }};color:{{ r.ifg }};display:grid;place-items:center;font-size:13px;font-weight:800;letter-spacing:.02em">{{ r.code }}</div>
-                  <span style="flex:1"></span>
-                  <span style="font-size:10px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.cBg }};color:{{ r.cFg }}">{{ r.cat }}</span>
-                  <button onClick="{{ r.star }}" title="Save report" style="width:28px;height:28px;flex:none;border-radius:8px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:{{ r.starFg }};font-size:13px;padding:0" style-hover="background:#FEF7E6">{{ r.starIcon }}</button>
+          <sc-if value="{{ rpt2IsLib }}" hint-placeholder-val="{{ true }}">
+            <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px;flex-wrap:wrap">
+              <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
+              <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">{{ rptHead }}</span>
+              <span style="flex:1;height:1px;background:#F0EEE7;min-width:40px"></span>
+              <span style="font-size:11.5px;color:#98A2B3">{{ rptCount }} of {{ rptTotal }} report types</span>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px">
+              <sc-for list="{{ rptCards }}" as="r" hint-placeholder-count="9">
+                <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:20px 22px;display:flex;flex-direction:column" style-hover="border-color:#BFE3DC;box-shadow:0 8px 22px rgba(11,31,62,.05)">
+                  <div style="display:flex;align-items:flex-start;gap:12px">
+                    <div style="width:40px;height:40px;flex:none;border-radius:11px;background:{{ r.ibg }};color:{{ r.ifg }};display:grid;place-items:center;font-size:13px;font-weight:800;letter-spacing:.02em">{{ r.code }}</div>
+                    <span style="flex:1"></span>
+                    <span style="font-size:10px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.cBg }};color:{{ r.cFg }}">{{ r.cat }}</span>
+                    <button onClick="{{ r.star }}" title="Save report" style="width:28px;height:28px;flex:none;border-radius:8px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:{{ r.starFg }};font-size:13px;padding:0" style-hover="background:#FEF7E6">{{ r.starIcon }}</button>
+                  </div>
+                  <div style="font-size:15px;font-weight:800;color:#0F2A47;margin-top:14px;letter-spacing:-.01em">{{ r.title }}</div>
+                  <div style="font-size:12.5px;color:#6B7C93;margin-top:6px;line-height:1.55;text-wrap:pretty;flex:1">{{ r.desc }}</div>
+                  <div style="font-size:11px;color:#98A2B3;margin-top:14px">{{ r.formats }}  ·  Last run {{ r.last }}</div>
+                  <button onClick="{{ r.download }}" style="display:flex;align-items:center;justify-content:center;gap:8px;height:40px;margin-top:14px;border-radius:9px;border:0;background:#0E9384;font-size:13px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit" style-hover="background:#0B7A6E">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M4.5 19h15" /></svg>Download Report
+                  </button>
+                  <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:9px">
+                    <button onClick="{{ r.gen }}" style="height:35px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Generate</button>
+                    <button onClick="{{ r.sched }}" style="height:35px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">{{ r.schedLabel }}</button>
+                    <button onClick="{{ r.preview }}" style="height:35px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Preview</button>
+                  </div>
                 </div>
-                <div style="font-size:15px;font-weight:800;color:#0F2A47;margin-top:14px;letter-spacing:-.01em">{{ r.title }}</div>
-                <div style="font-size:12.5px;color:#6B7C93;margin-top:6px;line-height:1.55;text-wrap:pretty;flex:1">{{ r.desc }}</div>
-                <div style="font-size:11px;color:#98A2B3;margin-top:14px">{{ r.formats }}  ·  Last run {{ r.last }}</div>
-                <button onClick="{{ r.download }}" style="display:flex;align-items:center;justify-content:center;gap:8px;height:40px;margin-top:14px;border-radius:9px;border:0;background:#0E9384;font-size:13px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit" style-hover="background:#0B7A6E">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M4.5 19h15" /></svg>Download Report
-                </button>
-                <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:9px">
-                  <button onClick="{{ r.gen }}" style="height:35px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Generate</button>
-                  <button onClick="{{ r.sched }}" style="height:35px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">{{ r.schedLabel }}</button>
-                  <button onClick="{{ r.preview }}" style="height:35px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Preview</button>
+              </sc-for>
+            </div>
+            <div style="display:{{ rptEmpty }};padding:40px 20px;text-align:center;background:#fff;border:1px solid #ECEAE2;border-radius:14px">
+              <div style="font-size:14px;font-weight:700;color:#475467">{{ rptEmptyTitle }}</div>
+              <div style="font-size:12px;color:#98A2B3;margin-top:5px">{{ rptEmptySub }}</div>
+            </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ rpt2IsTable }}" hint-placeholder-val="{{ false }}">
+            <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px;flex-wrap:wrap">
+              <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
+              <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">{{ rpt2Title }}</span>
+              <span style="flex:1;height:1px;background:#F0EEE7;min-width:40px"></span>
+              <span style="font-size:11.5px;color:#98A2B3">{{ rpt2Meta }}</span>
+              <button onClick="{{ rpt2Gen }}" style="height:30px;padding:0 11px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:11.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Generate</button>
+              <button onClick="{{ rpt2Dl }}" style="height:30px;padding:0 12px;border-radius:8px;border:1px solid #BFE3DC;background:#EEF6F5;font-size:11.5px;font-weight:700;color:#0B7A6E;cursor:pointer;font-family:inherit" style-hover="background:#E2F1EE">Download</button>
+            </div>
+            <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
+              <div style="overflow-x:auto">
+                <table style="width:100%;border-collapse:collapse">
+                  <thead><tr style="background:#FCFBF7"><sc-for list="{{ rpt2Cols }}" as="h" hint-placeholder-count="6"><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">{{ h.c }}</th></sc-for></tr></thead>
+                  <tbody>
+                    <sc-for list="{{ rpt2Rows }}" as="row" hint-placeholder-count="6">
+                      <tr style-hover="background:#F7FBFA">
+                        <sc-for list="{{ row.cells }}" as="c" hint-placeholder-count="6">
+                          <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;color:{{ c.c }};font-weight:{{ c.w }}"><span style="display:{{ c.tD }}">{{ c.v }}</span><span style="display:{{ c.bD }};font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ c.bg }};color:{{ c.fg }}">{{ c.v }}</span></td>
+                        </sc-for>
+                      </tr>
+                    </sc-for>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div style="display:{{ rpt2RowsEmpty }};padding:40px 20px;text-align:center;background:#fff;border:1px solid #ECEAE2;border-radius:14px;margin-top:12px"><div style="font-size:14px;font-weight:700;color:#475467">No records match your search.</div></div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ rpt2IsPerf }}" hint-placeholder-val="{{ false }}">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px">
+              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:20px 22px">
+                <div style="font-size:15px;font-weight:800;color:#0F2A47">{{ rpt2PerfT1 }}</div>
+                <div style="display:flex;flex-direction:column;gap:16px;margin-top:16px">
+                  <sc-for list="{{ rpt2PerfRows }}" as="p" hint-placeholder-count="5">
+                    <div>
+                      <div style="display:flex;align-items:baseline;gap:10px">
+                        <div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:700;color:#0F2A47">{{ p.n }}</div><div style="font-size:11.5px;color:#98A2B3;margin-top:2px">{{ p.sub }}</div></div>
+                        <div style="font-size:15px;font-weight:800;color:{{ p.col }}">{{ p.sc }}</div>
+                      </div>
+                      <div style="height:7px;border-radius:99px;background:#F0EEE7;margin-top:8px;overflow:hidden"><div style="height:100%;width:{{ p.w }};border-radius:99px;background:{{ p.col }}"></div></div>
+                    </div>
+                  </sc-for>
                 </div>
               </div>
-            </sc-for>
-          </div>
-          <div style="display:{{ rptEmpty }};padding:40px 20px;text-align:center;background:#fff;border:1px solid #ECEAE2;border-radius:14px">
-            <div style="font-size:14px;font-weight:700;color:#475467">{{ rptEmptyTitle }}</div>
-            <div style="font-size:12px;color:#98A2B3;margin-top:5px">{{ rptEmptySub }}</div>
-          </div>
+              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:20px 22px">
+                <div style="font-size:15px;font-weight:800;color:#0F2A47">{{ rpt2PerfT2 }}</div>
+                <div style="display:flex;flex-direction:column;margin-top:8px">
+                  <sc-for list="{{ rpt2RankRows }}" as="r" hint-placeholder-count="5">
+                    <div style="display:flex;align-items:center;gap:13px;padding:12px 0;border-bottom:1px solid #F5F3EE">
+                      <div style="width:30px;height:30px;flex:none;border-radius:9px;background:{{ r.rbg }};color:{{ r.rfg }};display:grid;place-items:center;font-size:13px;font-weight:800">{{ r.rank }}</div>
+                      <div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:700;color:#0F2A47">{{ r.n }}</div><div style="font-size:11.5px;color:#6B7C93;margin-top:2px">{{ r.sub }}</div></div>
+                      <div style="font-size:13px;font-weight:800;color:#0F2A47">{{ r.sc }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ rpt2IsSaved }}" hint-placeholder-val="{{ false }}">
+            <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px;flex-wrap:wrap">
+              <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
+              <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">SAVED REPORTS</span>
+              <span style="flex:1;height:1px;background:#F0EEE7;min-width:40px"></span>
+              <span style="font-size:11.5px;color:#98A2B3">{{ rpt2SavedCount }} saved</span>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px">
+              <sc-for list="{{ rpt2Saved }}" as="r" hint-placeholder-count="8">
+                <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:18px 20px;display:flex;flex-direction:column" style-hover="border-color:#BFE3DC">
+                  <div style="display:flex;align-items:flex-start;gap:10px">
+                    <div onClick="{{ r.view }}" style="flex:1;min-width:0;cursor:pointer">
+                      <div style="font-size:14px;font-weight:800;color:#0F2A47">{{ r.name }}</div>
+                      <div style="font-size:11.5px;color:#98A2B3;margin-top:4px">{{ r.meta }}</div>
+                    </div>
+                  <div style="position:relative;display:inline-block">
+                    <button onClick="{{ r.menu }}" title="Actions" style="width:34px;height:34px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;cursor:pointer;color:#98A2B3;padding:0;display:grid;place-items:center;font-family:inherit" style-hover="background:#F6F5F0;color:#475467"><svg width="4" height="16" viewBox="0 0 4 16" fill="currentColor"><circle cx="2" cy="2" r="1.6" /><circle cx="2" cy="8" r="1.6" /><circle cx="2" cy="14" r="1.6" /></svg></button>
+                    <div style="display:{{ r.menuD }};position:absolute;top:38px;right:0;min-width:170px;background:#fff;border:1px solid #ECEAE2;border-radius:11px;box-shadow:0 16px 40px rgba(11,31,62,.16);padding:6px;z-index:40;text-align:left">
+                      <sc-for list="{{ r.items }}" as="m" hint-placeholder-count="3"><div onClick="{{ m.pick }}" style="padding:8px 11px;border-radius:8px;font-size:12.5px;font-weight:500;color:{{ m.c }};cursor:pointer;white-space:nowrap" style-hover="background:{{ m.hov }}">{{ m.label }}</div></sc-for>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:{{ rpt2SavedEmpty }};padding:40px 20px;text-align:center;background:#fff;border:1px solid #ECEAE2;border-radius:14px;margin-top:12px"><div style="font-size:14px;font-weight:700;color:#475467">No saved reports yet — star a report in the library to keep it here.</div></div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ rpt2IsSched }}" hint-placeholder-val="{{ false }}">
+            <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px;flex-wrap:wrap">
+              <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
+              <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">SCHEDULED REPORTS</span>
+              <span style="flex:1;height:1px;background:#F0EEE7;min-width:40px"></span>
+              <span style="font-size:11.5px;color:#98A2B3">{{ rpt2SchedCount }} schedules</span>
+            </div>
+            <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:visible">
+              <div style="overflow:visible">
+                <table style="width:100%;border-collapse:collapse">
+                  <thead><tr style="background:#FCFBF7"><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Report</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Frequency</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Date</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Time</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Format</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Status</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase"></th></tr></thead>
+                  <tbody>
+                    <sc-for list="{{ rpt2Sched }}" as="r" hint-placeholder-count="3">
+                      <tr style-hover="background:#F7FBFA">
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;font-weight:600;color:#0F2A47">{{ r.report }}</td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;color:#475467">{{ r.freq }}</td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;color:#475467">{{ r.date }}</td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;color:#475467">{{ r.time }}</td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;color:#475467">{{ r.fmt }}</td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.bg }};color:{{ r.fg }};white-space:nowrap">{{ r.status }}</span></td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;text-align:right;width:56px"><div style="position:relative;display:inline-block">
+                    <button onClick="{{ r.menu }}" title="Actions" style="width:34px;height:34px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;cursor:pointer;color:#98A2B3;padding:0;display:grid;place-items:center;font-family:inherit" style-hover="background:#F6F5F0;color:#475467"><svg width="4" height="16" viewBox="0 0 4 16" fill="currentColor"><circle cx="2" cy="2" r="1.6" /><circle cx="2" cy="8" r="1.6" /><circle cx="2" cy="14" r="1.6" /></svg></button>
+                    <div style="display:{{ r.menuD }};position:absolute;top:38px;right:0;min-width:170px;background:#fff;border:1px solid #ECEAE2;border-radius:11px;box-shadow:0 16px 40px rgba(11,31,62,.16);padding:6px;z-index:40;text-align:left">
+                      <sc-for list="{{ r.items }}" as="m" hint-placeholder-count="3"><div onClick="{{ m.pick }}" style="padding:8px 11px;border-radius:8px;font-size:12.5px;font-weight:500;color:{{ m.c }};cursor:pointer;white-space:nowrap" style-hover="background:{{ m.hov }}">{{ m.label }}</div></sc-for>
+                    </div>
+                  </div></td>
+                      </tr>
+                    </sc-for>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div style="display:{{ rpt2SchedEmpty }};padding:40px 20px;text-align:center;background:#fff;border:1px solid #ECEAE2;border-radius:14px;margin-top:12px"><div style="font-size:14px;font-weight:700;color:#475467">Nothing scheduled — use Schedule on any report in the library.</div></div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ rpt2IsExport }}" hint-placeholder-val="{{ false }}">
+            <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px;flex-wrap:wrap">
+              <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
+              <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">EXPORT CENTER</span>
+              <span style="flex:1;height:1px;background:#F0EEE7;min-width:40px"></span>
+              <span style="font-size:11.5px;color:#98A2B3">{{ rpt2ExpCount }} exports</span>
+            </div>
+            <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:visible">
+              <div style="overflow:visible">
+                <table style="width:100%;border-collapse:collapse">
+                  <thead><tr style="background:#FCFBF7"><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Report</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Requested By</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Format</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Records</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Requested At</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Status</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase"></th></tr></thead>
+                  <tbody>
+                    <sc-for list="{{ rpt2Exports }}" as="r" hint-placeholder-count="5">
+                      <tr style-hover="background:#F7FBFA">
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;font-weight:600;color:#0F2A47">{{ r.report }}</td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;color:#475467">{{ r.by }}</td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;color:#475467">{{ r.fmt }}</td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;color:#475467">{{ r.records }}</td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;color:#475467">{{ r.at }}</td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.bg }};color:{{ r.fg }};white-space:nowrap">{{ r.status }}</span></td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;text-align:right;width:56px"><div style="position:relative;display:inline-block">
+                    <button onClick="{{ r.menu }}" title="Actions" style="width:34px;height:34px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;cursor:pointer;color:#98A2B3;padding:0;display:grid;place-items:center;font-family:inherit" style-hover="background:#F6F5F0;color:#475467"><svg width="4" height="16" viewBox="0 0 4 16" fill="currentColor"><circle cx="2" cy="2" r="1.6" /><circle cx="2" cy="8" r="1.6" /><circle cx="2" cy="14" r="1.6" /></svg></button>
+                    <div style="display:{{ r.menuD }};position:absolute;top:38px;right:0;min-width:170px;background:#fff;border:1px solid #ECEAE2;border-radius:11px;box-shadow:0 16px 40px rgba(11,31,62,.16);padding:6px;z-index:40;text-align:left">
+                      <sc-for list="{{ r.items }}" as="m" hint-placeholder-count="3"><div onClick="{{ m.pick }}" style="padding:8px 11px;border-radius:8px;font-size:12.5px;font-weight:500;color:{{ m.c }};cursor:pointer;white-space:nowrap" style-hover="background:{{ m.hov }}">{{ m.label }}</div></sc-for>
+                    </div>
+                  </div></td>
+                      </tr>
+                    </sc-for>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div style="display:{{ rpt2ExpEmpty }};padding:40px 20px;text-align:center;background:#fff;border:1px solid #ECEAE2;border-radius:14px;margin-top:12px"><div style="font-size:14px;font-weight:700;color:#475467">No exports match your search.</div></div>
+            </div>
+          </sc-if>
         </div>
       </sc-if>
 
@@ -3238,108 +3408,6 @@
                       </div>
                     </div>
                   </sc-for>
-              <sc-if value="{{ dspM.open }}" hint-placeholder-val="{{ false }}">
-                <div onClick="{{ dspM.close }}" style="position:fixed;inset:0;background:rgba(11,31,62,.42);z-index:80"></div>
-                <div style="position:fixed;z-index:81;top:50%;left:50%;transform:translate(-50%,-50%);width:660px;max-width:94vw;max-height:90vh;display:flex;flex-direction:column;background:#fff;border-radius:16px;box-shadow:0 24px 64px rgba(11,31,62,.22);overflow:hidden;text-align:left">
-                  <div style="flex:none;padding:22px 24px 18px;border-bottom:1px solid #F0EEE7;display:flex;align-items:flex-start;gap:12px">
-                    <div style="width:38px;height:38px;flex:none;border-radius:11px;background:{{ dspM.iBg }};color:{{ dspM.iFg }};display:grid;place-items:center">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="{{ dspM.iPath }}" /></svg>
-                    </div>
-                    <div style="flex:1;min-width:0">
-                      <h3 style="margin:0;font-size:16.5px;font-weight:700;color:#0F2A47">{{ dspM.title }}</h3>
-                      <p style="margin:5px 0 0;font-size:13px;color:#6B7C93;text-wrap:pretty">{{ dspM.sub }}</p>
-                    </div>
-                    <button onClick="{{ dspM.close }}" style="width:32px;height:32px;flex:none;border-radius:9px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:#7A8699" style-hover="background:#F6F5F0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12" /></svg></button>
-                  </div>
-                  <div style="flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:18px">
-                    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px">
-                      <div style="border:1px solid #F0EEE7;border-radius:10px;padding:11px 13px;background:#FCFBF7"><div style="font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#98A2B3">CLAIMED</div><div style="font-size:17px;font-weight:800;color:#0F2A47;margin-top:4px">{{ dspM.claimed }}</div></div>
-                      <div style="border:1px solid #F0EEE7;border-radius:10px;padding:11px 13px;background:#FCFBF7"><div style="font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#98A2B3">CALCULATED</div><div style="font-size:17px;font-weight:800;color:#0F2A47;margin-top:4px">{{ dspM.calc }}</div></div>
-                      <div style="border:1px solid #F0D2CF;border-radius:10px;padding:11px 13px;background:#FEF7F6"><div style="font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#B42318">DIFFERENCE</div><div style="font-size:17px;font-weight:800;color:#B42318;margin-top:4px">{{ dspM.diff }}</div></div>
-                    </div>
-                    <div style="padding:11px 14px;border-radius:10px;background:#FCFBF7;border:1px solid #F0EEE7">
-                      <div style="font-size:10.5px;font-weight:700;letter-spacing:.06em;color:#98A2B3">{{ dspM.claimLabel }}</div>
-                      <div style="font-size:12.5px;color:#475467;margin-top:4px;text-wrap:pretty">{{ dspM.comment }}</div>
-                    </div>
-                    <sc-if value="{{ dspM.isResolve }}" hint-placeholder-val="{{ false }}">
-                      <div style="display:flex;flex-direction:column;gap:16px">
-                        <div>
-                          <div style="font-size:11.5px;font-weight:700;letter-spacing:.07em;color:#7A8699;margin-bottom:10px">DECISION</div>
-                          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px">
-                            <sc-for list="{{ dspM.decisions }}" as="o" hint-placeholder-count="2">
-                              <div onClick="{{ o.pick }}" style="border:1.5px solid {{ o.bd }};background:{{ o.bg }};border-radius:12px;padding:12px 14px;cursor:pointer;display:flex;gap:10px;align-items:flex-start">
-                                <span style="width:16px;height:16px;flex:none;border-radius:50%;border:5px solid {{ o.dot }};background:#fff;margin-top:1px;box-sizing:border-box"></span>
-                                <div style="min-width:0"><div style="font-size:13px;font-weight:700;color:#0F2A47">{{ o.label }}</div><div style="font-size:11.5px;color:#7A8699;margin-top:3px">{{ o.sub }}</div></div>
-                              </div>
-                            </sc-for>
-                          </div>
-                        </div>
-                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px">
-                          <div style="min-width:0">
-                            <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Amount to pay (₹) <span style="color:#B42318">*</span></label>
-                            <input value="{{ dspM.amt }}" onChange="{{ dspM.setAmt }}" readOnly="{{ dspM.amtLocked }}" style="width:100%;height:40px;padding:0 12px;border:1px solid #E5E3DC;border-radius:9px;font-size:13.5px;background:#fff;color:#0F2A47;outline:0;font-family:inherit;box-sizing:border-box;background:{{ dspM.amtBg }};border-color:{{ dspM.amtBd }}" />
-                          </div>
-                          <div style="min-width:0">
-                            <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Settle via</label>
-                            <select value="{{ dspM.via }}" onChange="{{ dspM.setVia }}" style="width:100%;height:40px;padding:0 12px;border:1px solid #E5E3DC;border-radius:9px;font-size:13.5px;background:#fff;color:#0F2A47;outline:0;font-family:inherit;box-sizing:border-box"><sc-for list="{{ dspM.viaOpts }}" as="x" hint-placeholder-count="3"><option>{{ x.o }}</option></sc-for></select>
-                          </div>
-                          <div style="min-width:0">
-                            <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Root cause</label>
-                            <select value="{{ dspM.cause }}" onChange="{{ dspM.setCause }}" style="width:100%;height:40px;padding:0 12px;border:1px solid #E5E3DC;border-radius:9px;font-size:13.5px;background:#fff;color:#0F2A47;outline:0;font-family:inherit;box-sizing:border-box"><sc-for list="{{ dspM.causeOpts }}" as="x" hint-placeholder-count="4"><option>{{ x.o }}</option></sc-for></select>
-                          </div>
-                        </div>
-                      </div>
-                    </sc-if>
-                    <sc-if value="{{ dspM.isReject }}" hint-placeholder-val="{{ false }}">
-                      <div style="display:flex;flex-direction:column;gap:16px">
-                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px">
-                          <div style="min-width:0">
-                            <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Rejection reason <span style="color:#B42318">*</span></label>
-                            <select value="{{ dspM.reason }}" onChange="{{ dspM.setReason }}" style="width:100%;height:40px;padding:0 12px;border:1px solid #E5E3DC;border-radius:9px;font-size:13.5px;background:#fff;color:#0F2A47;outline:0;font-family:inherit;box-sizing:border-box"><sc-for list="{{ dspM.reasonOpts }}" as="x" hint-placeholder-count="4"><option>{{ x.o }}</option></sc-for></select>
-                          </div>
-                          <div style="min-width:0">
-                            <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Re-appeal</label>
-                            <select value="{{ dspM.appeal }}" onChange="{{ dspM.setAppeal }}" style="width:100%;height:40px;padding:0 12px;border:1px solid #E5E3DC;border-radius:9px;font-size:13.5px;background:#fff;color:#0F2A47;outline:0;font-family:inherit;box-sizing:border-box"><sc-for list="{{ dspM.appealOpts }}" as="x" hint-placeholder-count="3"><option>{{ x.o }}</option></sc-for></select>
-                          </div>
-                        </div>
-                        <div>
-                          <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Evidence shared with the payee</label>
-                          <div style="display:flex;gap:8px;flex-wrap:wrap">
-                            <sc-for list="{{ dspM.evidence }}" as="n" hint-placeholder-count="4">
-                              <button onClick="{{ n.toggle }}" style="height:32px;padding:0 13px;border-radius:999px;border:1px solid {{ n.bd }};background:{{ n.bg }};color:{{ n.fg }};font-size:12px;font-weight:600;cursor:pointer;font-family:inherit">{{ n.n }}</button>
-                            </sc-for>
-                          </div>
-                        </div>
-                      </div>
-                    </sc-if>
-                    <div>
-                      <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">{{ dspM.noteLabel }} <span style="color:#B42318">*</span></label>
-                      <textarea value="{{ dspM.note }}" onChange="{{ dspM.setNote }}" placeholder="{{ dspM.notePh }}" style="width:100%;min-height:84px;padding:10px 12px;border:1px solid {{ dspM.noteBd }};border-radius:9px;font-size:13.5px;color:#0F2A47;outline:0;font-family:inherit;resize:vertical;box-sizing:border-box"></textarea>
-                      <div style="font-size:11px;color:#98A2B3;margin-top:5px">{{ dspM.noteHint }}</div>
-                    </div>
-                    <div>
-                      <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Notify {{ dspM.payeeLower }}</label>
-                      <div style="display:flex;gap:8px;flex-wrap:wrap">
-                        <sc-for list="{{ dspM.notify }}" as="n" hint-placeholder-count="3">
-                          <button onClick="{{ n.toggle }}" style="height:32px;padding:0 13px;border-radius:999px;border:1px solid {{ n.bd }};background:{{ n.bg }};color:{{ n.fg }};font-size:12px;font-weight:600;cursor:pointer;font-family:inherit">{{ n.n }}</button>
-                        </sc-for>
-                      </div>
-                    </div>
-                    <div style="display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border-radius:10px;background:{{ dspM.infoBg }}">
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="{{ dspM.infoFg }}" stroke-width="2.1" stroke-linecap="round" style="flex:none;margin-top:1px"><circle cx="12" cy="12" r="9" /><path d="M12 11v5M12 8h.01" /></svg>
-                      <span style="font-size:12.5px;color:{{ dspM.infoFg }};text-wrap:pretty">{{ dspM.info }}</span>
-                    </div>
-                    <sc-if value="{{ dspM.hasErr }}" hint-placeholder-val="{{ false }}">
-                      <div style="padding:10px 14px;border-radius:10px;background:#FEF7F6;border:1px solid #FDE8E8;font-size:12.5px;font-weight:600;color:#B42318">{{ dspM.err }}</div>
-                    </sc-if>
-                  </div>
-                  <div style="flex:none;display:flex;align-items:center;gap:10px;padding:16px 24px;border-top:1px solid #F0EEE7;background:#FCFBF7">
-                    <span style="flex:1"></span>
-                    <button onClick="{{ dspM.close }}" style="height:38px;padding:0 16px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:13px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Cancel</button>
-                    <button onClick="{{ dspM.submit }}" style="height:38px;padding:0 18px;border-radius:9px;border:0;background:{{ dspM.pBg }};font-size:13px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit;white-space:nowrap">{{ dspM.btn }}</button>
-                  </div>
-                </div>
-              </sc-if>
                 </div>
               </div>
             </div>
@@ -7068,6 +7136,115 @@ class Component extends DCLogic {
       v[p+'ResetShow'] = sig===this._frBase[p] ? 'none' : 'inline-flex'; });
     return v; }
 
+  rpt2Menus(o) { const M=this.state.rpt2Menu;
+    const mk=(id,items)=>({menuD:M===id?'block':'none', menu:()=>this.setState({rpt2Menu:M===id?null:id}),
+      items:items.map(([label,fn,red])=>({label, c:red?'#B42318':'#344054', hov:red?'#FEF3F2':'#F7FBFA', pick:()=>{ this.setState({rpt2Menu:null}); fn(); }}))});
+    o.rpt2Saved=(o.rpt2Saved||[]).map(r=>({...r, ...mk('sv:'+r.name,[['View',r.view],['Edit',r.edit],['Duplicate',r.dup],['Export',r.exp],['Delete',r.del,true]])}));
+    o.rpt2Sched=(o.rpt2Sched||[]).map(r=>({...r, ...mk('sc:'+r.report,[['Edit schedule',r.edit],[r.toggleLabel,r.toggle],['Delete',r.del,true]])}));
+    o.rpt2Exports=(o.rpt2Exports||[]).map((r,i)=>({...r, ...mk('ex:'+i+r.report,[['Download',r.download],['Regenerate',r.regen],['Delete',r.del,true]])}));
+    return o; }
+  rpt2Vals() { const s=this.state, C=this.rptCfg(), tab=s.rptTab||'overview', q=(s.rptQ||'').trim().toLowerCase(), range=s.rptRange||'This month';
+    const B={green:['#E7F7EE','#15803D'],amber:['#FEF3E2','#B45309'],red:['#FDE8E8','#B42318'],blue:['#E9F1FD','#1D4ED8'],grey:['#F1F3F5','#667085'],violet:['#F0EAFD','#6D28D9']};
+    const SC={}; [['green',['completed','active','verified','signed','paid','present','approved','pass','passed','ready','issued','enrolled','resolved','renewed','on track','delivered','success','yes']],
+      ['amber',['pending','processing','in progress','expiring','expiring soon','late','pending review','on hold','partial','due','at risk','under review','docs pending','trial','grace period','half day','early exit','needs review','overloaded']],
+      ['red',['failed','expired','rejected','absent','cancelled','overdue','dropped','suspended','fail','refunded','no-show','declined','critical','no']],
+      ['blue',['rescheduled','recorded','on leave','scheduled','new','invited','upcoming','approved leave','renewal due']],['grey',['paused','draft','inactive','not started']]].forEach(([c,l])=>l.forEach(w=>SC[w]=c));
+    const bd=(x)=>B[SC[String(x).toLowerCase()]]||null;
+    const fire=(a,b,ok)=>this.fire(a,b,ok!==false);
+    const go=(k)=>()=>this.setState({rptTab:k});
+    const TABS=[['overview','Overview'],...C.tabs.map(t=>[t.k,t.label]),['saved','Saved Reports'],['scheduled','Scheduled'],['export','Export Center']];
+    const cur=C.tabs.find(t=>t.k===tab), isPerf=!!(cur&&cur.perf), isTable=!!(cur&&cur.cols);
+    const cell=(v,i,isB)=>{ const b=isB?bd(v):null; return {v:String(v), bD:b?'inline-block':'none', tD:b?'none':'inline', bg:b?b[0]:'transparent', fg:b?b[1]:'#475467', w:i===0?'600':'400', c:i===0?'#0F2A47':'#475467'}; };
+    const rows=isTable?cur.rows.filter(r=>!q||r.join(' ').toLowerCase().includes(q)):[];
+    const reportOf=(k)=>{ const t=C.tabs.find(x=>x.k===k); return t?t.report:C.tabs[0].report; };
+    const defSaved=()=>C.saved.map(([name,k,meta])=>({name,k,meta}));
+    const starred=Object.keys(s.rptStar||{}).filter(t=>s.rptStar[t]).map(t=>({name:t,k:'overview',meta:'Starred from report library',star:true}));
+    const saved=[...starred,...(s.rpt2Saved||defSaved())].filter(x=>!q||x.name.toLowerCase().includes(q));
+    const schP=s.rpt2Pause||{}, schD=s.rpt2SchDel||{};
+    const schRows=[...Object.keys(s.rptSched||{}).filter(t=>s.rptSched[t]).map(t=>[t,'Monthly','1st','06:00','PDF','Active']),...C.sched].filter(r=>!schD[r[0]]&&(!q||r[0].toLowerCase().includes(q)));
+    const exD=s.rpt2ExDel||{}, exR=s.rpt2Regen||{};
+    const exRows=[...Object.keys(s.rptDl||{}).filter(t=>s.rptDl[t]).map((t,i)=>['DL-'+i,t,'You','XLSX','—','Just now','Completed']),...C.exports.map((r,i)=>['EX-'+i,...r])].filter(r=>!exD[r[0]]&&(!q||r[1].toLowerCase().includes(q)));
+    return {
+      rptTabs: TABS.map(([k,label])=>({label, bg:tab===k?'#0E9384':'transparent', fg:tab===k?'#fff':'#6B7C93', weight:tab===k?'700':'500', go:go(k)})),
+      rpt2IsLib: tab==='overview'||(!cur&&!['saved','scheduled','export'].includes(tab)), rpt2IsTable:isTable, rpt2IsPerf:isPerf,
+      rpt2IsSaved: tab==='saved', rpt2IsSched: tab==='scheduled', rpt2IsExport: tab==='export',
+      rpt2Ph: cur ? 'Search '+cur.label.toLowerCase()+'…' : tab==='saved' ? 'Search saved reports…' : tab==='scheduled' ? 'Search schedules…' : tab==='export' ? 'Search exports…' : 'Search report types…',
+      rpt2Export: ()=>fire('Export queued', (cur?cur.label:'Reports')+' · '+range+' — you will be notified when ready'),
+      rpt2Title: isTable?cur.title.toUpperCase():'', rpt2Meta: rows.length+' records · '+range,
+      rpt2Cols: isTable?cur.cols.map(c=>({c})):[],
+      rpt2Rows: rows.map(r=>({cells:r.map((v,i)=>cell(v,i,(cur.b||[]).includes(i)))})),
+      rpt2RowsEmpty: isTable&&!rows.length?'block':'none',
+      rpt2Gen: ()=>this.rptOpen('generate', cur?cur.report:reportOf()),
+      rpt2Dl: ()=>fire('Downloading — '+(cur?cur.title:''), 'XLSX · '+rows.length+' records · '+range),
+      rpt2PerfT1: isPerf?cur.perf.t1:'', rpt2PerfT2: isPerf?cur.perf.t2:'',
+      rpt2PerfRows: isPerf?cur.perf.rows.map(([n,sub,sc])=>({n,sub,sc:String(sc),w:sc+'%',col:sc>=85?'#0E9384':sc>=70?'#D97706':'#B42318'})):[],
+      rpt2RankRows: isPerf?[...cur.perf.rows].sort((a,b)=>b[2]-a[2]).map((r,i)=>({rank:String(i+1),n:r[0],sub:r[3],sc:String(r[2]),rbg:i===0?'#FEF3E2':i<3?'#EEF6F5':'#F6F5F0',rfg:i===0?'#B45309':i<3?'#0B7A6E':'#475467'})):[],
+      rpt2SavedCount: String(saved.length), rpt2SavedEmpty: saved.length?'none':'block',
+      rpt2Saved: saved.map(x=>({name:x.name, meta:x.meta,
+        view: x.star ? ()=>this.rptOpen('preview', x.name) : go(x.k),
+        edit: ()=>this.rptOpen('generate', x.star?x.name:reportOf(x.k)),
+        dup: ()=>{ this.setState(p=>{ const L=[...(p.rpt2Saved||defSaved())]; const i=L.findIndex(y=>y.name===x.name); L.splice(i<0?0:i+1,0,{name:x.name+' — Copy',k:x.k,meta:'Duplicated just now'}); return {rpt2Saved:L}; }); fire('Report duplicated', x.name+' — Copy'); },
+        exp: ()=>fire('Exporting — '+x.name, range),
+        del: ()=>{ if(x.star) this.setState(p=>({rptStar:{...(p.rptStar||{}),[x.name]:false}})); else this.setState(p=>({rpt2Saved:(p.rpt2Saved||defSaved()).filter(y=>y.name!==x.name)})); fire('Report deleted', x.name); }})),
+      rpt2SchedCount: String(schRows.length), rpt2SchedEmpty: schRows.length?'none':'block',
+      rpt2Sched: schRows.map(([report,freq,date,time,fmt,st])=>{ const paused=schP[report]!==undefined?schP[report]:st==='Paused', b=B[paused?'grey':'green'];
+        return {report,freq,date,time,fmt,status:paused?'Paused':'Active',bg:b[0],fg:b[1],toggleLabel:paused?'Resume':'Pause',
+          toggle:()=>{ this.setState(p=>({rpt2Pause:{...(p.rpt2Pause||{}),[report]:!paused}})); fire(paused?'Schedule resumed':'Schedule paused', report); },
+          edit:()=>this.rptOpen('schedule', report),
+          del:()=>{ this.setState(p=>({rpt2SchDel:{...(p.rpt2SchDel||{}),[report]:true}, rptSched:{...(p.rptSched||{}),[report]:false}})); fire('Schedule removed', report); }}; }),
+      rpt2ExpCount: String(exRows.length), rpt2ExpEmpty: exRows.length?'none':'block',
+      rpt2Exports: exRows.map(([id,report,by,fmt,records,at,st])=>{ const status=exR[id]||st, b=B[SC[status.toLowerCase()]||'grey'];
+        return {report,by,fmt,records:String(records),at:exR[id]?'Just now':at,status,bg:b[0],fg:b[1],
+          download:()=>status==='Completed'?fire('Downloading — '+report, fmt+' · '+records+' records'):fire(status==='Failed'?'Export failed':'Still processing', status==='Failed'?'Regenerate this export to try again':'This export is not ready yet', false),
+          regen:()=>{ this.setState(p=>({rpt2Regen:{...(p.rpt2Regen||{}),[id]:'Processing'}})); fire('Report regenerating', report); setTimeout(()=>this.setState(p=>({rpt2Regen:{...(p.rpt2Regen||{}),[id]:'Completed'}})), 2500); },
+          del:()=>{ this.setState(p=>({rpt2ExDel:{...(p.rpt2ExDel||{}),[id]:true}, rptDl: id.startsWith('DL-')?{...(p.rptDl||{}),[report]:false}:p.rptDl})); fire('Export deleted', report); }}; })
+    };
+  }
+  rptOpen(mode, title) { this.setState({rx:{mode, title, range:this.state.rptRange||'This month'}}); }
+  rptCfg() { return {
+    tabs: [
+      {k:'master', label:'Teacher Directory', title:'Teacher directory', report:'Teacher Master', cols:['Teacher','Teacher ID','Subjects','Type','Location','Batches','Rating','Status'], b:[7], rows:[
+        ['Dr. Vikram Verma','TCH-0112','IC-38 · Licentiate','Full-time','Bengaluru HQ',4,'★ 4.8','Active'],['Prof. Arun Mehta','TCH-0098','Policy Law · IC-02','Full-time','Delhi',5,'★ 4.7','Active'],
+        ['Ritu Bansal','TCH-0127','Health Insurance','Part-time','Mumbai',3,'★ 4.5','Active'],['Dr. Neha Kulkarni','TCH-0131','Claims Module','Full-time','Pune',4,'★ 4.4','Active'],
+        ['Sanjay Iyer','TCH-0140','Life Insurance','Contract','Chennai',2,'★ 4.1','Active'],['Farah Siddiqui','TCH-0146','Exam Strategy','Part-time','Hyderabad',2,'★ 4.3','On Leave'],
+        ['Manoj Pillai','TCH-0152','IC-11 · Reinsurance','Full-time','Kochi',3,'★ 3.9','Active'],['Kiran Desai','TCH-0158','Motor Claims','Contract','Ahmedabad',0,'—','Inactive']]},
+      {k:'onboarding', label:'Onboarding', title:'Onboarding & recruitment', report:'Onboarding & Documents', cols:['Candidate','Applied','Demo Lecture','Interview','Offer','Joining','Time Taken','Status'], b:[7], rows:[
+        ['Aditi Rao','04 Aug','Completed','Completed','Signed','01 Sep','18 days','Approved'],['Harsh Vardhan','08 Aug','Completed','Scheduled','—','—','—','In Progress'],
+        ['Pooja Nair','10 Aug','Scheduled','—','—','—','—','Pending'],['Imran Shaikh','02 Aug','Completed','Completed','Pending','—','16 days','In Progress'],
+        ['Lakshmi Menon','28 Jul','Completed','Completed','Signed','25 Aug','21 days','Approved'],['Rohit Bose','06 Aug','Completed','Rejected','—','—','9 days','Rejected']]},
+      {k:'verification', label:'Verification', title:'Document verification', report:'Onboarding & Documents', cols:['Teacher','KYC','Qualifications','Bank','Background Check','Overall'], b:[1,2,3,4,5], rows:[
+        ['Dr. Vikram Verma','Verified','Verified','Verified','Verified','Verified'],['Prof. Arun Mehta','Verified','Verified','Verified','Verified','Verified'],['Ritu Bansal','Verified','Verified','Pending','Verified','Pending'],
+        ['Aditi Rao','Verified','Pending','Pending','In Progress','Pending'],['Lakshmi Menon','Verified','Verified','Verified','In Progress','Pending'],['Sanjay Iyer','Verified','Expired','Verified','Verified','Expired'],
+        ['Imran Shaikh','Pending','Pending','Pending','Not Started','Pending'],['Manoj Pillai','Verified','Verified','Verified','Verified','Verified']]},
+      {k:'classes', label:'Classes', title:'Classes & sessions', report:'Schedule & Sessions', cols:['Class','Teacher','Batch','Date','Status','Students','Attend %','Rating'], b:[4], rows:[
+        ['IC-38 — Principles of Insurance','Dr. Vikram Verma','BT-101','2026-08-10','Completed',42,'91%','★ 4.8'],['IC-38 — Policy Servicing','Dr. Vikram Verma','BT-103','2026-08-09','Completed',38,'87%','★ 4.7'],
+        ['Policy Law — Contract Act','Prof. Arun Mehta','BT-201','2026-08-09','Completed',35,'89%','★ 4.6'],['Health Insurance — Claims','Ritu Bansal','BT-310','2026-08-08','Rescheduled',29,'—','—'],
+        ['Life Elite — Annuities','Dr. Vikram Verma','BT-204','2026-08-08','Completed',31,'84%','★ 4.9'],['Claims Module — Surveyors','Dr. Neha Kulkarni','BT-215','2026-08-07','Completed',33,'82%','★ 4.4'],
+        ['Exam Strategy — Mock Review','Farah Siddiqui','BT-118','2026-08-06','Cancelled',40,'—','—'],['IC-11 — Reinsurance Basics','Manoj Pillai','BT-122','2026-08-05','Completed',27,'78%','★ 4.0']]},
+      {k:'performance', label:'Performance', report:'Teaching Performance', perf:{t1:'Teacher performance', t2:'Teacher ranking', rows:[
+        ['Dr. Vikram Verma','42 classes · 1,480 students',95,'★ 4.8 · 96% attendance · 92% pass rate'],['Prof. Arun Mehta','38 classes · 1,210 students',90,'★ 4.7 · 93% attendance · 88% pass rate'],
+        ['Ritu Bansal','26 classes · 760 students',83,'★ 4.5 · 90% attendance · 81% pass rate'],['Dr. Neha Kulkarni','30 classes · 890 students',80,'★ 4.4 · 88% attendance · 79% pass rate'],
+        ['Sanjay Iyer','18 classes · 410 students',71,'★ 4.1 · 84% attendance · 70% pass rate'],['Manoj Pillai','20 classes · 470 students',66,'★ 3.9 · 81% attendance · 64% pass rate']]}},
+      {k:'payout', label:'Payout', title:'Payout report', report:'Payout Report', cols:['Payout ID','Teacher','Sessions','Gross','TDS','Net Payable','Status'], b:[6], rows:[
+        ['PT-4120','Dr. Vikram Verma','42 sessions','₹1,26,000','₹12,600','₹1,13,400','Paid'],['PT-4121','Prof. Arun Mehta','38 sessions','₹1,14,000','₹11,400','₹1,02,600','Paid'],
+        ['PT-4122','Ritu Bansal','26 sessions','₹62,400','₹6,240','₹56,160','Pending'],['PT-4123','Dr. Neha Kulkarni','30 sessions','₹84,000','₹8,400','₹75,600','Paid'],
+        ['PT-4124','Sanjay Iyer','18 sessions','₹43,200','₹4,320','₹38,880','On Hold'],['PT-4125','Manoj Pillai','20 sessions','₹50,000','₹5,000','₹45,000','Pending']]},
+      {k:'contracts', label:'Contracts', title:'Employment contracts', report:'Teacher Master', cols:['Teacher','Engagement','Start','Expiry','Compensation','Status'], b:[5], rows:[
+        ['Dr. Vikram Verma','Full-time','2023-04-01','in 210 days','Fixed monthly','Active'],['Prof. Arun Mehta','Full-time','2022-07-15','in 120 days','Fixed monthly','Active'],
+        ['Ritu Bansal','Part-time','2025-02-01','in 22 days','Per session','Expiring'],['Sanjay Iyer','Contract','2025-09-01','in 6 days','Per session','Expiring Soon'],
+        ['Farah Siddiqui','Part-time','2024-08-10','Expired 4d ago','Per session','Expired'],['Manoj Pillai','Full-time','2024-01-05','in 95 days','Fixed + revenue share','Active']]},
+      {k:'activity', label:'Activity', title:'Activity log', report:'Alerts & Escalations', cols:['Timestamp','Teacher','Activity','Batch','Performed By','Status'], b:[5], rows:[
+        ['26 Aug, 10:42 AM','Dr. Vikram Verma','Live Class Conducted','IC-38 · BT-101','System','Completed'],['26 Aug, 09:15 AM','Ritu Bansal','Leave Requested','—','Teacher','Pending Review'],
+        ['25 Aug, 06:22 PM','Farah Siddiqui','Class Cancelled','Exam Strategy · BT-118','Teacher','Recorded'],['25 Aug, 02:10 PM','Prof. Arun Mehta','Payout Processed','—','Finance Admin','Completed'],
+        ['24 Aug, 11:00 AM','Aditi Rao','Onboarding Started','—','HR','In Progress'],['23 Aug, 04:20 PM','Dr. Neha Kulkarni','Recording Uploaded','Claims · BT-215','Teacher','Completed']]}
+    ],
+    saved: [['Monthly Teaching Performance','performance','Last viewed 2 days ago'],['Pending Teacher Payouts','payout','Last viewed yesterday'],['Recruitment Pipeline','onboarding','Last viewed 4 days ago'],['Class Delivery — This Week','classes','Last viewed today'],
+      ['Expiring Documents','verification','Last viewed 3 days ago'],['Contract Renewals','contracts','Last viewed yesterday'],['Top Performing Teachers','performance','Last viewed 1 week ago'],['Teacher Activity Log','activity','Last viewed 5 days ago']],
+    sched: [['Teaching Performance','Monthly','1st','09:00','XLSX','Active'],['Contract Renewals','Weekly','Monday','08:00','PDF','Active'],['Payout Summary','Monthly','1st','10:00','XLSX','Paused']],
+    exports: [['Teacher Master Report','Admin','XLSX',128,'26 Aug, 10:12 AM','Completed'],['Teaching Performance Report','Academic Head','PDF',42,'25 Aug, 04:40 PM','Completed'],['Payout Report','Finance Admin','CSV',96,'25 Aug, 02:15 PM','Completed'],
+      ['Recruitment Pipeline','HR','XLSX',18,'24 Aug, 09:00 AM','Processing'],['Document Expiry Report','Admin','PDF',7,'22 Aug, 03:30 PM','Failed']]
+  }; }
+
   rptVals() { const s = this.state, LIB = [
   ['IT','People','Individual Teacher Report','One teacher, one document — pick the sections you need: batches, ratings, attendance, payouts.','PDF · XLSX','2 days ago'],
   ['TM','People','Teacher Master','Full faculty roster with contact details, subjects, engagement type and status. Filterable before export.','CSV · XLSX','Yesterday'],
@@ -7535,64 +7712,11 @@ class Component extends DCLogic {
     };
   }
 
-  dspOpen = (kind, d) => this.setState({dspM:{kind, d, dec:'full', amt:'', via:'Adjustment in next cycle', cause:'Calculation error', reason:'Calculation verified as correct', appeal:'Allowed within 7 days', ev:['Calculation breakdown'], notify:['Email','In-app'], note:'', err:null}});
-  dspFix = (r) => { const o = (this.state.dspOv||{})[r.id]; if (!o) return r;
-    const C = o.state==='Resolved' ? ['#E7F7EE','#15803D'] : ['#F1F3F5','#667085'];
-    return {...r, state:o.state, status:o.state, sBg:C[0], sFg:C[1], response:o.response, actionsDisplay:'none', resolveDisplay:'none', actsDisplay:'none'}; };
-  dspVals = (payee) => {
-    const m = this.state.dspM; if (!m) return {dspM:{open:false}};
-    const d = m.d, num = (v)=>Number(String(v).replace(/[^0-9.]/g,''))||0, inr = (n)=>'₹'+Math.round(n).toLocaleString('en-IN');
-    const diffN = num(d.diff), up = (p)=>this.setState(x=>({dspM:{...x.dspM, ...p, err:null}}));
-    const chips = (list, key)=>list.map(n=>{ const on = (m[key]||[]).includes(n); return {n, bd:on?'#0E9384':'#E5E3DC', bg:on?'#EEF6F5':'#fff', fg:on?'#0B7A6E':'#475467', toggle:()=>up({[key]: on ? m[key].filter(x=>x!==n) : (m[key]||[]).concat(n)})}; });
-    const isR = m.kind==='resolve', partial = m.dec==='partial';
-    const amtN = partial ? num(m.amt) : diffN;
-    const fail = (err)=>this.setState(x=>({dspM:{...x.dspM, err}}));
-    const close = ()=>this.setState({dspM:null});
-    const commit = (state, response, msg, sub)=>{ this.setState(x=>({dspM:null, dspOv:{...(x.dspOv||{}), [d.id]:{state, response}}})); this.fire(msg, sub, true); };
-    return {dspM: {open:true, isResolve:isR, isReject:!isR, close,
-      title: (isR ? 'Resolve dispute' : 'Reject dispute')+' — '+d.id,
-      sub: d.name+' · '+d.txn+' · '+d.kind,
-      iBg: isR ? '#E7F7EE' : '#FDE8E8', iFg: isR ? '#15803D' : '#B42318',
-      iPath: isR ? 'M20 6 9 17l-5-5' : 'M18 6 6 18M6 6l12 12',
-      claimed:d.claimed, calc:d.calc, diff:d.diff, comment:d.comment, claimLabel: payee.toUpperCase()+' CLAIM',
-      payeeLower: payee.toLowerCase(),
-      decisions: [['full','Accept full claim','Pay the full difference of '+d.diff],['partial','Partial settlement','Pay part of the difference']].map(([k,label,sub])=>{ const on=m.dec===k;
-        return {label, sub, bd:on?'#0E9384':'#ECEAE2', bg:on?'#EEF6F5':'#fff', dot:on?'#0E9384':'#D0D5DD', pick:()=>up({dec:k, amt: k==='full' ? '' : m.amt})}; }),
-      amt: partial ? m.amt : String(diffN), setAmt:(e)=>up({amt:e.target.value.replace(/[^0-9]/g,'')}), amtLocked: !partial,
-      amtBg: partial ? '#fff' : '#F6F5F0', amtBd: m.err && partial && (!amtN || amtN>=diffN) ? '#F0D2CF' : '#E5E3DC',
-      via:m.via, setVia:(e)=>up({via:e.target.value}), viaOpts:['Adjustment in next cycle','Add to current pending payout','Off-cycle payment within 48 h'].map(o=>({o})),
-      cause:m.cause, setCause:(e)=>up({cause:e.target.value}), causeOpts:['Calculation error','Missing sessions / attendance','Rate or agreement mismatch','Refund or deduction applied late','Other'].map(o=>({o})),
-      reason:m.reason, setReason:(e)=>up({reason:e.target.value}), reasonOpts:['Calculation verified as correct','Insufficient evidence provided','Outside the 30-day dispute window','Policy does not apply','Duplicate of an earlier dispute'].map(o=>({o})),
-      appeal:m.appeal, setAppeal:(e)=>up({appeal:e.target.value}), appealOpts:['Allowed within 7 days','Allowed within 30 days','Not allowed — final decision'].map(o=>({o})),
-      evidence: chips(['Calculation breakdown','Attendance / session log','Agreement clause','Payment record'],'ev'),
-      notify: chips(['Email','In-app','WhatsApp'],'notify'),
-      note:m.note, setNote:(e)=>up({note:e.target.value}),
-      noteLabel: isR ? 'Resolution note' : 'Explanation to the '+payee.toLowerCase(),
-      notePh: isR ? 'What was wrong and how it is being corrected' : 'Why the calculated amount stands — shared with the '+payee.toLowerCase(),
-      noteHint: isR ? 'Shared with the '+payee.toLowerCase()+' and written to the audit trail.' : 'Minimum 20 characters · shared with the '+payee.toLowerCase()+' together with the selected evidence.',
-      noteBd: m.err && (m.note||'').trim().length < (isR?1:20) ? '#F0D2CF' : '#E5E3DC',
-      infoBg: isR ? '#EEF6F5' : '#FEF7F6', infoFg: isR ? '#0B7A6E' : '#B42318',
-      info: isR ? d.name+' receives '+inr(amtN||0)+' via '+m.via.toLowerCase()+'. The payout line is released and the dispute closes as Resolved.'
-               : 'The payout stays at '+d.calc+'. The '+payee.toLowerCase()+' is notified'+((m.notify||[]).length ? ' by '+m.notify.join(', ') : '')+' · re-appeal: '+m.appeal.toLowerCase()+'.',
-      hasErr: !!m.err, err: m.err||'',
-      btn: isR ? 'Resolve · pay '+inr(amtN||0) : 'Reject dispute', pBg: isR ? '#0E9384' : '#B42318',
-      submit: ()=>{
-        if (isR) {
-          if (partial && (!amtN || amtN>=diffN)) return fail('Enter a partial amount between ₹1 and '+inr(diffN-1)+', or choose Accept full claim.');
-          if (!(m.note||'').trim()) return fail('Add a resolution note — it is shared with the '+payee.toLowerCase()+'.');
-          commit('Resolved', inr(amtN)+' approved · '+m.via+' · '+m.cause, 'Dispute resolved — '+d.id, d.name+' · '+inr(amtN)+' · '+m.via);
-        } else {
-          if ((m.note||'').trim().length < 20) return fail('Explain the rejection in at least 20 characters.');
-          commit('Rejected', m.reason+' · re-appeal '+m.appeal.toLowerCase(), 'Dispute rejected — '+d.id, d.name+' notified · '+m.reason);
-        }
-      }}};
-  };
-
   renderVals() { const v = this.renderVals1(); Object.assign(v, this.rxVals()); Object.assign(v, this.attVals()); { const IC=(l)=>/cal/i.test(l)?'M8 3v4M16 3v4M3 10h18M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z':/agenda/i.test(l)?'M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01':/table|list/i.test(l)?'M4 6h16M4 12h16M4 18h16':'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z'; if (Array.isArray(v.schSegs)) { v.schSegsView = v.schSegs.filter(x=>/^(Calendar|Table|Cards)$/.test(x.label)).map(x=>({...x, ic: IC(x.label)})); v.schSegsTabs = v.schSegs.filter(x=>!/^(Calendar|Table|Cards)$/.test(x.label)); } } { const on = !!this.state.pvfOpen; const base = this._pvfBase = this._pvfBase || JSON.stringify((v.pvFilters||[]).map(f=>f.value)); const cur = (v.pvFilters||[]).map(f=>f.value); const b = JSON.parse(base); const n = cur.filter((x,i)=>x!==b[i]).length;
       Object.assign(v, {pvfToggle:()=>this.setState({pvfOpen:!on}), pvfClose:()=>this.setState({pvfOpen:false}), pvfMatch: String((v.pvRows||[]).length), pvfDisplay: on?'block':'none', pvfCount:String(n), pvfHas: n?'grid':'none', pvfBd: on||n?'#0E9384':'#E5E3DC', pvfBg: on||n?'#EEF6F5':'#fff', pvfFg: on||n?'#0B7A6E':'#344054'}); } if (Array.isArray(v.pvRows)) v.pvRows = v.pvRows.map((r,i)=>{ const on = this.state.pvMenu===i, close=(fn)=>()=>{ this.setState({pvMenu:null}); fn(); }, nm = r.name||'teacher';
       const up = i >= v.pvRows.length-3 && v.pvRows.length>4; return {...r, menuTop: up ? 'auto' : '36px', menuBottom: up ? '36px' : 'auto', menuDisplay: on ? 'block' : 'none', menu: ()=>this.setState({pvMenu: on ? null : i}),
         menuItems: [['View Performance', r.open||(()=>{})], ['View Classes', ()=>this.setState({perfWho:nm, perfTab:'Batches'})], ['Compare Performance', ()=>this.setState({pvAct:{kind:'compare', who:nm}, pvCmpWith:null})],
-          ['Export Report', ()=>this.setState({fm:'export', fmCtx:{type:'Performance Summary', who:nm}, fmStep:0, fmErr:null})], ['Set Goals', ()=>this.setState({pvAct:{kind:'goal', who:nm}, pvGoalTarget:'', pvGoalTried:false})], ['View Activity', ()=>this.setState({perfWho:nm, perfTab:'Activity & Goals'})]].map(([label,fn])=>({label, pick: close(fn)}))}; }); Object.assign(v, this.rptVals()); Object.assign(v, this.pvActVals()); v.fp = this.fpVals(); this.frShow(v, ["pv","tf"]); return v; }
+          ['Export Report', ()=>this.setState({fm:'export', fmCtx:{type:'Performance Summary', who:nm}, fmStep:0, fmErr:null})], ['Set Goals', ()=>this.setState({pvAct:{kind:'goal', who:nm}, pvGoalTarget:'', pvGoalTried:false})], ['View Activity', ()=>this.setState({perfWho:nm, perfTab:'Activity & Goals'})]].map(([label,fn])=>({label, pick: close(fn)}))}; }); Object.assign(v, this.rptVals()); Object.assign(v, this.rpt2Menus(this.rpt2Vals())); Object.assign(v, this.pvActVals()); v.fp = this.fpVals(); this.frShow(v, ["pv","tf"]); return v; }
   renderVals1() {
     const s = this.state;
     const TITLES = {
@@ -10653,9 +10777,8 @@ class Component extends DCLogic {
         id,name,tid,txn,kind,claimed,calc,diff,comment,response,owner,state,
         init:this.initials(name), avBg:AVc(name), sBg:BDG[c][0], sFg:BDG[c][1],
         resolveDisplay: state==='Resolved' ? 'none' : 'inline-flex',
-        resolve: ()=>this.dspOpen('resolve',{id,name,txn,claimed,calc,diff,kind,comment}),
-        reject: ()=>this.dspOpen('reject',{id,name,txn,claimed,calc,diff,kind,comment})})).map(this.dspFix),
-      ...this.dspVals('Teacher'),
+        resolve: this.guard('Resolve Dispute',[['Dispute',id],['Teacher',name],['Transaction',txn],['Claimed',claimed],['Calculated',calc],['Difference',diff],['Effect','Adjustment raised in the next cycle if upheld']]),
+        reject: this.guard('Reject Dispute',[['Dispute',id],['Teacher',name],['Reason','Calculation verified as correct'],['Effect','Teacher notified with the calculation breakdown']])})),
 
       poRecon: [
         ['PAY-2026-000184','Dr. Vikram Verma','₹94,150','₹94,150','₹0','UTR-88210441','2026-08-05','Matched','green'],

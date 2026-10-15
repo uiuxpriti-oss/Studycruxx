@@ -3989,8 +3989,7 @@
                       <div style="display:flex;align-items:center;gap:13px;padding:12px 16px;border-bottom:1px solid #F7F5F0">
                         <span style="width:28px;height:28px;flex:none;border-radius:8px;background:{{ c.bg }};color:{{ c.fg }};font-size:12px;font-weight:700;display:grid;place-items:center">📄</span>
                         <div style="min-width:0;flex:1"><div style="font-size:13px;font-weight:600;color:#0F2A47">{{ c.name }}</div><div style="font-size:11.5px;color:#98A2B3;margin-top:3px">v{{ c.version }}</div></div>
-                        <span style="font-size:11.5px;font-weight:600;padding:4px 11px;border-radius:999px;background:{{ c.bg }};color:{{ c.fg }};white-space:nowrap">{{ c.status }}</span>
-                        <button onClick="{{ c.ctaGo }}" style="height:30px;min-width:92px;padding:0 12px;border-radius:8px;border:1px solid {{ c.ctaBd }};background:#fff;font-size:12px;font-weight:600;color:{{ c.ctaFg }};cursor:pointer;font-family:inherit;white-space:nowrap" style-hover="background:{{ c.ctaHbg }}">{{ c.cta }}</button>
+                        <span style="font-size:11.5px;font-weight:600;padding:4px 11px;border-radius:999px;background:{{ c.bg }};color:{{ c.fg }}">{{ c.status }}</span>
                       </div>
                     </sc-for>
                   </div>
@@ -5423,10 +5422,10 @@
                   <div style="font-size:12.5px;color:#6B7C93;margin-top:2px">Operational load per speaker, read against activity</div>
                 </div>
                 <div style="overflow-x:auto">
-                  <table style="width:100%;min-width:1420px;border-collapse:collapse">
+                  <table style="width:100%;min-width:1360px;border-collapse:collapse">
                     <thead>
                       <tr style="background:#FCFBF7">
-                        <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">SPEAKER</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">EVENT TYPES</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">EVENTS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">REGISTRANTS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">CO-HOSTS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">LIVE SESSIONS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">RECORDINGS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">OPEN Q&amp;A</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PENDING CONTENT</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PENDING TASKS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">ACTIVITY</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">WORKLOAD</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">READ</th><th style="padding:11px 20px 11px 13px;border-bottom:1px solid #F0EEE7;width:44px"></th>
+                        <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">SPEAKER</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">EVENT TYPES</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">EVENTS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">REGISTRANTS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">CO-HOSTS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">LIVE SESSIONS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">RECORDINGS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">OPEN Q&amp;A</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PENDING CONTENT</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PENDING TASKS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">ACTIVITY</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">WORKLOAD</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">READ</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -5445,16 +5444,6 @@
                           <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:13px;font-weight:800;color:#0F2A47">{{ r.activity }}</td>
                           <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.wBg }};color:{{ r.wFg }};white-space:nowrap">{{ r.workload }}</span></td>
                           <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.vBg }};color:{{ r.vFg }};white-space:nowrap">{{ r.verdict }}</span></td>
-                          <td style="padding:11px 20px 11px 13px;border-bottom:1px solid #F5F3EE;text-align:right;white-space:nowrap;position:relative">
-                            <button onClick="{{ r.menu }}" style="width:28px;height:28px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;display:inline-grid;place-items:center;cursor:pointer;color:#98A2B3;vertical-align:middle" style-hover="background:#F6F5F0">
-                              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.6" /><circle cx="12" cy="12" r="1.6" /><circle cx="12" cy="19" r="1.6" /></svg>
-                            </button>
-                            <div style="display:{{ r.menuDisplay }};position:absolute;top:38px;right:20px;width:200px;background:#fff;border:1px solid #ECEAE2;border-radius:12px;box-shadow:0 18px 44px rgba(11,31,62,.16);padding:6px;z-index:40;text-align:left">
-                              <sc-for list="{{ r.menuItems }}" as="m" hint-placeholder-count="4">
-                                <div onClick="{{ m.pick }}" style="padding:8px 11px;border-radius:8px;font-size:12.5px;color:{{ m.fg }};cursor:pointer;border-top:{{ m.bt }};margin-top:{{ m.mt }};padding-top:{{ m.pt }}" style-hover="background:{{ m.hbg }}">{{ m.label }}</div>
-                              </sc-for>
-                            </div>
-                          </td>
                         </tr>
                       </sc-for>
                     </tbody>
@@ -5627,38 +5616,6 @@
               <button onClick="{{ atMClose }}" style="width:32px;height:32px;flex:none;border-radius:9px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:#7A8699" style-hover="background:#F6F5F0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12" /></svg></button>
             </div>
             <div style="flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:18px">
-              <sc-if value="{{ atM.hasStats }}" hint-placeholder-val="{{ false }}">
-                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:10px">
-                  <sc-for list="{{ atM.stats }}" as="st" hint-placeholder-count="4">
-                    <div style="border:1px solid #ECEAE2;border-radius:12px;padding:12px 14px;background:#fff">
-                      <div style="font-size:10.5px;font-weight:700;letter-spacing:.06em;color:#7A8699;text-transform:uppercase;white-space:nowrap">{{ st.l }}</div>
-                      <div style="font-size:20px;font-weight:800;color:{{ st.fg }};margin-top:6px;white-space:nowrap">{{ st.v }}</div>
-                    </div>
-                  </sc-for>
-                </div>
-              </sc-if>
-              <sc-if value="{{ atM.hasItems }}" hint-placeholder-val="{{ false }}">
-                <div>
-                  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-                    <div style="flex:1;font-size:11.5px;font-weight:700;letter-spacing:.07em;color:#7A8699">{{ atM.itemsTitle }}</div>
-                    <button onClick="{{ atM.selAll }}" style="display:{{ atM.selAllDisplay }};height:28px;padding:0 10px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:11.5px;font-weight:600;color:#0B7A6E;cursor:pointer;font-family:inherit">{{ atM.selAllLabel }}</button>
-                  </div>
-                  <div style="border:1px solid #ECEAE2;border-radius:12px;overflow:hidden">
-                    <sc-for list="{{ atM.items }}" as="it" hint-placeholder-count="4">
-                      <div onClick="{{ it.toggle }}" style="display:flex;align-items:center;gap:12px;padding:11px 14px;border-bottom:1px solid #F5F3EE;background:{{ it.rowBg }};cursor:{{ it.cur }}">
-                        <span style="display:{{ it.cbDisplay }};width:18px;height:18px;flex:none;border-radius:5px;border:1.5px solid {{ it.cbBd }};background:{{ it.cbBg }};place-items:center;box-sizing:border-box">
-                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" style="display:{{ it.cbMark }}"><path d="M5 12.5 10 17 19 7" /></svg>
-                        </span>
-                        <div style="flex:1;min-width:0">
-                          <div style="font-size:13px;font-weight:600;color:#0F2A47">{{ it.title }}</div>
-                          <div style="font-size:11.5px;color:#7A8699;margin-top:2px">{{ it.meta }}</div>
-                        </div>
-                        <span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ it.sBg }};color:{{ it.sFg }};white-space:nowrap">{{ it.status }}</span>
-                      </div>
-                    </sc-for>
-                  </div>
-                </div>
-              </sc-if>
               <sc-for list="{{ atM.groups }}" as="g" hint-placeholder-count="2">
                 <div>
                   <div style="font-size:11.5px;font-weight:700;letter-spacing:.07em;color:#7A8699;margin-bottom:12px">{{ g.t }}</div>
@@ -5678,9 +5635,6 @@
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0B7A6E" stroke-width="2.1" stroke-linecap="round" style="flex:none;margin-top:1px"><circle cx="12" cy="12" r="9" /><path d="M12 11v5M12 8h.01" /></svg>
                 <span style="font-size:12.5px;color:#0B7A6E;text-wrap:pretty">{{ atM.info }}</span>
               </div>
-              <sc-if value="{{ atM.hasErr }}" hint-placeholder-val="{{ false }}">
-                <div style="padding:10px 14px;border-radius:10px;background:#FEF7F6;border:1px solid #FDE8E8;font-size:12.5px;font-weight:600;color:#B42318">{{ atM.err }}</div>
-              </sc-if>
             </div>
             <div style="display:flex;align-items:center;gap:10px;padding:16px 24px;border-top:1px solid #F0EEE7;background:#FCFBF7">
               <span style="flex:1"></span>
@@ -6096,15 +6050,11 @@
                           <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ esr.lBg }};color:{{ esr.lFg }};white-space:nowrap">{{ esr.level }}</span></td>
                           <td style="padding:11px 12px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ esr.sBg }};color:{{ esr.sFg }};white-space:nowrap">{{ esr.state }}</span></td>
                           <td style="padding:11px 20px 11px 12px;border-bottom:1px solid #F5F3EE;font-size:12px;color:#475467">{{ esr.note }}</td>
-                          <td style="padding:11px 20px 11px 12px;border-bottom:1px solid #F5F3EE;text-align:right;white-space:nowrap;position:relative">
-                            <button onClick="{{ esr.menu }}" style="width:28px;height:28px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;display:inline-grid;place-items:center;cursor:pointer;color:#98A2B3;vertical-align:middle" style-hover="background:#F6F5F0">
-                              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.6" /><circle cx="12" cy="12" r="1.6" /><circle cx="12" cy="19" r="1.6" /></svg>
-                            </button>
-                            <div style="display:{{ esr.menuDisplay }};position:absolute;top:{{ esr.mTop }};bottom:{{ esr.mBottom }};right:20px;width:180px;background:#fff;border:1px solid #ECEAE2;border-radius:12px;box-shadow:0 18px 44px rgba(11,31,62,.16);padding:6px;z-index:40;text-align:left">
-                              <sc-for list="{{ esr.menuItems }}" as="m" hint-placeholder-count="4">
-                                <div onClick="{{ m.pick }}" style="padding:8px 11px;border-radius:8px;font-size:12.5px;color:{{ m.fg }};cursor:pointer" style-hover="background:#F7FBFA">{{ m.label }}</div>
-                              </sc-for>
-                            </div>
+                          <td style="padding:11px 20px 11px 12px;border-bottom:1px solid #F5F3EE;text-align:right;white-space:nowrap">
+                            <button onClick="{{ esr.view }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid #E5E3DC;background:#fff;font-size:11px;font-weight:600;color:#344054;cursor:pointer;margin-right:5px" style-hover="background:#F6F5F0">View</button>
+                            <button onClick="{{ esr.changeOwner }}" style="display:{{ esr.actionsDisplay }};align-items:center;height:28px;padding:0 10px;border-radius:7px;border:1px solid #E5E3DC;background:#fff;font-size:11px;font-weight:600;color:#344054;cursor:pointer;margin-right:5px" style-hover="background:#F6F5F0">Change owner</button>
+                            <button onClick="{{ esr.escalateAgain }}" style="display:{{ esr.actionsDisplay }};align-items:center;height:28px;padding:0 10px;border-radius:7px;border:1px solid #E5E3DC;background:#fff;font-size:11px;font-weight:600;color:#344054;cursor:pointer;margin-right:5px" style-hover="background:#F6F5F0">Escalate</button>
+                            <button onClick="{{ esr.resolve }}" style="display:{{ esr.actionsDisplay }};align-items:center;height:28px;padding:0 10px;border-radius:7px;border:0;background:#0E9384;font-size:11px;font-weight:700;color:#fff;cursor:pointer">Resolve</button>
                           </td>
                         </tr>
                       </sc-for>
@@ -6112,91 +6062,6 @@
                   </table>
                 </div>
               </div>
-              <sc-if value="{{ raEf.open }}" hint-placeholder-val="{{ false }}">
-                <div onClick="{{ raEf.close }}" style="position:fixed;inset:0;background:rgba(11,31,62,.42);z-index:80"></div>
-                <div style="position:fixed;z-index:81;top:50%;left:50%;transform:translate(-50%,-50%);width:680px;max-width:94vw;max-height:90vh;display:flex;flex-direction:column;background:#fff;border-radius:16px;box-shadow:0 24px 64px rgba(11,31,62,.22);overflow:hidden">
-                  <div style="padding:22px 24px 18px;border-bottom:1px solid #F0EEE7;display:flex;align-items:flex-start;gap:12px">
-                    <div style="flex:1;min-width:0">
-                      <h3 style="margin:0;font-size:16.5px;font-weight:700;color:#0F2A47">{{ raEf.title }}</h3>
-                      <p style="margin:5px 0 0;font-size:13px;color:#6B7C93;text-wrap:pretty">{{ raEf.sub }}</p>
-                    </div>
-                    <button onClick="{{ raEf.close }}" style="width:32px;height:32px;flex:none;border-radius:9px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:#7A8699" style-hover="background:#F6F5F0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12" /></svg></button>
-                  </div>
-                  <div style="flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:18px">
-                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:#F0EEE7;border:1px solid #F0EEE7;border-radius:12px;overflow:hidden">
-                      <div style="background:#FCFBF7;padding:11px 14px"><div style="font-size:10.5px;font-weight:700;letter-spacing:.06em;color:#7A8699">SPEAKER</div><div style="font-size:13px;font-weight:600;color:#0F2A47;margin-top:4px">{{ raEf.speaker }}</div></div>
-                      <div style="background:#FCFBF7;padding:11px 14px"><div style="font-size:10.5px;font-weight:700;letter-spacing:.06em;color:#7A8699">CURRENT OWNER</div><div style="font-size:13px;font-weight:600;color:#0F2A47;margin-top:4px">{{ raEf.curTo }}</div></div>
-                      <div style="background:#FCFBF7;padding:11px 14px"><div style="font-size:10.5px;font-weight:700;letter-spacing:.06em;color:#7A8699">CURRENT LEVEL</div><div style="margin-top:4px"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ raEf.lBg }};color:{{ raEf.lFg }}">{{ raEf.curLevel }}</span></div></div>
-                      <div style="background:#FCFBF7;padding:11px 14px"><div style="font-size:10.5px;font-weight:700;letter-spacing:.06em;color:#7A8699">OPEN FOR</div><div style="font-size:13px;font-weight:600;color:#0F2A47;margin-top:4px">{{ raEf.since }}</div></div>
-                    </div>
-                    <div>
-                      <div style="font-size:11.5px;font-weight:700;letter-spacing:.07em;color:#7A8699;margin-bottom:10px">ESCALATE TO</div>
-                      <sc-if value="{{ raEf.hasLevels }}" hint-placeholder-val="{{ true }}">
-                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px">
-                          <sc-for list="{{ raEf.levels }}" as="lv" hint-placeholder-count="2">
-                            <div onClick="{{ lv.pick }}" style="border:1.5px solid {{ lv.bd }};background:{{ lv.bg }};border-radius:12px;padding:12px 14px;cursor:pointer;display:flex;gap:10px;align-items:flex-start">
-                              <span style="width:16px;height:16px;flex:none;border-radius:50%;border:5px solid {{ lv.dot }};background:#fff;margin-top:1px;box-sizing:border-box"></span>
-                              <div style="min-width:0">
-                                <div style="font-size:13px;font-weight:700;color:#0F2A47">{{ lv.lv }} — {{ lv.role }}</div>
-                                <div style="font-size:11.5px;color:#7A8699;margin-top:3px">{{ lv.sla }}</div>
-                              </div>
-                            </div>
-                          </sc-for>
-                        </div>
-                      </sc-if>
-                      <sc-if value="{{ raEf.noLevels }}" hint-placeholder-val="{{ false }}">
-                        <div style="padding:12px 14px;border-radius:10px;background:#FEF3E2;font-size:12.5px;color:#B45309;font-weight:600">Already at L4 — the top of the ladder. Resolve or change the owner instead.</div>
-                      </sc-if>
-                    </div>
-                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px">
-                      <div style="min-width:0">
-                        <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Assign to</label>
-                        <select value="{{ raEf.who }}" onChange="{{ raEf.setWho }}" style="width:100%;height:40px;padding:0 12px;border:1px solid #E5E3DC;border-radius:9px;font-size:13.5px;background:#fff;color:#0F2A47;outline:0;font-family:inherit"><sc-for list="{{ raEf.whoOpts }}" as="o" hint-placeholder-count="2"><option>{{ o.o }}</option></sc-for></select>
-                      </div>
-                      <div style="min-width:0">
-                        <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Reason</label>
-                        <select value="{{ raEf.reason }}" onChange="{{ raEf.setReason }}" style="width:100%;height:40px;padding:0 12px;border:1px solid #E5E3DC;border-radius:9px;font-size:13.5px;background:#fff;color:#0F2A47;outline:0;font-family:inherit"><sc-for list="{{ raEf.reasonOpts }}" as="o" hint-placeholder-count="4"><option>{{ o.o }}</option></sc-for></select>
-                      </div>
-                      <div style="min-width:0">
-                        <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Priority</label>
-                        <div style="display:flex;gap:6px">
-                          <sc-for list="{{ raEf.pris }}" as="p" hint-placeholder-count="3">
-                            <button onClick="{{ p.pick }}" style="flex:1;height:40px;border-radius:9px;border:1px solid {{ p.bd }};background:{{ p.bg }};color:{{ p.fg }};font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit">{{ p.p }}</button>
-                          </sc-for>
-                        </div>
-                      </div>
-                      <div style="min-width:0">
-                        <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Response due</label>
-                        <select value="{{ raEf.due }}" onChange="{{ raEf.setDue }}" style="width:100%;height:40px;padding:0 12px;border:1px solid #E5E3DC;border-radius:9px;font-size:13.5px;background:#fff;color:#0F2A47;outline:0;font-family:inherit"><sc-for list="{{ raEf.dueOpts }}" as="o" hint-placeholder-count="4"><option>{{ o.o }}</option></sc-for></select>
-                      </div>
-                    </div>
-                    <div>
-                      <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Escalation note <span style="color:#B42318">*</span></label>
-                      <textarea value="{{ raEf.note }}" onChange="{{ raEf.setNote }}" placeholder="What has been tried, and what the next owner needs to do" style="width:100%;min-height:84px;padding:10px 12px;border:1px solid {{ raEf.noteBd }};border-radius:9px;font-size:13.5px;color:#0F2A47;outline:0;font-family:inherit;resize:vertical;box-sizing:border-box"></textarea>
-                    </div>
-                    <div>
-                      <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Notify</label>
-                      <div style="display:flex;gap:8px;flex-wrap:wrap">
-                        <sc-for list="{{ raEf.notify }}" as="n" hint-placeholder-count="4">
-                          <button onClick="{{ n.toggle }}" style="height:32px;padding:0 13px;border-radius:999px;border:1px solid {{ n.bd }};background:{{ n.bg }};color:{{ n.fg }};font-size:12px;font-weight:600;cursor:pointer;font-family:inherit">{{ n.n }}</button>
-                        </sc-for>
-                      </div>
-                    </div>
-                    <div style="display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border-radius:10px;background:#EEF6F5">
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0B7A6E" stroke-width="2.1" stroke-linecap="round" style="flex:none;margin-top:1px"><circle cx="12" cy="12" r="9" /><path d="M12 11v5M12 8h.01" /></svg>
-                      <span style="font-size:12.5px;color:#0B7A6E;text-wrap:pretty">{{ raEf.info }}</span>
-                    </div>
-                    <sc-if value="{{ raEf.hasErr }}" hint-placeholder-val="{{ false }}">
-                      <div style="padding:10px 14px;border-radius:10px;background:#FEF7F6;border:1px solid #FDE8E8;font-size:12.5px;font-weight:600;color:#B42318">{{ raEf.err }}</div>
-                    </sc-if>
-                  </div>
-                  <div style="display:flex;align-items:center;gap:10px;padding:16px 24px;border-top:1px solid #F0EEE7;background:#FCFBF7">
-                    <span style="flex:1"></span>
-                    <button onClick="{{ raEf.close }}" style="height:38px;padding:0 16px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:13px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Cancel</button>
-                    <button onClick="{{ raEf.submit }}" style="height:38px;padding:0 18px;border-radius:9px;border:0;background:#0E9384;font-size:13px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit;white-space:nowrap" style-hover="background:#0B7A6E">{{ raEf.btn }}</button>
-                  </div>
-                </div>
-              </sc-if>
 
               <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
                 <div style="padding:16px 20px;border-bottom:1px solid #F2F0EA">
@@ -6295,7 +6160,7 @@
           <div style="display:flex;align-items:center;gap:9px;margin-bottom:16px;flex-wrap:wrap">
             <div style="position:relative;flex:1;min-width:220px">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#98A2B3" stroke-width="2.1" stroke-linecap="round" style="position:absolute;left:12px;top:11px"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.6-3.6" /></svg>
-              <input value="{{ rptQ }}" onChange="{{ setRptQ }}" placeholder="Search report types…" style="width:100%;height:37px;padding:0 13px 0 34px;border:1px solid #E5E3DC;border-radius:9px;font-size:13px;color:#0F2A47;background:#fff;outline:0;box-sizing:border-box;font-family:inherit" />
+              <input value="{{ rptQ }}" onChange="{{ setRptQ }}" placeholder="{{ rpt2Ph }}" style="width:100%;height:37px;padding:0 13px 0 34px;border:1px solid #E5E3DC;border-radius:9px;font-size:13px;color:#0F2A47;background:#fff;outline:0;box-sizing:border-box;font-family:inherit" />
             </div>
             <select value="{{ rptCat }}" onChange="{{ setRptCat }}" style="height:37px;padding:0 11px;border:1px solid #E5E3DC;border-radius:9px;font-size:12.5px;background:#fff;color:#0F2A47;outline:0">
               <sc-for list="{{ rptCatOpts }}" as="o" hint-placeholder-count="5"><option value="{{ o.o }}" selected="{{ o.sel }}">{{ o.label }}</option></sc-for>
@@ -6303,47 +6168,217 @@
             <select value="{{ rptRange }}" onChange="{{ setRptRange }}" style="height:37px;padding:0 11px;border:1px solid #E5E3DC;border-radius:9px;font-size:12.5px;background:#fff;color:#0F2A47;outline:0">
               <sc-for list="{{ rptRangeOpts }}" as="o" hint-placeholder-count="5"><option value="{{ o.o }}" selected="{{ o.sel }}">{{ o.o }}</option></sc-for>
             </select>
+            <button onClick="{{ rpt2Export }}" style="display:flex;align-items:center;gap:7px;height:37px;padding:0 15px;border-radius:9px;border:0;background:#0E9384;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit" style-hover="background:#0B7A6E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M4.5 19h15" /></svg>Export</button>
           </div>
 
           <div style="display:flex;gap:2px;background:#fff;border:1px solid #ECEAE2;border-radius:12px;padding:4px;margin-bottom:16px;overflow-x:auto">
-            <sc-for list="{{ rptTabs }}" as="t" hint-placeholder-count="8">
-              <button onClick="{{ t.go }}" style="height:33px;padding:0 13px;border:0;border-radius:8px;font-size:12px;cursor:pointer;background:{{ t.bg }};color:{{ t.fg }};font-weight:{{ t.weight }};white-space:nowrap;flex:none">{{ t.label }}</button>
+            <sc-for list="{{ rptTabs }}" as="t" hint-placeholder-count="12">
+              <button onClick="{{ t.go }}" style="height:33px;padding:0 13px;border:0;border-radius:8px;font-size:12px;cursor:pointer;background:{{ t.bg }};color:{{ t.fg }};font-weight:{{ t.weight }};white-space:nowrap;flex:none;font-family:inherit">{{ t.label }}</button>
             </sc-for>
           </div>
 
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px">
-            <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
-            <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">{{ rptHead }}</span>
-            <span style="flex:1;height:1px;background:#F0EEE7"></span>
-            <span style="font-size:11.5px;color:#98A2B3">{{ rptCount }} of {{ rptTotal }} report types</span>
-          </div>
-          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px">
-            <sc-for list="{{ rptCards }}" as="r" hint-placeholder-count="9">
-              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:20px 22px;display:flex;flex-direction:column" style-hover="border-color:#BFE3DC;box-shadow:0 8px 22px rgba(11,31,62,.05)">
-                <div style="display:flex;align-items:flex-start;gap:12px">
-                  <div style="width:40px;height:40px;flex:none;border-radius:11px;background:{{ r.ibg }};color:{{ r.ifg }};display:grid;place-items:center;font-size:13px;font-weight:800;letter-spacing:.02em">{{ r.code }}</div>
-                  <span style="flex:1"></span>
-                  <span style="font-size:10px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.cBg }};color:{{ r.cFg }}">{{ r.cat }}</span>
-                  <button onClick="{{ r.star }}" title="Save report" style="width:28px;height:28px;flex:none;border-radius:8px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:{{ r.starFg }};font-size:13px;padding:0" style-hover="background:#FEF7E6">{{ r.starIcon }}</button>
+          <sc-if value="{{ rpt2IsLib }}" hint-placeholder-val="{{ true }}">
+            <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px;flex-wrap:wrap">
+              <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
+              <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">{{ rptHead }}</span>
+              <span style="flex:1;height:1px;background:#F0EEE7;min-width:40px"></span>
+              <span style="font-size:11.5px;color:#98A2B3">{{ rptCount }} of {{ rptTotal }} report types</span>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px">
+              <sc-for list="{{ rptCards }}" as="r" hint-placeholder-count="9">
+                <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:20px 22px;display:flex;flex-direction:column" style-hover="border-color:#BFE3DC;box-shadow:0 8px 22px rgba(11,31,62,.05)">
+                  <div style="display:flex;align-items:flex-start;gap:12px">
+                    <div style="width:40px;height:40px;flex:none;border-radius:11px;background:{{ r.ibg }};color:{{ r.ifg }};display:grid;place-items:center;font-size:13px;font-weight:800;letter-spacing:.02em">{{ r.code }}</div>
+                    <span style="flex:1"></span>
+                    <span style="font-size:10px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.cBg }};color:{{ r.cFg }}">{{ r.cat }}</span>
+                    <button onClick="{{ r.star }}" title="Save report" style="width:28px;height:28px;flex:none;border-radius:8px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:{{ r.starFg }};font-size:13px;padding:0" style-hover="background:#FEF7E6">{{ r.starIcon }}</button>
+                  </div>
+                  <div style="font-size:15px;font-weight:800;color:#0F2A47;margin-top:14px;letter-spacing:-.01em">{{ r.title }}</div>
+                  <div style="font-size:12.5px;color:#6B7C93;margin-top:6px;line-height:1.55;text-wrap:pretty;flex:1">{{ r.desc }}</div>
+                  <div style="font-size:11px;color:#98A2B3;margin-top:14px">{{ r.formats }}  ·  Last run {{ r.last }}</div>
+                  <button onClick="{{ r.download }}" style="display:flex;align-items:center;justify-content:center;gap:8px;height:40px;margin-top:14px;border-radius:9px;border:0;background:#0E9384;font-size:13px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit" style-hover="background:#0B7A6E">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M4.5 19h15" /></svg>Download Report
+                  </button>
+                  <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:9px">
+                    <button onClick="{{ r.gen }}" style="height:35px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Generate</button>
+                    <button onClick="{{ r.sched }}" style="height:35px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">{{ r.schedLabel }}</button>
+                    <button onClick="{{ r.preview }}" style="height:35px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Preview</button>
+                  </div>
                 </div>
-                <div style="font-size:15px;font-weight:800;color:#0F2A47;margin-top:14px;letter-spacing:-.01em">{{ r.title }}</div>
-                <div style="font-size:12.5px;color:#6B7C93;margin-top:6px;line-height:1.55;text-wrap:pretty;flex:1">{{ r.desc }}</div>
-                <div style="font-size:11px;color:#98A2B3;margin-top:14px">{{ r.formats }}  ·  Last run {{ r.last }}</div>
-                <button onClick="{{ r.download }}" style="display:flex;align-items:center;justify-content:center;gap:8px;height:40px;margin-top:14px;border-radius:9px;border:0;background:#0E9384;font-size:13px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit" style-hover="background:#0B7A6E">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M4.5 19h15" /></svg>Download Report
-                </button>
-                <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:9px">
-                  <button onClick="{{ r.gen }}" style="height:35px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Generate</button>
-                  <button onClick="{{ r.sched }}" style="height:35px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">{{ r.schedLabel }}</button>
-                  <button onClick="{{ r.preview }}" style="height:35px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Preview</button>
+              </sc-for>
+            </div>
+            <div style="display:{{ rptEmpty }};padding:40px 20px;text-align:center;background:#fff;border:1px solid #ECEAE2;border-radius:14px">
+              <div style="font-size:14px;font-weight:700;color:#475467">{{ rptEmptyTitle }}</div>
+              <div style="font-size:12px;color:#98A2B3;margin-top:5px">{{ rptEmptySub }}</div>
+            </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ rpt2IsTable }}" hint-placeholder-val="{{ false }}">
+            <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px;flex-wrap:wrap">
+              <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
+              <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">{{ rpt2Title }}</span>
+              <span style="flex:1;height:1px;background:#F0EEE7;min-width:40px"></span>
+              <span style="font-size:11.5px;color:#98A2B3">{{ rpt2Meta }}</span>
+              <button onClick="{{ rpt2Gen }}" style="height:30px;padding:0 11px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:11.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Generate</button>
+              <button onClick="{{ rpt2Dl }}" style="height:30px;padding:0 12px;border-radius:8px;border:1px solid #BFE3DC;background:#EEF6F5;font-size:11.5px;font-weight:700;color:#0B7A6E;cursor:pointer;font-family:inherit" style-hover="background:#E2F1EE">Download</button>
+            </div>
+            <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
+              <div style="overflow-x:auto">
+                <table style="width:100%;border-collapse:collapse">
+                  <thead><tr style="background:#FCFBF7"><sc-for list="{{ rpt2Cols }}" as="h" hint-placeholder-count="6"><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">{{ h.c }}</th></sc-for></tr></thead>
+                  <tbody>
+                    <sc-for list="{{ rpt2Rows }}" as="row" hint-placeholder-count="6">
+                      <tr style-hover="background:#F7FBFA">
+                        <sc-for list="{{ row.cells }}" as="c" hint-placeholder-count="6">
+                          <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;color:{{ c.c }};font-weight:{{ c.w }}"><span style="display:{{ c.tD }}">{{ c.v }}</span><span style="display:{{ c.bD }};font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ c.bg }};color:{{ c.fg }}">{{ c.v }}</span></td>
+                        </sc-for>
+                      </tr>
+                    </sc-for>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div style="display:{{ rpt2RowsEmpty }};padding:40px 20px;text-align:center;background:#fff;border:1px solid #ECEAE2;border-radius:14px;margin-top:12px"><div style="font-size:14px;font-weight:700;color:#475467">No records match your search.</div></div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ rpt2IsPerf }}" hint-placeholder-val="{{ false }}">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px">
+              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:20px 22px">
+                <div style="font-size:15px;font-weight:800;color:#0F2A47">{{ rpt2PerfT1 }}</div>
+                <div style="display:flex;flex-direction:column;gap:16px;margin-top:16px">
+                  <sc-for list="{{ rpt2PerfRows }}" as="p" hint-placeholder-count="5">
+                    <div>
+                      <div style="display:flex;align-items:baseline;gap:10px">
+                        <div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:700;color:#0F2A47">{{ p.n }}</div><div style="font-size:11.5px;color:#98A2B3;margin-top:2px">{{ p.sub }}</div></div>
+                        <div style="font-size:15px;font-weight:800;color:{{ p.col }}">{{ p.sc }}</div>
+                      </div>
+                      <div style="height:7px;border-radius:99px;background:#F0EEE7;margin-top:8px;overflow:hidden"><div style="height:100%;width:{{ p.w }};border-radius:99px;background:{{ p.col }}"></div></div>
+                    </div>
+                  </sc-for>
                 </div>
               </div>
-            </sc-for>
-          </div>
-          <div style="display:{{ rptEmpty }};padding:40px 20px;text-align:center;background:#fff;border:1px solid #ECEAE2;border-radius:14px">
-            <div style="font-size:14px;font-weight:700;color:#475467">{{ rptEmptyTitle }}</div>
-            <div style="font-size:12px;color:#98A2B3;margin-top:5px">{{ rptEmptySub }}</div>
-          </div>
+              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:20px 22px">
+                <div style="font-size:15px;font-weight:800;color:#0F2A47">{{ rpt2PerfT2 }}</div>
+                <div style="display:flex;flex-direction:column;margin-top:8px">
+                  <sc-for list="{{ rpt2RankRows }}" as="r" hint-placeholder-count="5">
+                    <div style="display:flex;align-items:center;gap:13px;padding:12px 0;border-bottom:1px solid #F5F3EE">
+                      <div style="width:30px;height:30px;flex:none;border-radius:9px;background:{{ r.rbg }};color:{{ r.rfg }};display:grid;place-items:center;font-size:13px;font-weight:800">{{ r.rank }}</div>
+                      <div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:700;color:#0F2A47">{{ r.n }}</div><div style="font-size:11.5px;color:#6B7C93;margin-top:2px">{{ r.sub }}</div></div>
+                      <div style="font-size:13px;font-weight:800;color:#0F2A47">{{ r.sc }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ rpt2IsSaved }}" hint-placeholder-val="{{ false }}">
+            <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px;flex-wrap:wrap">
+              <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
+              <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">SAVED REPORTS</span>
+              <span style="flex:1;height:1px;background:#F0EEE7;min-width:40px"></span>
+              <span style="font-size:11.5px;color:#98A2B3">{{ rpt2SavedCount }} saved</span>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px">
+              <sc-for list="{{ rpt2Saved }}" as="r" hint-placeholder-count="8">
+                <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:18px 20px;display:flex;flex-direction:column" style-hover="border-color:#BFE3DC">
+                  <div style="display:flex;align-items:flex-start;gap:10px">
+                    <div onClick="{{ r.view }}" style="flex:1;min-width:0;cursor:pointer">
+                      <div style="font-size:14px;font-weight:800;color:#0F2A47">{{ r.name }}</div>
+                      <div style="font-size:11.5px;color:#98A2B3;margin-top:4px">{{ r.meta }}</div>
+                    </div>
+                  <div style="position:relative;display:inline-block">
+                    <button onClick="{{ r.menu }}" title="Actions" style="width:34px;height:34px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;cursor:pointer;color:#98A2B3;padding:0;display:grid;place-items:center;font-family:inherit" style-hover="background:#F6F5F0;color:#475467"><svg width="4" height="16" viewBox="0 0 4 16" fill="currentColor"><circle cx="2" cy="2" r="1.6" /><circle cx="2" cy="8" r="1.6" /><circle cx="2" cy="14" r="1.6" /></svg></button>
+                    <div style="display:{{ r.menuD }};position:absolute;top:38px;right:0;min-width:170px;background:#fff;border:1px solid #ECEAE2;border-radius:11px;box-shadow:0 16px 40px rgba(11,31,62,.16);padding:6px;z-index:40;text-align:left">
+                      <sc-for list="{{ r.items }}" as="m" hint-placeholder-count="3"><div onClick="{{ m.pick }}" style="padding:8px 11px;border-radius:8px;font-size:12.5px;font-weight:500;color:{{ m.c }};cursor:pointer;white-space:nowrap" style-hover="background:{{ m.hov }}">{{ m.label }}</div></sc-for>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:{{ rpt2SavedEmpty }};padding:40px 20px;text-align:center;background:#fff;border:1px solid #ECEAE2;border-radius:14px;margin-top:12px"><div style="font-size:14px;font-weight:700;color:#475467">No saved reports yet — star a report in the library to keep it here.</div></div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ rpt2IsSched }}" hint-placeholder-val="{{ false }}">
+            <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px;flex-wrap:wrap">
+              <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
+              <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">SCHEDULED REPORTS</span>
+              <span style="flex:1;height:1px;background:#F0EEE7;min-width:40px"></span>
+              <span style="font-size:11.5px;color:#98A2B3">{{ rpt2SchedCount }} schedules</span>
+            </div>
+            <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:visible">
+              <div style="overflow:visible">
+                <table style="width:100%;border-collapse:collapse">
+                  <thead><tr style="background:#FCFBF7"><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Report</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Frequency</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Date</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Time</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Format</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Status</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase"></th></tr></thead>
+                  <tbody>
+                    <sc-for list="{{ rpt2Sched }}" as="r" hint-placeholder-count="3">
+                      <tr style-hover="background:#F7FBFA">
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;font-weight:600;color:#0F2A47">{{ r.report }}</td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;color:#475467">{{ r.freq }}</td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;color:#475467">{{ r.date }}</td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;color:#475467">{{ r.time }}</td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;color:#475467">{{ r.fmt }}</td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.bg }};color:{{ r.fg }};white-space:nowrap">{{ r.status }}</span></td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;text-align:right;width:56px"><div style="position:relative;display:inline-block">
+                    <button onClick="{{ r.menu }}" title="Actions" style="width:34px;height:34px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;cursor:pointer;color:#98A2B3;padding:0;display:grid;place-items:center;font-family:inherit" style-hover="background:#F6F5F0;color:#475467"><svg width="4" height="16" viewBox="0 0 4 16" fill="currentColor"><circle cx="2" cy="2" r="1.6" /><circle cx="2" cy="8" r="1.6" /><circle cx="2" cy="14" r="1.6" /></svg></button>
+                    <div style="display:{{ r.menuD }};position:absolute;top:38px;right:0;min-width:170px;background:#fff;border:1px solid #ECEAE2;border-radius:11px;box-shadow:0 16px 40px rgba(11,31,62,.16);padding:6px;z-index:40;text-align:left">
+                      <sc-for list="{{ r.items }}" as="m" hint-placeholder-count="3"><div onClick="{{ m.pick }}" style="padding:8px 11px;border-radius:8px;font-size:12.5px;font-weight:500;color:{{ m.c }};cursor:pointer;white-space:nowrap" style-hover="background:{{ m.hov }}">{{ m.label }}</div></sc-for>
+                    </div>
+                  </div></td>
+                      </tr>
+                    </sc-for>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div style="display:{{ rpt2SchedEmpty }};padding:40px 20px;text-align:center;background:#fff;border:1px solid #ECEAE2;border-radius:14px;margin-top:12px"><div style="font-size:14px;font-weight:700;color:#475467">Nothing scheduled — use Schedule on any report in the library.</div></div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ rpt2IsExport }}" hint-placeholder-val="{{ false }}">
+            <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px;flex-wrap:wrap">
+              <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
+              <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">EXPORT CENTER</span>
+              <span style="flex:1;height:1px;background:#F0EEE7;min-width:40px"></span>
+              <span style="font-size:11.5px;color:#98A2B3">{{ rpt2ExpCount }} exports</span>
+            </div>
+            <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:visible">
+              <div style="overflow:visible">
+                <table style="width:100%;border-collapse:collapse">
+                  <thead><tr style="background:#FCFBF7"><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Report</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Requested By</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Format</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Records</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Requested At</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Status</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase"></th></tr></thead>
+                  <tbody>
+                    <sc-for list="{{ rpt2Exports }}" as="r" hint-placeholder-count="5">
+                      <tr style-hover="background:#F7FBFA">
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;font-weight:600;color:#0F2A47">{{ r.report }}</td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;color:#475467">{{ r.by }}</td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;color:#475467">{{ r.fmt }}</td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;color:#475467">{{ r.records }}</td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;color:#475467">{{ r.at }}</td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.bg }};color:{{ r.fg }};white-space:nowrap">{{ r.status }}</span></td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;text-align:right;width:56px"><div style="position:relative;display:inline-block">
+                    <button onClick="{{ r.menu }}" title="Actions" style="width:34px;height:34px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;cursor:pointer;color:#98A2B3;padding:0;display:grid;place-items:center;font-family:inherit" style-hover="background:#F6F5F0;color:#475467"><svg width="4" height="16" viewBox="0 0 4 16" fill="currentColor"><circle cx="2" cy="2" r="1.6" /><circle cx="2" cy="8" r="1.6" /><circle cx="2" cy="14" r="1.6" /></svg></button>
+                    <div style="display:{{ r.menuD }};position:absolute;top:38px;right:0;min-width:170px;background:#fff;border:1px solid #ECEAE2;border-radius:11px;box-shadow:0 16px 40px rgba(11,31,62,.16);padding:6px;z-index:40;text-align:left">
+                      <sc-for list="{{ r.items }}" as="m" hint-placeholder-count="3"><div onClick="{{ m.pick }}" style="padding:8px 11px;border-radius:8px;font-size:12.5px;font-weight:500;color:{{ m.c }};cursor:pointer;white-space:nowrap" style-hover="background:{{ m.hov }}">{{ m.label }}</div></sc-for>
+                    </div>
+                  </div></td>
+                      </tr>
+                    </sc-for>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div style="display:{{ rpt2ExpEmpty }};padding:40px 20px;text-align:center;background:#fff;border:1px solid #ECEAE2;border-radius:14px;margin-top:12px"><div style="font-size:14px;font-weight:700;color:#475467">No exports match your search.</div></div>
+            </div>
+          </sc-if>
         </div>
       </sc-if>
 
@@ -7294,29 +7329,42 @@
                 </div>
                 
                 <div style="overflow-x:auto">
-                  <table style="width:100%;min-width:1720px;border-collapse:collapse">
+                  <table style="width:100%;min-width:1400px;border-collapse:collapse">
                     <thead><tr style="background:#FCFBF7">
-                      <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PAYOUT ID</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">SPEAKER</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">METHOD</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">EVENT</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">EVENT DATE</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">CALCULATION BASIS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">UNITS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">RATE</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">GROSS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">ADJUSTMENTS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">TDS</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">NET PAYABLE</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">DUE DATE</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PAID ON</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">UTR</th><th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">STATUS</th>
+                      <th style="padding:11px 20px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">PAYOUT ID</th>
+                      <th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">SPEAKER</th>
+                      <th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">EVENT</th>
+                      <th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">MODEL</th>
+                      <th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">RATE</th>
+                      <th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">%</th>
+                      <th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">GROSS</th>
+                      <th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">DEDUCTIONS</th>
+                      <th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">NET PAYABLE</th>
+                      <th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">UTR</th>
+                      <th style="padding:11px 13px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap">STATUS</th>
                       <th style="padding:11px 20px 11px 13px;border-bottom:1px solid #F0EEE7"></th>
                     </tr></thead>
                     <tbody>
                       <sc-for list="{{ poRows }}" as="t" hint-placeholder-count="7">
                         <tr style-hover="background:#FCFBF7">
-                          <td onClick="{{ t.view }}" style="padding:11px 20px;border-bottom:1px solid #F5F3EE;cursor:pointer;font-size:12.5px;font-weight:600;font-family:ui-monospace,monospace;color:#0F2A47;white-space:nowrap">{{ t.pid }}</td>
+                          <td onClick="{{ t.view }}" style="padding:11px 20px;border-bottom:1px solid #F5F3EE;font-size:12.5px;font-weight:700;font-family:ui-monospace,monospace;color:#0F2A47;cursor:pointer;white-space:nowrap">{{ t.pid }}</td>
                           <td onClick="{{ t.viewSpeaker }}" style="padding:11px 13px;border-bottom:1px solid #F5F3EE;cursor:pointer">
                             <div style="display:flex;align-items:center;gap:10px">
-                              <div style="width:28px;height:28px;flex:none;border-radius:50%;background:{{ t.avBg }};display:grid;place-items:center;color:#fff;font-size:10px;font-weight:700">{{ t.init }}</div>
-                              <div>
-                                <div style="font-size:12.5px;font-weight:600;color:#0F2A47;white-space:nowrap">{{ t.speaker }}</div>
-                                <div style="font-size:10px;color:#98A2B3;margin-top:2px;font-family:ui-monospace,monospace">{{ t.spkId }}</div>
-                              </div>
+                              <span style="width:32px;height:32px;flex:none;border-radius:50%;background:{{ t.avBg }};color:#fff;display:grid;place-items:center;font-size:11px;font-weight:700">{{ t.init }}</span>
+                              <div style="min-width:0"><div style="font-size:13px;font-weight:600;color:#0F2A47;white-space:nowrap">{{ t.speaker }}</div><div style="font-size:10.5px;color:#98A2B3;font-family:ui-monospace,monospace;margin-top:1px">{{ t.spkId }}</div></div>
                             </div>
                           </td>
-                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ t.mBg }};color:{{ t.mFg }};white-space:nowrap">{{ t.model }}</span></td>
-                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ t.ev }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ t.date }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ t.basis }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:600;color:#0F2A47">{{ t.unitsLabel }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:600;color:#0F2A47">{{ t.rateOnly }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:700;color:#0F2A47">{{ t.grossLabel }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ t.adjLabel }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ t.tdsLabel }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-weight:800;color:#0B7A6E">{{ t.netLabel }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ t.due }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ t.paidLabel }}</td><td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap;font-family:ui-monospace,monospace;font-size:11.5px">{{ t.utrLabel }}</td>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ t.ev }}<div style="font-size:10px;color:#98A2B3">{{ t.evType }} · {{ t.date }}</div></td>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;white-space:nowrap"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ t.mBg }};color:{{ t.mFg }}">{{ t.model }}</span><div style="font-size:10.5px;color:#98A2B3;margin-top:4px">{{ t.basis }}</div></td>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ t.rateLabel }}</td>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#98A2B3;white-space:nowrap">{{ t.pctLabel }}</td>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#475467;white-space:nowrap">{{ t.grossLabel }}</td>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#B42318;white-space:nowrap">{{ t.dedLabel }}</td>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:13px;font-weight:800;color:#0B7A6E;white-space:nowrap">{{ t.netLabel }}</td>
+                          <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE;font-size:12.5px;color:#98A2B3;font-family:ui-monospace,monospace;white-space:nowrap;font-weight:700">{{ t.utrLabel }}</td>
                           <td style="padding:11px 13px;border-bottom:1px solid #F5F3EE"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ t.sBg }};color:{{ t.sFg }};white-space:nowrap">{{ t.status }}</span></td>
-                          <td style="padding:11px 20px 11px 13px;border-bottom:1px solid #F5F3EE;text-align:right">
-                            <button onClick="{{ t.drawer }}" style="height:29px;padding:0 12px;border-radius:8px;border:1px solid #BFE3DC;background:#EEF6F5;font-size:11.5px;font-weight:600;color:#0B7A6E;cursor:pointer;white-space:nowrap;font-family:inherit" style-hover="background:#E2F1EE">View</button>
+                          <td style="padding:11px 20px 11px 13px;border-bottom:1px solid #F5F3EE;text-align:right;white-space:nowrap">
+                            <button onClick="{{ t.drawer }}" style="height:29px;padding:0 11px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;border:1px solid #BFE3DC;background:#EEF6F5;color:#0B7A6E" style-hover="background:#E2F1EE">View</button>
                           </td>
                         </tr>
                       </sc-for>
@@ -7648,120 +7696,17 @@
                         <div style="font-size:14.5px;font-weight:700;color:#0F2A47">{{ d.speaker }}</div>
                         <div style="font-size:12px;color:#7A8699;margin-top:3px">{{ d.id }} · {{ d.tid }} · {{ d.type }} · {{ d.ev }}</div>
                       </div>
-                      <span style="flex:none;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;background:{{ d.sBg }};color:{{ d.sFg }}">{{ d.status }}</span>
+                      <span style="flex:none;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;background:#FEF3E2;color:#B45309">{{ d.status }}</span>
                     </div>
                     <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px"><div style="min-width:0;border:1px solid #ECEAE2;background:#fff;border-radius:11px;padding:12px 15px"><div style="font-size:10.5px;font-weight:700;letter-spacing:.06em;color:#98A2B3">CLAIMED</div><div style="font-size:19px;font-weight:800;color:#0F2A47;margin-top:4px">{{ d.claimed }}</div></div><div style="min-width:0;border:1px solid #ECEAE2;background:#fff;border-radius:11px;padding:12px 15px"><div style="font-size:10.5px;font-weight:700;letter-spacing:.06em;color:#98A2B3">CALCULATED</div><div style="font-size:19px;font-weight:800;color:#0F2A47;margin-top:4px">{{ d.calculated }}</div></div><div style="min-width:0;border:1px solid #F0D2CF;background:#FEF7F6;border-radius:11px;padding:12px 15px"><div style="font-size:10.5px;font-weight:700;letter-spacing:.06em;color:#B42318">DIFFERENCE</div><div style="font-size:19px;font-weight:800;color:#B42318;margin-top:4px">{{ d.diff }}</div></div></div>
                     <div style="font-size:10.5px;font-weight:700;letter-spacing:.06em;color:#98A2B3;margin-top:14px">SPEAKER COMMENT</div>
                     <div style="font-size:13px;color:#344054;margin-top:4px;text-wrap:pretty">{{ d.comment }}</div>
                     <div style="display:flex;gap:8px;margin-top:14px">
                       <button onClick="{{ d.view }}" style="height:32px;padding:0 13px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:12px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">View evidence</button>
-                      <button onClick="{{ d.reject }}" style="display:{{ d.actsDisplay }};align-items:center;height:36px;padding:0 14px;border-radius:9px;border:1px solid #F0D2CF;background:#fff;font-size:12.5px;font-weight:600;color:#B42318;cursor:pointer;font-family:inherit" style-hover="background:#FEF7F6">Reject dispute</button>
-                      <button onClick="{{ d.resolve }}" style="display:{{ d.actsDisplay }};align-items:center;flex:none;height:36px;padding:0 15px;border-radius:9px;border:0;background:#0E9384;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit;white-space:nowrap" style-hover="background:#0B7A6E">Resolve dispute</button>
+                      <button onClick="{{ d.resolve }}" style="flex:none;height:36px;padding:0 15px;border-radius:9px;border:0;background:#0E9384;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit;white-space:nowrap" style-hover="background:#0B7A6E">Resolve dispute</button>
                     </div>
                   </div>
                 </sc-for>
-              <sc-if value="{{ dspM.open }}" hint-placeholder-val="{{ false }}">
-                <div onClick="{{ dspM.close }}" style="position:fixed;inset:0;background:rgba(11,31,62,.42);z-index:80"></div>
-                <div style="position:fixed;z-index:81;top:50%;left:50%;transform:translate(-50%,-50%);width:660px;max-width:94vw;max-height:90vh;display:flex;flex-direction:column;background:#fff;border-radius:16px;box-shadow:0 24px 64px rgba(11,31,62,.22);overflow:hidden;text-align:left">
-                  <div style="flex:none;padding:22px 24px 18px;border-bottom:1px solid #F0EEE7;display:flex;align-items:flex-start;gap:12px">
-                    <div style="width:38px;height:38px;flex:none;border-radius:11px;background:{{ dspM.iBg }};color:{{ dspM.iFg }};display:grid;place-items:center">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="{{ dspM.iPath }}" /></svg>
-                    </div>
-                    <div style="flex:1;min-width:0">
-                      <h3 style="margin:0;font-size:16.5px;font-weight:700;color:#0F2A47">{{ dspM.title }}</h3>
-                      <p style="margin:5px 0 0;font-size:13px;color:#6B7C93;text-wrap:pretty">{{ dspM.sub }}</p>
-                    </div>
-                    <button onClick="{{ dspM.close }}" style="width:32px;height:32px;flex:none;border-radius:9px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:#7A8699" style-hover="background:#F6F5F0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12" /></svg></button>
-                  </div>
-                  <div style="flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:18px">
-                    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px">
-                      <div style="border:1px solid #F0EEE7;border-radius:10px;padding:11px 13px;background:#FCFBF7"><div style="font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#98A2B3">CLAIMED</div><div style="font-size:17px;font-weight:800;color:#0F2A47;margin-top:4px">{{ dspM.claimed }}</div></div>
-                      <div style="border:1px solid #F0EEE7;border-radius:10px;padding:11px 13px;background:#FCFBF7"><div style="font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#98A2B3">CALCULATED</div><div style="font-size:17px;font-weight:800;color:#0F2A47;margin-top:4px">{{ dspM.calc }}</div></div>
-                      <div style="border:1px solid #F0D2CF;border-radius:10px;padding:11px 13px;background:#FEF7F6"><div style="font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#B42318">DIFFERENCE</div><div style="font-size:17px;font-weight:800;color:#B42318;margin-top:4px">{{ dspM.diff }}</div></div>
-                    </div>
-                    <div style="padding:11px 14px;border-radius:10px;background:#FCFBF7;border:1px solid #F0EEE7">
-                      <div style="font-size:10.5px;font-weight:700;letter-spacing:.06em;color:#98A2B3">{{ dspM.claimLabel }}</div>
-                      <div style="font-size:12.5px;color:#475467;margin-top:4px;text-wrap:pretty">{{ dspM.comment }}</div>
-                    </div>
-                    <sc-if value="{{ dspM.isResolve }}" hint-placeholder-val="{{ false }}">
-                      <div style="display:flex;flex-direction:column;gap:16px">
-                        <div>
-                          <div style="font-size:11.5px;font-weight:700;letter-spacing:.07em;color:#7A8699;margin-bottom:10px">DECISION</div>
-                          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px">
-                            <sc-for list="{{ dspM.decisions }}" as="o" hint-placeholder-count="2">
-                              <div onClick="{{ o.pick }}" style="border:1.5px solid {{ o.bd }};background:{{ o.bg }};border-radius:12px;padding:12px 14px;cursor:pointer;display:flex;gap:10px;align-items:flex-start">
-                                <span style="width:16px;height:16px;flex:none;border-radius:50%;border:5px solid {{ o.dot }};background:#fff;margin-top:1px;box-sizing:border-box"></span>
-                                <div style="min-width:0"><div style="font-size:13px;font-weight:700;color:#0F2A47">{{ o.label }}</div><div style="font-size:11.5px;color:#7A8699;margin-top:3px">{{ o.sub }}</div></div>
-                              </div>
-                            </sc-for>
-                          </div>
-                        </div>
-                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px">
-                          <div style="min-width:0">
-                            <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Amount to pay (₹) <span style="color:#B42318">*</span></label>
-                            <input value="{{ dspM.amt }}" onChange="{{ dspM.setAmt }}" readOnly="{{ dspM.amtLocked }}" style="width:100%;height:40px;padding:0 12px;border:1px solid #E5E3DC;border-radius:9px;font-size:13.5px;background:#fff;color:#0F2A47;outline:0;font-family:inherit;box-sizing:border-box;background:{{ dspM.amtBg }};border-color:{{ dspM.amtBd }}" />
-                          </div>
-                          <div style="min-width:0">
-                            <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Settle via</label>
-                            <select value="{{ dspM.via }}" onChange="{{ dspM.setVia }}" style="width:100%;height:40px;padding:0 12px;border:1px solid #E5E3DC;border-radius:9px;font-size:13.5px;background:#fff;color:#0F2A47;outline:0;font-family:inherit;box-sizing:border-box"><sc-for list="{{ dspM.viaOpts }}" as="x" hint-placeholder-count="3"><option>{{ x.o }}</option></sc-for></select>
-                          </div>
-                          <div style="min-width:0">
-                            <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Root cause</label>
-                            <select value="{{ dspM.cause }}" onChange="{{ dspM.setCause }}" style="width:100%;height:40px;padding:0 12px;border:1px solid #E5E3DC;border-radius:9px;font-size:13.5px;background:#fff;color:#0F2A47;outline:0;font-family:inherit;box-sizing:border-box"><sc-for list="{{ dspM.causeOpts }}" as="x" hint-placeholder-count="4"><option>{{ x.o }}</option></sc-for></select>
-                          </div>
-                        </div>
-                      </div>
-                    </sc-if>
-                    <sc-if value="{{ dspM.isReject }}" hint-placeholder-val="{{ false }}">
-                      <div style="display:flex;flex-direction:column;gap:16px">
-                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px">
-                          <div style="min-width:0">
-                            <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Rejection reason <span style="color:#B42318">*</span></label>
-                            <select value="{{ dspM.reason }}" onChange="{{ dspM.setReason }}" style="width:100%;height:40px;padding:0 12px;border:1px solid #E5E3DC;border-radius:9px;font-size:13.5px;background:#fff;color:#0F2A47;outline:0;font-family:inherit;box-sizing:border-box"><sc-for list="{{ dspM.reasonOpts }}" as="x" hint-placeholder-count="4"><option>{{ x.o }}</option></sc-for></select>
-                          </div>
-                          <div style="min-width:0">
-                            <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Re-appeal</label>
-                            <select value="{{ dspM.appeal }}" onChange="{{ dspM.setAppeal }}" style="width:100%;height:40px;padding:0 12px;border:1px solid #E5E3DC;border-radius:9px;font-size:13.5px;background:#fff;color:#0F2A47;outline:0;font-family:inherit;box-sizing:border-box"><sc-for list="{{ dspM.appealOpts }}" as="x" hint-placeholder-count="3"><option>{{ x.o }}</option></sc-for></select>
-                          </div>
-                        </div>
-                        <div>
-                          <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Evidence shared with the payee</label>
-                          <div style="display:flex;gap:8px;flex-wrap:wrap">
-                            <sc-for list="{{ dspM.evidence }}" as="n" hint-placeholder-count="4">
-                              <button onClick="{{ n.toggle }}" style="height:32px;padding:0 13px;border-radius:999px;border:1px solid {{ n.bd }};background:{{ n.bg }};color:{{ n.fg }};font-size:12px;font-weight:600;cursor:pointer;font-family:inherit">{{ n.n }}</button>
-                            </sc-for>
-                          </div>
-                        </div>
-                      </div>
-                    </sc-if>
-                    <div>
-                      <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">{{ dspM.noteLabel }} <span style="color:#B42318">*</span></label>
-                      <textarea value="{{ dspM.note }}" onChange="{{ dspM.setNote }}" placeholder="{{ dspM.notePh }}" style="width:100%;min-height:84px;padding:10px 12px;border:1px solid {{ dspM.noteBd }};border-radius:9px;font-size:13.5px;color:#0F2A47;outline:0;font-family:inherit;resize:vertical;box-sizing:border-box"></textarea>
-                      <div style="font-size:11px;color:#98A2B3;margin-top:5px">{{ dspM.noteHint }}</div>
-                    </div>
-                    <div>
-                      <label style="display:block;font-size:12px;font-weight:600;color:#344054;margin-bottom:7px">Notify {{ dspM.payeeLower }}</label>
-                      <div style="display:flex;gap:8px;flex-wrap:wrap">
-                        <sc-for list="{{ dspM.notify }}" as="n" hint-placeholder-count="3">
-                          <button onClick="{{ n.toggle }}" style="height:32px;padding:0 13px;border-radius:999px;border:1px solid {{ n.bd }};background:{{ n.bg }};color:{{ n.fg }};font-size:12px;font-weight:600;cursor:pointer;font-family:inherit">{{ n.n }}</button>
-                        </sc-for>
-                      </div>
-                    </div>
-                    <div style="display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border-radius:10px;background:{{ dspM.infoBg }}">
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="{{ dspM.infoFg }}" stroke-width="2.1" stroke-linecap="round" style="flex:none;margin-top:1px"><circle cx="12" cy="12" r="9" /><path d="M12 11v5M12 8h.01" /></svg>
-                      <span style="font-size:12.5px;color:{{ dspM.infoFg }};text-wrap:pretty">{{ dspM.info }}</span>
-                    </div>
-                    <sc-if value="{{ dspM.hasErr }}" hint-placeholder-val="{{ false }}">
-                      <div style="padding:10px 14px;border-radius:10px;background:#FEF7F6;border:1px solid #FDE8E8;font-size:12.5px;font-weight:600;color:#B42318">{{ dspM.err }}</div>
-                    </sc-if>
-                  </div>
-                  <div style="flex:none;display:flex;align-items:center;gap:10px;padding:16px 24px;border-top:1px solid #F0EEE7;background:#FCFBF7">
-                    <span style="flex:1"></span>
-                    <button onClick="{{ dspM.close }}" style="height:38px;padding:0 16px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:13px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Cancel</button>
-                    <button onClick="{{ dspM.submit }}" style="height:38px;padding:0 18px;border-radius:9px;border:0;background:{{ dspM.pBg }};font-size:13px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit;white-space:nowrap">{{ dspM.btn }}</button>
-                  </div>
-                </div>
-              </sc-if>
               </div>
             </div>
           </sc-if>
@@ -10970,10 +10915,6 @@ class Component extends DCLogic {
       pctLabel: t.model==='Revenue Share' ? t.pct+'%' : 'N/A',
       grossLabel: inr(t.gross), bonusLabel: inr(t.bonus), dedLabel: inr(t.tax+t.ded), netLabel: inr(t.net),
       paidLabel: t.paid||'—', utrLabel: t.utr||'—',
-      unitsLabel: t.model==='Revenue Share' ? (t.base ? inr(t.base)+' net' : 'Net revenue') : t.model==='Hourly Rate' ? t.units+' hr'+(t.units>1?'s':'') : t.model==='Fixed Per Session' ? t.units+' session'+(t.units>1?'s':'') : t.units+' event',
-      rateOnly: t.model==='Revenue Share' ? t.pct+'%' : inr(t.rate),
-      adjLabel: (()=>{ const v=(t.bonus||0)+(t.reimb||0)+(t.adj||0)-(t.ded||0); return v>0 ? '+'+inr(v) : v<0 ? '-'+inr(-v) : '₹0'; })(),
-      tdsLabel: inr(t.tax||0),
       canApprove: t.status==='Pending Approval' ? 'inline-flex' : 'none',
       canPay: t.status==='Approved' ? 'inline-flex' : 'none',
       canRetry: t.status==='Failed' ? 'inline-flex' : 'none',
@@ -11222,11 +11163,8 @@ class Component extends DCLogic {
         {id:'DSP-301',speaker:'Arjun Nair',tid:'TXN-88218',ev:'Regulatory Update Panel',type:'Event fee',claimed:inr(18000),calculated:inr(12000),diff:inr(6000),
          comment:'Agreed fee was ₹18,000 as per revised email confirmation.',status:'Investigating',c:'amber'}
       ].map(d=>({...d, init: String(d.speaker).replace(/^(Dr\.|Prof\.)\s*/,'').split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase(), avBg: ['#0B7A6E','#1D4ED8','#6D28D9','#B45309','#0F766E','#C2410C'][String(d.speaker).length % 6]})).map(d=>({...d, sBg:BDG2[d.c][0], sFg:BDG2[d.c][1],
-        actsDisplay:'inline-flex',
-        resolve:()=>this.dspOpen('resolve',{id:d.id,name:d.speaker,txn:d.tid,claimed:d.claimed,calc:d.calculated,diff:d.diff,kind:d.type,comment:d.comment}),
-        reject:()=>this.dspOpen('reject',{id:d.id,name:d.speaker,txn:d.tid,claimed:d.claimed,calc:d.calculated,diff:d.diff,kind:d.type,comment:d.comment}),
-        view:()=>this.fire('Dispute — '+d.id, d.speaker+' · '+d.type)})).map(this.dspFix),
-      ...this.dspVals('Speaker'),
+        resolve:()=>this.setState({modal:'poResolveDispute', dsCur:d.id, dsDecision:'Accept speaker claim', dsNote:''}),
+        view:()=>this.fire('Dispute — '+d.id, d.speaker+' · '+d.type)})),
 
       ...(()=>{
         const SET = [
@@ -11956,7 +11894,7 @@ class Component extends DCLogic {
         return {raRuleFToggle:()=>this.setState({raRuleFOpen:!open}), raRuleFDisplay: open?'block':'none', raRuleFCount:String(cnt), raRuleFHas: cnt?'grid':'none',
           raRuleFResetShow: cnt?'inline-flex':'none', raRuleFReset:()=>this.setState({raRuleFilter:'All', raRuleCat:'All', raRuleQ:''}),
           raRuleFBd: open||cnt?'#0E9384':'#E5E3DC', raRuleFBg: open||cnt?'#EEF6F5':'#fff', raRuleFFg: open||cnt?'#0B7A6E':'#344054'}; })(),
-      ...(()=>{ const es=s.raEscState||{}, eo=s.raEscOv||{};
+      ...(()=>{ const es=s.raEscState||{};
         const L={L1:['#F1F3F5','#667085'],L2:['#FEF3E2','#B45309'],L3:['#FDE8E8','#B42318'],L4:['#FDE8E8','#B42318']};
         const S={Resolved:['#E7F7EE','#15803D'],Pending:['#FEF3E2','#B45309'],Investigating:['#FEF3E2','#B45309'],Overdue:['#FDE8E8','#B42318'],Active:['#E9F0FD','#1D4ED8']};
         return {
@@ -11968,43 +11906,13 @@ class Component extends DCLogic {
             ['ES-304','Yesterday','PPT submission overdue','EV-311 Motor Underwriting Masterclass','Amit Sharma','Event Coordinator','L1','Resolved','Deck uploaded at 06:12 PM'],
             ['ES-305','2 days ago','Technical rehearsal missed','EV-312 Health Claims Q&A','Sneha Kulkarni','Event Manager','L2','Investigating','Rehearsal rebooked for tomorrow'],
             ['ES-306','3 days ago','Audience rating below 4.0','EV-290 Policy Servicing 101','Kavita Desai','Operations','L2','Resolved','Coaching session scheduled']
-          ].map(([id,time,issue,event,speaker,to0,level0,st0,note0])=>{ const o=eo[id]||{}; const level=o.level||level0, to=o.to||to0; const state=es[id]||st0; const open=state!=='Resolved';
-            const note = state==='Resolved'&&st0!=='Resolved' ? 'Resolved by Super Admin just now' : (o.note||note0);
-            const view=()=>{ this.setState({raEscMenu:null}); this.fire('Escalation '+id, issue+' · '+speaker+' · '+to, true); };
-            const changeOwner=()=>{ this.setState({raEscMenu:null}); this.fire('Owner changed — '+id, 'Reassigned to Event Manager · audit logged', true); };
-            const escalateAgain=()=>{ const cur=+level.slice(1); this.setState({raEscMenu:null, raEf:{id,time,issue,event,speaker,to,level,lvl: cur<4 ? 'L'+(cur+1) : null, who:null, pri: cur>=2?'Critical':'High', reason:'No response at current level', note:'', due:'1 hour', notify:['Previous owner','Event coordinator'], err:null}}); };
-            const resolve=()=>{ this.setState({raEscMenu:null, raEscState:{...es,[id]:'Resolved'}}); this.fire('Escalation resolved — '+id, speaker+' and owner notified', true); };
-            const up = ['ES-305','ES-306'].includes(id);
-            return {id,time,issue,event,speaker,to,level,state,note, mTop: up?'auto':'38px', mBottom: up?'36px':'auto',
+          ].map(([id,time,issue,event,speaker,to,level,st0,note])=>{ const state=es[id]||st0; const open=state!=='Resolved';
+            return {id,time,issue,event,speaker,to,level,state,note: state==='Resolved'&&st0!=='Resolved' ? 'Resolved by Super Admin just now' : note,
               lBg:L[level][0], lFg:L[level][1], sBg:S[state][0], sFg:S[state][1], actionsDisplay: open?'inline-flex':'none',
-              view, changeOwner, escalateAgain, resolve,
-              menuDisplay: s.raEscMenu===id ? 'block' : 'none',
-              menu: ()=>this.setState({raEscMenu: s.raEscMenu===id ? null : id}),
-              menuItems: (open ? [['View',view],['Escalate',escalateAgain],['Change owner',changeOwner],['Resolve',resolve]] : [['View',view]]).map(([label,pick])=>({label,pick,fg:'#344054'}))}; }),
-          raEf: (()=>{ const ef=s.raEf; if (!ef) return {open:false};
-            const LADDER=[['L1','Event Coordinator','Responds immediately',['Priya Singh','Rahul Verma']],['L2','Event Manager','30-minute response SLA',['Amit Kumar','Neha Joshi']],['L3','Operations','2-hour response SLA',['Karan Malhotra — Operations Head','Operations on-call desk']],['L4','Speaker Programme Admin','24-hour response SLA',['Dr. Sarah Johnson','Programme Admin desk']]];
-            const cur=+ef.level.slice(1), opts=LADDER.filter(l=>+l[0].slice(1)>cur), sel=LADDER.find(l=>l[0]===ef.lvl);
-            const upd=(p)=>this.setState(x=>({raEf:{...x.raEf,...p,err:null}}));
-            const who=ef.who||(sel?sel[3][0]:'');
-            const PC={Medium:['#FEF3E2','#B45309'],High:['#FDF0E7','#C2410C'],Critical:['#FDE8E8','#B42318']};
-            return {open:true, title:'Escalate '+ef.id, sub:ef.issue+' · '+ef.event, speaker:ef.speaker, curTo:ef.to, curLevel:ef.level, lBg:L[ef.level][0], lFg:L[ef.level][1], since:ef.time,
-              hasLevels:opts.length>0, noLevels:!opts.length,
-              levels: opts.map(l=>{ const on=l[0]===ef.lvl; return {lv:l[0], role:l[1], sla:l[2], bd:on?'#0E9384':'#ECEAE2', bg:on?'#EEF6F5':'#fff', dot:on?'#0E9384':'#D0D5DD', pick:()=>upd({lvl:l[0], who:null})}; }),
-              who, whoOpts:(sel?sel[3]:['—']).map(o=>({o})), setWho:(e)=>upd({who:e.target.value}),
-              reason:ef.reason, reasonOpts:['No response at current level','SLA breached','Event at risk','Needs higher approval','Financial approval required','Speaker unreachable','Repeat issue'].map(o=>({o})), setReason:(e)=>upd({reason:e.target.value}),
-              due:ef.due, dueOpts:['30 minutes','1 hour','2 hours','4 hours','End of day','24 hours'].map(o=>({o})), setDue:(e)=>upd({due:e.target.value}),
-              pris:['Medium','High','Critical'].map(p=>{ const on=ef.pri===p; return {p, bg:on?PC[p][0]:'#fff', fg:on?PC[p][1]:'#475467', bd:on?PC[p][1]:'#E5E3DC', pick:()=>upd({pri:p})}; }),
-              note:ef.note, setNote:(e)=>upd({note:e.target.value}), noteBd: ef.err && !ef.note.trim() ? '#F0D2CF' : '#E5E3DC',
-              notify:['Speaker','Previous owner','Event coordinator','Finance'].map(n=>{ const on=ef.notify.includes(n); return {n, bg:on?'#EEF6F5':'#fff', bd:on?'#0E9384':'#E5E3DC', fg:on?'#0B7A6E':'#475467', toggle:()=>upd({notify: on ? ef.notify.filter(x=>x!==n) : ef.notify.concat(n)})}; }),
-              info: sel ? sel[1]+' is notified on email, WhatsApp and in-app. If there is no response within '+ef.due+', it moves up the ladder automatically.' : 'Escalations at L4 can only be resolved or reassigned.',
-              hasErr:!!ef.err, err:ef.err||'', btn: sel ? 'Escalate to '+sel[0] : 'Escalate',
-              close:()=>this.setState({raEf:null}),
-              submit:()=>{
-                if (!sel) return this.setState(x=>({raEf:{...x.raEf, err:'Already at the top of the ladder — resolve or change the owner instead.'}}));
-                if (!ef.note.trim()) return this.setState(x=>({raEf:{...x.raEf, err:'Add an escalation note so the next owner has context.'}}));
-                this.setState(x=>({raEf:null, raEscOv:{...(x.raEscOv||{}), [ef.id]:{level:sel[0], to:sel[1], note:'Escalated to '+who+' · '+ef.reason}}, raEscState:{...(x.raEscState||{}), [ef.id]:'Active'}}));
-                this.fire('Escalated to '+sel[0]+' — '+ef.id, who+' · '+ef.pri+' priority · response due in '+ef.due, true);
-              }}; })(),
+              view:()=>this.fire('Escalation '+id, issue+' · '+speaker+' · '+to, true),
+              changeOwner:()=>this.fire('Owner changed — '+id, 'Reassigned to Event Manager · audit logged', true),
+              escalateAgain:()=>this.fire('Escalated — '+id, 'Moved to the next level of the ladder', true),
+              resolve:()=>{ this.setState({raEscState:{...es,[id]:'Resolved'}}); this.fire('Escalation resolved — '+id, speaker+' and owner notified', true); }}; }),
           raEscSequences: [
             ['Event confirmation',['7 days before — Email','3 days before — WhatsApp','24 h before — SMS + coordinator','No reply — escalate to Event Manager']],
             ['PPT submission',['5 days before — Email','2 days before — WhatsApp','24 h before — coordinator call','Missed — escalate to Operations']],
@@ -12189,6 +12097,117 @@ class Component extends DCLogic {
       v[p+'ResetShow'] = sig===this._frBase[p] ? 'none' : 'inline-flex'; });
     return v; }
 
+  rpt2Menus(o) { const M=this.state.rpt2Menu;
+    const mk=(id,items)=>({menuD:M===id?'block':'none', menu:()=>this.setState({rpt2Menu:M===id?null:id}),
+      items:items.map(([label,fn,red])=>({label, c:red?'#B42318':'#344054', hov:red?'#FEF3F2':'#F7FBFA', pick:()=>{ this.setState({rpt2Menu:null}); fn(); }}))});
+    o.rpt2Saved=(o.rpt2Saved||[]).map(r=>({...r, ...mk('sv:'+r.name,[['View',r.view],['Edit',r.edit],['Duplicate',r.dup],['Export',r.exp],['Delete',r.del,true]])}));
+    o.rpt2Sched=(o.rpt2Sched||[]).map(r=>({...r, ...mk('sc:'+r.report,[['Edit schedule',r.edit],[r.toggleLabel,r.toggle],['Delete',r.del,true]])}));
+    o.rpt2Exports=(o.rpt2Exports||[]).map((r,i)=>({...r, ...mk('ex:'+i+r.report,[['Download',r.download],['Regenerate',r.regen],['Delete',r.del,true]])}));
+    return o; }
+  rpt2Vals() { const s=this.state, C=this.rptCfg(), tab=s.rptTab||'overview', q=(s.rptQ||'').trim().toLowerCase(), range=s.rptRange||'This month';
+    const B={green:['#E7F7EE','#15803D'],amber:['#FEF3E2','#B45309'],red:['#FDE8E8','#B42318'],blue:['#E9F1FD','#1D4ED8'],grey:['#F1F3F5','#667085'],violet:['#F0EAFD','#6D28D9']};
+    const SC={}; [['green',['completed','active','verified','signed','paid','present','approved','pass','passed','ready','issued','enrolled','resolved','renewed','on track','delivered','success','yes']],
+      ['amber',['pending','processing','in progress','expiring','expiring soon','late','pending review','on hold','partial','due','at risk','under review','docs pending','trial','grace period','half day','early exit','needs review','overloaded']],
+      ['red',['failed','expired','rejected','absent','cancelled','overdue','dropped','suspended','fail','refunded','no-show','declined','critical','no']],
+      ['blue',['rescheduled','recorded','on leave','scheduled','new','invited','upcoming','approved leave','renewal due']],['grey',['paused','draft','inactive','not started']]].forEach(([c,l])=>l.forEach(w=>SC[w]=c));
+    const bd=(x)=>B[SC[String(x).toLowerCase()]]||null;
+    const fire=(a,b,ok)=>this.fire(a,b,ok!==false);
+    const go=(k)=>()=>this.setState({rptTab:k});
+    const TABS=[['overview','Overview'],...C.tabs.map(t=>[t.k,t.label]),['saved','Saved Reports'],['scheduled','Scheduled'],['export','Export Center']];
+    const cur=C.tabs.find(t=>t.k===tab), isPerf=!!(cur&&cur.perf), isTable=!!(cur&&cur.cols);
+    const cell=(v,i,isB)=>{ const b=isB?bd(v):null; return {v:String(v), bD:b?'inline-block':'none', tD:b?'none':'inline', bg:b?b[0]:'transparent', fg:b?b[1]:'#475467', w:i===0?'600':'400', c:i===0?'#0F2A47':'#475467'}; };
+    const rows=isTable?cur.rows.filter(r=>!q||r.join(' ').toLowerCase().includes(q)):[];
+    const reportOf=(k)=>{ const t=C.tabs.find(x=>x.k===k); return t?t.report:C.tabs[0].report; };
+    const defSaved=()=>C.saved.map(([name,k,meta])=>({name,k,meta}));
+    const starred=Object.keys(s.rptStar||{}).filter(t=>s.rptStar[t]).map(t=>({name:t,k:'overview',meta:'Starred from report library',star:true}));
+    const saved=[...starred,...(s.rpt2Saved||defSaved())].filter(x=>!q||x.name.toLowerCase().includes(q));
+    const schP=s.rpt2Pause||{}, schD=s.rpt2SchDel||{};
+    const schRows=[...Object.keys(s.rptSched||{}).filter(t=>s.rptSched[t]).map(t=>[t,'Monthly','1st','06:00','PDF','Active']),...C.sched].filter(r=>!schD[r[0]]&&(!q||r[0].toLowerCase().includes(q)));
+    const exD=s.rpt2ExDel||{}, exR=s.rpt2Regen||{};
+    const exRows=[...Object.keys(s.rptDl||{}).filter(t=>s.rptDl[t]).map((t,i)=>['DL-'+i,t,'You','XLSX','—','Just now','Completed']),...C.exports.map((r,i)=>['EX-'+i,...r])].filter(r=>!exD[r[0]]&&(!q||r[1].toLowerCase().includes(q)));
+    return {
+      rptTabs: TABS.map(([k,label])=>({label, bg:tab===k?'#0E9384':'transparent', fg:tab===k?'#fff':'#6B7C93', weight:tab===k?'700':'500', go:go(k)})),
+      rpt2IsLib: tab==='overview'||(!cur&&!['saved','scheduled','export'].includes(tab)), rpt2IsTable:isTable, rpt2IsPerf:isPerf,
+      rpt2IsSaved: tab==='saved', rpt2IsSched: tab==='scheduled', rpt2IsExport: tab==='export',
+      rpt2Ph: cur ? 'Search '+cur.label.toLowerCase()+'…' : tab==='saved' ? 'Search saved reports…' : tab==='scheduled' ? 'Search schedules…' : tab==='export' ? 'Search exports…' : 'Search report types…',
+      rpt2Export: ()=>fire('Export queued', (cur?cur.label:'Reports')+' · '+range+' — you will be notified when ready'),
+      rpt2Title: isTable?cur.title.toUpperCase():'', rpt2Meta: rows.length+' records · '+range,
+      rpt2Cols: isTable?cur.cols.map(c=>({c})):[],
+      rpt2Rows: rows.map(r=>({cells:r.map((v,i)=>cell(v,i,(cur.b||[]).includes(i)))})),
+      rpt2RowsEmpty: isTable&&!rows.length?'block':'none',
+      rpt2Gen: ()=>this.rptOpen('generate', cur?cur.report:reportOf()),
+      rpt2Dl: ()=>fire('Downloading — '+(cur?cur.title:''), 'XLSX · '+rows.length+' records · '+range),
+      rpt2PerfT1: isPerf?cur.perf.t1:'', rpt2PerfT2: isPerf?cur.perf.t2:'',
+      rpt2PerfRows: isPerf?cur.perf.rows.map(([n,sub,sc])=>({n,sub,sc:String(sc),w:sc+'%',col:sc>=85?'#0E9384':sc>=70?'#D97706':'#B42318'})):[],
+      rpt2RankRows: isPerf?[...cur.perf.rows].sort((a,b)=>b[2]-a[2]).map((r,i)=>({rank:String(i+1),n:r[0],sub:r[3],sc:String(r[2]),rbg:i===0?'#FEF3E2':i<3?'#EEF6F5':'#F6F5F0',rfg:i===0?'#B45309':i<3?'#0B7A6E':'#475467'})):[],
+      rpt2SavedCount: String(saved.length), rpt2SavedEmpty: saved.length?'none':'block',
+      rpt2Saved: saved.map(x=>({name:x.name, meta:x.meta,
+        view: x.star ? ()=>this.rptOpen('preview', x.name) : go(x.k),
+        edit: ()=>this.rptOpen('generate', x.star?x.name:reportOf(x.k)),
+        dup: ()=>{ this.setState(p=>{ const L=[...(p.rpt2Saved||defSaved())]; const i=L.findIndex(y=>y.name===x.name); L.splice(i<0?0:i+1,0,{name:x.name+' — Copy',k:x.k,meta:'Duplicated just now'}); return {rpt2Saved:L}; }); fire('Report duplicated', x.name+' — Copy'); },
+        exp: ()=>fire('Exporting — '+x.name, range),
+        del: ()=>{ if(x.star) this.setState(p=>({rptStar:{...(p.rptStar||{}),[x.name]:false}})); else this.setState(p=>({rpt2Saved:(p.rpt2Saved||defSaved()).filter(y=>y.name!==x.name)})); fire('Report deleted', x.name); }})),
+      rpt2SchedCount: String(schRows.length), rpt2SchedEmpty: schRows.length?'none':'block',
+      rpt2Sched: schRows.map(([report,freq,date,time,fmt,st])=>{ const paused=schP[report]!==undefined?schP[report]:st==='Paused', b=B[paused?'grey':'green'];
+        return {report,freq,date,time,fmt,status:paused?'Paused':'Active',bg:b[0],fg:b[1],toggleLabel:paused?'Resume':'Pause',
+          toggle:()=>{ this.setState(p=>({rpt2Pause:{...(p.rpt2Pause||{}),[report]:!paused}})); fire(paused?'Schedule resumed':'Schedule paused', report); },
+          edit:()=>this.rptOpen('schedule', report),
+          del:()=>{ this.setState(p=>({rpt2SchDel:{...(p.rpt2SchDel||{}),[report]:true}, rptSched:{...(p.rptSched||{}),[report]:false}})); fire('Schedule removed', report); }}; }),
+      rpt2ExpCount: String(exRows.length), rpt2ExpEmpty: exRows.length?'none':'block',
+      rpt2Exports: exRows.map(([id,report,by,fmt,records,at,st])=>{ const status=exR[id]||st, b=B[SC[status.toLowerCase()]||'grey'];
+        return {report,by,fmt,records:String(records),at:exR[id]?'Just now':at,status,bg:b[0],fg:b[1],
+          download:()=>status==='Completed'?fire('Downloading — '+report, fmt+' · '+records+' records'):fire(status==='Failed'?'Export failed':'Still processing', status==='Failed'?'Regenerate this export to try again':'This export is not ready yet', false),
+          regen:()=>{ this.setState(p=>({rpt2Regen:{...(p.rpt2Regen||{}),[id]:'Processing'}})); fire('Report regenerating', report); setTimeout(()=>this.setState(p=>({rpt2Regen:{...(p.rpt2Regen||{}),[id]:'Completed'}})), 2500); },
+          del:()=>{ this.setState(p=>({rpt2ExDel:{...(p.rpt2ExDel||{}),[id]:true}, rptDl: id.startsWith('DL-')?{...(p.rptDl||{}),[report]:false}:p.rptDl})); fire('Export deleted', report); }}; })
+    };
+  }
+  rptOpen(mode, title) { this.setState({rx:{mode, title, range:this.state.rptRange||'This month'}}); }
+  rptCfg() { return {
+    tabs: [
+      {k:'master', label:'Speaker Directory', title:'Speaker directory', report:'Speaker Master', cols:['Speaker','Speaker ID','Expertise','Type','City','Events','Rating','Status'], b:[7], rows:[
+        ['Dr. Ankit Sharma','SPK-1101','Insurance & Risk','External','Mumbai',12,'★ 4.8','Active'],['Priya Mehta','SPK-1108','Life Insurance','External','Bengaluru',8,'★ 4.6','Active'],
+        ['Rahul Verma','SPK-1112','Claims Management','Internal','Delhi',6,'★ 4.1','Active'],['Sneha Kulkarni','SPK-1119','Underwriting','External','Pune',9,'★ 4.4','Active'],
+        ['Arvind Menon','SPK-1124','Regulatory Affairs','External','Chennai',2,'★ 3.9','Active'],['Kavita Rao','SPK-1131','Health Insurance','External','Hyderabad',0,'—','Inactive'],
+        ['Rajiv Kapoor','SPK-1136','Reinsurance','External','Gurugram',4,'★ 4.2','Active'],['Amit Sharma','SPK-1140','Motor Insurance','Internal','Jaipur',3,'★ 4.0','Active']]},
+      {k:'onboarding', label:'Onboarding', title:'Onboarding funnel', report:'Onboarding Report', cols:['Speaker','Invited','Application','Documents','Verification','Contract','Time Taken','Status'], b:[7], rows:[
+        ['Ananya Deshmukh','12 Aug','Submitted','Complete','Under Review','Pending','4 days','In Progress'],['Marcus Oyelaran','10 Aug','Submitted','Docs Pending','Not Started','Pending','6 days','Pending'],
+        ['Priya Raghunathan','09 Aug','Submitted','Complete','Under Review','Pending','5 days','In Progress'],['Sofia Bergström','02 Aug','Submitted','Complete','Verified','Signed','8 days','Approved'],
+        ['Meera Krishnan','28 Jul','Submitted','Complete','Verified','Signed','7 days','Approved'],['Daniel Okonkwo','05 Aug','Started','—','Not Started','—','—','Pending'],
+        ['Chen Wei Lin','01 Aug','Submitted','Complete','Rejected','—','9 days','Rejected']]},
+      {k:'verification', label:'Verification', title:'Verification status', report:'Onboarding Report', cols:['Speaker','KYC','Credentials','Bank','Contract','Overall'], b:[1,2,3,4,5], rows:[
+        ['Ananya Deshmukh','Pending','Pending','Pending','Pending','Pending'],['Marcus Oyelaran','Pending','Pending','Pending','Pending','Pending'],['Priya Raghunathan','Pending','Pending','Pending','Pending','Pending'],
+        ['Daniel Okonkwo','Pending','Pending','Pending','Pending','Pending'],['Sofia Bergström','Verified','Verified','Verified','Signed','Verified'],['Rahul Bhattacharya','Pending','Pending','Pending','Pending','Pending'],
+        ['Chen Wei Lin','Pending','Pending','Pending','Pending','Pending'],['Fatima Al-Rashid','Pending','Pending','Pending','Pending','Pending'],['James Whitfield','Pending','Pending','Pending','Pending','Pending'],
+        ['Meera Krishnan','Verified','Verified','Verified','Signed','Verified'],['Tobias Neumann','Pending','Pending','Pending','Pending','Pending'],['Grace Nakamura','Pending','Pending','Pending','Pending','Pending']]},
+      {k:'events', label:'Events', title:'Event report', report:'Event Performance', cols:['Event','Speaker','Date','Status','Reg','Attend %','Engagement','Rating'], b:[3], rows:[
+        ['Insurance — Foundations Webinar','Dr. Ankit Sharma','2026-08-24','Completed',250,'83%','88%','★ 4.6'],['Insurance — Advanced Case Study Workshop','Dr. Ankit Sharma','2026-08-10','Completed',288,'84%','96%','★ 5'],
+        ['Insurance — Exam Strategy Session','Dr. Ankit Sharma','2026-07-27','Rescheduled',272,'85%','95%','★ 4.9'],['Insurance — Live Doubt-Clearing Webinar','Dr. Ankit Sharma','2026-07-13','Completed',256,'85%','94%','★ 4.8'],
+        ['Insurance — Practical Application Workshop','Dr. Ankit Sharma','2026-06-29','Completed',294,'86%','93%','★ 4.8'],['Insurance — Industry Trends Briefing','Dr. Ankit Sharma','2026-06-15','Completed',277,'87%','92%','★ 4.8'],
+        ['Insurance — Scenario-Based Practice Workshop','Dr. Ankit Sharma','2026-06-01','Completed',261,'88%','91%','★ 4.7'],['Insurance — Career Pathways Webinar','Dr. Ankit Sharma','2026-05-18','Completed',299,'89%','90%','★ 4.6'],
+        ['Insurance — Regulatory Update Session','Dr. Ankit Sharma','2026-05-04','Completed',283,'90%','89%','★ 5'],['Insurance — Deep-Dive Masterclass','Dr. Ankit Sharma','2026-04-20','Cancelled',267,'91%','88%','★ 4.9']]},
+      {k:'performance', label:'Performance', report:'Event Performance', perf:{t1:'Speaker performance', t2:'Speaker ranking', rows:[
+        ['Dr. Ankit Sharma','12 events · 2,840 participants',94,'★ 4.8 · 87% attendance · 92% engagement'],['Priya Mehta','8 events · 1,920 participants',89,'★ 4.6 · 83% attendance · 88% engagement'],
+        ['Rahul Verma','6 events · 1,210 participants',74,'★ 4.1 · 71% attendance · 69% engagement'],['Sneha Kulkarni','9 events · 2,010 participants',84,'★ 4.4 · 79% attendance · 81% engagement'],
+        ['Arvind Menon','2 events · 210 participants',66,'★ 3.9 · 64% attendance · 58% engagement']]}},
+      {k:'payout', label:'Payout', title:'Payout report', report:'Payout Report', cols:['Payout ID','Speaker','Events','Fee','Tax','Net Payable','Status'], b:[6], rows:[
+        ['PO-9000','Dr. Ankit Sharma','12 events','₹18,000','₹21,600','₹1,94,400','Pending'],['PO-9001','Priya Mehta','8 events','₹19,500','₹15,600','₹1,40,400','Paid'],
+        ['PO-9002','Rahul Verma','6 events','₹21,000','₹12,600','₹1,13,400','Paid'],['PO-9003','Sneha Kulkarni','9 events','₹22,500','₹20,250','₹1,82,250','Paid'],['PO-9004','Arvind Menon','2 events','₹24,000','₹4,800','₹43,200','Pending']]},
+      {k:'contracts', label:'Contracts', title:'Contract report', report:'Contract Report', cols:['Speaker','Type','Start','Expiry','Fee Terms','Status'], b:[5], rows:[
+        ['Ananya Deshmukh','Standard Speaker Agreement','2025-01-10','in 45 days','Per event','Active'],['Sofia Bergström','Standard Speaker Agreement','2025-01-11','in 25 days','Per event','Expiring'],
+        ['Meera Krishnan','Standard Speaker Agreement','2025-01-12','in 12 days','Per event','Expiring'],['Arjun Nair','Standard Speaker Agreement','2025-01-13','in 5 days','Per event','Expiring Soon'],
+        ['Laila Haddad','Standard Speaker Agreement','2025-01-14','Expired 3d ago','Per event','Expired'],['Victor Ramos','Standard Speaker Agreement','2025-01-15','in 90 days','Per event','Active']]},
+      {k:'activity', label:'Activity', title:'Activity log', report:'Alert & Reminder Log', cols:['Timestamp','Speaker','Activity','Event','Performed By','Status'], b:[5], rows:[
+        ['26 Aug, 10:42 AM','Priya Mehta','Event Attended','Insurance Industry Trends Webinar','System','Completed'],['26 Aug, 09:15 AM','Amit Sharma','Document Uploaded','—','Speaker','Pending Review'],
+        ['25 Aug, 06:22 PM','Rajiv Kapoor','Event Declined','Underwriting Masterclass','Speaker','Recorded'],['25 Aug, 02:10 PM','Rahul Verma','Payout Processed','Claims Masterclass','Finance Admin','Completed'],
+        ['24 Aug, 11:00 AM','Kavita Rao','Onboarding Started','—','Speaker','In Progress'],['23 Aug, 04:20 PM','Sneha Kulkarni','Contract Signed','—','Speaker','Completed']]}
+    ],
+    saved: [['Monthly Speaker Performance','performance','Last viewed 2 days ago'],['Pending Speaker Payouts','payout','Last viewed yesterday'],['Speaker Onboarding Funnel','onboarding','Last viewed 4 days ago'],['Event Feedback','events','Last viewed today'],
+      ['Upcoming Speaker Events','events','Last viewed 3 days ago'],['Contract Expiry','contracts','Last viewed yesterday'],['Top Performing Speakers','performance','Last viewed 1 week ago'],['Speaker Attendance','activity','Last viewed 5 days ago']],
+    sched: [['Speaker Performance','Monthly','1st','09:00','XLSX','Active'],['Contract Expiry','Weekly','Monday','08:00','PDF','Active'],['Payout Summary','Monthly','1st','10:00','XLSX','Paused']],
+    exports: [['Speaker Master Report','Admin','XLSX',128,'26 Aug, 10:12 AM','Completed'],['Speaker Performance Report','Admin','PDF',22,'25 Aug, 04:40 PM','Completed'],['Payout Report','Finance Admin','CSV',22,'25 Aug, 02:15 PM','Completed'],
+      ['Onboarding Funnel','Admin','XLSX',18,'24 Aug, 09:00 AM','Processing'],['Contract Expiry Report','Admin','PDF',6,'22 Aug, 03:30 PM','Failed']]
+  }; }
+
   rptVals() { const s = this.state, LIB = [
   ['IS','People','Individual Speaker Report','One speaker, one document — pick the sections you need: events, ratings, payouts, availability.','PDF · XLSX','2 days ago'],
   ['SM','People','Speaker Master','Full speaker roster with contact details, expertise, status and onboarding stage. Filterable before export.','CSV · XLSX','Yesterday'],
@@ -12339,52 +12358,7 @@ class Component extends DCLogic {
         const close = ()=>this.setState({atModal:null, atCtx:null});
         const done = (msg,sub)=>()=>{ close(); this.fire(msg,sub); };
         const WHO = ATT.map(a=>a[0]);
-        const LW = (n)=>{ const a = ATT.find(x=>x[0]===n) || ATT[0]; const dv=(s.atXfer||{})[a[0]]||0, ev=a[17]+dv;
-          const wl = dv ? (ev>=9?'Overloaded':ev>=7?'High':ev>=5?'Normal':'Low') : a[18];
-          return {a, name:a[0], ev, wl, act:a[14], cap:(s.atCap||{})[a[0]]||{events:8, live:6}}; };
-        const verdictOf = (L)=> (L.wl==='Overloaded'||L.wl==='High') ? (L.act>=80 ? 'Healthy' : 'Attention required') : (L.act>=80 ? 'Available capacity' : 'Investigate');
-        const WORK = [['IC-11 Industry Masterclass','Masterclass','Lead speaker'],['Career Pathways Webinar','Webinar','Lead speaker'],['Licentiate Exam Strategy Panel','Panel Discussion','Panelist'],['Data Skills Workshop · Batch 2','Workshop','Lead speaker'],['Recorded Q&A Session','Webinar','Co-host'],['Alumni Mentoring Circle','Panel Discussion','Moderator'],['Hands-on Case Clinic','Workshop','Lead speaker'],['Weekend Revision Masterclass','Masterclass','Co-host'],['Industry Connect Live','Webinar','Lead speaker'],['Exam Day Briefing','Webinar','Lead speaker'],['Portfolio Review Clinic','Workshop','Co-host'],['Faculty Roundtable','Panel Discussion','Panelist']];
-        const DATES = ['18 Aug','20 Aug','22 Aug','25 Aug','27 Aug','29 Aug','1 Sep','3 Sep','5 Sep','8 Sep','10 Sep','12 Sep'];
-        const sel = s.atSel||[];
-        const workItems = (L, pick)=>WORK.slice(0, Math.max(0, L.ev)).map((w,i)=>{ const on = pick && sel.includes(i);
-          const st = i<2 ? ['Content pending','amber'] : i<4 ? ['Scheduled','blue'] : ['Confirmed','green'];
-          return {title:w[0], meta:w[1]+' · '+w[2]+' · '+DATES[i]+' 2026', status:st[0], sBg:BDG[st[1]][0], sFg:BDG[st[1]][1],
-            cbDisplay: pick?'grid':'none', cbBg: on?'#0E9384':'#fff', cbBd: on?'#0E9384':'#D0D5DD', cbMark: on?'block':'none',
-            rowBg: on?'#F7FBFA':'#fff', cur: pick?'pointer':'default',
-            toggle: pick ? ()=>this.setState(x=>{ const cur=x.atSel||[]; return {atSel: cur.includes(i)?cur.filter(j=>j!==i):cur.concat(i), atErr:null}; }) : undefined}; });
-        const stat = (l,v,fg)=>({l, v:String(v), fg:fg||'#0F2A47'});
-        const WLC = {Overloaded:'#B42318', High:'#B45309', Normal:'#15803D', Low:'#6B7C93'};
-        const L = LW(c.who);
-        const capEv = +(F.mwEv||L.cap.events), util = Math.round(L.ev/Math.max(1,capEv)*100);
-        const targets = ATT.filter(x=>x[0]!==L.name).map(x=>LW(x[0])).filter(t=>t.wl==='Low'||t.wl==='Normal').map(t=>t.name+' · '+t.ev+' events · '+t.wl);
-        const toLbl = F.xfTo && targets.includes(F.xfTo) ? F.xfTo : targets[0], toName = (toLbl||'').split(' · ')[0], toL = LW(toName);
         const D = {
-          loadView: {title:'Work — '+L.name, sub:L.a[1]+' · '+L.wl+' workload · activity '+L.act+' · '+verdictOf(L), primaryLabel:'Transfer Work',
-            hasStats:true, stats:[stat('Events',L.ev), stat('Registrants',L.ev*44), stat('Live sessions',L.ev*3), stat('Pending tasks', L.wl==='Overloaded'?8:L.wl==='High'?5:2), stat('Workload',L.wl,WLC[L.wl]), stat('Cap',L.cap.events+' / mo')],
-            hasItems:true, itemsTitle:'ASSIGNED WORK · '+L.ev+' EVENTS', items:workItems(L,false), selAllDisplay:'none', groups:[],
-            info:'Workload is read against activity — a management indicator, not an automatic verdict.',
-            primary: ()=>this.setState({atModal:'loadXfer', atSel:[], atErr:null, atF:{}})},
-          loadManage: {title:'Manage Workload — '+L.name, sub:L.ev+' events assigned · currently '+L.wl, primaryLabel:'Save Workload',
-            hasStats:true, stats:[stat('Assigned',L.ev+' events'), stat('Cap',capEv+' / mo'), stat('Utilisation',util+'%', util>100?'#B42318':util>=85?'#B45309':'#15803D'), stat('Activity',L.act)],
-            groups:[{t:'CAPACITY', fields:[fld('Max events per month','mwEv',String(L.cap.events),['4','5','6','7','8','9','10','12']), fld('Max live sessions per week','mwLive',String(L.cap.live),['3','4','5','6','8','10']), fld('Max co-host assignments','mwCo','4',['2','3','4','6'])]},
-              {t:'ASSIGNMENT RULES', fields:[fld('New assignments','mwNew', L.wl==='Overloaded'?'Paused until below cap':'Open',['Open','Open — approval required','Paused until below cap']), fld('Priority','mwPri','Standard',['High-demand events first','Standard','Backup speaker only']), fld('Review','mwRev','End of month',['Weekly','End of month','End of quarter'])]}],
-            info: util>100 ? 'Assigned events exceed the new cap — transfer '+(L.ev-capEv)+' event'+(L.ev-capEv>1?'s':'')+' to bring '+L.name.split(' ')[0]+' within capacity.' : 'Caps drive the workload label — above cap marks the speaker Overloaded and blocks auto-assignment.',
-            primary: ()=>{ const lv=+(F.mwLive||L.cap.live); this.setState(x=>({atModal:null, atCtx:null, atCap:{...(x.atCap||{}), [L.name]:{events:capEv, live:lv}}}));
-              this.fire('Workload updated — '+L.name, 'Cap '+capEv+' events/month · '+(F.mwNew||(L.wl==='Overloaded'?'Paused until below cap':'Open'))+' · audit logged'); }},
-          loadXfer: {title:'Transfer Work — '+L.name, sub:'Move assigned events to a speaker with available capacity',
-            primaryLabel: sel.length ? 'Transfer '+sel.length+' Item'+(sel.length>1?'s':'') : 'Transfer Work',
-            hasItems:true, itemsTitle:'SELECT WORK · '+sel.length+' OF '+L.ev+' SELECTED', items:workItems(L,true),
-            selAllDisplay:'inline-flex', selAllLabel: sel.length===L.ev && L.ev ? 'Clear all' : 'Select all',
-            selAll: ()=>this.setState({atSel: sel.length===L.ev ? [] : [...Array(Math.min(L.ev,WORK.length)).keys()], atErr:null}),
-            groups:[{t:'TRANSFER TO', fields:[fld('Receiving speaker','xfTo',toLbl,targets), fld('Role','xfRole','Keep original role',['Keep original role','Lead speaker','Co-host']), fld('Effective','xfWhen','Immediately',['Immediately','From next event','From 1 Sep 2026'])]},
-              {t:'HANDOVER', fields:[fld('Reason','xfWhy', L.wl==='Overloaded'?'Workload rebalancing':'Availability conflict',['Workload rebalancing','Availability conflict','Speaker on leave','Performance concern','Speaker request']), fld('Content & registrants','xfData','Move content, Q&A and registrants',['Move content, Q&A and registrants','Move registrants only','Keep content with original speaker']), fld('Notify','xfNotify','Both speakers + registrants',['Both speakers + registrants','Both speakers only','Do not notify'])]}],
-            info: 'After transfer: '+L.name+' '+L.ev+' → '+(L.ev-sel.length)+' events · '+toName+' '+toL.ev+' → '+(toL.ev+sel.length)+' events. Logged in the audit trail.',
-            hasErr: !!s.atErr, err: s.atErr||'',
-            primary: ()=>{ if (!sel.length) { this.setState({atErr:'Select at least one work item to transfer.'}); return; }
-              if (!toName) { this.setState({atErr:'No speaker has available capacity — raise a cap in Manage Workload first.'}); return; }
-              const n = sel.length;
-              this.setState(x=>{ const X={...(x.atXfer||{})}; X[L.name]=(X[L.name]||0)-n; X[toName]=(X[toName]||0)+n; return {atXfer:X, atModal:null, atCtx:null, atSel:[], atErr:null}; });
-              this.fire(n+' event'+(n>1?'s':'')+' transferred to '+toName, 'From '+L.name+' · '+(F.xfNotify||'Both speakers + registrants')+' notified', true); }},
           attExport: {title:'Generate Report', sub:'Attendance and activity reports · runs in the background', primaryLabel:'Generate Report',
             groups:[{t:'REPORT', fields:[fld('Report','aeReport','Attendance summary',['Daily attendance','Monthly attendance','Attendance summary','Late arrival report','Early checkout report','Absence report','Leave report','Missing punch report','Working hours report','Overtime report','Regularization report','Activity report','Workload report','Exception report']), fld('Date range','aeRange','This month',['Today','This week','This month','Last month','This quarter','Custom range']), fld('People','aeWho', c.who||'All', ['All'].concat(WHO))]},
               {t:'OUTPUT', fields:[fld('Format','aeFmt','Excel (.xlsx)',['Excel (.xlsx)','CSV (.csv)','PDF (.pdf)']), fld('Delivery','aeDel','Download when ready',['Download when ready','Email to me','Save to reports library'])]}],
@@ -12555,7 +12529,7 @@ class Component extends DCLogic {
         ['SLA adherence','96%','Target 95%','green']]
         .map(([label,v,target,c])=>({label,v,target, sBg:BDG[c][0], sFg:BDG[c][1]})),
 
-      atLoadRows: ATT.map(a0=>{ const dv=(s.atXfer||{})[a0[0]]||0, ev=a0[17]+dv; const a=a0.slice(); a[17]=ev; if (dv) a[18]= ev>=9?'Overloaded':ev>=7?'High':ev>=5?'Normal':'Low'; return a; }).map(a=>({
+      atLoadRows: ATT.map(a=>({
         name:a[0], id:a[1], batches:String(a[17]), workload:a[18],
         courses: a[17]>=8 ? '3' : a[17]>=6 ? '2' : '1',
         students: String(a[17]*44), teachers: String(Math.round(a[17]*1.6)),
@@ -12569,12 +12543,6 @@ class Component extends DCLogic {
           : (a[14]>=80 ? 'Available capacity' : 'Investigate'),
         vBg: (a[18]==='Overloaded'||a[18]==='High') ? (a[14]>=80 ? '#E7F7EE' : '#FDE8E8') : (a[14]>=80 ? '#E9F1FD' : '#FEF3E2'),
         vFg: (a[18]==='Overloaded'||a[18]==='High') ? (a[14]>=80 ? '#15803D' : '#B42318') : (a[14]>=80 ? '#1D4ED8' : '#B45309'),
-        menuDisplay: s.atMenu==='L'+a[1] ? 'block' : 'none',
-        menu: ()=>this.setState({atMenu: s.atMenu==='L'+a[1] ? null : 'L'+a[1]}),
-        menuItems: [['View Work','loadView'],['Manage Workload','loadManage'],['Transfer Work','loadXfer'],['View Speaker 360°','']].map(([label,k],i)=>({label,
-          fg:'#344054', hbg:'#F7FBFA', bt: i===3 ? '1px solid #F2F0EA' : 'none', mt: i===3 ? '4px' : '0', pt: i===3 ? '8px' : '0',
-          pick: k ? (()=>this.setState({atMenu:null, atModal:k, atCtx:{who:a[0]}, atSel:[], atErr:null, atF:{}}))
-            : (()=>{ this.setState({atMenu:null}); this.fire('Opening 360° — '+a[0], 'Overview'); })})),
         open: ()=>{ this.setState({atMenu:null}); this.fire('Opening 360° — '+a[0], 'Overview'); }})),
       atMatrix: [
         ['High event load','High activity','Healthy','green'],
@@ -12672,60 +12640,7 @@ class Component extends DCLogic {
     };
   }
 
-  dspOpen = (kind, d) => this.setState({dspM:{kind, d, dec:'full', amt:'', via:'Adjustment in next cycle', cause:'Calculation error', reason:'Calculation verified as correct', appeal:'Allowed within 7 days', ev:['Calculation breakdown'], notify:['Email','In-app'], note:'', err:null}});
-  dspFix = (r) => { const o = (this.state.dspOv||{})[r.id]; if (!o) return r;
-    const C = o.state==='Resolved' ? ['#E7F7EE','#15803D'] : ['#F1F3F5','#667085'];
-    return {...r, state:o.state, status:o.state, sBg:C[0], sFg:C[1], response:o.response, actionsDisplay:'none', resolveDisplay:'none', actsDisplay:'none'}; };
-  dspVals = (payee) => {
-    const m = this.state.dspM; if (!m) return {dspM:{open:false}};
-    const d = m.d, num = (v)=>Number(String(v).replace(/[^0-9.]/g,''))||0, inr = (n)=>'₹'+Math.round(n).toLocaleString('en-IN');
-    const diffN = num(d.diff), up = (p)=>this.setState(x=>({dspM:{...x.dspM, ...p, err:null}}));
-    const chips = (list, key)=>list.map(n=>{ const on = (m[key]||[]).includes(n); return {n, bd:on?'#0E9384':'#E5E3DC', bg:on?'#EEF6F5':'#fff', fg:on?'#0B7A6E':'#475467', toggle:()=>up({[key]: on ? m[key].filter(x=>x!==n) : (m[key]||[]).concat(n)})}; });
-    const isR = m.kind==='resolve', partial = m.dec==='partial';
-    const amtN = partial ? num(m.amt) : diffN;
-    const fail = (err)=>this.setState(x=>({dspM:{...x.dspM, err}}));
-    const close = ()=>this.setState({dspM:null});
-    const commit = (state, response, msg, sub)=>{ this.setState(x=>({dspM:null, dspOv:{...(x.dspOv||{}), [d.id]:{state, response}}})); this.fire(msg, sub, true); };
-    return {dspM: {open:true, isResolve:isR, isReject:!isR, close,
-      title: (isR ? 'Resolve dispute' : 'Reject dispute')+' — '+d.id,
-      sub: d.name+' · '+d.txn+' · '+d.kind,
-      iBg: isR ? '#E7F7EE' : '#FDE8E8', iFg: isR ? '#15803D' : '#B42318',
-      iPath: isR ? 'M20 6 9 17l-5-5' : 'M18 6 6 18M6 6l12 12',
-      claimed:d.claimed, calc:d.calc, diff:d.diff, comment:d.comment, claimLabel: payee.toUpperCase()+' CLAIM',
-      payeeLower: payee.toLowerCase(),
-      decisions: [['full','Accept full claim','Pay the full difference of '+d.diff],['partial','Partial settlement','Pay part of the difference']].map(([k,label,sub])=>{ const on=m.dec===k;
-        return {label, sub, bd:on?'#0E9384':'#ECEAE2', bg:on?'#EEF6F5':'#fff', dot:on?'#0E9384':'#D0D5DD', pick:()=>up({dec:k, amt: k==='full' ? '' : m.amt})}; }),
-      amt: partial ? m.amt : String(diffN), setAmt:(e)=>up({amt:e.target.value.replace(/[^0-9]/g,'')}), amtLocked: !partial,
-      amtBg: partial ? '#fff' : '#F6F5F0', amtBd: m.err && partial && (!amtN || amtN>=diffN) ? '#F0D2CF' : '#E5E3DC',
-      via:m.via, setVia:(e)=>up({via:e.target.value}), viaOpts:['Adjustment in next cycle','Add to current pending payout','Off-cycle payment within 48 h'].map(o=>({o})),
-      cause:m.cause, setCause:(e)=>up({cause:e.target.value}), causeOpts:['Calculation error','Missing sessions / attendance','Rate or agreement mismatch','Refund or deduction applied late','Other'].map(o=>({o})),
-      reason:m.reason, setReason:(e)=>up({reason:e.target.value}), reasonOpts:['Calculation verified as correct','Insufficient evidence provided','Outside the 30-day dispute window','Policy does not apply','Duplicate of an earlier dispute'].map(o=>({o})),
-      appeal:m.appeal, setAppeal:(e)=>up({appeal:e.target.value}), appealOpts:['Allowed within 7 days','Allowed within 30 days','Not allowed — final decision'].map(o=>({o})),
-      evidence: chips(['Calculation breakdown','Attendance / session log','Agreement clause','Payment record'],'ev'),
-      notify: chips(['Email','In-app','WhatsApp'],'notify'),
-      note:m.note, setNote:(e)=>up({note:e.target.value}),
-      noteLabel: isR ? 'Resolution note' : 'Explanation to the '+payee.toLowerCase(),
-      notePh: isR ? 'What was wrong and how it is being corrected' : 'Why the calculated amount stands — shared with the '+payee.toLowerCase(),
-      noteHint: isR ? 'Shared with the '+payee.toLowerCase()+' and written to the audit trail.' : 'Minimum 20 characters · shared with the '+payee.toLowerCase()+' together with the selected evidence.',
-      noteBd: m.err && (m.note||'').trim().length < (isR?1:20) ? '#F0D2CF' : '#E5E3DC',
-      infoBg: isR ? '#EEF6F5' : '#FEF7F6', infoFg: isR ? '#0B7A6E' : '#B42318',
-      info: isR ? d.name+' receives '+inr(amtN||0)+' via '+m.via.toLowerCase()+'. The payout line is released and the dispute closes as Resolved.'
-               : 'The payout stays at '+d.calc+'. The '+payee.toLowerCase()+' is notified'+((m.notify||[]).length ? ' by '+m.notify.join(', ') : '')+' · re-appeal: '+m.appeal.toLowerCase()+'.',
-      hasErr: !!m.err, err: m.err||'',
-      btn: isR ? 'Resolve · pay '+inr(amtN||0) : 'Reject dispute', pBg: isR ? '#0E9384' : '#B42318',
-      submit: ()=>{
-        if (isR) {
-          if (partial && (!amtN || amtN>=diffN)) return fail('Enter a partial amount between ₹1 and '+inr(diffN-1)+', or choose Accept full claim.');
-          if (!(m.note||'').trim()) return fail('Add a resolution note — it is shared with the '+payee.toLowerCase()+'.');
-          commit('Resolved', inr(amtN)+' approved · '+m.via+' · '+m.cause, 'Dispute resolved — '+d.id, d.name+' · '+inr(amtN)+' · '+m.via);
-        } else {
-          if ((m.note||'').trim().length < 20) return fail('Explain the rejection in at least 20 characters.');
-          commit('Rejected', m.reason+' · re-appeal '+m.appeal.toLowerCase(), 'Dispute rejected — '+d.id, d.name+' notified · '+m.reason);
-        }
-      }}};
-  };
-
-  renderVals() { const v = this.renderVals1(); Object.assign(v, this.rxVals()); Object.assign(v, this.attVals()); Object.assign(v, this.rptVals()); { const o=v.perfOutcomes||{}; const conv=Array.isArray(o.conversion)?o.conversion:[]; const num=(x)=>parseFloat(String(x).replace(/[^0-9.]/g,''))||0;
+  renderVals() { const v = this.renderVals1(); Object.assign(v, this.rxVals()); Object.assign(v, this.attVals()); Object.assign(v, this.rptVals()); Object.assign(v, this.rpt2Menus(this.rpt2Vals())); { const o=v.perfOutcomes||{}; const conv=Array.isArray(o.conversion)?o.conversion:[]; const num=(x)=>parseFloat(String(x).replace(/[^0-9.]/g,''))||0;
       const COL=['#0B1F3E','#14335C','#0E9384','#0E9384','#5AC0B0','#15803D','#15803D'];
       v.perfConvSteps = conv.map((c,i)=>({label:c.label, n:c.n, color:COL[Math.min(i,COL.length-1)]}));
       const reg=conv[0]?num(conv[0].n):0, enr=(conv.find(c=>/Enrol/i.test(c.label))||{}).n, att=(conv.find(c=>/^Attendees/i.test(c.label))||{}).n;
@@ -14892,19 +14807,14 @@ class Component extends DCLogic {
           {name:'IC-11 Presentation Deck v2',event:'IC-11 Masterclass',version:'2',status:'Approved',type:'PPTX · 14.2 MB',up:'22 Aug 2026',by:'Ananya Deshmukh'},
           {name:'Underwriting Case Studies',event:'Underwriting Fundamentals',version:'1',status:'Published',type:'PDF · 3.8 MB',up:'01 Aug 2026',by:'Ananya Deshmukh'},
           {name:'Regulatory Update Slides',event:'Regulatory Update Panel',version:'3',status:'Published',type:'PPTX · 9.6 MB',up:'25 Jul 2026',by:'Priya Singh'},
-          {name:'Claims Workshop Worksheet',event:'Claims Handling Workshop',version:'1',status:'Published',type:'DOCX · 1.1 MB',up:'12 Aug 2026',by:'Ananya Deshmukh'},
-          {name:'Claims Settlement Checklist',event:'Mastering Insurance Claims',version:'2',status:'Under review',type:'PDF · 2.4 MB',up:'10 Oct 2026',by:'Ananya Deshmukh'},
-          {name:'Fraud Indicators Primer',event:'Mastering Insurance Claims',version:'1',status:'Unpublished',type:'PDF · 1.9 MB',up:'14 Jul 2026',by:'Priya Singh'}];
+          {name:'Claims Workshop Worksheet',event:'Claims Handling Workshop',version:'1',status:'Published',type:'DOCX · 1.1 MB',up:'12 Aug 2026',by:'Ananya Deshmukh'}];
         const ov = s.spkCOv||{};
         const items = BASE.map((c,i)=>({...c, ...(ov[i]||{})}));
-        const ST = {Approved:['#E9F1FD','#1D4ED8'], Published:['#E7F7EE','#15803D'], 'Under review':['#FEF3E2','#B45309'], 'In review':['#FEF3E2','#B45309'], Unpublished:['#F2F4F7','#667085']};
-        const CTA = {Approved:['Publish','evResPublish',0], Published:['Unpublish','evResUnpublish',1], 'Under review':['Review','evResReview',0], 'In review':['Review','evResReview',0], Unpublished:['Republish','evResRepublish',0]};
+        const ST = {Approved:['#E9F1FD','#1D4ED8'], Published:['#E7F7EE','#15803D'], 'In review':['#FEF3E2','#B45309']};
         const m = s.spkCM, cur = m ? items[m.i] : null;
         const close = ()=>this.setState({spkCM:null});
         return {
           spkContent: items.map((c,i)=>({...c, bg:ST[c.status][0], fg:ST[c.status][1],
-            cta: CTA[c.status][0], ctaBd: CTA[c.status][2] ? '#F0D2CF' : '#BFE3DC', ctaFg: CTA[c.status][2] ? '#B42318' : '#0B7A6E', ctaHbg: CTA[c.status][2] ? '#FEF7F6' : '#EEF6F5',
-            ctaGo: ()=>this.setState({modal:CTA[c.status][1], evErr:null, evRes:{i, name:c.name, version:c.version, status:c.status}}),
             menuShow: s.spkCMenu===i ? 'flex' : 'none',
             toggle:(e)=>{ e&&e.stopPropagation&&e.stopPropagation(); this.setState({spkCMenu: s.spkCMenu===i ? null : i}); },
             view:()=>this.setState({spkCMenu:null, spkCM:{kind:'view', i}}),
@@ -14925,7 +14835,7 @@ class Component extends DCLogic {
             submit:()=>{
               if (!m.file || !(m.note||'').trim()) return this.setState({spkCM:{...m, err: !m.file ? 'Choose the replacement file first.' : 'Say what changed — the reviewer needs it.'}});
               const nv = String(+cur.version+1);
-              this.setState({spkCM:null, spkCOv:{...ov, [m.i]:{version:nv, status:'Under review', up:'12 Oct 2026', by:'Dr. Sarah Johnson'}}});
+              this.setState({spkCM:null, spkCOv:{...ov, [m.i]:{version:nv, status:'In review', up:'12 Oct 2026', by:'Dr. Sarah Johnson'}}});
               this.fire('New version submitted — '+cur.name, 'v'+cur.version+' → v'+nv+' · sent to review');
             }}
         };
@@ -15132,10 +15042,10 @@ class Component extends DCLogic {
                 discount: disc ? '₹'+disc : '—',
                 gst:'₹'+Math.round((amt-disc)*0.18),
                 bg: i%2 ? '#FCFBF7' : '#fff', sBg:B[c][0], sFg:B[c][1]})),
-              finActions: [['Download Invoices','evInvoices',0],['Send Payment Link','evPayLink',0],['Issue Refund','evRefund',1]]
-                .map(([label,k,danger])=>({label,
+              finActions: [['Download Invoices',0],['Send Payment Link',0],['Issue Refund',1]]
+                .map(([label,danger])=>({label,
                   border: danger?'#F0D2CF':'#E5E3DC', fg: danger?'#B42318':'#344054', hbg: danger?'#FEF7F6':'#F6F5F0',
-                  go:()=>this.setState({modal:k, evErr:null})}))
+                  go:()=>this.fire(label, e.title+' · '+e.regs+' registrations · '+money(net)+' net', true)}))
             };
           })(),
 
@@ -16008,99 +15918,7 @@ class Component extends DCLogic {
           value: s['ev_'+key] ?? def, ph: ph||'', opts:[], hint:'', hintShow:'none',
           set:(e)=>this.setState({['ev_'+key]:e.target.value, evErr:null})});
 
-        const R = s.evRes || {i:0, name:'', version:'1', status:''};
-        const resPatch = (status)=>()=>({spkCOv:{...(s.spkCOv||{}), [R.i]:{...((s.spkCOv||{})[R.i]||{}), status}}});
-        const INV = ['INV-2026-991 · Aarav Sharma · ₹499','INV-2026-988 · Diya Nair · ₹399','INV-2026-984 · Rohan Kulkarni · ₹499','INV-2026-979 · Ananya Rao · ₹399','INV-2026-972 · Ishaan Verma · ₹499','INV-2026-965 · Kabir Menon · ₹499'];
         const FLOWS = {
-          evInvoices: {
-            title:'Download invoices', sub:ev.title+' · '+ev.regs+' paid registrations',
-            fields:[
-              F('Invoices','ivWhich','All paid invoices',['All paid invoices','Single invoice','Discounted invoices only','Refunded invoices + credit notes']),
-              F('Invoice','ivOne',INV[0],INV),
-              F('Date range','ivRange','Event lifetime',['Event lifetime','Last 7 days','This month','Custom range']),
-              F('Format','ivFmt','ZIP of PDFs',['ZIP of PDFs','Single merged PDF','XLSX register','CSV register']),
-              F('Include','ivInc','Invoice + GST breakup',['Invoice only','Invoice + GST breakup','Invoice + GST + payment receipt']),
-              F('Delivery','ivDel','Download when ready',['Download when ready','Email to me','Email to finance team'])
-            ],
-            info:'GST invoices carry the StudyCrux GSTIN and invoice series. Large exports are prepared in the background and logged in the activity trail.',
-            btn:'Download Invoices', danger:false,
-            done:()=>((s.ev_ivWhich||'All paid invoices')==='Single invoice' ? (s.ev_ivOne||INV[0]).split(' · ')[0] : (s.ev_ivWhich||'All paid invoices')+' · '+ev.regs)+' · '+(s.ev_ivFmt||'ZIP of PDFs')+' · '+(s.ev_ivDel||'Download when ready')
-          },
-          evPayLink: {
-            title:'Send payment link', sub:ev.title+' · '+ev.date,
-            fields:[
-              F('Send to','plWho','Pending registrations (14)',['Pending registrations (14)','Abandoned checkouts (9)','Waitlist (6)','Single participant']),
-              F('Email or mobile','plTo','',null,'Only for a single participant'),
-              F('Amount','plAmt',ev.price||'₹499'),
-              F('Coupon','plCoupon','None',['None','EARLYBIRD · ₹100 off','PARTNER20 · 20% off','Complimentary']),
-              F('Channel','plCh','Email + WhatsApp',['Email + WhatsApp','Email only','SMS + Email','WhatsApp only']),
-              F('Link expires','plExp','48 hours',['24 hours','48 hours','7 days','At event start'])
-            ],
-            info:'Links open Razorpay checkout (UPI, card, netbanking). A seat is held until the link expires; unpaid links auto-remind once at 50% of the window.',
-            btn:'Send Link', danger:false, requires:['plAmt'],
-            done:()=>((s.ev_plWho||'Pending registrations (14)')==='Single participant' ? (s.ev_plTo||'participant') : (s.ev_plWho||'Pending registrations (14)'))+' · '+(s.ev_plAmt||ev.price||'₹499')+' · '+(s.ev_plCh||'Email + WhatsApp')+' · expires in '+(s.ev_plExp||'48 hours')
-          },
-          evRefund: {
-            title:'Issue refund', sub:ev.title+' · refunds settle in 5–7 working days',
-            fields:[
-              F('Invoice','rfInv',INV[0],INV),
-              F('Refund type','rfType','Full refund',['Full refund','Partial refund','Credit to StudyCrux wallet']),
-              F('Amount','rfAmt',((s.ev_rfInv||INV[0]).split(' · ')[2])||'₹499'),
-              F('Refund to','rfTo','Original payment method',['Original payment method','StudyCrux wallet']),
-              F('Registration','rfReg','Cancel registration',['Cancel registration','Keep registration (goodwill refund)']),
-              TA('Reason','rfReason','','Required — printed on the GST credit note')
-            ],
-            info:'A GST credit note is issued automatically and the gateway fee is not recoverable. Refunds above ₹2,000 need finance approval.',
-            btn:'Issue Refund', danger:true, requires:['rfAmt','rfReason'],
-            done:()=>(s.ev_rfInv||INV[0]).split(' · ').slice(0,2).join(' · ')+' · '+(s.ev_rfAmt||(s.ev_rfInv||INV[0]).split(' · ')[2])+' → '+(s.ev_rfTo||'Original payment method')+' · credit note issued'
-          },
-          evResReview: {
-            title:'Review resource', sub:R.name+' · v'+R.version+' · '+R.status,
-            fields:[
-              F('Decision','rvDec','Approve',['Approve','Approve and publish','Request changes']),
-              F('Checks','rvChk','Content accurate · brand compliant',['Content accurate · brand compliant','Accurate · needs brand fixes','Inaccurate content']),
-              TA('Reviewer note','rvNote','','Shared with the speaker — required when requesting changes')
-            ],
-            info:'Approved resources can be published to registrants. Requesting changes keeps the file under review and notifies the speaker.',
-            btn:'Submit Review', danger:false,
-            patch: ()=>{ const d=s.ev_rvDec||'Approve'; return d==='Request changes' ? {} : resPatch(d==='Approve' ? 'Approved' : 'Published')(); },
-            done:()=>R.name+' · '+((s.ev_rvDec||'Approve')==='Request changes' ? 'changes requested — speaker notified' : (s.ev_rvDec||'Approve')==='Approve' ? 'approved' : 'approved and published')
-          },
-          evResPublish: {
-            title:'Publish resource', sub:R.name+' · v'+R.version,
-            fields:[
-              F('Visible to','pbVis','All registrants',['All registrants','Attendees only','Public','Internal only']),
-              F('Available','pbWhen','Immediately',['Immediately','1 hour before event','At event start','After event ends']),
-              F('Download','pbDl','View and download',['View and download','View only']),
-              F('Notify','pbNotify','Email + in-app',['Email + in-app','In-app only','Do not notify'])
-            ],
-            info:'Published resources appear in the participant portal and the event page.',
-            btn:'Publish', danger:false, patch: resPatch('Published'),
-            done:()=>R.name+' · '+(s.ev_pbVis||'All registrants')+' · '+(s.ev_pbWhen||'Immediately')
-          },
-          evResUnpublish: {
-            title:'Unpublish resource', sub:R.name+' · v'+R.version+' · currently published',
-            fields:[
-              F('Reason','upWhy','Content outdated',['Content outdated','Error found','Replaced by new version','Speaker request','Compliance review']),
-              F('Existing downloads','upDl','Keep access for downloaded copies',['Keep access for downloaded copies','Revoke portal access']),
-              TA('Note','upNote','','Required — recorded in the audit trail')
-            ],
-            info:'Participants lose access in the portal immediately. The file and its versions stay in the library.',
-            btn:'Unpublish', danger:true, requires:['upNote'], patch: resPatch('Unpublished'),
-            done:()=>R.name+' · '+(s.ev_upWhy||'Content outdated')+' · audit logged'
-          },
-          evResRepublish: {
-            title:'Republish resource', sub:R.name+' · v'+R.version+' · currently unpublished',
-            fields:[
-              F('Version','rpVer','v'+R.version+' (current)',['v'+R.version+' (current)','Upload a new version first']),
-              F('Visible to','rpVis','All registrants',['All registrants','Attendees only','Public','Internal only']),
-              F('Notify','rpNotify','In-app only',['Email + in-app','In-app only','Do not notify'])
-            ],
-            info:'Republishing restores portal access with the same link. Choose a new version to send it through review first.',
-            btn:'Republish', danger:false,
-            patch: ()=>(s.ev_rpVer||'').startsWith('Upload') ? resPatch('Under review')() : resPatch('Published')(),
-            done:()=>R.name+' · '+((s.ev_rpVer||'').startsWith('Upload') ? 'sent to review' : (s.ev_rpVis||'All registrants'))
-          },
           evEditEvent: {
             title:'Edit event', sub:ev.title+' · '+ev.date,
             fields:[
@@ -16575,12 +16393,12 @@ class Component extends DCLogic {
           evErr: s.evErr||'', evErrShow: s.evErr ? 'block' : 'none',
           evSubmit: ()=>{
             const req = flow.requires || [];
-            const miss = req.find(k2=>{ const fd = flow.fields.find(x=>x.key===k2); return !String(fd ? fd.value : (s['ev_'+k2]||'')).trim(); });
+            const miss = req.find(k2=>!String(s['ev_'+k2]||'').trim());
             if (miss) {
               const f = flow.fields.find(x=>x.key===miss);
               return this.setState({evErr:(f ? f.label : 'A required field')+' is required.'});
             }
-            this.setState({modal:null, ...(flow.patch ? flow.patch() : {})});
+            this.setState({modal:null});
             this.fire(flow.title, flow.done ? flow.done() : ev.title, true);
           }
         };

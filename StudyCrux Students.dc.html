@@ -1357,7 +1357,7 @@
           <div style="display:flex;align-items:center;gap:9px;margin-bottom:16px;flex-wrap:wrap">
             <div style="position:relative;flex:1;min-width:220px">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#98A2B3" stroke-width="2.1" stroke-linecap="round" style="position:absolute;left:12px;top:11px"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.6-3.6" /></svg>
-              <input value="{{ rptQ }}" onChange="{{ setRptQ }}" placeholder="Search report types…" style="width:100%;height:37px;padding:0 13px 0 34px;border:1px solid #E5E3DC;border-radius:9px;font-size:13px;color:#0F2A47;background:#fff;outline:0;box-sizing:border-box;font-family:inherit" />
+              <input value="{{ rptQ }}" onChange="{{ setRptQ }}" placeholder="{{ rpt2Ph }}" style="width:100%;height:37px;padding:0 13px 0 34px;border:1px solid #E5E3DC;border-radius:9px;font-size:13px;color:#0F2A47;background:#fff;outline:0;box-sizing:border-box;font-family:inherit" />
             </div>
             <select value="{{ rptCat }}" onChange="{{ setRptCat }}" style="height:37px;padding:0 11px;border:1px solid #E5E3DC;border-radius:9px;font-size:12.5px;background:#fff;color:#0F2A47;outline:0">
               <sc-for list="{{ rptCatOpts }}" as="o" hint-placeholder-count="5"><option value="{{ o.o }}" selected="{{ o.sel }}">{{ o.label }}</option></sc-for>
@@ -1365,47 +1365,217 @@
             <select value="{{ rptRange }}" onChange="{{ setRptRange }}" style="height:37px;padding:0 11px;border:1px solid #E5E3DC;border-radius:9px;font-size:12.5px;background:#fff;color:#0F2A47;outline:0">
               <sc-for list="{{ rptRangeOpts }}" as="o" hint-placeholder-count="5"><option value="{{ o.o }}" selected="{{ o.sel }}">{{ o.o }}</option></sc-for>
             </select>
+            <button onClick="{{ rpt2Export }}" style="display:flex;align-items:center;gap:7px;height:37px;padding:0 15px;border-radius:9px;border:0;background:#0E9384;font-size:12.5px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit" style-hover="background:#0B7A6E"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M4.5 19h15" /></svg>Export</button>
           </div>
 
           <div style="display:flex;gap:2px;background:#fff;border:1px solid #ECEAE2;border-radius:12px;padding:4px;margin-bottom:16px;overflow-x:auto">
-            <sc-for list="{{ rptTabs }}" as="t" hint-placeholder-count="8">
-              <button onClick="{{ t.go }}" style="height:33px;padding:0 13px;border:0;border-radius:8px;font-size:12px;cursor:pointer;background:{{ t.bg }};color:{{ t.fg }};font-weight:{{ t.weight }};white-space:nowrap;flex:none">{{ t.label }}</button>
+            <sc-for list="{{ rptTabs }}" as="t" hint-placeholder-count="12">
+              <button onClick="{{ t.go }}" style="height:33px;padding:0 13px;border:0;border-radius:8px;font-size:12px;cursor:pointer;background:{{ t.bg }};color:{{ t.fg }};font-weight:{{ t.weight }};white-space:nowrap;flex:none;font-family:inherit">{{ t.label }}</button>
             </sc-for>
           </div>
 
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px">
-            <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
-            <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">{{ rptHead }}</span>
-            <span style="flex:1;height:1px;background:#F0EEE7"></span>
-            <span style="font-size:11.5px;color:#98A2B3">{{ rptCount }} of {{ rptTotal }} report types</span>
-          </div>
-          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px">
-            <sc-for list="{{ rptCards }}" as="r" hint-placeholder-count="9">
-              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:20px 22px;display:flex;flex-direction:column" style-hover="border-color:#BFE3DC;box-shadow:0 8px 22px rgba(11,31,62,.05)">
-                <div style="display:flex;align-items:flex-start;gap:12px">
-                  <div style="width:40px;height:40px;flex:none;border-radius:11px;background:{{ r.ibg }};color:{{ r.ifg }};display:grid;place-items:center;font-size:13px;font-weight:800;letter-spacing:.02em">{{ r.code }}</div>
-                  <span style="flex:1"></span>
-                  <span style="font-size:10px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.cBg }};color:{{ r.cFg }}">{{ r.cat }}</span>
-                  <button onClick="{{ r.star }}" title="Save report" style="width:28px;height:28px;flex:none;border-radius:8px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:{{ r.starFg }};font-size:13px;padding:0" style-hover="background:#FEF7E6">{{ r.starIcon }}</button>
+          <sc-if value="{{ rpt2IsLib }}" hint-placeholder-val="{{ true }}">
+            <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px;flex-wrap:wrap">
+              <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
+              <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">{{ rptHead }}</span>
+              <span style="flex:1;height:1px;background:#F0EEE7;min-width:40px"></span>
+              <span style="font-size:11.5px;color:#98A2B3">{{ rptCount }} of {{ rptTotal }} report types</span>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px">
+              <sc-for list="{{ rptCards }}" as="r" hint-placeholder-count="9">
+                <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:20px 22px;display:flex;flex-direction:column" style-hover="border-color:#BFE3DC;box-shadow:0 8px 22px rgba(11,31,62,.05)">
+                  <div style="display:flex;align-items:flex-start;gap:12px">
+                    <div style="width:40px;height:40px;flex:none;border-radius:11px;background:{{ r.ibg }};color:{{ r.ifg }};display:grid;place-items:center;font-size:13px;font-weight:800;letter-spacing:.02em">{{ r.code }}</div>
+                    <span style="flex:1"></span>
+                    <span style="font-size:10px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.cBg }};color:{{ r.cFg }}">{{ r.cat }}</span>
+                    <button onClick="{{ r.star }}" title="Save report" style="width:28px;height:28px;flex:none;border-radius:8px;border:1px solid #E5E3DC;background:#fff;display:grid;place-items:center;cursor:pointer;color:{{ r.starFg }};font-size:13px;padding:0" style-hover="background:#FEF7E6">{{ r.starIcon }}</button>
+                  </div>
+                  <div style="font-size:15px;font-weight:800;color:#0F2A47;margin-top:14px;letter-spacing:-.01em">{{ r.title }}</div>
+                  <div style="font-size:12.5px;color:#6B7C93;margin-top:6px;line-height:1.55;text-wrap:pretty;flex:1">{{ r.desc }}</div>
+                  <div style="font-size:11px;color:#98A2B3;margin-top:14px">{{ r.formats }}  ·  Last run {{ r.last }}</div>
+                  <button onClick="{{ r.download }}" style="display:flex;align-items:center;justify-content:center;gap:8px;height:40px;margin-top:14px;border-radius:9px;border:0;background:#0E9384;font-size:13px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit" style-hover="background:#0B7A6E">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M4.5 19h15" /></svg>Download Report
+                  </button>
+                  <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:9px">
+                    <button onClick="{{ r.gen }}" style="height:35px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Generate</button>
+                    <button onClick="{{ r.sched }}" style="height:35px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">{{ r.schedLabel }}</button>
+                    <button onClick="{{ r.preview }}" style="height:35px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Preview</button>
+                  </div>
                 </div>
-                <div style="font-size:15px;font-weight:800;color:#0F2A47;margin-top:14px;letter-spacing:-.01em">{{ r.title }}</div>
-                <div style="font-size:12.5px;color:#6B7C93;margin-top:6px;line-height:1.55;text-wrap:pretty;flex:1">{{ r.desc }}</div>
-                <div style="font-size:11px;color:#98A2B3;margin-top:14px">{{ r.formats }}  ·  Last run {{ r.last }}</div>
-                <button onClick="{{ r.download }}" style="display:flex;align-items:center;justify-content:center;gap:8px;height:40px;margin-top:14px;border-radius:9px;border:0;background:#0E9384;font-size:13px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit" style-hover="background:#0B7A6E">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M4.5 19h15" /></svg>Download Report
-                </button>
-                <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:9px">
-                  <button onClick="{{ r.gen }}" style="height:35px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Generate</button>
-                  <button onClick="{{ r.sched }}" style="height:35px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">{{ r.schedLabel }}</button>
-                  <button onClick="{{ r.preview }}" style="height:35px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;font-size:12.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Preview</button>
+              </sc-for>
+            </div>
+            <div style="display:{{ rptEmpty }};padding:40px 20px;text-align:center;background:#fff;border:1px solid #ECEAE2;border-radius:14px">
+              <div style="font-size:14px;font-weight:700;color:#475467">{{ rptEmptyTitle }}</div>
+              <div style="font-size:12px;color:#98A2B3;margin-top:5px">{{ rptEmptySub }}</div>
+            </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ rpt2IsTable }}" hint-placeholder-val="{{ false }}">
+            <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px;flex-wrap:wrap">
+              <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
+              <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">{{ rpt2Title }}</span>
+              <span style="flex:1;height:1px;background:#F0EEE7;min-width:40px"></span>
+              <span style="font-size:11.5px;color:#98A2B3">{{ rpt2Meta }}</span>
+              <button onClick="{{ rpt2Gen }}" style="height:30px;padding:0 11px;border-radius:8px;border:1px solid #E5E3DC;background:#fff;font-size:11.5px;font-weight:600;color:#344054;cursor:pointer;font-family:inherit" style-hover="background:#F6F5F0">Generate</button>
+              <button onClick="{{ rpt2Dl }}" style="height:30px;padding:0 12px;border-radius:8px;border:1px solid #BFE3DC;background:#EEF6F5;font-size:11.5px;font-weight:700;color:#0B7A6E;cursor:pointer;font-family:inherit" style-hover="background:#E2F1EE">Download</button>
+            </div>
+            <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:hidden">
+              <div style="overflow-x:auto">
+                <table style="width:100%;border-collapse:collapse">
+                  <thead><tr style="background:#FCFBF7"><sc-for list="{{ rpt2Cols }}" as="h" hint-placeholder-count="6"><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">{{ h.c }}</th></sc-for></tr></thead>
+                  <tbody>
+                    <sc-for list="{{ rpt2Rows }}" as="row" hint-placeholder-count="6">
+                      <tr style-hover="background:#F7FBFA">
+                        <sc-for list="{{ row.cells }}" as="c" hint-placeholder-count="6">
+                          <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;color:{{ c.c }};font-weight:{{ c.w }}"><span style="display:{{ c.tD }}">{{ c.v }}</span><span style="display:{{ c.bD }};font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ c.bg }};color:{{ c.fg }}">{{ c.v }}</span></td>
+                        </sc-for>
+                      </tr>
+                    </sc-for>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div style="display:{{ rpt2RowsEmpty }};padding:40px 20px;text-align:center;background:#fff;border:1px solid #ECEAE2;border-radius:14px;margin-top:12px"><div style="font-size:14px;font-weight:700;color:#475467">No records match your search.</div></div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ rpt2IsPerf }}" hint-placeholder-val="{{ false }}">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px">
+              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:20px 22px">
+                <div style="font-size:15px;font-weight:800;color:#0F2A47">{{ rpt2PerfT1 }}</div>
+                <div style="display:flex;flex-direction:column;gap:16px;margin-top:16px">
+                  <sc-for list="{{ rpt2PerfRows }}" as="p" hint-placeholder-count="5">
+                    <div>
+                      <div style="display:flex;align-items:baseline;gap:10px">
+                        <div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:700;color:#0F2A47">{{ p.n }}</div><div style="font-size:11.5px;color:#98A2B3;margin-top:2px">{{ p.sub }}</div></div>
+                        <div style="font-size:15px;font-weight:800;color:{{ p.col }}">{{ p.sc }}</div>
+                      </div>
+                      <div style="height:7px;border-radius:99px;background:#F0EEE7;margin-top:8px;overflow:hidden"><div style="height:100%;width:{{ p.w }};border-radius:99px;background:{{ p.col }}"></div></div>
+                    </div>
+                  </sc-for>
                 </div>
               </div>
-            </sc-for>
-          </div>
-          <div style="display:{{ rptEmpty }};padding:40px 20px;text-align:center;background:#fff;border:1px solid #ECEAE2;border-radius:14px">
-            <div style="font-size:14px;font-weight:700;color:#475467">{{ rptEmptyTitle }}</div>
-            <div style="font-size:12px;color:#98A2B3;margin-top:5px">{{ rptEmptySub }}</div>
-          </div>
+              <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:20px 22px">
+                <div style="font-size:15px;font-weight:800;color:#0F2A47">{{ rpt2PerfT2 }}</div>
+                <div style="display:flex;flex-direction:column;margin-top:8px">
+                  <sc-for list="{{ rpt2RankRows }}" as="r" hint-placeholder-count="5">
+                    <div style="display:flex;align-items:center;gap:13px;padding:12px 0;border-bottom:1px solid #F5F3EE">
+                      <div style="width:30px;height:30px;flex:none;border-radius:9px;background:{{ r.rbg }};color:{{ r.rfg }};display:grid;place-items:center;font-size:13px;font-weight:800">{{ r.rank }}</div>
+                      <div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:700;color:#0F2A47">{{ r.n }}</div><div style="font-size:11.5px;color:#6B7C93;margin-top:2px">{{ r.sub }}</div></div>
+                      <div style="font-size:13px;font-weight:800;color:#0F2A47">{{ r.sc }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ rpt2IsSaved }}" hint-placeholder-val="{{ false }}">
+            <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px;flex-wrap:wrap">
+              <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
+              <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">SAVED REPORTS</span>
+              <span style="flex:1;height:1px;background:#F0EEE7;min-width:40px"></span>
+              <span style="font-size:11.5px;color:#98A2B3">{{ rpt2SavedCount }} saved</span>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px">
+              <sc-for list="{{ rpt2Saved }}" as="r" hint-placeholder-count="8">
+                <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;padding:18px 20px;display:flex;flex-direction:column" style-hover="border-color:#BFE3DC">
+                  <div style="display:flex;align-items:flex-start;gap:10px">
+                    <div onClick="{{ r.view }}" style="flex:1;min-width:0;cursor:pointer">
+                      <div style="font-size:14px;font-weight:800;color:#0F2A47">{{ r.name }}</div>
+                      <div style="font-size:11.5px;color:#98A2B3;margin-top:4px">{{ r.meta }}</div>
+                    </div>
+                  <div style="position:relative;display:inline-block">
+                    <button onClick="{{ r.menu }}" title="Actions" style="width:34px;height:34px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;cursor:pointer;color:#98A2B3;padding:0;display:grid;place-items:center;font-family:inherit" style-hover="background:#F6F5F0;color:#475467"><svg width="4" height="16" viewBox="0 0 4 16" fill="currentColor"><circle cx="2" cy="2" r="1.6" /><circle cx="2" cy="8" r="1.6" /><circle cx="2" cy="14" r="1.6" /></svg></button>
+                    <div style="display:{{ r.menuD }};position:absolute;top:38px;right:0;min-width:170px;background:#fff;border:1px solid #ECEAE2;border-radius:11px;box-shadow:0 16px 40px rgba(11,31,62,.16);padding:6px;z-index:40;text-align:left">
+                      <sc-for list="{{ r.items }}" as="m" hint-placeholder-count="3"><div onClick="{{ m.pick }}" style="padding:8px 11px;border-radius:8px;font-size:12.5px;font-weight:500;color:{{ m.c }};cursor:pointer;white-space:nowrap" style-hover="background:{{ m.hov }}">{{ m.label }}</div></sc-for>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:{{ rpt2SavedEmpty }};padding:40px 20px;text-align:center;background:#fff;border:1px solid #ECEAE2;border-radius:14px;margin-top:12px"><div style="font-size:14px;font-weight:700;color:#475467">No saved reports yet — star a report in the library to keep it here.</div></div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ rpt2IsSched }}" hint-placeholder-val="{{ false }}">
+            <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px;flex-wrap:wrap">
+              <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
+              <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">SCHEDULED REPORTS</span>
+              <span style="flex:1;height:1px;background:#F0EEE7;min-width:40px"></span>
+              <span style="font-size:11.5px;color:#98A2B3">{{ rpt2SchedCount }} schedules</span>
+            </div>
+            <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:visible">
+              <div style="overflow:visible">
+                <table style="width:100%;border-collapse:collapse">
+                  <thead><tr style="background:#FCFBF7"><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Report</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Frequency</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Date</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Time</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Format</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Status</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase"></th></tr></thead>
+                  <tbody>
+                    <sc-for list="{{ rpt2Sched }}" as="r" hint-placeholder-count="3">
+                      <tr style-hover="background:#F7FBFA">
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;font-weight:600;color:#0F2A47">{{ r.report }}</td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;color:#475467">{{ r.freq }}</td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;color:#475467">{{ r.date }}</td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;color:#475467">{{ r.time }}</td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;color:#475467">{{ r.fmt }}</td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.bg }};color:{{ r.fg }};white-space:nowrap">{{ r.status }}</span></td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;text-align:right;width:56px"><div style="position:relative;display:inline-block">
+                    <button onClick="{{ r.menu }}" title="Actions" style="width:34px;height:34px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;cursor:pointer;color:#98A2B3;padding:0;display:grid;place-items:center;font-family:inherit" style-hover="background:#F6F5F0;color:#475467"><svg width="4" height="16" viewBox="0 0 4 16" fill="currentColor"><circle cx="2" cy="2" r="1.6" /><circle cx="2" cy="8" r="1.6" /><circle cx="2" cy="14" r="1.6" /></svg></button>
+                    <div style="display:{{ r.menuD }};position:absolute;top:38px;right:0;min-width:170px;background:#fff;border:1px solid #ECEAE2;border-radius:11px;box-shadow:0 16px 40px rgba(11,31,62,.16);padding:6px;z-index:40;text-align:left">
+                      <sc-for list="{{ r.items }}" as="m" hint-placeholder-count="3"><div onClick="{{ m.pick }}" style="padding:8px 11px;border-radius:8px;font-size:12.5px;font-weight:500;color:{{ m.c }};cursor:pointer;white-space:nowrap" style-hover="background:{{ m.hov }}">{{ m.label }}</div></sc-for>
+                    </div>
+                  </div></td>
+                      </tr>
+                    </sc-for>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div style="display:{{ rpt2SchedEmpty }};padding:40px 20px;text-align:center;background:#fff;border:1px solid #ECEAE2;border-radius:14px;margin-top:12px"><div style="font-size:14px;font-weight:700;color:#475467">Nothing scheduled — use Schedule on any report in the library.</div></div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ rpt2IsExport }}" hint-placeholder-val="{{ false }}">
+            <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px;flex-wrap:wrap">
+              <span style="width:3px;height:14px;border-radius:2px;background:#0E9384"></span>
+              <span style="font-size:11px;font-weight:700;letter-spacing:.09em;color:#475467">EXPORT CENTER</span>
+              <span style="flex:1;height:1px;background:#F0EEE7;min-width:40px"></span>
+              <span style="font-size:11.5px;color:#98A2B3">{{ rpt2ExpCount }} exports</span>
+            </div>
+            <div style="background:#fff;border:1px solid #ECEAE2;border-radius:14px;overflow:visible">
+              <div style="overflow:visible">
+                <table style="width:100%;border-collapse:collapse">
+                  <thead><tr style="background:#FCFBF7"><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Report</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Requested By</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Format</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Records</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Requested At</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase">Status</th><th style="padding:11px 14px;text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#7A8699;border-bottom:1px solid #F0EEE7;white-space:nowrap;text-transform:uppercase"></th></tr></thead>
+                  <tbody>
+                    <sc-for list="{{ rpt2Exports }}" as="r" hint-placeholder-count="5">
+                      <tr style-hover="background:#F7FBFA">
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;font-weight:600;color:#0F2A47">{{ r.report }}</td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;color:#475467">{{ r.by }}</td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;color:#475467">{{ r.fmt }}</td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;color:#475467">{{ r.records }}</td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;color:#475467">{{ r.at }}</td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap"><span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:{{ r.bg }};color:{{ r.fg }};white-space:nowrap">{{ r.status }}</span></td>
+                        <td style="padding:12px 14px;border-bottom:1px solid #F5F3EE;font-size:12.5px;white-space:nowrap;text-align:right;width:56px"><div style="position:relative;display:inline-block">
+                    <button onClick="{{ r.menu }}" title="Actions" style="width:34px;height:34px;border-radius:9px;border:1px solid #E5E3DC;background:#fff;cursor:pointer;color:#98A2B3;padding:0;display:grid;place-items:center;font-family:inherit" style-hover="background:#F6F5F0;color:#475467"><svg width="4" height="16" viewBox="0 0 4 16" fill="currentColor"><circle cx="2" cy="2" r="1.6" /><circle cx="2" cy="8" r="1.6" /><circle cx="2" cy="14" r="1.6" /></svg></button>
+                    <div style="display:{{ r.menuD }};position:absolute;top:38px;right:0;min-width:170px;background:#fff;border:1px solid #ECEAE2;border-radius:11px;box-shadow:0 16px 40px rgba(11,31,62,.16);padding:6px;z-index:40;text-align:left">
+                      <sc-for list="{{ r.items }}" as="m" hint-placeholder-count="3"><div onClick="{{ m.pick }}" style="padding:8px 11px;border-radius:8px;font-size:12.5px;font-weight:500;color:{{ m.c }};cursor:pointer;white-space:nowrap" style-hover="background:{{ m.hov }}">{{ m.label }}</div></sc-for>
+                    </div>
+                  </div></td>
+                      </tr>
+                    </sc-for>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div style="display:{{ rpt2ExpEmpty }};padding:40px 20px;text-align:center;background:#fff;border:1px solid #ECEAE2;border-radius:14px;margin-top:12px"><div style="font-size:14px;font-weight:700;color:#475467">No exports match your search.</div></div>
+            </div>
+          </sc-if>
         </div>
       </sc-if>
       <sc-if value="{{ isProfile }}" hint-placeholder-val="{{ false }}">
@@ -5682,6 +5852,115 @@ class Component extends DCLogic {
       v[p+'ResetShow'] = sig===this._frBase[p] ? 'none' : 'inline-flex'; });
     return v; }
 
+  rpt2Menus(o) { const M=this.state.rpt2Menu;
+    const mk=(id,items)=>({menuD:M===id?'block':'none', menu:()=>this.setState({rpt2Menu:M===id?null:id}),
+      items:items.map(([label,fn,red])=>({label, c:red?'#B42318':'#344054', hov:red?'#FEF3F2':'#F7FBFA', pick:()=>{ this.setState({rpt2Menu:null}); fn(); }}))});
+    o.rpt2Saved=(o.rpt2Saved||[]).map(r=>({...r, ...mk('sv:'+r.name,[['View',r.view],['Edit',r.edit],['Duplicate',r.dup],['Export',r.exp],['Delete',r.del,true]])}));
+    o.rpt2Sched=(o.rpt2Sched||[]).map(r=>({...r, ...mk('sc:'+r.report,[['Edit schedule',r.edit],[r.toggleLabel,r.toggle],['Delete',r.del,true]])}));
+    o.rpt2Exports=(o.rpt2Exports||[]).map((r,i)=>({...r, ...mk('ex:'+i+r.report,[['Download',r.download],['Regenerate',r.regen],['Delete',r.del,true]])}));
+    return o; }
+  rpt2Vals() { const s=this.state, C=this.rptCfg(), tab=s.rptTab||'overview', q=(s.rptQ||'').trim().toLowerCase(), range=s.rptRange||'This month';
+    const B={green:['#E7F7EE','#15803D'],amber:['#FEF3E2','#B45309'],red:['#FDE8E8','#B42318'],blue:['#E9F1FD','#1D4ED8'],grey:['#F1F3F5','#667085'],violet:['#F0EAFD','#6D28D9']};
+    const SC={}; [['green',['completed','active','verified','signed','paid','present','approved','pass','passed','ready','issued','enrolled','resolved','renewed','on track','delivered','success','yes']],
+      ['amber',['pending','processing','in progress','expiring','expiring soon','late','pending review','on hold','partial','due','at risk','under review','docs pending','trial','grace period','half day','early exit','needs review','overloaded']],
+      ['red',['failed','expired','rejected','absent','cancelled','overdue','dropped','suspended','fail','refunded','no-show','declined','critical','no']],
+      ['blue',['rescheduled','recorded','on leave','scheduled','new','invited','upcoming','approved leave','renewal due']],['grey',['paused','draft','inactive','not started']]].forEach(([c,l])=>l.forEach(w=>SC[w]=c));
+    const bd=(x)=>B[SC[String(x).toLowerCase()]]||null;
+    const fire=(a,b,ok)=>this.fire(a,b,ok!==false);
+    const go=(k)=>()=>this.setState({rptTab:k});
+    const TABS=[['overview','Overview'],...C.tabs.map(t=>[t.k,t.label]),['saved','Saved Reports'],['scheduled','Scheduled'],['export','Export Center']];
+    const cur=C.tabs.find(t=>t.k===tab), isPerf=!!(cur&&cur.perf), isTable=!!(cur&&cur.cols);
+    const cell=(v,i,isB)=>{ const b=isB?bd(v):null; return {v:String(v), bD:b?'inline-block':'none', tD:b?'none':'inline', bg:b?b[0]:'transparent', fg:b?b[1]:'#475467', w:i===0?'600':'400', c:i===0?'#0F2A47':'#475467'}; };
+    const rows=isTable?cur.rows.filter(r=>!q||r.join(' ').toLowerCase().includes(q)):[];
+    const reportOf=(k)=>{ const t=C.tabs.find(x=>x.k===k); return t?t.report:C.tabs[0].report; };
+    const defSaved=()=>C.saved.map(([name,k,meta])=>({name,k,meta}));
+    const starred=Object.keys(s.rptStar||{}).filter(t=>s.rptStar[t]).map(t=>({name:t,k:'overview',meta:'Starred from report library',star:true}));
+    const saved=[...starred,...(s.rpt2Saved||defSaved())].filter(x=>!q||x.name.toLowerCase().includes(q));
+    const schP=s.rpt2Pause||{}, schD=s.rpt2SchDel||{};
+    const schRows=[...Object.keys(s.rptSched||{}).filter(t=>s.rptSched[t]).map(t=>[t,'Monthly','1st','06:00','PDF','Active']),...C.sched].filter(r=>!schD[r[0]]&&(!q||r[0].toLowerCase().includes(q)));
+    const exD=s.rpt2ExDel||{}, exR=s.rpt2Regen||{};
+    const exRows=[...Object.keys(s.rptDl||{}).filter(t=>s.rptDl[t]).map((t,i)=>['DL-'+i,t,'You','XLSX','—','Just now','Completed']),...C.exports.map((r,i)=>['EX-'+i,...r])].filter(r=>!exD[r[0]]&&(!q||r[1].toLowerCase().includes(q)));
+    return {
+      rptTabs: TABS.map(([k,label])=>({label, bg:tab===k?'#0E9384':'transparent', fg:tab===k?'#fff':'#6B7C93', weight:tab===k?'700':'500', go:go(k)})),
+      rpt2IsLib: tab==='overview'||(!cur&&!['saved','scheduled','export'].includes(tab)), rpt2IsTable:isTable, rpt2IsPerf:isPerf,
+      rpt2IsSaved: tab==='saved', rpt2IsSched: tab==='scheduled', rpt2IsExport: tab==='export',
+      rpt2Ph: cur ? 'Search '+cur.label.toLowerCase()+'…' : tab==='saved' ? 'Search saved reports…' : tab==='scheduled' ? 'Search schedules…' : tab==='export' ? 'Search exports…' : 'Search report types…',
+      rpt2Export: ()=>fire('Export queued', (cur?cur.label:'Reports')+' · '+range+' — you will be notified when ready'),
+      rpt2Title: isTable?cur.title.toUpperCase():'', rpt2Meta: rows.length+' records · '+range,
+      rpt2Cols: isTable?cur.cols.map(c=>({c})):[],
+      rpt2Rows: rows.map(r=>({cells:r.map((v,i)=>cell(v,i,(cur.b||[]).includes(i)))})),
+      rpt2RowsEmpty: isTable&&!rows.length?'block':'none',
+      rpt2Gen: ()=>this.rptOpen('generate', cur?cur.report:reportOf()),
+      rpt2Dl: ()=>fire('Downloading — '+(cur?cur.title:''), 'XLSX · '+rows.length+' records · '+range),
+      rpt2PerfT1: isPerf?cur.perf.t1:'', rpt2PerfT2: isPerf?cur.perf.t2:'',
+      rpt2PerfRows: isPerf?cur.perf.rows.map(([n,sub,sc])=>({n,sub,sc:String(sc),w:sc+'%',col:sc>=85?'#0E9384':sc>=70?'#D97706':'#B42318'})):[],
+      rpt2RankRows: isPerf?[...cur.perf.rows].sort((a,b)=>b[2]-a[2]).map((r,i)=>({rank:String(i+1),n:r[0],sub:r[3],sc:String(r[2]),rbg:i===0?'#FEF3E2':i<3?'#EEF6F5':'#F6F5F0',rfg:i===0?'#B45309':i<3?'#0B7A6E':'#475467'})):[],
+      rpt2SavedCount: String(saved.length), rpt2SavedEmpty: saved.length?'none':'block',
+      rpt2Saved: saved.map(x=>({name:x.name, meta:x.meta,
+        view: x.star ? ()=>this.rptOpen('preview', x.name) : go(x.k),
+        edit: ()=>this.rptOpen('generate', x.star?x.name:reportOf(x.k)),
+        dup: ()=>{ this.setState(p=>{ const L=[...(p.rpt2Saved||defSaved())]; const i=L.findIndex(y=>y.name===x.name); L.splice(i<0?0:i+1,0,{name:x.name+' — Copy',k:x.k,meta:'Duplicated just now'}); return {rpt2Saved:L}; }); fire('Report duplicated', x.name+' — Copy'); },
+        exp: ()=>fire('Exporting — '+x.name, range),
+        del: ()=>{ if(x.star) this.setState(p=>({rptStar:{...(p.rptStar||{}),[x.name]:false}})); else this.setState(p=>({rpt2Saved:(p.rpt2Saved||defSaved()).filter(y=>y.name!==x.name)})); fire('Report deleted', x.name); }})),
+      rpt2SchedCount: String(schRows.length), rpt2SchedEmpty: schRows.length?'none':'block',
+      rpt2Sched: schRows.map(([report,freq,date,time,fmt,st])=>{ const paused=schP[report]!==undefined?schP[report]:st==='Paused', b=B[paused?'grey':'green'];
+        return {report,freq,date,time,fmt,status:paused?'Paused':'Active',bg:b[0],fg:b[1],toggleLabel:paused?'Resume':'Pause',
+          toggle:()=>{ this.setState(p=>({rpt2Pause:{...(p.rpt2Pause||{}),[report]:!paused}})); fire(paused?'Schedule resumed':'Schedule paused', report); },
+          edit:()=>this.rptOpen('schedule', report),
+          del:()=>{ this.setState(p=>({rpt2SchDel:{...(p.rpt2SchDel||{}),[report]:true}, rptSched:{...(p.rptSched||{}),[report]:false}})); fire('Schedule removed', report); }}; }),
+      rpt2ExpCount: String(exRows.length), rpt2ExpEmpty: exRows.length?'none':'block',
+      rpt2Exports: exRows.map(([id,report,by,fmt,records,at,st])=>{ const status=exR[id]||st, b=B[SC[status.toLowerCase()]||'grey'];
+        return {report,by,fmt,records:String(records),at:exR[id]?'Just now':at,status,bg:b[0],fg:b[1],
+          download:()=>status==='Completed'?fire('Downloading — '+report, fmt+' · '+records+' records'):fire(status==='Failed'?'Export failed':'Still processing', status==='Failed'?'Regenerate this export to try again':'This export is not ready yet', false),
+          regen:()=>{ this.setState(p=>({rpt2Regen:{...(p.rpt2Regen||{}),[id]:'Processing'}})); fire('Report regenerating', report); setTimeout(()=>this.setState(p=>({rpt2Regen:{...(p.rpt2Regen||{}),[id]:'Completed'}})), 2500); },
+          del:()=>{ this.setState(p=>({rpt2ExDel:{...(p.rpt2ExDel||{}),[id]:true}, rptDl: id.startsWith('DL-')?{...(p.rptDl||{}),[report]:false}:p.rptDl})); fire('Export deleted', report); }}; })
+    };
+  }
+  rptOpen(mode, title) { if (mode==='preview') return this.fire('Preview — '+title, (this.state.rptRange||'This month')+' · first 50 rows', true); const R = REPORTS.find(x=>x[3]===title)||REPORTS[1]; this.setState({mRep:{title, cols:R[5], fields:R[6], mode}}); }
+  rptCfg() { return {
+    tabs: [
+      {k:'master', label:'Student Directory', title:'Student directory', report:'Student Master', cols:['Student','Student ID','Course','Batch','City','Registered','Progress','Status'], b:[7], rows:[
+        ['Aarav Sharma','SC-10001','IC-38 Licentiate','BT-101','New Delhi','2026-03-12','78%','Active'],['Ananya Gupta','SC-10006','Health Crux','BT-310','Mumbai','2026-04-02','64%','Active'],
+        ['Aditya Rao','SC-10009','Life Elite','BT-204','Bengaluru','2026-02-18','91%','Active'],['Ishita Desai','SC-10010','IC-38 Licentiate','BT-103','Ahmedabad','2026-05-21','42%','Active'],
+        ['Arjun Malhotra','SC-10013','Claims Module','BT-215','Chandigarh','2025-11-09','100%','Expired'],['Divya Krishnan','SC-10014','Policy Law','BT-201','Chennai','2026-06-01','55%','Active'],
+        ['Kabir Mehta','SC-10017','Exam Strategy','BT-118','Pune','2026-07-14','12%','Pending'],['Rohan Verma','SC-10024','IC-38 Licentiate','BT-101','Jaipur','2026-01-30','23%','Suspended']]},
+      {k:'enrollment', label:'Enrollment', title:'Course enrollment', report:'Course Enrollment', cols:['Student','Course','Product','Batch','Enrolled','Valid Till','Status'], b:[6], rows:[
+        ['Aarav Sharma','IC-38 Licentiate','Live Course','BT-101','2026-03-12','2027-03-11','Active'],['Aarav Sharma','IC-38 Full-Length Mock','Mock Tests','—','2026-03-12','2026-12-31','Active'],
+        ['Ananya Gupta','Health Crux','Recorded Course','—','2026-04-02','2026-10-01','Expiring'],['Aditya Rao','Life Elite','Live Course','BT-204','2026-02-18','2027-02-17','Active'],
+        ['Ishita Desai','IC-38 Crash Course','Live Course','BT-103','2026-05-21','2026-11-20','Active'],['Arjun Malhotra','Claims Module','Recorded Course','—','2025-11-09','2026-05-08','Expired'],
+        ['Kabir Mehta','Exam Strategy','Live Course','BT-118','2026-07-14','2027-01-13','Pending']]},
+      {k:'attendance', label:'Attendance', title:'Live class attendance', report:'Live Class Attendance', cols:['Student','Batch','Classes','Attended','Attend %','Last Class','Status'], b:[6], rows:[
+        ['Aarav Sharma','BT-101','24','22','92%','2026-08-10','Present'],['Ananya Gupta','BT-310','18','13','72%','2026-08-09','Late'],
+        ['Aditya Rao','BT-204','20','19','95%','2026-08-10','Present'],['Ishita Desai','BT-103','16','11','69%','2026-08-08','Absent'],
+        ['Divya Krishnan','BT-201','22','18','82%','2026-08-10','Present'],['Kabir Mehta','BT-118','4','2','50%','2026-08-07','Absent'],['Rohan Verma','BT-101','24','9','38%','2026-07-20','Absent']]},
+      {k:'mocks', label:'Mock Tests', title:'Mock test performance', report:'Mock Test Performance', cols:['Student','Mock Test','Attempted','Score','Percentile','Time Taken','Result'], b:[6], rows:[
+        ['Aarav Sharma','IC-38 Full-Length Mock 4','2026-08-09','82 / 100','94','52 min','Pass'],['Aditya Rao','Life Elite Mock 2','2026-08-08','88 / 100','97','48 min','Pass'],
+        ['Ananya Gupta','Health Mock 3','2026-08-07','58 / 100','61','58 min','Pass'],['Ishita Desai','IC-38 Full-Length Mock 2','2026-08-06','41 / 100','28','60 min','Fail'],
+        ['Divya Krishnan','Policy Law Mock 1','2026-08-05','71 / 100','79','55 min','Pass'],['Kabir Mehta','Exam Strategy Diagnostic','2026-08-04','36 / 100','19','44 min','Fail']]},
+      {k:'performance', label:'Performance', report:'Learning Progress', perf:{t1:'Student performance', t2:'Student ranking', rows:[
+        ['Aditya Rao','6 mocks · 91% course progress',94,'Avg score 86 · 95% attendance · 97th percentile'],['Aarav Sharma','8 mocks · 78% course progress',89,'Avg score 80 · 92% attendance · 94th percentile'],
+        ['Divya Krishnan','4 mocks · 55% course progress',78,'Avg score 71 · 82% attendance · 79th percentile'],['Ananya Gupta','5 mocks · 64% course progress',70,'Avg score 60 · 72% attendance · 61st percentile'],
+        ['Ishita Desai','3 mocks · 42% course progress',58,'Avg score 45 · 69% attendance · 28th percentile'],['Kabir Mehta','1 mock · 12% course progress',41,'Avg score 36 · 50% attendance · 19th percentile']]}},
+      {k:'payments', label:'Fees & Payments', title:'Payment report', report:'Payment Report', cols:['Invoice','Student','Course','Amount','GST','Paid On','Status'], b:[6], rows:[
+        ['INV-24081','Aarav Sharma','IC-38 Licentiate','₹14,999','₹2,700','2026-03-12','Paid'],['INV-24096','Ananya Gupta','Health Crux','₹8,499','₹1,530','2026-04-02','Paid'],
+        ['INV-24102','Aditya Rao','Life Elite','₹18,999','₹3,420','2026-02-18','Paid'],['INV-24117','Ishita Desai','IC-38 Crash Course','₹6,999','₹1,260','—','Due'],
+        ['INV-24123','Kabir Mehta','Exam Strategy','₹4,999','₹900','—','Pending'],['INV-24131','Arjun Malhotra','Claims Module','₹5,499','₹990','2025-11-09','Refunded']]},
+      {k:'certificates', label:'Certificates', title:'Certificate report', report:'Certificate Report', cols:['Student','Course','Completed','Certificate ID','Score','Status'], b:[5], rows:[
+        ['Arjun Malhotra','Claims Module','2026-04-28','CRT-88012','84%','Issued'],['Aditya Rao','Life Elite — Module 1','2026-07-30','CRT-88044','91%','Issued'],
+        ['Aarav Sharma','IC-38 — Part A','2026-08-02','CRT-88051','82%','Issued'],['Divya Krishnan','Policy Law — Module 1','—','—','—','In Progress'],
+        ['Ananya Gupta','Health Crux — Module 2','2026-08-09','—','68%','Pending Review'],['Ishita Desai','IC-38 — Part A','—','—','—','Not Started']]},
+      {k:'activity', label:'Activity', title:'Activity log', report:'Student Activity Log', cols:['Timestamp','Student','Activity','Course','Performed By','Status'], b:[5], rows:[
+        ['26 Aug, 10:42 AM','Aarav Sharma','Mock Test Attempted','IC-38 Full-Length Mock 4','Student','Completed'],['26 Aug, 09:15 AM','Ananya Gupta','Support Ticket Raised','Health Crux','Student','Pending Review'],
+        ['25 Aug, 06:22 PM','Rohan Verma','Account Suspended','—','Admin','Recorded'],['25 Aug, 02:10 PM','Aditya Rao','Certificate Issued','Life Elite','System','Completed'],
+        ['24 Aug, 11:00 AM','Kabir Mehta','Enrollment Started','Exam Strategy','Student','In Progress'],['23 Aug, 04:20 PM','Ishita Desai','Payment Reminder Sent','IC-38 Crash Course','System','Completed']]}
+    ],
+    saved: [['Monthly Learning Progress','performance','Last viewed 2 days ago'],['Pending Fee Payments','payments','Last viewed yesterday'],['New Enrollments','enrollment','Last viewed 4 days ago'],['Low Attendance Students','attendance','Last viewed today'],
+      ['Mock Test Results','mocks','Last viewed 3 days ago'],['Certificates Issued','certificates','Last viewed yesterday'],['Top Performing Students','performance','Last viewed 1 week ago'],['Student Activity Log','activity','Last viewed 5 days ago']],
+    sched: [['Learning Progress','Monthly','1st','09:00','XLSX','Active'],['Fee Dues','Weekly','Monday','08:00','PDF','Active'],['Attendance Summary','Monthly','1st','10:00','XLSX','Paused']],
+    exports: [['Student Master Report','Admin','XLSX','2,840','26 Aug, 10:12 AM','Completed'],['Mock Test Performance','Academic Head','PDF',612,'25 Aug, 04:40 PM','Completed'],['Payment Report','Finance Admin','CSV','1,204','25 Aug, 02:15 PM','Completed'],
+      ['Live Class Attendance','Admin','XLSX',980,'24 Aug, 09:00 AM','Processing'],['Inactive Students','Admin','PDF',146,'22 Aug, 03:30 PM','Failed']]
+  }; }
+
   rptVals() { const s = this.state, LIB = REPORTS.map(([ic,ibg,ifg,title,desc],i)=>[ic, /Master|Individual|Enroll/.test(title) ? 'People' : /Attendance|Live/.test(title) ? 'Attendance' : /Pay|Fee|Revenue|Refund|Subscri/.test(title) ? 'Finance' : /Mock|Progress|Completion|Assignment|Performance/.test(title) ? 'Performance' : /Certif|Log|Audit/.test(title) ? 'Compliance' : 'Academic', title, desc, ['PDF · XLSX','CSV · XLSX','XLSX · PDF','PDF · CSV'][i%4], ['2 days ago','Yesterday','Today','3 days ago','1 week ago'][i%5]]);
     const CC = {People:['#E9F1FD','#1D4ED8'],Academic:['#E6F4F1','#0B7A6E'],Performance:['#F0EAFD','#6D28D9'],Attendance:['#E7F7EE','#15803D'],Finance:['#FEF3E2','#B45309'],Compliance:['#F1F3F5','#667085'],Operations:['#E6F4F1','#0B7A6E'],Content:['#F0EAFD','#6D28D9']};
     const cats = Array.from(new Set(LIB.map(r=>r[1])));
@@ -5711,7 +5990,7 @@ class Component extends DCLogic {
           preview:()=>done('Preview — '+title, range+' · first 50 rows')}; }) };
   }
 
-  renderVals() { const v = this.renderVals1(); { const IC=(l)=>/cal/i.test(l)?'M8 3v4M16 3v4M3 10h18M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z':/agenda/i.test(l)?'M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01':/table|list/i.test(l)?'M4 6h16M4 12h16M4 18h16':'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z'; if (Array.isArray(v.attViews)) v.attViews = v.attViews.map(x=>({...x, ic: IC(x.label||x.key||'')})); } Object.assign(v, this.rptVals()); v.fp = this.fpVals(); this.frShow(v, ["af","pf"]); return v; }
+  renderVals() { const v = this.renderVals1(); { const IC=(l)=>/cal/i.test(l)?'M8 3v4M16 3v4M3 10h18M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z':/agenda/i.test(l)?'M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01':/table|list/i.test(l)?'M4 6h16M4 12h16M4 18h16':'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z'; if (Array.isArray(v.attViews)) v.attViews = v.attViews.map(x=>({...x, ic: IC(x.label||x.key||'')})); } Object.assign(v, this.rptVals()); Object.assign(v, this.rpt2Menus(this.rpt2Vals())); v.fp = this.fpVals(); this.frShow(v, ["af","pf"]); return v; }
   renderVals1() {
     const s = this.state;
     const q = s.q.toLowerCase();
